@@ -1,0 +1,30 @@
+-classpath
+'/Users/dmitry/Projects/EE4J/websocket-api/api/server/target/classes:/Users/dmitry/Projects/EE4J/websocket-api/api/client/target/javax.websocket-client-api-1.1.jar'
+-encoding
+'UTF-8'
+-protected
+-sourcepath
+'/Users/dmitry/Projects/EE4J/websocket-api/api/server/src/main/java:/Users/dmitry/Projects/EE4J/websocket-api/api/client/src/main/java'
+-author
+-bottom
+'Copyright &#169; 2018 <a href="http://www.oracle.com">Oracle</a>. All Rights Reserved.'
+-charset
+'UTF-8'
+-d
+'/Users/dmitry/Projects/EE4J/websocket-api/api/server/target/apidocs'
+-docencoding
+'UTF-8'
+-doctitle
+'WebSocket server API 1.1 API'
+-group
+'WebSocket Packages' 'javax.websocket*'
+-link
+'http://docs.oracle.com/javase/6/docs/api'
+-linkoffline
+'http://download.oracle.com/javase/6/docs/api' '/Users/dmitry/Projects/EE4J/websocket-api/api/server/target/javadoc-bundle-options'
+-linkoffline
+'http://websocket-spec.java.net/apidocs' '/Users/dmitry/Projects/EE4J/websocket-api/api/client/target/apidocs'
+-use
+-version
+-windowtitle
+'WebSocket server API 1.1 API'

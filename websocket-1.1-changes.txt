@@ -1,0 +1,112 @@
+		Java API for WebSocket 1.1
+		==========================
+
+		(Updated January 10, 2018)
+
+Following is a description of the additions to the WebSocket
+API introduced in Java API for WebSocket 1.1.  The values in
+parentheses are bug numbers; you can find more information
+about the bug reports at:
+
+    https://github.com/javaee/websocket-spec/issues
+
+Please send comments and feedback to https://dev.eclipse.org/mailman/listinfo/websocket-dev.
+
+===================================================================
+
+1. Session.addMessageHandler(MessageHandler) cannot work with lambda
+   expressions (WEBSOCKET_SPEC-226)
+------------------------------------
+
+The method "Session.addMessageHandler(MessageHandler)" forces implementations
+to get the generic type of the message handler instance. The problem is that this
+information is not always available - for example for lambda expressions
+(MessageHandler is interface with only one method, thus can be replaced with
+lambda). There are other cases where this method does not work and any generics
+expert will confirm that this is not correctly defined; basically whenever
+there is no info in the class file for supplied argument, it cannot work.
+
+The solution is to add methods to register all extensions of the MessageHandler
+interface (there are two: MessageHandler.Partial<T> and
+MessageHandler.Whole<T>) with an additional parameter representing the handled type.
+A possible drawback is that this solution limits types to those expressible by
+a class object - for example, types with a generic parameter cannot be represented
+like this (we cannot do List<String>.class). Currently there is no good
+alternative to this cleanly in Java, but it can still be worked around by
+creating a wrapper class such as:
+
+public class MyStringList implements List<String> {
+    ...
+}
+
+and declaring a message handler that uses it:
+
+public class MyMessageHandler implements MessageHandler.Whole<MyStringList> {
+    ...
+}
+
+which can be registered as:
+
+        session.addMessageHandler(MyStringList.class, new MyMessageHandler());
+
+Added methods:
+    /**
+     * Register to handle to incoming messages in this conversation. A maximum of one message handler per
+     * native websocket message type (text, binary, pong) may be added to each Session. I.e. a maximum
+     * of one message handler to handle incoming text messages a maximum of one message handler for
+     * handling incoming binary messages, and a maximum of one for handling incoming pong
+     * messages. For further details of which message handlers handle which of the native websocket
+     * message types please see {@link MessageHandler.Whole} and {@link MessageHandler.Partial}.
+     * Adding more than one of any one type will result in a runtime exception.
+     *
+     * @param clazz   type of the message processed by message handler to be registered.
+     * @param handler whole message handler to be added.
+     * @throws IllegalStateException if there is already a MessageHandler registered for the same native
+     *                               websocket message type as this handler.
+     */
+    public <T> void addMessageHandler(Class<T> clazz, MessageHandler.Whole<T> handler);
+
+    /**
+     * Register to handle to incoming messages in this conversation. A maximum of one message handler per
+     * native websocket message type (text, binary, pong) may be added to each Session. I.e. a maximum
+     * of one message handler to handle incoming text messages a maximum of one message handler for
+     * handling incoming binary messages, and a maximum of one for handling incoming pong
+     * messages. For further details of which message handlers handle which of the native websocket
+     * message types please see {@link MessageHandler.Whole} and {@link MessageHandler.Partial}.
+     * Adding more than one of any one type will result in a runtime exception.
+     *
+     *
+     * @param clazz   type of the message processed by message handler to be registered.
+     * @param handler partial message handler to be added.
+     * @throws IllegalStateException if there is already a MessageHandler registered for the same native
+     *                               websocket message type as this handler.
+     */
+    public <T> void addMessageHandler(Class<T> clazz, MessageHandler.Partial<T> handler);
+
+Existing Session.addMessageHandler(MessageHandler) method is kept for backwards compatibility, but
+last paragraph is added to its javadoc ("This method is not safe..."):
+
+    /**
+     * Register to handle to incoming messages in this conversation. A maximum of one message handler per
+     * native websocket message type (text, binary, pong) may be added to each Session. I.e. a maximum
+     * of one message handler to handle incoming text messages a maximum of one message handler for
+     * handling incoming binary messages, and a maximum of one for handling incoming pong
+     * messages. For further details of which message handlers handle which of the native websocket
+     * message types please see {@link MessageHandler.Whole} and {@link MessageHandler.Partial}.
+     * Adding more than one of any one type will result in a runtime exception.
+     * <p>
+     * This method is not safe to use unless you are providing anonymous class derived directly
+     * from {@link javax.websocket.MessageHandler.Whole} or {@link javax.websocket.MessageHandler.Partial}.
+     * Please consider using
+     * {@link #addMessageHandler(Class, javax.websocket.MessageHandler.Whole)} or
+     * {@link #addMessageHandler(Class, javax.websocket.MessageHandler.Partial)}.
+     *
+     * @param handler the MessageHandler to be added.
+     * @throws IllegalStateException if there is already a MessageHandler registered for the same native
+     *                               websocket message type as this handler.
+     */
+    void addMessageHandler(MessageHandler handler) throws IllegalStateException;
+
+
+
+
