@@ -46,7 +46,7 @@ public interface Decoder {
     
     /**
       * This method is called when the decoder is about to be removed
-      * from service in order that any resources the encoder used may 
+      * from service in order that any resources the decoder used may
       * be closed gracefully.
       */
     void destroy();
