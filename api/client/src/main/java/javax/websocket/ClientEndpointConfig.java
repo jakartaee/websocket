@@ -152,10 +152,10 @@ public interface ClientEndpointConfig extends EndpointConfig {
         */
        public ClientEndpointConfig build() {
            return new DefaultClientEndpointConfig(
-               Collections.unmodifiableList(this.preferredSubprotocols),
-               Collections.unmodifiableList(this.extensions),
-               Collections.unmodifiableList(this.encoders),
-               Collections.unmodifiableList(this.decoders),
+               this.preferredSubprotocols,
+               this.extensions,
+               this.encoders,
+               this.decoders,
                this.clientEndpointConfigurator);
        }
 

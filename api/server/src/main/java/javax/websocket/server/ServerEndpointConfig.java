@@ -278,10 +278,10 @@ public interface ServerEndpointConfig extends EndpointConfig {
             return new DefaultServerEndpointConfig(
                     this.endpointClass,
                     this.path,
-                    Collections.unmodifiableList(this.subprotocols),
-                    Collections.unmodifiableList(this.extensions),
-                    Collections.unmodifiableList(this.encoders),
-                    Collections.unmodifiableList(this.decoders),
+                    this.subprotocols,
+                    this.extensions,
+                    this.encoders,
+                    this.decoders,
                     this.serverEndpointConfigurator
                  );
         }
