@@ -51,18 +51,19 @@ public abstract class ContainerProvider {
      * @return an implementation provided instance of type WebSocketContainer
      */
     public static WebSocketContainer getWebSocketContainer() {
-         WebSocketContainer wsc = null;
-        for (ContainerProvider impl : getProviders()) {
+        Iterable<ContainerProvider> providers = getProviders();
+        if (!providers.iterator().hasNext()) {
+            throw new RuntimeException("Could not find an implementation class.");
+        }
+        WebSocketContainer wsc = null;
+        for (ContainerProvider impl : providers) {
             wsc = impl.getContainer();
             if (wsc != null) {
                 return wsc;
             } 
         }
-        if (wsc == null) {
-            throw new RuntimeException("Could not find an implementation class.");
-        } else {
-            throw new RuntimeException("Could not find an implementation class with a non-null WebSocketContainer.");
-        }
+
+        throw new RuntimeException("Could not find an implementation class with a non-null WebSocketContainer.");
     }
  
     private static Iterable<ContainerProvider> getProviders() {
