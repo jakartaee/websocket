@@ -62,7 +62,6 @@ public abstract class ContainerProvider {
                 return wsc;
             } 
         }
-
         throw new RuntimeException("Could not find an implementation class with a non-null WebSocketContainer.");
     }
  
