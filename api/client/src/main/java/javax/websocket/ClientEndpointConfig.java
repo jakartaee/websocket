@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 2012, 2017 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2012, 2018 Oracle and/or its affiliates and others.
+ * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -152,10 +153,10 @@ public interface ClientEndpointConfig extends EndpointConfig {
         */
        public ClientEndpointConfig build() {
            return new DefaultClientEndpointConfig(
-               Collections.unmodifiableList(this.preferredSubprotocols),
-               Collections.unmodifiableList(this.extensions),
-               Collections.unmodifiableList(this.encoders),
-               Collections.unmodifiableList(this.decoders),
+               this.preferredSubprotocols,
+               this.extensions,
+               this.encoders,
+               this.decoders,
                this.clientEndpointConfigurator);
        }
 
