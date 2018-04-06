@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 2012, 2017 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2012, 2018 Oracle and/or its affiliates and others.
+ * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -16,7 +17,11 @@
 
 package javax.websocket;
 
+import java.lang.ref.SoftReference;
+import java.util.HashSet;
 import java.util.ServiceLoader;
+import java.util.Set;
+import java.util.WeakHashMap;
 
 /**
  * Provider class that allows the developer to get a reference to
@@ -31,6 +36,13 @@ import java.util.ServiceLoader;
  */
 public abstract class ContainerProvider {
  
+    /*
+     * WeakHashMap so that the ClassLoader instances are not pinned in memory creating a memory leak.
+     * SoftReference so cache entries can be dropped if memory is under pressure. 
+     */
+    private static final WeakHashMap<ClassLoader, SoftReference<Iterable<ContainerProvider>>> CACHE =
+            new WeakHashMap<ClassLoader, SoftReference<Iterable<ContainerProvider>>>();
+
     /** 
      * Obtain a new instance of a WebSocketContainer. The method looks for the
      * ContainerProvider implementation class in the order listed in the META-INF/services/javax.websocket.ContainerProvider 
@@ -39,20 +51,51 @@ public abstract class ContainerProvider {
      * @return an implementation provided instance of type WebSocketContainer
      */
     public static WebSocketContainer getWebSocketContainer() {
-         WebSocketContainer wsc = null;
-        for (ContainerProvider impl : ServiceLoader.load(ContainerProvider.class)) {
+        Iterable<ContainerProvider> providers = getProviders();
+        if (!providers.iterator().hasNext()) {
+            throw new RuntimeException("Could not find an implementation class.");
+        }
+        WebSocketContainer wsc = null;
+        for (ContainerProvider impl : providers) {
             wsc = impl.getContainer();
             if (wsc != null) {
                 return wsc;
             } 
         }
-        if (wsc == null) {
-            throw new RuntimeException("Could not find an implementation class.");
-        } else {
-            throw new RuntimeException("Could not find an implementation class with a non-null WebSocketContainer.");
-        }
+        throw new RuntimeException("Could not find an implementation class with a non-null WebSocketContainer.");
     }
  
+    private static Iterable<ContainerProvider> getProviders() {
+        ClassLoader loader = Thread.currentThread().getContextClassLoader();
+        SoftReference<Iterable<ContainerProvider>> providersRef;
+        Iterable<ContainerProvider> providers;
+        // WeakHashMap is not thread-safe. Sync here because a read concurrent with a write can throw an Exception. 
+        synchronized (CACHE) {
+            providersRef = CACHE.get(loader);
+        }
+        if (providersRef != null) {
+            providers = providersRef.get();
+            // Use providers from this point as the SoftReference checked above may be cleared at any point.
+            if (providers != null) {
+                return providers;
+            }
+        }
+        synchronized (CACHE) {
+            providersRef = CACHE.get(loader);
+            if (providersRef == null || (providers = providersRef.get()) == null) {
+                // Use providers from this point as the SoftReference checked above may be cleared at any point.
+                Set<ContainerProvider> set = new HashSet<ContainerProvider>();
+                for (ContainerProvider provider : ServiceLoader.load(ContainerProvider.class, loader)) {
+                    set.add(provider);
+                }
+                providers = set;
+                providersRef = new SoftReference<Iterable<ContainerProvider>>(providers);
+                CACHE.put(loader, providersRef);
+            }
+            return providers;
+        }
+    }
+    
     /**
      * Load the container implementation.
      * @return the implementation class
