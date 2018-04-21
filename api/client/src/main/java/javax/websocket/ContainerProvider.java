@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 2012, 2017 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2012, 2017 Oracle and/or its affiliates and others.
+ * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -16,6 +17,7 @@
 
 package javax.websocket;
 
+import java.util.Iterator;
 import java.util.ServiceLoader;
 
 /**
@@ -39,17 +41,18 @@ public abstract class ContainerProvider {
      * @return an implementation provided instance of type WebSocketContainer
      */
     public static WebSocketContainer getWebSocketContainer() {
-         WebSocketContainer wsc = null;
-        for (ContainerProvider impl : ServiceLoader.load(ContainerProvider.class)) {
-            wsc = impl.getContainer();
-            if (wsc != null) {
-                return wsc;
-            } 
-        }
-        if (wsc == null) {
-            throw new RuntimeException("Could not find an implementation class.");
-        } else {
+        Iterator<ContainerProvider> providers = ServiceLoader.load(ContainerProvider.class).iterator();
+        if (providers.hasNext()) {
+            do {
+                ContainerProvider impl = providers.next();
+                WebSocketContainer wsc = impl.getContainer();
+                if (wsc != null) {
+                    return wsc;
+                } 
+            } while (providers.hasNext());
             throw new RuntimeException("Could not find an implementation class with a non-null WebSocketContainer.");
+        } else {
+            throw new RuntimeException("Could not find an implementation class.");
         }
     }
  
