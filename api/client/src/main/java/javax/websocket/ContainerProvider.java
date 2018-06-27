@@ -19,23 +19,21 @@ package javax.websocket;
 import java.util.ServiceLoader;
 
 /**
- * Provider class that allows the developer to get a reference to
- * the implementation of the WebSocketContainer.
- * The provider class uses the 
- * <a href="http://docs.oracle.com/javase/7/docs/api/java/util/ServiceLoader.html">ServiceLoader</a> 
- * to load an implementation of ContainerProvider. Specifically, the fully qualified classname
- * of the container implementation of ContainerProvider must be listed in the 
- * META-INF/services/javax.websocket.ContainerProvider file in the implementation JAR file.
+ * Provider class that allows the developer to get a reference to the implementation of the WebSocketContainer. The
+ * provider class uses the
+ * <a href="http://docs.oracle.com/javase/7/docs/api/java/util/ServiceLoader.html">ServiceLoader</a> to load an
+ * implementation of ContainerProvider. Specifically, the fully qualified class name of the container implementation of
+ * ContainerProvider must be listed in the "META-INF/services/javax.websocket.ContainerProvider" file in the
+ * implementation JAR file.
  *
  * @author dannycoward
  */
 public abstract class ContainerProvider {
  
     /** 
-     * Obtain a new instance of a WebSocketContainer. The method looks for the
-     * ContainerProvider implementation class in the order listed in the META-INF/services/javax.websocket.ContainerProvider 
-     * file, returning the WebSocketContainer implementation from the ContainerProvider implementation
-     * that is not {@code null}.
+     * Obtain a new instance of a WebSocketContainer. The method looks for the ContainerProvider implementation class in
+     * the order listed in the "META-INF/services/javax.websocket.ContainerProvider" file, returning the first
+     * WebSocketContainer implementation from the ContainerProvider implementation that is not {@code null}.
      * @return an implementation provided instance of type WebSocketContainer
      */
     public static WebSocketContainer getWebSocketContainer() {
@@ -54,8 +52,8 @@ public abstract class ContainerProvider {
     }
  
     /**
-     * Load the container implementation.
-     * @return the implementation class
+     * Create a new instance of the the WebSocket container implementation.
+     * @return the new instance
      */
     protected abstract WebSocketContainer getContainer();
 }
