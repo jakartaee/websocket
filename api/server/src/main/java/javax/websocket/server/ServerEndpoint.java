@@ -54,7 +54,7 @@ import javax.websocket.Encoder;
 public @interface ServerEndpoint {
 
     /**
-     * The URI or URI-template, level-1 (<a href="http://http://tools.ietf.org/html/rfc6570">See RFC 6570</a>) where the endpoint will be deployed. The URI us relative to the
+     * The URI or URI-template, level-1 (<a href="http://tools.ietf.org/html/rfc6570">See RFC 6570</a>) where the endpoint will be deployed. The URI us relative to the
      * root of the web socket container and must begin with a leading "/". Trailing "/"'s are ignored. Examples:
      * <pre><code>
      * &#64;ServerEndpoint("/chat")
