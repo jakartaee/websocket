@@ -34,6 +34,11 @@
 
     <build>
         <plugins>
+            <!--
+                Commented out as this plug-in currently breaks the build due to
+                a hard-coded requirement that the groupId starts with javax.
+                See #266
+            -->
             <plugin>
                 <groupId>org.glassfish.build</groupId>
                 <artifactId>spec-version-maven-plugin</artifactId>
@@ -52,12 +57,17 @@
                     <execution>
                         <goals>
                             <goal>set-spec-properties</goal>
+                            <!--
+                                Disable the check as it currently because the
+                                groupId does not start with javax. See #266
+                            -->
+                            <!--
                             <goal>check-module</goal>
+                            -->
                         </goals>
                     </execution>
                 </executions>
             </plugin>
-
             <!--
               This plugin is reponsible for packaging artifacts
               as OSGi bundles.  Please refer to
