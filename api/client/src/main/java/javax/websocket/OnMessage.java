@@ -62,7 +62,7 @@ import java.lang.annotation.Target;
  * annotation for server endpoints.</li>
  * <li>and an optional {@link Session} parameter</li>
  * </ol>
- * <p/>
+ * <p>
  * The parameters may be listed in any order.
  *
  * <p>
