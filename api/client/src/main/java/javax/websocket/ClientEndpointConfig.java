@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2012, 2018 Oracle and/or its affiliates and others.
+ * Copyright (c) 2018 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -56,7 +56,7 @@ public interface ClientEndpointConfig extends EndpointConfig {
     /**
      * Return the custom configurator for this configuration. If the developer did not provide one, the platform default
      * configurator is returned.
-     * 
+     *
      * @return the configurator in use with this configuration.
      */
     public ClientEndpointConfig.Configurator getConfigurator();
@@ -65,7 +65,7 @@ public interface ClientEndpointConfig extends EndpointConfig {
      * The Configurator class may be extended by developers who want to provide custom configuration algorithms, such as
      * intercepting the opening handshake, or providing arbitrary methods and algorithms that can be accessed from each
      * endpoint instance configured with this configurator.
-     * 
+     *
      */
     public class Configurator {
 
@@ -100,9 +100,9 @@ public interface ClientEndpointConfig extends EndpointConfig {
      * decoders, subprotocols or extensions. <code>
      * ClientEndpointConfig cec = ClientEndpointConfig.Builder.create().build();
      * </code>
-     * 
+     *
      * Building a configuration with no subprotocols and a custom configurator.
-     * 
+     *
      * <pre>
      * <code>
      * ClientEndpointConfig customCec = ClientEndpointConfig.Builder.create()
@@ -111,8 +111,8 @@ public interface ClientEndpointConfig extends EndpointConfig {
      *         .build();
      * </code>
      * </pre>
-     * 
-     * 
+     *
+     *
      * @author dannycoward
      */
     public final class Builder {
@@ -131,7 +131,7 @@ public interface ClientEndpointConfig extends EndpointConfig {
         /**
          * Creates a new builder object with no subprotocols, extensions, encoders, decoders and a {@code null}
          * configurator.
-         * 
+         *
          * @return a new builder object.
          */
         public static ClientEndpointConfig.Builder create() {
@@ -140,7 +140,7 @@ public interface ClientEndpointConfig extends EndpointConfig {
 
         /**
          * Builds a configuration object using the attributes set on this builder.
-         * 
+         *
          * @return a new configuration object.
          */
         public ClientEndpointConfig build() {
@@ -150,7 +150,7 @@ public interface ClientEndpointConfig extends EndpointConfig {
 
         /**
          * Sets the configurator object for the configuration this builder will build.
-         * 
+         *
          * @param clientEndpointConfigurator the configurator
          * @return the builder instance
          */
@@ -162,7 +162,7 @@ public interface ClientEndpointConfig extends EndpointConfig {
         /**
          * Set the preferred sub protocols for the configuration this builder will build. The list is treated in order
          * of preference, favorite first, that this client would like to use for its sessions.
-         * 
+         *
          * @param preferredSubprotocols the preferred subprotocol names.
          * @return the builder instance
          */
@@ -175,7 +175,7 @@ public interface ClientEndpointConfig extends EndpointConfig {
         /**
          * Set the extensions for the configuration this builder will build. The list is treated in order of preference,
          * favorite first, that the client would like to use for its sessions.
-         * 
+         *
          * @param extensions the extensions
          * @return the builder instance
          */

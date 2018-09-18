@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 2012, 2017 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2018 Oracle and/or its affiliates and others.
+ * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -35,7 +36,7 @@ package javax.websocket;
  * {@link javax.websocket.server.ServerEndpointConfig.Configurator}, there will be precisely one endpoint instance per
  * active client connection. Consequently, in this typical case, when implementing/overriding the methods of Endpoint,
  * the developer is guaranteed that there will be at most one thread calling each endpoint instance at a time.
- * 
+ *
  * <p>
  * If the developer provides a custom {@link javax.websocket.server.ServerEndpointConfig.Configurator} which overrides
  * the default policy for endpoint instance creation, for example, using a single Endpoint instance for multiple client
@@ -43,7 +44,7 @@ package javax.websocket;
  *
  * <p>
  * Here is an example of a simple endpoint that echoes any incoming text message back to the sender.
- * 
+ *
  * <pre>
  * <code>
  * public class EchoServer extends Endpoint {

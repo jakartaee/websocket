@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 2012, 2017 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2018 Oracle and/or its affiliates and others.
+ * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -29,12 +30,12 @@ import java.lang.annotation.Target;
  *
  * <p>
  * For example:-
- * 
+ *
  * <pre>
  * <code>
  * &#64;ServerEndpoint("/bookings/{guest-id}")
  * public class BookingServer {
- * 
+ *
  *     &#64;OnMessage
  *     public void processBookingRequest(@PathParam("guest-id") String guestID, String message, Session session) {
  *         // process booking from the given guest here
@@ -42,15 +43,15 @@ import java.lang.annotation.Target;
  * }
  * </code>
  * </pre>
- * 
+ *
  * <p>
  * For example:-
- * 
+ *
  * <pre>
  * <code>
  * &#64;ServerEndpoint("/rewards/{vip-level}")
  * public class RewardServer {
- * 
+ *
  *     &#64;OnMessage
  *     public void processReward(@PathParam("vip-level") Integer vipLevel, String message, Session session) {
  *         // process reward here

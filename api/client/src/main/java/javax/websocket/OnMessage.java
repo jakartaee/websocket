@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 2012, 2017 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2018 Oracle and/or its affiliates and others.
+ * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -73,7 +74,7 @@ import java.lang.annotation.Target;
  * endpoint, in which case that encoder must be used. If the method uses a class equivalent of a Java primitive as a
  * return value, the implementation must construct the text message from the Java primitive equivalent as described
  * above.
- * 
+ *
  * <p>
  * Developers should note that if developer closes the session during the invocation of a method with a return type, the
  * method will complete but the return value will not be delivered to the remote endpoint. The send failure will be
@@ -81,7 +82,7 @@ import java.lang.annotation.Target;
  *
  * <p>
  * For example:
- * 
+ *
  * <pre>
  * <code>
  * &#64;OnMessage
@@ -90,9 +91,9 @@ import java.lang.annotation.Target;
  * }
  * </code>
  * </pre>
- * 
+ *
  * For example:
- * 
+ *
  * <pre>
  * <code>
  * &#64;OnMessage
@@ -101,7 +102,7 @@ import java.lang.annotation.Target;
  * }
  * </code>
  * </pre>
- * 
+ *
  * Developers should not continue to reference message objects of type {@link java.io.Reader},
  * {@link java.nio.ByteBuffer} or {@link java.io.InputStream} after the annotated method has completed, since they may
  * be recycled by the implementation.

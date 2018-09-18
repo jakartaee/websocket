@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2012, 2017 Oracle and/or its affiliates and others.
+ * Copyright (c) 2018 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -35,7 +35,7 @@ import javax.websocket.Encoder;
  *
  * <p>
  * For example:
- * 
+ *
  * <pre>
  * <code>
  * &#64;ServerEndpoint("/hello");
@@ -60,7 +60,7 @@ public @interface ServerEndpoint {
      * The URI or URI-template, level-1 (<a href="http://tools.ietf.org/html/rfc6570">See RFC 6570</a>) where the
      * endpoint will be deployed. The URI us relative to the root of the web socket container and must begin with a
      * leading "/". Trailing "/"'s are ignored. Examples:
-     * 
+     *
      * <pre>
      * <code>
      * &#64;ServerEndpoint("/chat")
@@ -103,7 +103,7 @@ public @interface ServerEndpoint {
      * The optional custom configurator class that the developer would like to use to further configure new instances of
      * this endpoint. If no configurator class is provided, the implementation uses its own. The implementation creates
      * a new instance of the configurator per logical endpoint.
-     * 
+     *
      * @return the custom configuration class, or ServerEndpointConfig.Configurator.class if none was set in the
      *         annotation.
      */

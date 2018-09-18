@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 2012, 2017 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2018 Oracle and/or its affiliates and others.
+ * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -35,7 +36,7 @@ import javax.websocket.*;
  * <p>
  * Once the application deployment phase is complete, and the websocket application has begun accepting incoming
  * connections, the registration methods may no longer be called.
- * 
+ *
  * @author dannycoward
  */
 public interface ServerContainer extends WebSocketContainer {
@@ -43,7 +44,7 @@ public interface ServerContainer extends WebSocketContainer {
     /**
      * Deploys the given annotated endpoint into this ServerContainer during the initialization phase of deploying the
      * application.
-     * 
+     *
      * @param endpointClass the class of the annotated endpoint
      * @throws DeploymentException   if the annotated endpoint was badly formed.
      * @throws IllegalStateException if the containing websocket application has already been deployed.
@@ -51,7 +52,7 @@ public interface ServerContainer extends WebSocketContainer {
     public void addEndpoint(Class<?> endpointClass) throws DeploymentException;
 
     /**
-     * 
+     *
      * @param serverConfig the configuration instance representing the logical endpoint that will be registered.
      * @throws DeploymentException   if the endpoint was badly formed.
      * @throws IllegalStateException if the containing websocket application has already been deployed.
