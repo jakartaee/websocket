@@ -26,7 +26,7 @@
         <version>1.0.1</version>
     </parent>
 
-    <groupId>javax.websocket</groupId>
+    <groupId>jakarta</groupId>
     <artifactId>javax.websocket-all</artifactId>
     <packaging>pom</packaging>
     <!--
