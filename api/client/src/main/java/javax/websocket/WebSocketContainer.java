@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 2012, 2017 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2012, 2017 Oracle and/or its affiliates and others.
+ * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -60,7 +61,7 @@ public interface WebSocketContainer {
     /**
      * Connect the supplied annotated endpoint instance to its server. The supplied 
      * object must be a class decorated with the class level
-     * {@link javax.websocket.server.ServerEndpoint} annotation. This method 
+     * {@link javax.websocket.ClientEndpoint} annotation. This method 
      * blocks until the connection is established, or throws an error if either 
      * the connection could not be made or there was a problem with the supplied 
      * endpoint class. If the developer uses this method to deploy the client
