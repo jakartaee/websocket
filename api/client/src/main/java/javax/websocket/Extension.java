@@ -33,8 +33,7 @@ public interface Extension {
     String getName();
 
     /**
-     * The extension parameters for this extension in the order
-     * they appear in the http headers.
+     * The extension parameters for this extension in the order they appear in the http headers.
      *
      * @return The read-only Map of extension parameters belonging to this extension.
      */

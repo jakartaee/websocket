@@ -29,14 +29,11 @@ public class DecodeException extends Exception {
     private static final long serialVersionUID = 006;
 
     /**
-     * Constructor with the binary data that could not be decoded, and the 
-     * reason why it failed to be, and the cause. The buffer may represent the 
-     * whole message, or the part of the message most relevant to the decoding
-     * error, depending whether the application is using one
-     * of the streaming methods or not.
+     * Constructor with the binary data that could not be decoded, and the reason why it failed to be, and the cause.
+     * The buffer may represent the whole message, or the part of the message most relevant to the decoding error,
+     * depending whether the application is using one of the streaming methods or not.
      *
-     * @param bb      the byte buffer containing the (part of) the message that 
-     * could not be decoded.
+     * @param bb      the byte buffer containing the (part of) the message that could not be decoded.
      * @param message the reason for the failure.
      * @param cause   the cause of the error.
      */
@@ -47,11 +44,9 @@ public class DecodeException extends Exception {
     }
 
     /**
-     * Constructor with the text data that could not be decoded, and the reason 
-     * why it failed to be, and the cause. The encoded string may represent the whole message,
-     * or the part of the message most relevant to the decoding error, depending 
-     * whether the application is using one
-     * of the streaming methods or not.
+     * Constructor with the text data that could not be decoded, and the reason why it failed to be, and the cause. The
+     * encoded string may represent the whole message, or the part of the message most relevant to the decoding error,
+     * depending whether the application is using one of the streaming methods or not.
      *
      * @param encodedString the string representing the (part of) the message that could not be decoded.
      * @param message       the reason for the failure.
@@ -64,14 +59,11 @@ public class DecodeException extends Exception {
     }
 
     /**
-     * Constructs a DecodedException with the given ByteBuffer that cannot
-     * be decoded, and reason why. The buffer may represent the 
-     * whole message, or the part of the message most relevant to the decoding
-     * error, depending whether the application is using one
-     * of the streaming methods or not.
+     * Constructs a DecodedException with the given ByteBuffer that cannot be decoded, and reason why. The buffer may
+     * represent the whole message, or the part of the message most relevant to the decoding error, depending whether
+     * the application is using one of the streaming methods or not.
      *
-     * @param bb      the byte buffer containing the (part of) the message that 
-     * could not be decoded.
+     * @param bb      the byte buffer containing the (part of) the message that could not be decoded.
      * @param message the reason for the failure.
      */
     public DecodeException(ByteBuffer bb, String message) {
@@ -81,14 +73,11 @@ public class DecodeException extends Exception {
     }
 
     /**
-     * Constructs a DecodedException with the given encoded string that cannot
-     * be decoded, and reason why. The encoded string may represent the whole message,
-     * or the part of the message most relevant to the decoding error, depending 
-     * whether the application is using one
-     * of the streaming methods or not.
+     * Constructs a DecodedException with the given encoded string that cannot be decoded, and reason why. The encoded
+     * string may represent the whole message, or the part of the message most relevant to the decoding error, depending
+     * whether the application is using one of the streaming methods or not.
      *
-     * @param encodedString the string representing the (part of) the message that 
-     * could not be decoded.
+     * @param encodedString the string representing the (part of) the message that could not be decoded.
      * @param message       the reason for the failure.
      */
     public DecodeException(String encodedString, String message) {
@@ -98,9 +87,8 @@ public class DecodeException extends Exception {
     }
 
     /**
-     * Return the ByteBuffer containing either the whole message, or the partial message, that
-     * could not be decoded, or {@code null} if
-     * this exception arose from a failure to decode a text message.
+     * Return the ByteBuffer containing either the whole message, or the partial message, that could not be decoded, or
+     * {@code null} if this exception arose from a failure to decode a text message.
      *
      * @return the binary data not decoded or {@code null} for text message failures.
      */
@@ -109,9 +97,8 @@ public class DecodeException extends Exception {
     }
 
     /**
-     * Return the encoded string that is either the whole message, or the partial 
-     * message that could not be decoded, or {@code null} if
-     * this exception arose from a failure to decode a binary message..
+     * Return the encoded string that is either the whole message, or the partial message that could not be decoded, or
+     * {@code null} if this exception arose from a failure to decode a binary message..
      *
      * @return the text not decoded or {@code null} for binary message failures.
      */

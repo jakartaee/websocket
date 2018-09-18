@@ -19,8 +19,8 @@ package javax.websocket;
 import java.nio.ByteBuffer;
 
 /**
- * The PongMessage interface represents a web socket pong. PongMessages may be received by using
- * a {@code MessageHandler.Basic<PongMessage>}. The payload of the PongMessage is the application data sent by the peer.
+ * The PongMessage interface represents a web socket pong. PongMessages may be received by using a
+ * {@code MessageHandler.Basic<PongMessage>}. The payload of the PongMessage is the application data sent by the peer.
  *
  * @author dannycoward
  */

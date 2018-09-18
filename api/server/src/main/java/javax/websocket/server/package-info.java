@@ -14,9 +14,7 @@
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
 
-/** 
- * This package contains all the WebSocket APIs used only by server side
- * applications.
+/**
+ * This package contains all the WebSocket APIs used only by server side applications.
  */
 package javax.websocket.server;
-

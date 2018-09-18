@@ -36,7 +36,6 @@ public class EncodeException extends Exception {
         this.object = object;
     }
 
-
     /**
      * Constructor with the object being encoded, and the reason why it failed to be, and the cause.
      *
@@ -48,7 +47,6 @@ public class EncodeException extends Exception {
         super(message, cause);
         this.object = object;
     }
-
 
     /**
      * Return the Object that could not be encoded.

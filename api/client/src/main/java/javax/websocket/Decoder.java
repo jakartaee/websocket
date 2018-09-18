@@ -23,38 +23,32 @@ import java.io.Reader;
 import java.nio.ByteBuffer;
 
 /**
- * The Decoder interface holds member interfaces that define how a developer can provide
- * the web socket container a way web socket messages into developer defined custom objects.
- * The websocket implementation creates a new instance of the decoder per endpoint 
- * instance per connection.
- * The lifecycle of the Decoder instance is governed by the container calls to the
- * {@link Decoder#init(javax.websocket.EndpointConfig)} and {@link Decoder#destroy() }
- * methods.
+ * The Decoder interface holds member interfaces that define how a developer can provide the web socket container a way
+ * web socket messages into developer defined custom objects. The websocket implementation creates a new instance of the
+ * decoder per endpoint instance per connection. The lifecycle of the Decoder instance is governed by the container
+ * calls to the {@link Decoder#init(javax.websocket.EndpointConfig)} and {@link Decoder#destroy() } methods.
  *
  * @author dannycoward
  */
 public interface Decoder {
-    
+
     /**
-     * This method is called with the endpoint configuration object of the
-     * endpoint this decoder is intended for when
-     * it is about to be brought into service.
+     * This method is called with the endpoint configuration object of the endpoint this decoder is intended for when it
+     * is about to be brought into service.
      * 
-     * @param config the endpoint configuration object when being brought into 
-     * service
+     * @param config the endpoint configuration object when being brought into service
      */
     void init(EndpointConfig config);
-    
+
     /**
-      * This method is called when the decoder is about to be removed
-      * from service in order that any resources the decoder used may
-      * be closed gracefully.
-      */
+     * This method is called when the decoder is about to be removed from service in order that any resources the
+     * decoder used may be closed gracefully.
+     */
     void destroy();
 
     /**
-     * This interface defines how a custom object (of type T) is decoded from a web socket message in
-     * the form of a byte buffer.
+     * This interface defines how a custom object (of type T) is decoded from a web socket message in the form of a byte
+     * buffer.
      */
     interface Binary<T> extends Decoder {
 
@@ -73,12 +67,11 @@ public interface Decoder {
          * @return whether or not the bytes can be decoded by this decoder.
          */
         boolean willDecode(ByteBuffer bytes);
-        
+
     }
 
     /**
-     * This interface defines how a custom object is decoded from a web socket message in
-     * the form of a binary stream.
+     * This interface defines how a custom object is decoded from a web socket message in the form of a binary stream.
      */
     interface BinaryStream<T> extends Decoder {
 
@@ -89,13 +82,11 @@ public interface Decoder {
          * @return the decoded object.
          */
         T decode(InputStream is) throws DecodeException, IOException;
-        
 
     }
 
     /**
-     * This interface defines how a custom object is decoded from a web socket message in
-     * the form of a string.
+     * This interface defines how a custom object is decoded from a web socket message in the form of a string.
      */
     interface Text<T> extends Decoder {
         /**
@@ -113,23 +104,22 @@ public interface Decoder {
          * @return whether this decoder can decoded the supplied string.
          */
         boolean willDecode(String s);
-        
 
     }
 
     /**
-     * This interface defines how a custom object of type T is decoded from a web socket message in
-     * the form of a character stream.
+     * This interface defines how a custom object of type T is decoded from a web socket message in the form of a
+     * character stream.
      */
     interface TextStream<T> extends Decoder {
         /**
-         * Reads the websocket message from the implementation provided
-         * Reader and decodes it into an instance of the supplied object type.
+         * Reads the websocket message from the implementation provided Reader and decodes it into an instance of the
+         * supplied object type.
          *
          * @param reader the reader from which to read the web socket message.
          * @return the instance of the object that is the decoded web socket message.
          */
         T decode(Reader reader) throws DecodeException, IOException;
-        
+
     }
 }

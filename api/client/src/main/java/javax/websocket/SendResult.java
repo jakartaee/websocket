@@ -17,9 +17,8 @@
 package javax.websocket;
 
 /**
- * The result of asynchronously sending a web socket message. A SendResult is either
- * ok indicating there was no problem, or is not OK in which case there was a problem
- * and it carries an exception to indicate what the problem was.
+ * The result of asynchronously sending a web socket message. A SendResult is either ok indicating there was no problem,
+ * or is not OK in which case there was a problem and it carries an exception to indicate what the problem was.
  *
  * @author dannycoward
  */
