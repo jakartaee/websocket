@@ -77,6 +77,7 @@ public class CloseReason {
      *
      * @return A String representation of this CloseReason
      */
+    @Override
     public String toString() {
         return (this.reasonPhrase == null) ? "CloseReason[" + this.closeCode.getCode() + "]"
                 : "CloseReason[" + this.closeCode.getCode() + "," + reasonPhrase + "]";
