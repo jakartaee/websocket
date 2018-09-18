@@ -59,11 +59,6 @@
         </license>
     </licenses>
 
-    <organization>
-        <name>Oracle</name>
-        <url>http://www.oracle.com</url>
-    </organization>
-
     <developers>
         <developer>
             <id>roman_grigoriadi</id>
