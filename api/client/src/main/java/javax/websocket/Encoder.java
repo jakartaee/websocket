@@ -36,7 +36,7 @@ public interface Encoder {
     /**
      * This method is called with the endpoint configuration object of the endpoint this encoder is intended for when it
      * is about to be brought into service.
-     * 
+     *
      * @param config the endpoint configuration object when being brought into service
      */
     void init(EndpointConfig config);
@@ -58,6 +58,8 @@ public interface Encoder {
          *
          * @param object the object being encoded.
          * @return the encoded object as a string.
+         *
+         * @throws EncodeException The provided object could not be encoded as a string
          */
         String encode(T object) throws EncodeException;
 
@@ -94,6 +96,8 @@ public interface Encoder {
          *
          * @param object the object being encoded.
          * @return the binary data.
+         *
+         * @throws EncodeException The provided object could not be encoded to a byte buffer
          */
         ByteBuffer encode(T object) throws EncodeException;
     }
@@ -110,6 +114,9 @@ public interface Encoder {
          *
          * @param object the object being encoded.
          * @param os     the output stream where the encoded data is written.
+         *
+         * @throws EncodeException The provided object could not be encoded to an output stream
+         * @throws IOException If an error occurred writing to the output stream
          */
         void encode(T object, OutputStream os) throws EncodeException, IOException;
     }

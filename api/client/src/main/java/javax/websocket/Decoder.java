@@ -35,7 +35,7 @@ public interface Decoder {
     /**
      * This method is called with the endpoint configuration object of the endpoint this decoder is intended for when it
      * is about to be brought into service.
-     * 
+     *
      * @param config the endpoint configuration object when being brought into service
      */
     void init(EndpointConfig config);
@@ -49,6 +49,8 @@ public interface Decoder {
     /**
      * This interface defines how a custom object (of type T) is decoded from a web socket message in the form of a byte
      * buffer.
+     *
+     * @param <T> The type of the object that is decoded
      */
     interface Binary<T> extends Decoder {
 
@@ -57,6 +59,8 @@ public interface Decoder {
          *
          * @param bytes the bytes to be decoded.
          * @return the decoded object.
+         *
+         * @throws DecodeException If the provided bytes cannot be decoded to type T
          */
         T decode(ByteBuffer bytes) throws DecodeException;
 
@@ -72,6 +76,8 @@ public interface Decoder {
 
     /**
      * This interface defines how a custom object is decoded from a web socket message in the form of a binary stream.
+     *
+     * @param <T> The type of the object that is decoded
      */
     interface BinaryStream<T> extends Decoder {
 
@@ -80,6 +86,9 @@ public interface Decoder {
          *
          * @param is the input stream carrying the bytes.
          * @return the decoded object.
+         *
+         * @throws DecodeException If the provided input stream cannot be decoded to type T
+         * @throws IOException If an error occurs reading the input stream
          */
         T decode(InputStream is) throws DecodeException, IOException;
 
@@ -87,6 +96,8 @@ public interface Decoder {
 
     /**
      * This interface defines how a custom object is decoded from a web socket message in the form of a string.
+     *
+     * @param <T> The type of the object that is decoded
      */
     interface Text<T> extends Decoder {
         /**
@@ -94,6 +105,8 @@ public interface Decoder {
          *
          * @param s string to be decoded.
          * @return the decoded message as an object of type T
+         *
+         * @throws DecodeException If the provided string cannot be decoded to type T
          */
         T decode(String s) throws DecodeException;
 
@@ -110,6 +123,8 @@ public interface Decoder {
     /**
      * This interface defines how a custom object of type T is decoded from a web socket message in the form of a
      * character stream.
+     *
+     * @param <T> The type of the object that is decoded
      */
     interface TextStream<T> extends Decoder {
         /**
@@ -118,6 +133,9 @@ public interface Decoder {
          *
          * @param reader the reader from which to read the web socket message.
          * @return the instance of the object that is the decoded web socket message.
+         *
+         * @throws DecodeException If the data from the provided reader cannot be decoded to type T
+         * @throws IOException If an error occurs reading from the reader
          */
         T decode(Reader reader) throws DecodeException, IOException;
 

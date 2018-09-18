@@ -51,6 +51,8 @@ public interface WebSocketContainer {
      * RemoteEndpoints associated with this container. A non-positive number indicates the implementation will not
      * timeout attempting to send a websocket message asynchronously. Note this default may be overridden in each
      * RemoteEndpoint.
+     *
+     * @param timeoutmillis the timeout in milliseconds or a non-positive number for no timeout
      */
     void setAsyncSendTimeout(long timeoutmillis);
 

@@ -77,12 +77,17 @@ public interface RemoteEndpoint {
      * Return whether the implementation is allowed to batch outgoing messages before sending. The default mode for
      * RemoteEndpoints is false. The value may be changed by calling {@link #setBatchingAllowed(boolean)
      * setBatchingAllowed}.
+     *
+     * @return {@code true} if the implementation is allowed to batch outgoing messages before sending, otherwise
+     *         {@code false}
      */
     boolean getBatchingAllowed();
 
     /**
      * This method is only used when batching is allowed for this RemoteEndpint. Calling this method forces the
      * implementation to send any unsent messages it has been batching.
+     *
+     * @throws IOException if the sending of any unsent messages failed
      */
     void flushBatch() throws IOException;
 
