@@ -42,7 +42,7 @@ public interface WebSocketContainer {
      * timeout attempting to send a websocket message asynchronously. Note this default may be overridden in each
      * RemoteEndpoint.
      *
-     * @return the timeout time in millsenconds.
+     * @return the timeout time in milliseconds.
      */
     long getDefaultAsyncSendTimeout();
 
