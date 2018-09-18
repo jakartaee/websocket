@@ -80,6 +80,7 @@ public interface Session extends Closeable {
      * the native websocket message types please see {@link MessageHandler.Whole} and {@link MessageHandler.Partial}.
      * Adding more than one of any one type will result in a runtime exception.
      *
+     * @param <T>     type of message that the given handler is intended for.
      * @param clazz   type of the message processed by message handler to be registered.
      * @param handler whole message handler to be added.
      * @throws IllegalStateException if there is already a MessageHandler registered for the same native websocket
@@ -96,6 +97,7 @@ public interface Session extends Closeable {
      * the native websocket message types please see {@link MessageHandler.Whole} and {@link MessageHandler.Partial}.
      * Adding more than one of any one type will result in a runtime exception.
      *
+     * @param <T>     type of message that the given handler is intended for.
      * @param clazz   type of the message processed by message handler to be registered.
      * @param handler partial message handler to be added.
      * @throws IllegalStateException if there is already a MessageHandler registered for the same native websocket

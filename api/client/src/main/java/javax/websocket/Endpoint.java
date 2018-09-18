@@ -51,7 +51,7 @@ package javax.websocket;
  *
  *     public void onOpen(Session session, EndpointConfig config) {
  *         final RemoteEndpoint remote = session.getBasicRemote();
- *         session.addMessageHandler(String.class, new MessageHandler.Whole&lt;String>() {
+ *         session.addMessageHandler(String.class, new MessageHandler.Whole&lt;String&lt;() {
  *             public void onMessage(String text) {
  *                 try {
  *                     remote.sendString("Got your message (" + text + "). Thanks !");
