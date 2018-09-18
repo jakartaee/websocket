@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 2012, 2017 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2018 Oracle and/or its affiliates and others.
+ * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -36,7 +37,6 @@ public class EncodeException extends Exception {
         this.object = object;
     }
 
-
     /**
      * Constructor with the object being encoded, and the reason why it failed to be, and the cause.
      *
@@ -48,7 +48,6 @@ public class EncodeException extends Exception {
         super(message, cause);
         this.object = object;
     }
-
 
     /**
      * Return the Object that could not be encoded.

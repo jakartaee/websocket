@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 2012, 2017 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2018 Oracle and/or its affiliates and others.
+ * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -17,9 +18,8 @@
 package javax.websocket;
 
 /**
- * The result of asynchronously sending a web socket message. A SendResult is either
- * ok indicating there was no problem, or is not OK in which case there was a problem
- * and it carries an exception to indicate what the problem was.
+ * The result of asynchronously sending a web socket message. A SendResult is either ok indicating there was no problem,
+ * or is not OK in which case there was a problem and it carries an exception to indicate what the problem was.
  *
  * @author dannycoward
  */

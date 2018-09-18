@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2012, 2017 Oracle and/or its affiliates and others.
+ * Copyright (c) 2018 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -31,11 +31,12 @@ import java.util.ServiceLoader;
  * @author dannycoward
  */
 public abstract class ContainerProvider {
- 
-    /** 
+
+    /**
      * Obtain a new instance of a WebSocketContainer. The method looks for the ContainerProvider implementation class in
      * the order listed in the "META-INF/services/javax.websocket.ContainerProvider" file, returning the first
      * WebSocketContainer implementation from the ContainerProvider implementation that is not {@code null}.
+     *
      * @return an implementation provided instance of type WebSocketContainer
      */
     public static WebSocketContainer getWebSocketContainer() {
@@ -46,19 +47,18 @@ public abstract class ContainerProvider {
                 WebSocketContainer wsc = impl.getContainer();
                 if (wsc != null) {
                     return wsc;
-                } 
+                }
             } while (providers.hasNext());
             throw new RuntimeException("Could not find an implementation class with a non-null WebSocketContainer.");
         } else {
             throw new RuntimeException("Could not find an implementation class.");
         }
     }
- 
+
     /**
      * Create a new instance of the the WebSocket container implementation.
+     *
      * @return the new instance
      */
     protected abstract WebSocketContainer getContainer();
 }
-
-

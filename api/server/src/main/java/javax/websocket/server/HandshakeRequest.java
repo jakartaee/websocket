@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 2012, 2017 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2018 Oracle and/or its affiliates and others.
+ * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -22,8 +23,8 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * The handshake request represents the web socket defined Http GET request 
- * for the opening handshake of a web socket session.
+ * The handshake request represents the web socket defined Http GET request for the opening handshake of a web socket
+ * session.
  *
  * @author dannycoward
  */
@@ -46,16 +47,15 @@ public interface HandshakeRequest {
     static String SEC_WEBSOCKET_EXTENSIONS = "Sec-WebSocket-Extensions";
 
     /**
-     * Return the read only Map of Http Headers that came with the handshake request. The header names
-     * are case insensitive.
+     * Return the read only Map of Http Headers that came with the handshake request. The header names are case
+     * insensitive.
      *
      * @return the list of headers.
      */
     Map<String, List<String>> getHeaders();
 
     /**
-     * Return the authenticated user or {@code null} if no user is authenticated 
-     * for this handshake.
+     * Return the authenticated user or {@code null} if no user is authenticated for this handshake.
      *
      * @return the user principal.
      */
@@ -69,25 +69,21 @@ public interface HandshakeRequest {
     URI getRequestURI();
 
     /**
-     * Checks whether the current user is in the given role.  Roles and role 
-     * membership can be defined using deployment descriptors of the containing
-     * WAR file, if running in a Java EE web container. If the user has 
-     * not been authenticated, the method returns {@code false}. 
+     * Checks whether the current user is in the given role. Roles and role membership can be defined using deployment
+     * descriptors of the containing WAR file, if running in a Java EE web container. If the user has not been
+     * authenticated, the method returns {@code false}.
      *
      * @param role the role being checked.
-     * @return whether the authenticated user is in the role, or false if the user has not
-     * been authenticated.
+     * @return whether the authenticated user is in the role, or false if the user has not been authenticated.
      */
     boolean isUserInRole(String role);
 
     /**
-     * Return a reference to the HttpSession that the web socket handshake that 
-     * started this conversation was part of, if the implementation
-     * is part of a Java EE web container.
+     * Return a reference to the HttpSession that the web socket handshake that started this conversation was part of,
+     * if the implementation is part of a Java EE web container.
      *
-     * @return the http session or {@code null} if either the websocket
-     * implementation is not part of a Java EE web container, or there is
-     * no HttpSession associated with the opening handshake request.
+     * @return the http session or {@code null} if either the websocket implementation is not part of a Java EE web
+     *         container, or there is no HttpSession associated with the opening handshake request.
      */
     Object getHttpSession();
 

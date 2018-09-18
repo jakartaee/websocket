@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 2017 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2018 Oracle and/or its affiliates and others.
+ * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -33,8 +34,7 @@ public interface Extension {
     String getName();
 
     /**
-     * The extension parameters for this extension in the order
-     * they appear in the http headers.
+     * The extension parameters for this extension in the order they appear in the http headers.
      *
      * @return The read-only Map of extension parameters belonging to this extension.
      */
