@@ -263,7 +263,7 @@ public interface ServerEndpointConfig extends EndpointConfig {
                     this.encoders, this.decoders, this.serverEndpointConfigurator);
         }
 
-        private Builder(Class endpointClass, String path) {
+        private Builder(Class<?> endpointClass, String path) {
             if (endpointClass == null) {
                 throw new IllegalArgumentException("endpointClass cannot be null");
             }
