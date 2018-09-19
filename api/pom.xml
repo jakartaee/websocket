@@ -28,7 +28,7 @@
     </parent>
 
     <groupId>jakarta</groupId>
-    <artifactId>javax.websocket-all</artifactId>
+    <artifactId>jakarta.websocket-all</artifactId>
     <packaging>pom</packaging>
     <!--
       Make sure to change build_number property accordingly

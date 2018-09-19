@@ -22,11 +22,11 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>jakarta</groupId>
-        <artifactId>javax.websocket-all</artifactId>
+        <artifactId>jakarta.websocket-all</artifactId>
         <version>1.1.1</version>
     </parent>
 
-    <artifactId>javax.websocket-client-api</artifactId>
+    <artifactId>jakarta.websocket-client-api</artifactId>
     <packaging>jar</packaging>
     <name>WebSocket client API</name>
     <description>JSR 356: Java API for WebSocket</description>
