@@ -30,6 +30,6 @@
     <packaging>jar</packaging>
     <name>WebSocket client API</name>
     <description>JSR 356: Java API for WebSocket</description>
-    <url>http://websocket-spec.java.net</url>
+    <url>https://projects.eclipse.org/projects/ee4j.websocket</url>
 
 </project>

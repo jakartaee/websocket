@@ -40,7 +40,7 @@
     <url>https://projects.eclipse.org/projects/ee4j.websocket</url>
 
     <scm>
-        <connection>scm:git:ssh://git@github.com/eclipse-ee4j/websocket-api</connection>
+        <connection>scm:git:https://github.com/eclipse-ee4j/websocket-api</connection>
         <developerConnection>scm:git:ssh://git@github.com/eclipse-ee4j/websocket-api</developerConnection>
         <url>https://github.com/eclipse-ee4j/websocket-api</url>
         <tag>1.1</tag>
@@ -61,6 +61,12 @@
 
     <developers>
         <developer>
+            <id>jakarta-ee4j-websocket</id>
+            <name>Jakarta Eclipse EE4J WebSocket API Developers</name>
+            <organization>Eclipse Foundation</organization>
+            <email>websocket-dev@eclipse.org</email>
+        </developer>
+        <developer>
             <id>roman_grigoriadi</id>
             <name>Roman Grigoriadi</name>
             <organization>Oracle</organization>
@@ -71,6 +77,11 @@
     </developers>
 
     <contributors>
+        <contributor>
+            <name>WebSocket API Contributors</name>
+            <email>websocket-dev@eclipse.org</email>
+            <url>https://github.com/eclipse-ee4j/websocket-api/graphs/contributors</url>
+        </contributor>
         <contributor>
             <name>Jitendra Kotamraju</name>
             <url>http://weblogs.java.net/blog/jitu</url>
