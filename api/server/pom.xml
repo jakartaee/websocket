@@ -30,7 +30,7 @@
     <packaging>bundle</packaging>
     <name>WebSocket server API</name>
     <description>JSR 356: Java API for WebSocket</description>
-    <url>http://websocket-spec.java.net</url>
+    <url>https://projects.eclipse.org/projects/ee4j.websocket</url>
 
     <build>
         <plugins>
@@ -69,7 +69,7 @@
                 </executions>
             </plugin>
             <!--
-              This plugin is reponsible for packaging artifacts
+              This plugin is responsible for packaging artifacts
               as OSGi bundles.  Please refer to
               http://felix.apache.org/site/apache-felix-maven-bundle-plugin-bnd.html
               for more information about how to use this plugin.
