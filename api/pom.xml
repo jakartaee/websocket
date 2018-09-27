@@ -27,7 +27,7 @@
         <version>1.0.1</version>
     </parent>
 
-    <groupId>jakarta</groupId>
+    <groupId>jakarta.websocket</groupId>
     <artifactId>jakarta.websocket-all</artifactId>
     <packaging>pom</packaging>
     <!--
@@ -215,7 +215,7 @@
                 <plugin>
                     <groupId>org.glassfish.build</groupId>
                     <artifactId>spec-version-maven-plugin</artifactId>
-                    <version>1.2</version>
+                    <version>1.5</version>
                 </plugin>
             </plugins>
         </pluginManagement>
