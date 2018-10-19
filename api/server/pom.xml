@@ -126,7 +126,7 @@
                         <configuration>
                             <artifactItems>
                                 <artifactItem>
-                                    <groupId>jakarta</groupId>
+                                    <groupId>jakarta.websocket</groupId>
                                     <artifactId>jakarta.websocket-client-api</artifactId>
                                     <version>${project.version}</version>
                                     <classifier>sources</classifier>
@@ -158,7 +158,7 @@
     </build>
     <dependencies>
         <dependency>
-            <groupId>jakarta</groupId>
+            <groupId>jakarta.websocket</groupId>
             <artifactId>jakarta.websocket-client-api</artifactId>
             <version>${project.version}</version>
             <optional>true</optional>
