@@ -34,7 +34,7 @@
       Make sure to change build_number property accordingly
       for non-final builds
     -->
-    <version>1.1.1</version>
+    <version>1.1.1-SNAPSHOT</version>
     <name>WebSocket API</name>
     <description>JSR 356: Java API for WebSocket</description>
     <url>https://projects.eclipse.org/projects/ee4j.websocket</url>
