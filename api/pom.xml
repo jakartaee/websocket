@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-    Copyright (c) 2012, 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018 Oracle and/or its affiliates and others.
+    All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -19,26 +20,27 @@
 
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+
     <parent>
-        <groupId>net.java</groupId>
-        <artifactId>jvnet-parent</artifactId>
-        <version>5</version>
+        <groupId>org.eclipse.ee4j</groupId>
+        <artifactId>project</artifactId>
+        <version>1.0.2</version>
     </parent>
 
-    <groupId>javax.websocket</groupId>
-    <artifactId>javax.websocket-all</artifactId>
+    <groupId>jakarta.websocket</groupId>
+    <artifactId>jakarta.websocket-all</artifactId>
     <packaging>pom</packaging>
     <!--
       Make sure to change build_number property accordingly
       for non-final builds
     -->
-    <version>1.1</version>
+    <version>1.1.1-SNAPSHOT</version>
     <name>WebSocket API</name>
     <description>JSR 356: Java API for WebSocket</description>
     <url>https://projects.eclipse.org/projects/ee4j.websocket</url>
 
     <scm>
-        <connection>scm:git:ssh://git@github.com/eclipse-ee4j/websocket-api</connection>
+        <connection>scm:git:https://github.com/eclipse-ee4j/websocket-api</connection>
         <developerConnection>scm:git:ssh://git@github.com/eclipse-ee4j/websocket-api</developerConnection>
         <url>https://github.com/eclipse-ee4j/websocket-api</url>
         <tag>1.1</tag>
@@ -57,12 +59,13 @@
         </license>
     </licenses>
 
-    <organization>
-        <name>Oracle</name>
-        <url>http://www.oracle.com</url>
-    </organization>
-
     <developers>
+        <developer>
+            <id>jakarta-ee4j-websocket</id>
+            <name>Jakarta Eclipse EE4J WebSocket API Developers</name>
+            <organization>Eclipse Foundation</organization>
+            <email>websocket-dev@eclipse.org</email>
+        </developer>
         <developer>
             <id>roman_grigoriadi</id>
             <name>Roman Grigoriadi</name>
@@ -74,6 +77,11 @@
     </developers>
 
     <contributors>
+        <contributor>
+            <name>WebSocket API Contributors</name>
+            <email>websocket-dev@eclipse.org</email>
+            <url>https://github.com/eclipse-ee4j/websocket-api/graphs/contributors</url>
+        </contributor>
         <contributor>
             <name>Jitendra Kotamraju</name>
             <url>http://weblogs.java.net/blog/jitu</url>
@@ -98,7 +106,7 @@
         <spec_version>1.1</spec_version>
         <!--<spec_build>02</spec_build>-->
         <new_spec_version>1.1</new_spec_version>
-        <spec_impl_version>1.1</spec_impl_version>
+        <spec_impl_version>1.1.1</spec_impl_version>
         <packages.export>javax.websocket.*</packages.export>
     </properties>
 
@@ -207,7 +215,7 @@
                 <plugin>
                     <groupId>org.glassfish.build</groupId>
                     <artifactId>spec-version-maven-plugin</artifactId>
-                    <version>1.2</version>
+                    <version>1.5</version>
                 </plugin>
             </plugins>
         </pluginManagement>

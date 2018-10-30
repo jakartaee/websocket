@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 2012, 2017 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2018 Oracle and/or its affiliates and others.
+ * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -17,16 +18,17 @@
 package javax.websocket;
 
 /**
- * Checked exception indicating some kind of failure either to publish
- * an endpoint on its server, or a failure to connect a client to its server.
+ * Checked exception indicating some kind of failure either to publish an endpoint on its server, or a failure to
+ * connect a client to its server.
  *
  * @author dannycoward
  */
 public class DeploymentException extends Exception {
 
+    private static final long serialVersionUID = 7576860738144220015L;
+
     /**
-     * Creates a deployment exception with the given reason for the deployment
-     * failure.
+     * Creates a deployment exception with the given reason for the deployment failure.
      *
      * @param message the reason for the failure.
      */
@@ -35,8 +37,7 @@ public class DeploymentException extends Exception {
     }
 
     /**
-     * Creates a deployment exception with the given reason for the deployment
-     * failure and wrapped cause of the failure.
+     * Creates a deployment exception with the given reason for the deployment failure and wrapped cause of the failure.
      *
      * @param message the reason for the failure.
      * @param cause   the cause of the problem.

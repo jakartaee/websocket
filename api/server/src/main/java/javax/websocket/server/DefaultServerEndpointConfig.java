@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 2012, 2017 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2018 Oracle and/or its affiliates and others.
+ * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -25,33 +26,27 @@ import javax.websocket.Encoder;
 import javax.websocket.Endpoint;
 import javax.websocket.Extension;
 
-
 /**
- * The DefaultServerEndpointConfig is a concrete class that embodies all the configuration
- * parameters for an endpoint that is to be published as a server endpoint. Developers may
- * subclass this class in order to override the configuration behavior.
+ * The DefaultServerEndpointConfig is a concrete class that embodies all the configuration parameters for an endpoint
+ * that is to be published as a server endpoint. Developers may subclass this class in order to override the
+ * configuration behavior.
  *
  * @author dannycoward
  */
- final class DefaultServerEndpointConfig implements ServerEndpointConfig {
+final class DefaultServerEndpointConfig implements ServerEndpointConfig {
     private String path;
     private Class<?> endpointClass;
-    private List<String> subprotocols; 
+    private List<String> subprotocols;
     private List<Extension> extensions;
     private List<Class<? extends Encoder>> encoders;
     private List<Class<? extends Decoder>> decoders;
     private Map<String, Object> userProperties = new HashMap<String, Object>();
     private ServerEndpointConfig.Configurator serverEndpointConfigurator;
 
-    
     // The builder ensures nothing except configurator can be {@code null}.
-    DefaultServerEndpointConfig(Class<?> endpointClass,
-                                    String path,
-                                    List<String> subprotocols,
-                                    List<Extension> extensions,
-                                    List<Class<? extends Encoder>> encoders,
-                                    List<Class<? extends Decoder>> decoders,
-                                    ServerEndpointConfig.Configurator serverEndpointConfigurator) {
+    DefaultServerEndpointConfig(Class<?> endpointClass, String path, List<String> subprotocols,
+            List<Extension> extensions, List<Class<? extends Encoder>> encoders,
+            List<Class<? extends Decoder>> decoders, ServerEndpointConfig.Configurator serverEndpointConfigurator) {
         this.path = path;
         this.endpointClass = endpointClass;
         this.subprotocols = Collections.unmodifiableList(subprotocols);
@@ -60,7 +55,7 @@ import javax.websocket.Extension;
         this.decoders = Collections.unmodifiableList(decoders);
         if (serverEndpointConfigurator == null) {
             this.serverEndpointConfigurator = ServerEndpointConfig.Configurator.fetchContainerDefaultConfigurator();
-        } else{  
+        } else {
             this.serverEndpointConfigurator = serverEndpointConfigurator;
         }
     }
@@ -75,20 +70,19 @@ import javax.websocket.Extension;
         return this.endpointClass;
     }
 
-
     /**
      * Creates a server configuration with the given path
      *
      * @param path the URI or URI template.
      */
-     DefaultServerEndpointConfig(Class<? extends Endpoint> endpointClass, String path) {
+    DefaultServerEndpointConfig(Class<? extends Endpoint> endpointClass, String path) {
         this.path = path;
         this.endpointClass = endpointClass;
     }
 
     /**
-     * Return the Encoder implementation classes configured. These
-     * will be used by the container to encode outgoing messages.
+     * Return the Encoder implementation classes configured. These will be used by the container to encode outgoing
+     * messages.
      *
      * @return the encoder implementation classes, in an unmodifiable list, empty if there are none.
      */
@@ -98,10 +92,8 @@ import javax.websocket.Extension;
     }
 
     /**
-     * Return the Decoder implementation classes configured. These
-     * will be used by the container to decode incoming messages
-     * into the expected custom objects on MessageHandler
-     * callbacks.
+     * Return the Decoder implementation classes configured. These will be used by the container to decode incoming
+     * messages into the expected custom objects on MessageHandler callbacks.
      *
      * @return the decoder implementation classes, in an unmodifiable list.
      */
@@ -111,8 +103,7 @@ import javax.websocket.Extension;
     }
 
     /**
-     * Return the path of this server configuration. The path is a relative URI
-     * or URI-template.
+     * Return the path of this server configuration. The path is a relative URI or URI-template.
      *
      * @return the path
      */
@@ -121,29 +112,29 @@ import javax.websocket.Extension;
         return path;
     }
 
-
     /**
      * Return the ServerEndpointConfigurator
+     *
      * @return the ServerEndpointConfigurator
      */
-     @Override
+    @Override
     public ServerEndpointConfig.Configurator getConfigurator() {
         return this.serverEndpointConfigurator;
     }
-    
-     /**
+
+    /**
      * Editable map of user properties.
      */
-     @Override
+    @Override
     public final Map<String, Object> getUserProperties() {
         return this.userProperties;
     }
-    
-     @Override
+
+    @Override
     public final List<String> getSubprotocols() {
         return this.subprotocols;
     }
-    
+
     @Override
     public final List<Extension> getExtensions() {
         return this.extensions;

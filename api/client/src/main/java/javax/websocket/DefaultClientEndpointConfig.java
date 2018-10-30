@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 2012, 2017 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2018 Oracle and/or its affiliates and others.
+ * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -22,11 +23,11 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * The DefaultClientEndpointConfig is a concrete implementation of a client configuration. 
+ * The DefaultClientEndpointConfig is a concrete implementation of a client configuration.
  *
  * @author dannycoward
  */
- final class DefaultClientEndpointConfig implements ClientEndpointConfig {
+final class DefaultClientEndpointConfig implements ClientEndpointConfig {
     private List<String> preferredSubprotocols;
     private List<Extension> extensions;
     private List<Class<? extends Encoder>> encoders;
@@ -34,12 +35,8 @@ import java.util.Map;
     private Map<String, Object> userProperties = new HashMap<String, Object>();
     private ClientEndpointConfig.Configurator clientEndpointConfigurator;
 
-    
-    DefaultClientEndpointConfig(
-            List<String> preferredSubprotocols,
-            List<Extension> extensions,
-            List<Class<? extends Encoder>> encoders,
-            List<Class<? extends Decoder>> decoders,
+    DefaultClientEndpointConfig(List<String> preferredSubprotocols, List<Extension> extensions,
+            List<Class<? extends Encoder>> encoders, List<Class<? extends Decoder>> decoders,
             ClientEndpointConfig.Configurator clientEndpointConfigurator) {
         this.preferredSubprotocols = Collections.unmodifiableList(preferredSubprotocols);
         this.extensions = Collections.unmodifiableList(extensions);
@@ -49,66 +46,58 @@ import java.util.Map;
     }
 
     /**
-     * Return the protocols, in order of preference, favorite first, that this client would
-     * like to use for its sessions.
+     * Return the protocols, in order of preference, favorite first, that this client would like to use for its
+     * sessions.
      *
      * @return the preferred subprotocols.
      */
-     @Override
+    @Override
     public List<String> getPreferredSubprotocols() {
         return this.preferredSubprotocols;
     }
 
-
-
     /**
-     * Return the extensions, in order of preference, favorite first, that this client would
-     * like to use for its sessions.
+     * Return the extensions, in order of preference, favorite first, that this client would like to use for its
+     * sessions.
      *
      * @return the (unmodifiable) extension list.
      */
-     @Override
+    @Override
     public List<Extension> getExtensions() {
         return this.extensions;
     }
-
-
 
     /**
      * Return the (unmodifiable) list of encoders this client will use.
      *
      * @return the encoder list.
      */
-     @Override
+    @Override
     public List<Class<? extends Encoder>> getEncoders() {
         return this.encoders;
     }
-
-
 
     /**
      * Return the (unmodifiable) list of decoders this client will use.
      *
      * @return the decoders to use.
      */
-     @Override
+    @Override
     public List<Class<? extends Decoder>> getDecoders() {
         return this.decoders;
     }
 
-
     /**
      * Editable map of user properties.
      */
-     @Override
+    @Override
     public final Map<String, Object> getUserProperties() {
         return this.userProperties;
     }
-    
-     @Override
+
+    @Override
     public ClientEndpointConfig.Configurator getConfigurator() {
         return this.clientEndpointConfigurator;
     }
- 
 
 }
