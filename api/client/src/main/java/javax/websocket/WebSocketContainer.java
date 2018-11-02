@@ -58,7 +58,7 @@ public interface WebSocketContainer {
 
     /**
      * Connect the supplied annotated endpoint instance to its server. The supplied object must be a class decorated
-     * with the class level {@link javax.websocket.server.ServerEndpoint} annotation. This method blocks until the
+     * with the class level {@code javax.websocket.server.ServerEndpoint} annotation. This method blocks until the
      * connection is established, or throws an error if either the connection could not be made or there was a problem
      * with the supplied endpoint class. If the developer uses this method to deploy the client endpoint, services like
      * dependency injection that are supported, for example, when the implementation is part of the Java EE platform may
@@ -77,7 +77,7 @@ public interface WebSocketContainer {
 
     /**
      * Connect the supplied annotated endpoint to its server. The supplied object must be a class decorated with the
-     * class level {@link javax.websocket.server.ServerEndpoint} annotation. This method blocks until the connection is
+     * class level {@code javax.websocket.server.ServerEndpoint} annotation. This method blocks until the connection is
      * established, or throws an error if either the connection could not be made or there was a problem with the
      * supplied endpoint class.
      *
