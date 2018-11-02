@@ -31,7 +31,7 @@ import java.lang.annotation.Target;
  * <ul>
  * <li>optional {@link Session} parameter</li>
  * <li>a {@link java.lang.Throwable} parameter</li>
- * <li>Zero to n String parameters annotated with the {@link javax.websocket.server.PathParam} annotation</li>
+ * <li>Zero to n String parameters annotated with the {@code javax.websocket.server.PathParam} annotation</li>
  * </ul>
  *
  * <p>

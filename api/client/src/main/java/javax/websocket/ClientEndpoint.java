@@ -24,7 +24,7 @@ import java.lang.annotation.Target;
 
 /**
  * The ClientEndpoint annotation a class level annotation is used to denote that a POJO is a web socket client and can
- * be deployed as such. Similar to {@link javax.websocket.server.ServerEndpoint}, POJOs that are annotated with this
+ * be deployed as such. Similar to {@code javax.websocket.server.ServerEndpoint}, POJOs that are annotated with this
  * annotation can have methods that, using the web socket method level annotations, are web socket lifecycle methods.
  * <p>
  * For example:
