@@ -32,4 +32,17 @@
     <description>JSR 356: Java API for WebSocket</description>
     <url>https://projects.eclipse.org/projects/ee4j.websocket</url>
 
+    <build>
+        <resources>
+            <resource>
+                <directory>${project.basedir}/../../</directory>
+                <includes>
+                    <include>LICENSE.md</include>
+                    <include>NOTICE.md</include>
+                </includes>
+                <targetPath>META-INF</targetPath>
+            </resource>
+        </resources>
+    </build>
+
 </project>
