@@ -27,9 +27,50 @@
     </parent>
 
     <artifactId>jakarta.websocket-client-api</artifactId>
-    <packaging>jar</packaging>
+    <packaging>bundle</packaging>
     <name>WebSocket client API</name>
     <description>JSR 356: Java API for WebSocket</description>
     <url>https://projects.eclipse.org/projects/ee4j.websocket</url>
 
+    <build>
+        <resources>
+            <resource>
+                <directory>${project.basedir}/../../</directory>
+                <includes>
+                    <include>LICENSE.md</include>
+                    <include>NOTICE.md</include>
+                </includes>
+                <targetPath>META-INF</targetPath>
+            </resource>
+        </resources>
+        <plugins>
+            <plugin>
+                <groupId>org.glassfish.build</groupId>
+                <artifactId>spec-version-maven-plugin</artifactId>
+                <configuration>
+                    <specMode>jakarta</specMode>
+                    <spec>
+                        <nonFinal>false</nonFinal>
+                        <jarType>api</jarType>
+                        <apiPackage>${api_package}.client</apiPackage>
+                        <specVersion>${spec_version}</specVersion>
+                        <specImplVersion>${spec_impl_version}</specImplVersion>
+                    </spec>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>set-spec-properties</goal>
+                            <goal>check-module</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <extensions>true</extensions>
+            </plugin>
+        </plugins>
+    </build>
 </project>

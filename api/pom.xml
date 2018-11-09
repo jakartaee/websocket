@@ -198,6 +198,53 @@
         <pluginManagement>
             <plugins>
                 <plugin>
+                    <groupId>org.glassfish.build</groupId>
+                    <artifactId>spec-version-maven-plugin</artifactId>
+                    <version>1.5</version>
+                    <configuration>
+                        <specMode>jakarta</specMode>
+                        <spec>
+                            <nonFinal>false</nonFinal>
+                            <jarType>api</jarType>
+                            <specVersion>${spec_version}</specVersion>
+                            <!--<newSpecVersion>${new_spec_version}</newSpecVersion>-->
+                            <specImplVersion>${spec_impl_version}</specImplVersion>
+                            <apiPackage>${api_package}</apiPackage>
+                            <!--<specBuild>${spec_build}</specBuild>-->
+                        </spec>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>set-spec-properties</goal>
+                                <goal>check-module</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+                <!--
+                  This plugin is responsible for packaging artifacts
+                  as OSGi bundles.  Please refer to
+                  http://felix.apache.org/site/apache-felix-maven-bundle-plugin-bnd.html
+                  for more information about how to use this plugin.
+                -->
+                <plugin>
+                    <groupId>org.apache.felix</groupId>
+                    <artifactId>maven-bundle-plugin</artifactId>
+                    <version>2.3.7</version>
+                    <extensions>true</extensions>
+                    <configuration>
+                        <instructions>
+                            <Bundle-Version>${spec.bundle.version}</Bundle-Version>
+                            <Bundle-SymbolicName>${spec.bundle.symbolic-name}</Bundle-SymbolicName>
+                            <Extension-Name>${spec.extension.name}</Extension-Name>
+                            <Implementation-Version>${spec.implementation.version}</Implementation-Version>
+                            <Specification-Version>${spec.specification.version}</Specification-Version>
+                            <Export-Package>${packages.export}</Export-Package>
+                        </instructions>
+                    </configuration>
+                </plugin>
+                <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-jar-plugin</artifactId>
                     <version>2.4</version>
@@ -211,11 +258,6 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-resources-plugin</artifactId>
                     <version>2.6</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.glassfish.build</groupId>
-                    <artifactId>spec-version-maven-plugin</artifactId>
-                    <version>1.5</version>
                 </plugin>
             </plugins>
         </pluginManagement>
