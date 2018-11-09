@@ -31,14 +31,14 @@ package javax.websocket;
  *
  * <p>
  * When deployed as a server endpoint, the implementation uses the
- * {@link javax.websocket.server.ServerEndpointConfig.Configurator#getEndpointInstance} method to obtain the endpoint
+ * {@code javax.websocket.server.ServerEndpointConfig.Configurator#getEndpointInstance} method to obtain the endpoint
  * instance it will use for each new client connection. If the developer uses the default
- * {@link javax.websocket.server.ServerEndpointConfig.Configurator}, there will be precisely one endpoint instance per
+ * {@code javax.websocket.server.ServerEndpointConfig.Configurator}, there will be precisely one endpoint instance per
  * active client connection. Consequently, in this typical case, when implementing/overriding the methods of Endpoint,
  * the developer is guaranteed that there will be at most one thread calling each endpoint instance at a time.
  *
  * <p>
- * If the developer provides a custom {@link javax.websocket.server.ServerEndpointConfig.Configurator} which overrides
+ * If the developer provides a custom {@code javax.websocket.server.ServerEndpointConfig.Configurator} which overrides
  * the default policy for endpoint instance creation, for example, using a single Endpoint instance for multiple client
  * connections, the developer may need to write code that can execute concurrently.
  *

@@ -58,7 +58,7 @@ import java.lang.annotation.Target;
  * </li>
  * </ul>
  * </li>
- * <li>and Zero to n String or Java primitive parameters annotated with the {@link javax.websocket.server.PathParam}
+ * <li>and Zero to n String or Java primitive parameters annotated with the {@code javax.websocket.server.PathParam}
  * annotation for server endpoints.</li>
  * <li>and an optional {@link Session} parameter</li>
  * </ol>

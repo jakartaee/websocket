@@ -44,11 +44,6 @@
             </resource>
         </resources>
         <plugins>
-            <!--
-                Commented out as this plug-in currently breaks the build due to
-                a hard-coded requirement that the groupId starts with javax.
-                See #266
-            -->
             <plugin>
                 <groupId>org.glassfish.build</groupId>
                 <artifactId>spec-version-maven-plugin</artifactId>
@@ -57,11 +52,9 @@
                     <spec>
                         <nonFinal>false</nonFinal>
                         <jarType>api</jarType>
-                        <specVersion>${spec_version}</specVersion>
-                        <!--<newSpecVersion>${new_spec_version}</newSpecVersion>-->
-                        <specImplVersion>${spec_impl_version}</specImplVersion>
                         <apiPackage>${api_package}</apiPackage>
-                        <!--<specBuild>${spec_build}</specBuild>-->
+                        <specVersion>${spec_version}</specVersion>
+                        <specImplVersion>${spec_impl_version}</specImplVersion>
                     </spec>
                 </configuration>
                 <executions>
@@ -73,27 +66,10 @@
                     </execution>
                 </executions>
             </plugin>
-            <!--
-              This plugin is responsible for packaging artifacts
-              as OSGi bundles.  Please refer to
-              http://felix.apache.org/site/apache-felix-maven-bundle-plugin-bnd.html
-              for more information about how to use this plugin.
-            -->
             <plugin>
                 <groupId>org.apache.felix</groupId>
                 <artifactId>maven-bundle-plugin</artifactId>
-                <version>2.3.7</version>
                 <extensions>true</extensions>
-                <configuration>
-                    <instructions>
-                        <Bundle-Version>${spec.bundle.version}</Bundle-Version>
-                        <Bundle-SymbolicName>${spec.bundle.symbolic-name}</Bundle-SymbolicName>
-                        <Extension-Name>${spec.extension.name}</Extension-Name>
-                        <Implementation-Version>${spec.implementation.version}</Implementation-Version>
-                        <Specification-Version>${spec.specification.version}</Specification-Version>
-                        <Export-Package>${packages.export}</Export-Package>
-                    </instructions>
-                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
