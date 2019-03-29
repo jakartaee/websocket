@@ -17,7 +17,8 @@
 
 package javax.websocket.server;
 
-import javax.websocket.*;
+import javax.websocket.DeploymentException;
+import javax.websocket.WebSocketContainer;
 
 /**
  * The ServerContainer is the specialized view of the WebSocketContainer available in server-side deployments. There is
@@ -25,7 +26,7 @@ import javax.websocket.*;
  * server endpoints during the initialization phase of the application.
  * <p>
  * For websocket enabled web containers, developers may obtain a reference to the ServerContainer instance by retrieving
- * it as an attribute named <code>javax.websocket.server.ServerContainer</code> on the ServletContext. This way, the
+ * it as an attribute named <code>javax.websocket.ServerContainer</code> on the ServletContext. This way, the
  * registration methods held on this interface may be called to register server endpoints from a ServletContextListener
  * during the deployment of the WAR file containing the endpoint.
  * </p>

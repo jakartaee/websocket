@@ -23,11 +23,11 @@
     <parent>
         <groupId>jakarta.websocket</groupId>
         <artifactId>jakarta.websocket-all</artifactId>
-        <version>1.1.1-SNAPSHOT</version>
+        <version>1.2.1-SNAPSHOT</version>
     </parent>
 
     <artifactId>jakarta.websocket-api</artifactId>
-    <packaging>bundle</packaging>
+    <packaging>jar</packaging>
     <name>WebSocket server API</name>
     <description>JSR 356: Java API for WebSocket</description>
     <url>https://projects.eclipse.org/projects/ee4j.websocket</url>
@@ -52,7 +52,7 @@
                     <spec>
                         <nonFinal>false</nonFinal>
                         <jarType>api</jarType>
-                        <apiPackage>${api_package}</apiPackage>
+                        <apiPackage>${api_package}.server</apiPackage>
                         <specVersion>${spec_version}</specVersion>
                         <specImplVersion>${spec_impl_version}</specImplVersion>
                     </spec>
@@ -70,6 +70,16 @@
                 <groupId>org.apache.felix</groupId>
                 <artifactId>maven-bundle-plugin</artifactId>
                 <extensions>true</extensions>
+                <configuration>
+                    <instructions>
+                        <Bundle-Version>${spec.bundle.version}</Bundle-Version>
+                        <Bundle-SymbolicName>${spec.bundle.symbolic-name}</Bundle-SymbolicName>
+                        <Extension-Name>${spec.extension.name}</Extension-Name>
+                        <Implementation-Version>${spec.implementation.version}</Implementation-Version>
+                        <Specification-Version>${spec.specification.version}</Specification-Version>
+                        <Export-Package>javax.websocket.server;-split-package:=merge-last</Export-Package>
+                    </instructions>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

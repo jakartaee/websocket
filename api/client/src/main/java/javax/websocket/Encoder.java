@@ -28,7 +28,7 @@ import java.nio.ByteBuffer;
  * text, binary data, character stream and write to an output stream. The websocket implementation creates a new
  * instance of the encoder per endpoint instance per connection. This means that each encoder instance has at most one
  * calling thread at a time. The lifecycle of the Encoder instance is governed by the container calls to the
- * {@link Encoder#init(javax.websocket.EndpointConfig)} and {@link Encoder#destroy() } methods.
+ * {@link Encoder#init(javax.websocket.EndpointConfig)} and {@link javax.websocket.Encoder#destroy() } methods.
  *
  * @author dannycoward
  */

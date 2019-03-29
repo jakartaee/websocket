@@ -30,8 +30,8 @@ import javax.websocket.HandshakeResponse;
 /**
  * The ServerEndpointConfig is a special kind of endpoint configuration object that contains web socket configuration
  * information specific only to server endpoints. For developers deploying programmatic endpoints, ServerEndpointConfig
- * objects can be created using a {@link ServerEndpointConfig.Builder}. Certain configuration operations can be
- * customized by providing a {@link ServerEndpointConfig.Configurator}
+ * objects can be created using a {@link javax.websocket.server.ServerEndpointConfig.Builder}. Certain configuration operations can be
+ * customized by providing a {@link javax.websocket.server.ServerEndpointConfig.Configurator}
  *
  * @author dannycoward
  */
@@ -70,8 +70,8 @@ public interface ServerEndpointConfig extends EndpointConfig {
     List<Extension> getExtensions();
 
     /**
-     * Return the {@link ServerEndpointConfig.Configurator} this configuration is using. If none was set by calling
-     * {@link ServerEndpointConfig.Builder#configurator(javax.websocket.server.ServerEndpointConfig.Configurator) } this
+     * Return the {@link javax.websocket.server.ServerEndpointConfig.Configurator} this configuration is using. If none was set by calling
+     * {@link javax.websocket.server.ServerEndpointConfig.Builder#configurator(javax.websocket.server.ServerEndpointConfig.Configurator) } this
      * methods returns the platform default configurator.
      *
      * @return the configurator in use.

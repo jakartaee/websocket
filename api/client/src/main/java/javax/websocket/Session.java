@@ -57,7 +57,7 @@ public interface Session extends Closeable {
      * websocket message type (text, binary, pong) may be added to each Session. I.e. a maximum of one message handler
      * to handle incoming text messages a maximum of one message handler for handling incoming binary messages, and a
      * maximum of one for handling incoming pong messages. For further details of which message handlers handle which of
-     * the native websocket message types please see {@link MessageHandler.Whole} and {@link MessageHandler.Partial}.
+     * the native websocket message types please see {@link javax.websocket.MessageHandler.Whole} and {@link javax.websocket.MessageHandler.Partial}.
      * Adding more than one of any one type will result in a runtime exception.
      * <p>
      * This method is not safe to use unless you are providing an anonymous class derived directly from
