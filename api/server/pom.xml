@@ -28,8 +28,8 @@
 
     <artifactId>jakarta.websocket-api</artifactId>
     <packaging>bundle</packaging>
-    <name>WebSocket server API</name>
-    <description>JSR 356: Java API for WebSocket</description>
+    <name>Jakarta WebSocket - Server API</name>
+    <description>Jakarta WebSocket - Server API</description>
     <url>https://projects.eclipse.org/projects/ee4j.websocket</url>
 
     <build>

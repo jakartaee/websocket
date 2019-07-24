@@ -1,21 +1,17 @@
-		Java API for WebSocket 1.1
-		==========================
+		Jakarta WebSocket API 1.1
+		=========================
 
-		(Updated January 10, 2018)
+Following is a description of the additions to the Jakarta WebSocket
+Client API and Server API introduced in Jakarta WebSocket 1.1.
 
-Following is a description of the additions to the WebSocket
-API introduced in Java API for WebSocket 1.1.  The values in
-parentheses are bug numbers; you can find more information
-about the bug reports at:
-
-    https://github.com/javaee/websocket-spec/issues
+    https://github.com/eclipse-ee4j/websocket-api/issues
 
 Please send comments and feedback to https://dev.eclipse.org/mailman/listinfo/websocket-dev.
 
 ===================================================================
 
 1. Session.addMessageHandler(MessageHandler) cannot work with lambda
-   expressions (WEBSOCKET_SPEC-226)
+   expressions (https://github.com/eclipse-ee4j/websocket-api/issues/226)
 ------------------------------------
 
 The method "Session.addMessageHandler(MessageHandler)" forces implementations
