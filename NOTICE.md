@@ -1,13 +1,12 @@
-# Notices for Eclipse Project for WebSocket
+# Notices for Jakarta WebSocket
 
-This content is produced and maintained by the Eclipse Project for WebSocket
-project.
+This content is produced and maintained by the Jakarta WebSocket project.
 
 * Project home: https://projects.eclipse.org/projects/ee4j.websocket
 
 ## Trademarks
 
-Eclipse Project for WebSocket is a trademark of the Eclipse Foundation.
+Jakarta WebSocket is a trademark of the Eclipse Foundation.
 
 ## Copyright
 

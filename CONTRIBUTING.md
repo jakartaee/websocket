@@ -1,10 +1,10 @@
-# Contributing to Eclipse Project for WebSocket
+# Contributing to Jakarta WebSocket Project
 
 Thanks for your interest in this project.
 
 ## Project description
 
-Java API for WebSocket (JSR-356), specifies the API that Java developers can use
+Jakarta WebSocket, specifies the API that Java developers can use
 when they want to integrate WebSockets into their applications - both on the
 server side as well as on the Java client side.
 

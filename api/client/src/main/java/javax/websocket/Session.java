@@ -85,7 +85,7 @@ public interface Session extends Closeable {
      * @param handler whole message handler to be added.
      * @throws IllegalStateException if there is already a MessageHandler registered for the same native websocket
      *                               message type as this handler.
-     * @since 1.1
+     * @since WebSocket 1.1
      */
     public <T> void addMessageHandler(Class<T> clazz, MessageHandler.Whole<T> handler);
 
@@ -102,7 +102,7 @@ public interface Session extends Closeable {
      * @param handler partial message handler to be added.
      * @throws IllegalStateException if there is already a MessageHandler registered for the same native websocket
      *                               message type as this handler.
-     * @since 1.1
+     * @since WebSocket 1.1
      */
     public <T> void addMessageHandler(Class<T> clazz, MessageHandler.Partial<T> handler);
 
