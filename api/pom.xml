@@ -35,8 +35,8 @@
       for non-final builds
     -->
     <version>1.1.1-SNAPSHOT</version>
-    <name>WebSocket API</name>
-    <description>JSR 356: Java API for WebSocket</description>
+    <name>Jakarta WebSocket - API Parent</name>
+    <description>Jakarta WebSocket - API Parent</description>
     <url>https://projects.eclipse.org/projects/ee4j.websocket</url>
 
     <scm>
@@ -62,7 +62,7 @@
     <developers>
         <developer>
             <id>jakarta-ee4j-websocket</id>
-            <name>Jakarta Eclipse EE4J WebSocket API Developers</name>
+            <name>Jakarta WebSocket Developers</name>
             <organization>Eclipse Foundation</organization>
             <email>websocket-dev@eclipse.org</email>
         </developer>
@@ -78,7 +78,7 @@
 
     <contributors>
         <contributor>
-            <name>WebSocket API Contributors</name>
+            <name>Jakarta WebSocket Contributors</name>
             <email>websocket-dev@eclipse.org</email>
             <url>https://github.com/eclipse-ee4j/websocket-api/graphs/contributors</url>
         </contributor>
@@ -174,7 +174,7 @@
                     <javadocDirectory>${project.parent.basedir}/src/main/javadoc</javadocDirectory>
                     <groups>
                         <group>
-                            <title>WebSocket Packages</title>
+                            <title>Jakarta WebSocket Packages</title>
                             <packages>javax.websocket*</packages>
                         </group>
                     </groups>
