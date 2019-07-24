@@ -1,4 +1,4 @@
-# Contributing to Jakarta WebSocket Project
+# Contributing to Jakarta WebSocket
 
 Thanks for your interest in this project.
 
