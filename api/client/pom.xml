@@ -23,12 +23,12 @@
     <parent>
         <groupId>jakarta.websocket</groupId>
         <artifactId>jakarta.websocket-all</artifactId>
-        <version>1.1.1-SNAPSHOT</version>
+        <version>1.1.2-SNAPSHOT</version>
     </parent>
 
     <artifactId>jakarta.websocket-client-api</artifactId>
     <packaging>bundle</packaging>
-    <name>Jakarta WebSocket Client API</name>
+    <name>Jakarta WebSocket - Client API</name>
     <description>Jakarta WebSocket - Client API</description>
     <url>https://projects.eclipse.org/projects/ee4j.websocket</url>
 
