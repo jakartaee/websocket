@@ -171,7 +171,7 @@
                 <artifactId>maven-javadoc-plugin</artifactId>
                 <version>2.8.1</version>
                 <configuration>
-                    <javadocDirectory>${project.parent.basedir}/src/main/javadoc</javadocDirectory>
+                    <docfilessubdirs>true</docfilessubdirs>
                     <groups>
                         <group>
                             <title>Jakarta WebSocket Packages</title>
@@ -181,6 +181,15 @@
                     <links>
                         <link>http://docs.oracle.com/javase/6/docs/api/</link>
                     </links>
+                    <description>Jakarta WebSocket API documentation</description>
+                    <doctitle>Jakarta WebSocket API documentation</doctitle>
+                    <windowtitle>Jakarta WebSocket API documentation</windowtitle>
+                    <header><![CDATA[<br>Jakarta WebSocket API v${project.version}]]></header>
+                    <bottom><![CDATA[
+  Comments to: <a href="mailto:websocket-dev@eclipse.org">websocket-dev@eclipse.org</a>.<br>
+  Copyright &#169; 2017-{currentYear} - <a href="https://www.eclipse.org">Eclipse Foundation</a>. All rights reserved.<br>
+  Use is subject to <a href="{@docRoot}/doc-files/SpecLicense.html" target="_top">Eclipse Foundation Specification License</a>.]]>
+                    </bottom>
                     <includeDependencySources>true</includeDependencySources>
                     <failOnError>false</failOnError>
                 </configuration>
