@@ -23,6 +23,8 @@
     <description>Jakarta WebSocket</description>
     <url>https://projects.eclipse.org/projects/ee4j.websocket</url>
 
+    <inceptionYear>2012</inceptionYear>
+
     <scm>
         <connection>scm:git:https://github.com/eclipse-ee4j/websocket-api</connection>
         <developerConnection>scm:git:ssh://git@github.com/eclipse-ee4j/websocket-api</developerConnection>
