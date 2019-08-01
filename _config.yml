@@ -6,9 +6,10 @@ description: [Jakarta WebSockets Implementation]
 links:
   source: https://github.com/eclipse-ee4j/websocket-api
   javadocs: docs/api/
+  issues_url: site.github.issues_url
   download: https://github.com/eclipse-ee4j/websocket-api/releases
   mailinglist: https://accounts.eclipse.org/mailing-list/websocket-dev
-  faq: FAQ
+  # faq: FAQ
 
 include:
   - LICENSE.md
