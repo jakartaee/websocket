@@ -1,7 +1,7 @@
 remote_theme: jakartaee/jekyll-theme-jakarta-ee
 
 title: [Jakarta WebSockets]
-description: [Jakarta WebSockets Implementation]
+description: [Jakarta WebSockets API]
 
 links:
   source: https://github.com/eclipse-ee4j/websocket-api
