@@ -21,8 +21,7 @@ following is a summary of the TCK results for releases of Jakarta WebSocket.
 
 - [x] TCK Version, digital SHA-256 fingerprint and download URL
 
-  [Jakarta WebSocket TCK 1.1.0](http://download.eclipse.org/ee4j/jakartaee-tck/jakartaee8-eftl/promoted/eclipse-websocket-tck-1.1.0.zip)
-  SHA-256: 4bf9d434eb6f70cd741d8759d648bb73b1565f3bf1cd2d71d6848e5d900a9d70
+  [Jakarta WebSocket TCK 1.1.0](http://download.eclipse.org/ee4j/jakartaee-tck/jakartaee8-eftl/promoted/eclipse-websocket-tck-1.1.0.zip) - SHA-256: 4bf9d434eb6f70cd741d8759d648bb73b1565f3bf1cd2d71d6848e5d900a9d70
 
 - [x] Public URL of TCK Results Summary
 
