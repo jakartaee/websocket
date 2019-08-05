@@ -34,7 +34,7 @@
       Make sure to change build_number property accordingly
       for non-final builds
     -->
-    <version>1.1.2-SNAPSHOT</version>
+    <version>1.1.2</version>
     <name>Jakarta WebSocket - API Parent</name>
     <description>Jakarta WebSocket - API Parent</description>
     <url>https://projects.eclipse.org/projects/ee4j.websocket</url>
