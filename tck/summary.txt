@@ -746,9 +746,9 @@
 [javatest.batch] PASSED........com/sun/ts/tests/websocket/spec/session/sessionid/WSClient.java#instanceTest_from_standalone
 [javatest.batch] PASSED........com/sun/ts/tests/websocket/spec/session/sessionid/WSClient.java#unique_from_standalone
 [javatest.batch] 
-[javatest.batch] Aug 1, 2019 7:28:15 AM Finished executing all tests, wait for cleanup...
-[javatest.batch] Aug 1, 2019 7:28:15 AM Harness done with cleanup from test run.
-[javatest.batch] Total time = 2,004s
+[javatest.batch] Aug 6, 2019 7:15:08 AM Finished executing all tests, wait for cleanup...
+[javatest.batch] Aug 6, 2019 7:15:08 AM Harness done with cleanup from test run.
+[javatest.batch] Total time = 2,006s
 [javatest.batch] Setup time = 0s
 [javatest.batch] Cleanup time = 0s
 [javatest.batch] Test results: passed: 734
@@ -756,4 +756,4 @@
 [javatest.batch] Report written to /home/jenkins/workspace/TCK_run/JTreport
 
 BUILD SUCCESSFUL
-Total time: 33 minutes 27 seconds
+Total time: 33 minutes 28 seconds
