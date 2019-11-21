@@ -1,0 +1,1769 @@
+:sectnums:
+= Jakarta WebSocket Specification, Version 1.1
+
+Copyright (c) 2011, 2019 Oracle and/or its affiliates. All rights reserved.
+
+Oracle and Java are registered trademarks of Oracle and/or its 
+affiliates. Other names may be trademarks of their respective owners. 
+
+Pavel Bucek <users@websocket-spec.java.net>
+v1.1, August 5, 2014
+
+Pavel Bucek +
+
+Comments to: users@websocket-spec.java.net
+
+[[introduction]]
+== Introduction
+
+This specification defines a set of Java APIs for the development of
+websocket applications. Readers are assumed to be familiar with the
+WebSocket protocol. The WebSocket protocol, developed as part of the
+collection of technologies that make up HTML5 promises to bring a new
+level of ease of development and network efficiency to modern,
+interactive web applications. For more information on the WebSocket
+protocol see:
+
+* The WebSocket Protocol specification (Fette and Melnikov 2011)
+* The WebSocket API for JavaScript (Hickson 2012)
+
+[[purpose]]
+=== Purpose of this document
+
+This document in combination with the API documentation for the Java
+WebSocket API is the specification of the Java WebSocket API. The
+specification defines the requirements that an implementation must meet
+in order to be an implementation of the Java WebSocket API. This
+specification has been developed under the rules of the Java Community
+Process. Together with the Test Compatibility Kit (TCK) which tests that
+a given implementation meets the requirements of the specification, and
+Reference Implementation (RI) that implements this specification and
+which passes the TCK, this specification defines the Java standard for
+WebSocket application development.
+
+While there is much useful information in this document for developers
+using the Java WebSocket API, its purpose is not to be a developers
+guide. Similarly, while there is much useful information in this
+document for developers who are creating an implementation of the Java
+WebSocket API, its purpose is not to be a `How To' guide as to how to
+implement all the required features.
+
+[[goals-of-the-specification]]
+=== Goals of the Specification
+
+The goal of this specification is to define the requirements on
+containers that wish to support APIs for websocket programming on the
+Java Platform. While the document may be a useful reference for
+developers who use the APIs defined by this specification, this document
+is not a developer guide.
+
+[[terminology-used-throughout-the-specification]]
+=== Terminology used throughout the Specification
+
+endpoint::
+  A websocket endpoint is a Java component that represents one side of a
+  sequence of websocket interactions between two connected peers.
+connection::
+  A websocket connection is the networking connection between the two
+  endpoints which are interacting using the websocket protocol.
+peer::
+  Used in the context of a websocket endpoint, the websocket peer is
+  used to represent the another participant of the websocket
+  interactions with the endpoint.
+session::
+  The term websocket session is used to represent a sequence of
+  websocket interactions between an endpoint and a single peer.
+client endpoints and server endpoints::
+  A client endpoint is one that initiates a connection to a peer but
+  does not accept new ones. A server endpoint is one that accepts
+  websocket connections from peers but does not initiate connections to
+  peers.
+
+[[specification-conventions]]
+=== Specification Conventions
+
+The keywords `MUST', `MUST NOT', `REQUIRED', `SHALL', `SHALL NOT',
+`SHOULD', `SHOULD NOT', `RECOMMENDED', `MAY', and `OPTIONAL' in this
+document are to be interpreted as described in RFC 2119 (Bradner 1997).
+
+Additionally, requirements of the specification that can be tested using
+the conformance test suite are marked with the figure WSC (WebSocket
+Compatibility) followed by a number which is used to identify the
+requirement, for example `WSC-12'.
+
+Java code and sample data fragments are formatted as shown in figure
+[ex1]:
+
+1 package com.example.hello;
+
+public class Hello public static void main(String args[])
+System.out.println(``Hello World'');
+
+URIs of the general form `http://example.org/...' and
+`http://example.com/...' represent application or context-dependent
+URIs.
+
+All parts of this specification are normative, with the exception of
+examples, notes and sections explicitly marked as `Non-Normative'.
+Non-normative notes are formatted as shown below.
+
+This is a note.
+
+[[expert_group]]
+=== Expert Group Members
+
+This specification was developed in the Java Community Process as part
+of JSR 356 (Coward 2013). It is the result of the collaborative work of
+the members of the JSR 356 expert group. The full public mail archive
+can be found at (“Expert group mailing list archive,” n.d.). The
+following are the expert group members:
+
+
+-- Jean-Francois Arcand (Individual Member)
+
+-- Greg Wilkins (Intalio)
+
+-- Scott Ferguson (Caucho Technology, Inc)
+
+-- Joe Walnes (DRW Holdings, LLC)
+
+-- Minehiko IIDA (Fujitsu Limited)
+
+-- Wenbo Zhu (Google Inc.)
+
+-- Bill Wigger (IBM)
+
+-- Justin Lee (Individual Member)
+
+-- Danny Coward (Oracle)
+
+-- Rémy Maucherat (RedHat)
+
+-- Moon Namkoong (TmaxSoft, Inc.)
+
+-- Mark Thomas (VMware)
+
+-- Wei Chen (Voxeo Corporation)
+
+-- Rossen Stoyanchev (VMware)
+
+[[acks]]
+=== Acknowledgements
+
+During the development of this specification we received many review
+comments, feedback and suggestions. Thanks in particular to: Jitendra
+Kotamraju, Martin Matula, Štěpán Kopřiva, Dhiru Panday, Jondean Healey,
+Joakim Erdfelt, Dianne Jiao, Michal Čonos and Jan Šupol.
+
+[[applications]]
+== Applications
+
+Java WebSocket applications consist of websocket endpoints. A websocket
+endpoint is a Java object that represents one end of a websocket
+connection between two peers.
+
+There are two main means by which an endpoint can be created. The first
+means is to implement certain of the API classes from the Java WebSocket
+API with the required behavior to handle the endpoint lifecycle, consume
+and send messages, publish itself, or connect to a peer. Often, this
+specification will refer to this kind of endpoint as a __programmatic
+endpoint__. The second means is to decorate a Plain Old Java Object
+(POJO) with certain of the annotations from the Java WebSocket API. The
+implementation then takes these annotated classes and creates the
+appropriate objects at runtime to deploy the POJO as a websocket
+endpoint. Often, this specification will refer to this kind of endpoint
+as an __annotated endpoint__. The specification will refer to an
+endpoint when it is talking about either kind of endpoint: programmatic
+or annotated.
+
+The endpoint participates in the opening handshake that establishes the
+websocket connection. The endpoint will typically send and receive a
+variety of websocket messages. The endpoint’s lifecycle comes to an end
+when the websocket connection is closed.
+
+[[api]]
+=== API Overview
+
+This section gives a brief overview of the Java WebSocket API in order
+to set the stage for the detailed requirements that follow.
+
+[[endpoint-lifecycle]]
+==== Endpoint Lifecycle
+
+A logical websocket endpoint is represented in the Java WebSocket API by
+instances of the *Endpoint* class. Developers may subclass the
+*Endpoint* class with a public, concrete class in order to intercept
+lifecycle events of the endpoint: those of a peer connecting, an open
+connection ending and an error being raised during the lifetime of the
+endpoint.
+
+Unless otherwise overridden by a developer provided configurator (see
+[configuration:creation]), the websocket implementation must use one
+instance per application per VM of the *Endpoint* class to represent the
+logical endpoint per connected peer. [WSC 2.1.1-1] Each instance of the
+*Endpoint* class in this typical case only handles connections to the
+endpoint from one and only one peer.
+
+[[sessions]]
+==== Sessions
+
+The Java WebSocket API models the sequence of interactions between an
+endpoint and each of its peers using an instance of the *Session* class.
+The interactions between a peer and an endpoint begin with an open
+notification, followed by some number, possibly zero, of websocket
+messages between the endpoint and peer, followed by a close notification
+or possibly a fatal error which terminates the connection. For each peer
+that is interacting with an endpoint, there is one unique *Session*
+instance that represents that interaction. [WSC 2.1.2-1] This *Session*
+instance corresponding to the connection with that peer is passed to the
+endpoint instance representing the logical endpoint at the key events in
+its lifecycle.
+
+Developers may use the user property map accessible through the
+*getUserProperties()* call on the *Session* object to associate
+application specific information with a particular session. The
+websocket implementation must preserve this session data for later
+access until the completion of the *onClose()* method on the endpoint
+instance. [WSC 2.1.2-2]. After that time, the websocket implementation
+is permitted to discard the developer data. A websocket implementation
+that chooses to pool *Session* instances may at that point re-use the
+same *Session* instance to represent a new connection provided it issues
+a new unique *Session* id. [WSC 2.1.2-3]
+
+Websocket implementations that are part of a distributed container may
+need to migrate websocket sessions from one node to another in the case
+of a failover. Implementations are required to preserve developer data
+objects inserted into the websocket session if the data is marked
+**java.io.Serializable**. [WSC 2.1.2-4]
+
+[[receiving-messages]]
+==== Receiving Messages
+
+The Java WebSocket API presents a variety of means for an endpoint to
+receive messages from its peers. Developers implement the subtype of the
+*MessageHandler* interface that suits the message delivery style that
+best suits their needs, and register the interest in messages from a
+particular peer by registering the handler on the Session instance
+corresponding to the peer.
+
+The API limits the registration of *MessageHandlers* per *Session* to be
+one *MessageHandler* per native websocket message type. [WSC 2.1.3-1] In
+other words, the developer can only register at most one
+*MessageHandler* for incoming text messages, one *MessageHandler* for
+incoming binary messages, and one *MessageHandler* for incoming pong
+messages. The websocket implementation must generate an error if this
+restriction is violated [WSC 2.1.3-2].
+
+Future versions of the specification may lift this restriction.
+
+Method *Session.addMessageHandler(MessageHandler)* is not safe for use
+in all circumstances, especially when using Lambda Expressions. The API
+forces implementations to get the **MessageHandler**’s type parameter in
+runtime, which is not always possible. The only case where you can
+safely use this method is when you are directly implementing
+*MessageHandler.Whole* or *MessageHandler.Partial* as an anonymous
+class. This approach guarantees that generic type information will be
+present in the generated class file and the runtime will be able to get
+it. For any other case (Lambda Expressions included), one of following
+methods have to be used:
+*Session.addMessageHandler(Classlatexmath:[$<$]Tlatexmath:[$>$],
+MessageHandler.Partiallatexmath:[$<$]Tlatexmath:[$>$])* or
+**Session.addMessageHandler(Classlatexmath:[$<$]Tlatexmath:[$>$],
+MessageHandler.Wholelatexmath:[$<$]Tlatexmath:[$>$])**.
+
+[[sending-messages]]
+==== Sending Messages
+
+The Java WebSocket API models each peer of a session with an endpoint as
+an instance of the *RemoteEndpoint* interface. This interface and its
+two subtypes (**RemoteEndpoint.Whole** and **RemoteEndpoint.Partial**)
+contain a variety of methods for sending websocket messages from the
+endpoint to its peer.
+
+Example
+
+Here is an example of a server endpoint that waits for incoming text
+messages, and responds immediately when it gets one to the client that
+sent it. The example endpoint is shown, first using only the API
+classes:
+
+[source,java]
+public class HelloServer extends Endpoint {
+    @Override
+    public void onOpen(Session session, EndpointConfig ec) {
+        final RemoteEndpoint.Basic remote = session.getBasicRemote();
+        session.addMessageHandler(String.class,
+            new MessageHandler.Whole<String>() {
+                public void onMessage(String text) {
+                    try {
+                        remote.sendText("Got your message (" + text + "). Thanks !");
+                    } catch (IOException ioe) {
+                        ioe.printStackTrace();
+                    }
+                }
+        });
+    }
+}
+
+and second using the annotations in the API:
+
+[source,java]
+@ServerEndpoint("/hello")
+public class MyHelloServer {
+    @OnMessage
+    public String handleMessage(String message) {
+        return "Got your message (" + message + "). Thanks !";
+    }
+}
+
+Note: the examples are almost equivalent save for the annotated endpoint
+carries its own path mapping.
+
+[[closing-connections]]
+==== Closing Connections
+
+If an open connection to a websocket endpoint is to be closed for any
+reason, whether as a result of receiving a websocket close event from
+the peer, or because the underlying implementation has reason to close
+the connection, the websocket implementation must invoke the *onClose()*
+method of the websocket endpoint. [WSC 2.1.5-1]
+
+If the close was initiated by the remote peer, the implementation must
+use the close code and reason sent in the websocket protocol close
+frame. If the close was initiated by the local container, for example if
+the local container determines the session has timed out, the local
+implementation must use the websocket protocol close code
+latexmath:[$1006$] (a code especially disallowed in close frames on the
+wire), with a suitable close reason. That way the endpoint can determine
+whether the close was initiated remotely or locally. If the session is
+closed locally, the implementation must attempt to send the websocket
+close frame prior to calling the *onClose()* method of the websocket
+endpoint.
+
+[[clients-and-servers]]
+==== Clients and Servers
+
+The websocket protocol is a two-way protocol. Once established, the
+websocket protocol is symmetrical between the two parties in the
+conversation. The difference between a websocket _client_ and a
+websocket _server_ lies only in the means by which the two parties are
+connected. In this specification, we will say that a websocket client is
+a websocket endpoint that initiates a connection to a peer. We will say
+that a _websocket server_ is a websocket endpoint that is published and
+awaits connections from peers. In most deployments, a websocket client
+will connect to only one websocket server, and a websocket server will
+accept connections from several clients.
+
+Accordingly, the WebSocket API only distinguishes between endpoints that
+are websocket clients from endpoints that are websocket servers in the
+configuration and setup phase.
+
+[[websocketcontainers]]
+==== WebSocketContainers
+
+The websocket implementation is represented to applications by instances
+of the *WebSocketContainer* class. Each *WebSocketContainer* instance
+carries a number of configuration properties that apply to endpoints
+deployed within it. In server deployments of websocket implementations,
+there is one unique *WebSocketContainer* instance per application per
+Java VM. [WSC 2.1.7-1] In client deployments of websocket
+implementations, applications obtain instances of the
+*WebSocketContainer* from the *ContainerProvider* class.
+
+[[endpoints-using-websocket-annotations]]
+=== Endpoints using WebSocket Annotations
+
+Java annotations have become widely used as a means to add deployment
+characteristics to Java objects, particularly in the Java EE platform.
+The Java WebSocket specification defines a small number of websocket
+annotations that allow developers to take Java classes and turn them
+into websocket endpoints. This section gives a short overview to set the
+stage for more detailed requirements later in this specification.
+
+[[annotated-endpoints]]
+==== Annotated Endpoints
+
+The class level *@ServerEndpoint* annotation indicates that a Java class
+is to become a websocket endpoint at runtime. Developers may use the
+value attribute to specify a URI mapping for the endpoint. The
+*encoders* and *decoders* attributes allow the developer to specify
+classes that encode application objects into websocket messages, and
+decode websocket messages into application objects.
+
+[[websocket-lifecycle]]
+==== Websocket Lifecycle
+
+The method level *@OnOpen* and *@OnClose* annotations allow the
+developers to decorate methods on their *@ServerEndpoint* annotated Java
+class to specify that they must be called by the implementation when the
+resulting endpoint receives a new connection from a peer or when a
+connection from a peer is closed, respectively. [WSC 2.2.2-1]
+
+[[handling-messages]]
+==== Handling Messages
+
+In order that the annotated endpoint can process incoming messages, the
+method level *@OnMessage* annotation allows the developer to indicate
+which methods the implementation must call when a message is received. [WSC 2.2.3-1]
+
+[[handling-errors]]
+==== Handling Errors
+
+In order that an annotated endpoint can handle errors that occur as a
+arising from external events, for example on decoding an incoming
+message, an annotated endpoint can use the *@OnError* annotation to mark
+one of its methods must be called by the implementation with information
+about the error whenever such an error occurs. [WSC 2.2.4-1]
+
+[[pings-and-pongs]]
+==== Pings and Pongs
+
+The ping/pong mechanism in the websocket protocol serves as a check that
+the connection is still active. Following the requirements of the
+protocol, if a websocket implementation receives a ping message from a
+peer, it must respond as soon as possible to that peer with a pong
+message containing the same application data. [WSC 2.2.5-1] Developers
+who wish to send a unidirectional pong message may do so using the
+*RemoteEndpoint* API. Developers wishing to listen for returning pong
+messages may either define a *MessageHandler* for them, or annotate a
+method using the *@OnMessage* annotation where the method stipulates a
+*PongMessage* as its message entity parameter. In either case, if the
+implementation receives a pong message addressed to this endpoint, it
+must call that MessageHandler or that annotated message. [WSC 2.2.5-2]
+
+[[clientapi]]
+=== Java WebSocket Client API
+
+This specification defines two configurations of the Java WebSocket API.
+The Java WebSocket API is used to mean the full functionality defined in
+this specification. This API is intended to be implemented either as a
+standalone websocket implementation, as part of a Java servlet
+container, or as part of a full Java EE platform implementation. The
+APIs that must be implemented to conform to the Java WebSocket API are
+all the Java apis in the packages *javax.websocket.** and
+**javax.websocket.server.***. Some of the non-api features of the Java
+WebSocket API are optional when the API is not implemented as part of
+the full Java EE platform, for example, the requirement that websocket
+endpoints be non-contextual managed beans (see Chapter 7). Such Java EE
+only features are clearly marked where they are described.
+
+The Java WebSocket API also contains a subset of its functionality
+intended for desktop, tablet or smartphone devices. This subset does not
+contain the ability to deploy server endpoints. This subset known as the
+Java WebSocket Client API. The APIs that must be implemented to conform
+to the Java WebSocket Client API are all the Java apis in the packages
+**javax.websocket.***.
+
+[[configuration]]
+== Configuration
+
+WebSocket applications are configured with a number of key parameters:
+the path mapping that identifies a websocket endpoint in the URI-space
+of the container, the subprotocols that the endpoint supports, the
+extensions that the application requires. Additionally, during the
+opening handshake, the application may choose to perform other
+configuration tasks, such as checking the hostname of the requesting
+client, or processing cookies. This section details the requirements on
+the container to support these configuration tasks.
+
+Both client and server endpoint configurations include a list of
+application provided encoder and decoder classes that the implementation
+must use to translate between websocket messages and application defined
+message objects. [WSC-3-1]
+
+Here follows the definition of the server-specific and client-specific
+configuration options.
+
+[[serverconfig]]
+=== Server Configurations
+
+In order to deploy a programmatic endpoint into the URI space available
+for client connections, the container requires a *ServerEndpointConfig*
+instance. This object holds configuration data and the default
+implementation provided algorithms needed by the implementation to
+configure the endpoint. The WebSocket API allow certain of these
+configuration operations to be overriden by developers by providing a
+custom *ServerEndpointConfig.Configurator* implementation with the
+**ServerEndpointConfig**. [WSC-3.1-1]
+
+These operations are laid out below.
+
+[[uri-mapping]]
+==== URI Mapping
+
+This section describes the the URI mapping policy for server endpoints.
+The websocket implementation must compare the incoming URI to the
+collection of all endpoint paths and determine the best match. The
+incoming URI in an opening handshake request matches an enpoint path if
+either it is an exact match in the case where the endpoint path is a
+relative URI, and if it is a valid expansion of the endpoint path in the
+case where the endpoint path is a URI template. [WSC-3.1.1-1]
+
+An application that contains multiple endpoint paths that are the same
+relative URI is not a valid application. An application that contains
+multiple endpoint paths that are equivalent URI-templates is not a valid
+application. [WSC-3.1.1-2]
+
+However, it is possible for an incoming URI in an opening handshake
+request theoretically to match more than one endpoint path. For example,
+consider the following case:-
+
+incoming URI: ``/a/b''
+
+endpoint A is mapped to ``/a/b''
+
+endpoint B is mapped to /a/\{customer-name}
+
+The websocket implementation will attempt to match an incoming URI to an
+endpoint path (URI or level 1 URI-template) in the application in a
+manner equivalent to the following: [WSC-3.1.1-3]
+
+Since the endpoint paths are either relative URIs or URI templates level
+1, the paths do not match if they do not have the same number of
+segments, using ’/’ as the separator. So, the container will traverse
+the segments of the endpoint paths with the same number of segments as
+the incoming URI from left to right, comparing each segment with the
+corresponding segment of the incoming URI. At each segment, the
+implementation will retain those endpoint paths that match exactly, or
+if there are none, those that are a variable segment, before moving to
+check the next segment. If there is an endpoint path at the end of this
+process there is a match.
+
+Because of the requirement disallowing multiple endpoint paths and
+equivalent URI-templates, and the preference for exact matches at each
+segment, there can only be at most one path, and it is the best match.
+
+Examples
+
+\i) suppose an endpoint has path /a/b/, the only incoming URI that
+matches this is /a/b/
+
+\ii) suppose an endpoint is mapped to /a/\{var}
+
+incoming URIs that do match: /a/b (with var=b), /a/apple (with
+var=apple)
+
+URIs that do NOT match: /a, /a/b/c (because empty string and strings
+with reserved characters ``/'' are not valid URI-template level 1
+expansions.)
+
+\iii) suppose we have three endpoints and their paths:
+
+endpoint A: /a/\{var}/c
+
+endpoint B: /a/b/c
+
+endpoint C: /a/\{var1}/\{var2}
+
+incoming URI: a/b/c matches B, not A or C, because an exact match is
+preferred.
+
+incoming URI: a/d/c matches A with variable var=d, because an exact
+matching segment is preferred over a variable segment
+
+incoming URI: a/x/y/ matches C, with var1=x, var2=y
+
+\iv) suppose we have two endpoints
+
+endpoint A: /\{var1}/d
+
+endpoint B: /b/\{var2}
+
+incoming URI: /b/d matches B with var2=d, not A with var1=b because the
+matching process works from left to right.
+
+The implementation must not establish the connection unless there is a
+match. [WSC-3.1.1-4]
+
+[[subprotocol-negotiation]]
+==== Subprotocol Negotiation
+
+The default server configuration must be provided a list of supported
+protocols in order of preference at creation time. During subprotocol
+negotiation, this configuration examines the client-supplied subprotocol
+list and selects the first subprotocol in the list it supports that is
+contained within the list provided by the client, or none if there is no
+match. [WSC-3.1.2-1]
+
+[[extension-modification]]
+==== Extension Modification
+
+In the opening handshake, the client supplies a list of extensions that
+it would like to use. The default server configuration selects from
+those extensions the ones it supports, and places them in the same order
+as requested by the client. [WSC-3.1.3-1]
+
+[[origin-check]]
+==== Origin Check
+
+The default server configuration makes a check of the hostname provided
+in the Origin header, failing the handshake if the hostname cannot be
+verified. [WSC-3.1.4-1]
+
+[[handshake-modification]]
+==== Handshake Modification
+
+The default server configuration makes no modification of the opening
+handshake process other than that described above. [WSC-3.1.5-1]
+
+Developers may wish to customize the configuration and handshake
+negotiation policies laid out above. In order to do so, they may provide
+their own implementations of **ServerEndpointConfig.Configurator**.
+
+For example, developers may wish to intervene more in the handshake
+process. They may wish to use Http cookies to track clients, or insert
+application specific headers in the handshake response. In order to do
+this, they may implement the *modifyHandshake()* method on the
+**ServerEndpointConfig.Configurator**, wherein they have full access to
+the *HandshakeRequest* and *HandshakeResponse* of the handshake.
+
+[[custom-state-or-processing-across-server-endpoint-instances]]
+==== Custom State or Processing Across Server Endpoint Instances
+
+The developer may also implement *ServerEndpointConfig.Configurator* in
+order to hold custom application state or methods for other kinds of
+application specific processing that is accessible from all *Endpoint*
+instances of the same logical endpoint via the *EndpointConfig* object.
+
+[[configuration:creation]]
+==== Customizing Endpoint Creation
+
+The developer may control the creation of endpoint instances by
+supplying a *ServerEndpointConfig.Configurator* object that overrides
+the *getEndpointInstance()* call. The implementation must call this
+method each time a new client connects to the logical endpoint.
+[WSC-3.1.7-1] The platform default implementation of this method is to
+return a new instance of the endpoint class each time it is called. [WSC-3.1.7-2]
+
+In this way, developers may deploy endpoints in such a way that only one
+instance of the endpoint class is instantiated for all the client
+connections to the logical endpoints. In this case, developers are
+cautioned that such a `singleton' instance of the endpoint class will
+have to program with concurrent calling threads in mind, for example, if
+two different clients send a message at the same time.
+
+[[client-configuration]]
+=== Client Configuration
+
+In order to connect a websocket client endpoint to its corresponding
+websocket server endpoint, the implementation requires configuration
+information. Aside from the list of encoders and decoders, the Java
+WebSocket API needs the following attributes:
+
+[[subprotocols]]
+==== Subprotocols
+
+The default client configuration uses the developer provided list of
+subprotocols, to send in order of preference, the names of the
+subprotocols it would like to use in the opening handshake it
+formulates. [WSC-3.2.1-1]
+
+[[extensions]]
+==== Extensions
+
+The default client configuration must use the developer provided list of
+extensions to send, in order of preference, the extensions, including
+parameters, that it would like to use in the opening handshake it
+formulates. [WSC-3.2.2-1]
+
+[[client-configuration-modification]]
+==== Client Configuration Modification
+
+Some clients may wish to adapt the way in which the client side
+formulates the opening handshake interaction with the server. Developers
+may provide their own implementations of
+ClientEndpointConfig.Configurator which override the default behavior of
+the underlying implementation in order to customize it to suit a
+particular application’s needs.
+
+[[annotations]]
+== Annotations
+
+This section contains a full specification of the semantics of the
+annotations in the Java WebSocket API.
+
+[[serverendpoint]]
+=== @ServerEndpoint
+
+This class level annotation signifies that the Java class it decorates
+must be deployed by the implementation as a websocket server endpoint
+and made available in the URI-space of the websocket implementation.
+[WSC-4.1-1] The class must be public, concrete, and have a public
+no-args constructor. The class may or may not be final, and may or may
+not have final methods.
+
+[[value]]
+==== value
+
+The *value* attribute must be a Java string that is a partial URI or
+URI-template (level-1), with a leading `/'. For a definition of
+URI-templates, see (Gregorio et al. 2012). The implementation uses the
+value attribute to deploy the endpoint to the URI space of the websocket
+implementation. The implementation must treat the value as relative to
+the root URI of the websocket implementation in determining a match
+against the request URI of an incoming opening handshake request.
+[WSC-4.1.1-2] The semantics of matching for annotated endpoints is the
+same as was defined in the previous chapter. The value attribute is
+mandatory; the implementation must reject a missing or malformed path at
+deployment time [WSC-4.1.1-3].
+
+For example,
+
+[source,java]
+@ServerEndpoint("/bookings/{guest-id}")
+public class BookingServer {
+
+    @OnMessage
+    public void processBookingRequest(
+        @PathParam("guest-id") String guestID,
+        String message,
+        Session session) {
+        // process booking from the given guest here
+    }
+}
+
+In this case, a client will be able to connect to this endpoint with any
+of the URIs
+
+* */bookings/JohnSmith*
+* */bookings/SallyBrown*
+* */bookings/MadisonWatson*
+
+However, were the endpoint annotation to be
+**@ServerEndpoint(``/bookings/SallyBrown'')**, then only a client
+request to */bookings/SallyBrown* would be able to connect to this
+websocket endpoint.
+
+If URI-templates are used in the value attribute, the developer may
+retrieve the variable path segments using the *@PathParam* annotation,
+as described below.
+
+Applications that contain more than one annotated endpoint may
+inadvertently use the same relative URI. The websocket implementation
+must reject such an application at deployment time with an informative
+error message that there is a duplicate path that it cannot resolve. [WSC-4.1.1-4]
+
+Applications may contain an endpoint mapped to a path that is an
+expanded form of a URI template that is used by another endpoint in the
+same application. In this case, the application is valid. Please refer
+to the previous chapter for a definition of how to resolve the best
+match in this type of situation.
+
+Future versions of the specification may allow higher levels of
+URI-templates.
+
+[[encoders]]
+==== encoders
+
+The *encoders* attribute contains a (possibly empty) list of Java
+classes that are to act as encoder components for this endpoint. These
+classes must implement some form of the *Encoder* interface, and have
+public no-arg constructors and be visible within the classpath of the
+application that this websocket endpoint is part of. The implementation
+must create a new instance of each encoder per connection per endpoint
+which guarantees no two threads are in the encoder at the same time. The
+implementation must attempt to encode application objects of matching
+parametrized type as the encoder when they are attempted to be sent
+using the *RemoteEndpoint* API [WSC-4.1.2-1].
+
+[[decoders]]
+==== decoders
+^^^^^^^^
+
+The *decoders* attribute contains a (possibly empty) list of Java
+classes that are to act as decoder components for this endpoint. These
+classes must implement some form of the *Decoder* interface, and have
+public no-arg constructors and be visible within the classpath of the
+application that this websocket endpoint is part of. The implementation
+must create a new instance of each encoder per connection per endpoint.
+The implementation must attempt to decode websocket messages using the
+decoder in the list appropriate to the native websocket message type and
+pass the message in decoded object form to the websocket endpoint
+[WSC-4.1.3-1]. On *Decoder* implementations that have it, the
+implementation must use the *willDecode()* method on the decoder to
+determine if the *Decoder* will match the incoming message [WSC-4.1.3-2]
+
+[[subprotocols-1]]
+==== subprotocols
+
+The *subprotocols* parameter contains a (possibly empty) list of string
+names of the sub protocols that this endpoint supports. The
+implementation must use this list in the opening handshake to negotiate
+the desired subprotocol to use for the connection it establishes
+[WSC-4.1.4-1].
+
+[[configurator]]
+==== configurator
+
+The optional configurator attribute allows the developer to indicate
+that he would like the websocket implementation to use a developer
+provided implementation of **ServerEndpointConfig.Configurator**. If one
+is supplied, the websocket implementation must use this when configuring
+the endpoint. [WSC-4.1.5-1] The developer may use this technique to
+share state across all instances of the endpoint in addition to
+customizing the opening handshake.
+
+[[clientendpoint]]
+=== @ClientEndpoint
+
+This class level annotation signifies that the Java class it decorates
+is to be deployed as a websocket client endpoint that will connect to a
+websocket endpoint residing on a websocket server. The class must have a
+public no-args constructor, and additionally may conform to one of the
+types listed in Chapter [javaee].
+
+[[encoders-1]]
+==== encoders
+
+The *encoders* parameter contains a (possibly empty) list of Java
+classes that are to act as encoder components for this endpoint. These
+classes must implement some form of the *Encoder* interface, and have
+public no-arg constructors and be visible within the classpath of the
+application that this websocket endpoint is part of. The implementation
+must create a new instance of each encoder per connection per endpoint
+which guarantees no two threads are in the encoder at the same time. The
+implementation must attempt to encode application objects of matching
+parametrized type as the encoder when they are attempted to be sent
+using the *RemoteEndpoint* API [WSC-4.2.1-1].
+
+[[decoders-1]]
+==== decoders
+
+The *decoders* parameter contains a (possibly empty) list of Java
+classes that are to act as decoder components for this endpoint. These
+classes must implement some form of the Decoder interface, and have
+public no-arg constructors and be visible within the classpath of the
+application that this websocket endpoint is part of. The implementation
+must create a new instance of each encoder per connection per endpoint.
+The implementation must attempt to decode websocket messages using the
+first appropriate decoder in the list and pass the message in decoded
+object form to the websocket endpoint [WSC-4.2.2-1]. If the Decoder
+implementation has the method, the implementation must use the
+*willDecode()* method on the decoder to determine if the *Decoder* will
+match the incoming message [WSC-4.2.2-2]
+
+[[configurator-1]]
+==== configurator
+
+The optional *configurator* attribute allows the developer to indicate
+that he would like the websocket implementation to use a developer
+provided implementation of **ClientEndpointConfig.Configurator**. If one
+is supplied, the websocket implementation must use this when configuring
+the endpoint. [4.2.3-1] The developer may use this technique to share
+state across all instances of the endpoint in addition to customizing
+the opening handshake.
+
+[[subprotocols-2]]
+==== subprotocols
+
+The *subprotocols* parameter contains a (possibly empty) list of string
+names of the sub protocols that this endpoint is willing to support. The
+implementation must use this list in the opening handshake to negotiate
+the desired subprotocol to use for the connection it establishes
+[WSC-4.2.4-1].
+
+[[pathparam]]
+=== @PathParam
+
+This annotation is used to annotate one or more parameters of methods on
+an annotated endpoint class decorated with any of the annotations
+**@OnMessage**, **@OnError**, **@OnOpen**, **@OnClose**. The allowed
+types for these parameters are String, any Java primitive type, or boxed
+version thereof. Any other type annotated with this annotation is an
+error that the implementation must report at deployment time.
+[WSC-4.3-1] The *value* attribute of this annotation must be present
+otherwise the implementation must throw an error. [WSC-4.3-2] If the
+*value* attribute of this annotation matches the variable name of an
+element of the URI-template used in the *@ServerEndpoint* annotation
+that annotates this annotated endpoint, then the implementation must
+associate the value of the parameter it annotates with the value of the
+path segment of the request URI to which the calling websocket frame is
+connected when the method is called. [WSC-4.3-3] Otherwise, the value of
+the String parameter annotated by this annotation must be set to *null*
+by the implementation. The association must follow these rules:
+
+if the parameter is a **String**, the container must use the value of
+the path segment [WSC-4.3-4]
+
+if the parameter is a Java primitive type or boxed version thereof, the
+container must use the path segment string to construct the type with
+the same result as if it had used the public one argument String
+constructor to obtain the boxed type, and reduced to its primitive type
+if necessary. [WSC-4.3-5]
+
+If the container cannot decode the path segment appropriately to the
+annotated path parameter, then the container must raise an
+*DecodeException* to the error handling method of the websocket
+containing the path segment. [WSC-4.3-6]
+
+For example,
+
+[source,java]
+@ServerEndpoint("/bookings/{guest-id}")
+public class BookingServer {
+    @OnMessage
+    public void processBookingRequest(
+        @PathParam("guest-id") String guestID,
+        String message,
+        Session session) {
+        // process booking from the given guest here
+    }
+}
+
+In this example, if a client connects to this endpoint with the URI
+**/bookings/JohnSmith**, then the value of the *guestID* parameter will
+be **``JohnSmith''**.
+
+Here is an example where the path parameter is an Integer:
+
+[source,java]
+@ServerEndpoint("/rewards/{vip-level}")
+public class RewardServer {
+    @OnMessage
+    public void processReward(
+        @PathParam("vip-level") Integer vipLevel,
+        String message, Session session) {
+        // process reward here
+    }
+}
+
+[[onopen]]
+=== @OnOpen
+
+This annotation may be used on certain methods of a Java class annotated
+with *@ServerEndpoint* or **@ClientEndpoint**. The annotation defines
+that the decorated method be called whenever a new client has connected
+to this endpoint. The container notifies the method after the connection
+has been established [WSC-4.4-1]. The decorated method can only have an
+optional *Session* parameter, an optional *EndpointConfig* parameter and
+zero to n *String* parameters annotated with a *@PathParam* annotation
+as parameters. If the *Session* parameter is present, the implementation
+must pass in the newly created *Session* corresponding to the new
+connection [WSC-4.4-2]. Any Java class using this annotation on a method
+that does not follow these rules, or that uses this annotation on more
+than one method may not be deployed by the implementation and the error
+reported to the deployer. [WSC-4.4-3]
+
+[[onclose]]
+=== @OnClose
+
+This annotation may be used on certain methods of a Java class annotated
+with *@ServerEndpoint* or **@ClientEndpoint**. The annotation defines
+that the decorated method be called whenever a remote peer is about to
+be disconnected from this endpoint, whether that process is initiated by
+the remote peer, by the local container or by a call to
+**session.close()**. The container notifies the method before the
+connection is brought down [WSC-4.5-1]. The decorated method can only
+have optional *Session* parameter, optional *CloseReason* parameter and
+zero to n *String* parameters annotated with a *@PathParam* annotation
+as parameters. If the *Session* parameter is present, the implementation
+must pass in the about-to-be ended *Session* corresponding to the
+connection [WSC-4.5-2]. If the method itself throws an error, the
+implementation must pass this error to the *onError()* method of the
+endpoint together with the session [WSC-4.5-3].
+
+Any Java class using this annotation on a method that does not follow
+these rules, or that uses this annotation on more than one method may
+not be deployed by the implementation and the error reported to the
+deployer. [WSC-4.5-4]
+
+[[onerror]]
+=== @OnError
+
+This annotation may be used on certain methods of a Java class annotated
+with *@ServerEndpoint* or **@ClientEndpoint**. The annotation defines
+that the decorated method be called whenever an error is generated on
+any of the connections to this endpoint. The decorated method can only
+have optional *Session* parameter, mandatory *Throwable* parameter and
+zero to n *String* parameters annotated with a *@PathParam* annotation
+as parameters. If the *Session* parameter is present, the implementation
+must pass in the *Session* in which the error occurred to the connection
+[WSC-4.6-1]. The container must pass the error as the *Throwable*
+parameter to this method [WSC-4.6-2].
+
+Any Java class using this annotation on a method that does not follow
+these rules, or that uses this annotation on more than one method may
+not be deployed by the implementation and the error reported to the
+deployer. [WSC-4.6-3]
+
+[[onmessage]]
+=== @OnMessage
+
+This annotation may be used on certain methods of a Java class annotated
+with *@ServerEndpoint* or **@ClientEndpoint**. The annotation defines
+that the decorated method be called whenever an incoming message is
+received. The method it decorates may have a number of forms for
+handling text, binary or pong messages, and for sending a message back
+immediately that are defined in detail in the api documentation for
+**@OnMessage**.
+
+Any method annotated with *@OnMessage* that does not conform to the
+forms defied therein is invalid. The websocket implementation must not
+deploy such an endpoint and must raise a deployment error if an attempt
+is made to deploy such an annotated endpoint. [WSC-4.7-1]
+
+If the method uses a class equivalent of a Java primitive as a method
+parameter to handle whole text messages, the implementation must use the
+single String parameter constructor to attempt construct the object. If
+the method uses a Java primitive as a method parameter to handle whole
+text messages, the implementation must attempt to construct its class
+equivalent as described above, and then convert it to its primitive
+value. [WSC-4.7-2]
+
+If the method uses a Java primitive as a return value, the
+implementation must construct the text message to send using the
+standard Java string representation of the Java primitive. If the method
+uses a class equivalent of a Java primitive as a return value, the
+implementation must construct the text message from the Java primitive
+equivalent as just described. [WSC-4.7-3]
+
+Each websocket endpoint may only have one message handling method for
+each of the native websocket message formats: text, binary and pong. The
+websocket implementation must not deploy such an endpoint and must raise
+a deployment error if an attempt is made to deploy such an annotated
+endpoint. [WSC-4.7-4]
+
+[[maxmessagesize]]
+==== maxMessageSize
+
+The maxMessageSize attribute allows the developer to specify the maximum
+size of message in bytes that the method it annotates will be able to
+process, or latexmath:[$-1$] to indicate that there is no maximum. The
+default is latexmath:[$-1$].
+
+If an incoming message exceeds the maximum message size, the
+implementation must formally close the connection with a close code of
+latexmath:[$1009$] (Too Big). [WSC-4.7.1-1]
+
+[[websockets-and-inheritance]]
+=== WebSockets and Inheritance
+
+The websocket annotation behaviors defined by this specification are not
+passed down the Java class inheritance hierarchy. They apply only to the
+Java class on which they are marked. For example, a Java class that
+inherits from a Java class annotated with class level WebSocket
+annotations does not itself become an annotated endpoint, unless it
+itself is annotated with a class level WebSocket annotation. Similarly,
+subclasses of an annotated endpoint may not use method level websocket
+annotations unless they themselves use a class level websocket
+annotation. Subclasses that override methods annotated with websocket
+method annotations do not obtain websocket callbacks unless those
+subclass methods themselves are marked with a method level websocket
+annotation.
+
+Implementations should not deploy Java classes that mistakenly mix Java
+inheritance with websocket annotations in these ways. [WSC-4.8.1]
+
+Implementations that use archive scanning techniques to deploy endpoints
+on startup must filter out subclasses of annotated endpoints, in
+addition to other errent endpoint definitions such as annotated classes
+that are non-public when they build the list of annotated endpoints to
+deploy. [WSC-4.8.2]
+
+[[exception-handling-and-threading]]
+== Exception handling and Threading
+
+[[threading-considerations]]
+=== Threading Considerations
+
+Implementations of the WebSocket API may employ a variety of threading
+strategies in order to provide a scalable implementation. The
+specification aims to allow a range of strategies. However, the
+implementation must fulfill certain threading requirements in order to
+provide the developer a consistent threading environment for their
+applications.
+
+Unless backed by a Java EE component with a different lifecycle (See
+Chapter [javaee]), the container must use a unique instance of the
+endpoint per peer. [WSC-5.1-1] In all cases, the implementation must not
+invoke an endpoint instance with more than one thread per peer at a
+time. [WSC-5.1-2] The implementation may not invoke the close method on
+an endpoint until after the open method has completed. [WSC-5.1-3]
+
+This guarantees that a websocket endpoint instance is never called by
+more than one container thread at a time per peer. [WSC-5.1-4]
+
+If the implementation decides to process an incoming message in parts,
+it must ensure that the corresponding *onMessage()* calls are called
+sequentially, and do not interleave either with parts of the same
+message or with other messages [WSC-5.1.5].
+
+[[exception:error]]
+=== Error Handling
+
+There are three categories of errors (checked and unchecked Java
+exceptions) that this specification defines.
+
+[[deployment-errors]]
+==== Deployment Errors
+
+These are errors raised during the deployment of an application
+containing websocket endpoints. Some of these errors arise as the result
+of a container malfunction during the deployment of the application. For
+example, the container may not have sufficient computing resources to
+deploy the application as specified. In this case, the container must
+provide an informative error message to the developer during the
+deployment process. [WSC-5.2.1-1] Other errors arise as a result of a
+malformed websocket application. Chapter [annotations] provides several
+examples of websocket endpoints that are malformed. In such cases, the
+container must provide an informative error message to the deployer
+during the deployment process. [WSC-5.2.1-2]
+
+In both cases, a deployment error raised during the deployment process
+must halt the deployment of the application, any well formed endpoints
+deployed prior to the error being raised must be removed from service
+and no more websocket endpoints from that application may be deployed by
+the container, even if they are valid. [WSC-5.2.1-3]
+
+If the deployment error occurs under the programmatic control of the
+developer, for example, when using the WebSocketContainer API to deploy
+a client endpoint, deployment errors must be reported by the container
+to the developer by using an instance of the DeploymentException.
+[WSC-5.2.1-4] Containers may choose the precise wording of the error
+message in such cases.
+
+If the deployment error occurs while deployment is managed by the
+implementation, for example, as a result of deploying a WAR file where
+the endpoints are deployed by the container as a result of scanning the
+WAR file, the deployment error must be reported to the deployer by the
+implementation as part of the container specific deployment process. [WSC-5.2.1-5]
+
+[[errors-originating-in-websocket-application-code]]
+==== Errors Originating in Websocket Application Code
+
+All errors arising during the functioning of a websocket endpoint must
+be caught by the websocket implementation. [WSC-5.2.2-1] Examples of
+these errors include checked exceptions generated by *Decoders* used by
+the endpoint, runtime errors generated in the message handling code used
+by the endpoint. If the websocket endpoint has provided an error
+handling method, either by implementing the *onError()* method in the
+case of programmatic endpoints, or by using the @OnError annotation in
+the case of annotated endpoints, the implementation must invoke the
+error handling method with the error. [WSC-5.2.2-2]
+
+If the developer has not provided an error handling method on an
+endpoint that is generating errors, this indicates to the implementation
+that the developer does not wish to handle such errors. In these cases,
+the container must make this information available for later analysis,
+for example by logging it. [WSC-5.2.2-3]
+
+If the error handling method of an endpoint itself is generating runtime
+errors, the container must make this information available for later
+analysis. [WSC-5.2.2-4]
+
+[[errors-originating-in-the-container-andor-underlying-connection]]
+==== Errors Originating in the Container and/or Underlying Connection
+
+A wide variety of runtime errors may occur during the functioning of an
+endpoint. These may including broken underlying connections, occasional
+communication errors handling incoming and outgoing messages, or fatal
+errors communicating with a peer. Implementations or their
+administrators judging such errors to be fatal to the correct
+functioning of the endpoint may close the endpoint connection, making an
+attempt to informing both participants using the *onClose()* method.
+Containers judging such errors to be non-fatal to the correct
+functioning of the endpoint may allow the endpoint to continue
+functioning, but must report the error in message processing either as a
+checked exception returned by one of the send operations, or by
+delivering a the SessionException to the endpoint’s error handling
+method, if present, or by logging the error for later analysis. [WSC-5.2.3-1]
+
+[[packaging-and-deployment]]
+== Packaging and Deployment
+
+Java WebSocket applications are packaged using the usual conventions of
+the Java Platform.
+
+[[client-deployment-on-jdk]]
+=== Client Deployment on JDK
+
+The class files for the websocket application and any application
+resources such as Java WebSocket client applications are packaged as JAR
+files, along with any resources such as text or image files that it
+needs.
+
+The client container is not required to automatically scan the JAR file
+for websocket client endpoints and deploy them.
+
+Obtaining a reference to the *WebSocketContainer* using the
+*ContainerProvider* class, the developer deploys both programmatic
+endpoints and annotated endpoints using the *connectToServer()* APIs on
+the **WebSocketContainer**.
+
+[[application-deployment-on-web-containers]]
+=== Application Deployment on Web Containers
+
+The class files for the endpoints and any resources they need such as
+text or image files are packaged into the Java EE-defined WAR file,
+either directly under *WEB-INF/classes* or packaged as a JAR file and
+located under **WEB-INF/lib**.
+
+Java EE containers are not required to support deployment of websocket
+endpoints if they are not packaged in a WAR file as described above.
+
+The Java WebSocket implementation must use the web container scanning
+mechanism defined in [Servlet 3.0] to find annotated and programmatic
+endpoints contained within the WAR file at deployment time. [WSC-6.2-1]
+This is done by scanning for classes annotated with *@ServerEndpoint*
+and classes that extend **Endpoint**. See also section 4.8 for potential
+extra steps needed after the scan for annotated endpoints. Further, the
+websocket implementation must use the websocket scanning mechanism to
+find implementations of the *ServerApplicationConfig* interface packaged
+within the WAR file (or in any of its sub-JAR files). [WSC-6.2-2]
+
+If scan of the WAR file locates one or more *ServerApplicationConfig*
+implementations, the websocket implementation must instantiate each of
+the *ServerApplicationConfig* classes it found. For each one, it must
+pass the results of the scan of the archive containing it (top level WAR
+or contained JAR) to its methods. [WSC-6.2-4] The set that is the union
+of all the results obtained by calling the *getEndpointConfigs()* and
+*getAnnotatedEndpointClasses()* on the *ServerApplicationConfig* classes
+(that is to say, the annotated endpoint classes and configuration
+objects for programmatic endpoints) is the set that the websocket
+implementation must deploy. [WSC-6.2-5]
+
+If the WAR file contains no *ServerApplicationConfig* implementations,
+it must deploy all the annotated endpoints it located as a result of the
+scan. [WSC-6.2-3] Because programmatic endpoints cannot be deployed
+without a corresponding **ServerEndpointConfig**, if there are no
+*ServerApplicationConfig* implementations to provide these configuration
+objects, no programmatic endpoints can be deployed.
+
+This means developers can easily deploy all the annotated endpoints in a
+WAR file by simply bundling the class files for them into the WAR. This
+also means that programmatic endpoints cannot be deployed using this
+scanning mechanism unless a suitable *ServerApplicationConfig* is
+supplied. This also means that the developer can have precise control
+over which endpoints are to be deployed from a WAR file by providing one
+or more *ServerApplicationConfig* implementation classes. This also
+allows the developer to limit a potentially lengthy scanning process by
+excluding certain JAR files from the scan (see Servlet 3.0, section
+8.2.1). This last case may be desirable in the case of a WAR file
+containing many JAR files that the developer knows do not contain any
+websocket endpoints.
+
+[[application-deployment-in-standalone-websocket-server-containers]]
+=== Application Deployment in Standalone Websocket Server Containers
+
+This specification recommends standalone websocket server containers
+(i.e. those that do not include a servlet container) locates any
+websocket server endpoints and *ServerApplicationConfig* classes in the
+application bundle and deploys the set of all the server endpoints
+returned by the configuration classes. However, standalone websocket
+server containers may employ other implementation techniques to deploy
+endpoints if they wish.
+
+[[programmatic-server-deployment]]
+=== Programmatic Server Deployment
+
+This specification also defines a mechanism for deployment of server
+endpoints that does not depend on Servlet container scanning of the
+application. Developers may deploy server endpoints programmatically by
+using one of the *addEndpoint* methods of the *ServerContainer*
+interface. These methods are only operational during the application
+deployment phase of an application. Specifically, as soon as any of the
+server endpoints within the application have accepted an opening
+handshake request, the apis may not longer be used. This restriction may
+be relaxed in a future version.
+
+When running on the web container, the *addEndpoint* methods may be
+called from a *javax.servlet.ServletContextListener* provided by the
+developer and configured in the deployment descriptor of the web
+application. The websocket implementation must make the
+*ServerContainer* instance corresponding to this application available
+to the developer as a *ServletContext* attribute registered under the
+name **javax.websocket.server.ServerContainer**.
+
+When running on a standalone container, the application deployment phase
+is undefined, so the developer will need to utilize whatever proprietary
+deployment time hooks the particular container has to offer in order to
+make a *ServerContainer* instance available to the developer at this
+time.
+
+It is recommended that developers use either the programmatic deployment
+API, or base their application on the scanning and
+*ServerApplicationConfig* mechanism, but not mix both methods.
+Developers can suppress a deployment by scan of the endpoints in the WAR
+file by providing a *ServerApplicationConfig* that returns empty sets
+from its methods.
+
+If however, the developer does mix both modes of deployment, it is
+possible in the case of annotated endpoints, for the same annotated
+endpoint to be submitted twice for deployment, once as a result of a
+scan of the WAR file, and once by means of the developer calling the
+programmatic deployment API. In this case of an attempt to deploy the
+same annotated endpoint class more than once, the websocket
+implementation must only deploy the annotated endpoint once, and ignore
+the duplicate submission.
+
+[[websocket-server-paths]]
+=== Websocket Server Paths
+
+Websocket implementations that include server functionality must define
+a root or the URI space for websockets. Called the the websocket root,
+it is the URI to which all the relative websocket paths in the same
+application are relative. If the websocket server does not include the
+Servlet API, the websocket server may choose websocket root itself. If
+the websocket server includes the Java ServletAPI, the websocket root
+must be the same as the servlet context root of the web application.
+[WSC-6.4-1]
+
+[[platform-versions]]
+=== Platform Versions
+
+The minimum versions of the Java platforms are:
+
+* Java SE version 7, for the Java WebSocket client API [WSC-6.5-1].
+* Java EE version 6, for the Java WebSocket server API [WSC-6.5-2].
+
+[[javaee]]
+== Java EE Environment
+
+[[java-ee-environment]]
+=== Java EE Environment
+
+When supported on the Java EE platform, there are some additional
+requirements to support websocket applications.
+
+[[websocket-endpoints-and-dependency-injection]]
+==== Websocket Endpoints and Dependency Injection
+
+Websocket endpoints running in the Java EE platform must have full
+dependency injection support as described in the CDI specification (Muir
+2013) Websocket implementations part of the Java EE platform are
+required to support field, method, and constructor injection using the
+javax.inject.Inject annotation into all websocket endpoint classes, as
+well as the use of interceptors for these classes. [WSC-7.1.1-1]The
+details of this requirement are laid out in the Java EE Platform
+Specification (DeMichiel and Shannon 2013), section EE.5.2.5, and a
+useful guide for implementations to meet the requirement is location in
+section EE.5.24.
+
+[[javaee:httpsession]]
+=== Relationship with Http Session and Authenticated State
+
+It is often useful for developers who embed websocket server endpoints
+into a larger web application to be able to share information on a per
+client basis between the web resources (JSPs, JSFs, Servlets for
+example) and the websocket endpoints servicing that client. Because
+websocket connections are initiated with an http request, there is an
+association between the HttpSession under which a client is operating
+and any websockets that are established within that **HttpSession**. The
+API allows access in the opening handshake to the unique *HttpSession*
+corresponding to that same client. [WSC-7.2-1]
+
+Similarly, if the opening handshake request is already authenticated
+with the server, the opening handshake API allows the developer to query
+the user *Principal* of the request. If the connection is established
+with the requesting client, the websocket implementation considers the
+user *Principal* for the associated websocket *Session* to be the user
+*Principal* that was present on the opening handshake. [WSC-7.2-2]
+
+In the case where a websocket endpoint is a protected resource in the
+web application (see Chapter [security]), that is to say, requires an
+authorized user to access it, then the websocket implementation must
+ensure that the websocket endpoint does not remain connected to its peer
+after the underlying implementation has decided the authenticated
+identity is no longer valid. [WSC-7.2-3] This may happen, for example,
+if the user logs out of the containing web application, or if the
+authentication times out or is invalidated for some other reason. In
+this situation, the websocket implementation must immediately close the
+connection using the websocket close status code 1008. [WSC-7.2-3]
+
+On the other hand, if the websocket endpoint is not a protected resource
+in the web application, then the user identity under which an opening
+handshake established the connection may become invalid or change during
+the operation of the websocket without the websocket implementation
+needing to close the connection.
+
+[[security]]
+== Server Security
+
+Websocket endpoints are secured using the web container security model.
+The goal of this is to make it easy for a websocket developer to declare
+whether access to a websocket server endpoint needs to be authenticated,
+and who can access it, and if it needs an encrypted connection or not. A
+websocket which is mapped to a given *ws://* URI (as described in
+Chapters [configuration] and [annotations]) is protected in the
+deployment descriptor with a listing to a *http://* URI with same
+hostname, port and path since this is the URL of its opening handshake.
+Accordingly, websocket developers may assign an authentication scheme,
+user roles granted access and transport guarantee to their websocket
+endpoints.
+
+[[authentication-of-websockets]]
+=== Authentication of Websockets
+
+This specification does not define a mechanism by which websockets
+themselves can be authenticated. Rather, by building on the servlet
+defined security mechanism, a websocket that requires authentication
+must rely on the opening handshake request that seeks to initiate a
+connection to be previously authenticated. Typically, this will be
+performed by a Http authentication (perhaps basic or form-based) in the
+web application containing the websocket prior to the opening handshake
+to the websocket.
+
+If a client sends an unauthenticated opening handshake request for a
+websocket that is protected by the security mechanism, the websocket
+implementation must return a *401 (Unauthorized)* response to the
+opening handshake request and may not initiate a websocket connection
+[WSC-8.1-1].
+
+[[authorization-of-websockets]]
+=== Authorization of Websockets
+
+A websocket’s authorization may be set by adding a
+*latexmath:[$<$]security-constraintlatexmath:[$>$]* element to the
+*web.xml* of the web application in which it is packaged. The
+latexmath:[$<$]url-patternlatexmath:[$>$] used in the security
+constraint must be used by the container to match the request URI of the
+opening handshake of the websocket [WSC-8.2-1]. The implementation must
+interpret any http-method other than GET (or the default, missing) as
+not applying to the websocket. [WSC-8.2-2]
+
+[[transport-guarantee]]
+=== Transport Guarantee
+
+A transport guarantee of *NONE* must be interpreted by the container as
+allowing unencrypted *ws://* connections to the websocket [WSC-8.3-1]. A
+transport guarantee of *CONFIDENTIAL* must be interpreted by the
+implementation as only allowing access to the websocket over an
+encrypted (**wss://**) connection [WSC-8.3-2] This may require a
+pre-authenticated request.
+
+[[example]]
+=== Example
+
+This example snippet from a larger web.xml deployment descriptor shows a
+security constraint for a websocket endpoint. In the example, the
+websocket endpoint which matches on an incoming request URI of
+*`quotes/live'* relative to the context root of the containing web
+application is protected such that it may only be accessed using
+**wss://**, and is available only to authenticated users who belong
+either to the *GOLD_MEMBER* or *PLATINUM_MEMBER* roles.
+
+[source,xml]
+<security-constraint>
+    <web-resource-collection>
+        <web-resource-name>
+            LiveQuoteWebSocket
+        </web-resource-name>
+        <description>
+            Security constraint for
+            live quote websocket endpoint
+        </description>
+        <url-pattern>/quotes/live</url-pattern>
+        <http-method>GET</http-method>
+    </web-resource-collection>
+    <auth-constraint>
+        <description>
+            definition of which roles
+            may access the quote endpoint
+        </description>
+        <role-name>GOLD_MEMBER</role-name>
+        <role-name>PLATINUM_MEMBER</role-name>
+    </auth-constraint>
+    <user-data-constraint>
+        <description>WSS required</description>
+        <transport-guarantee>
+            CONFIDENTIAL
+        </transport-guarantee>
+    </user-data-constraint>
+</security-constraint>
+
+:sectnums!:
+[appendix]
+[[changes-since-1.0-final-release]]
+== Changes Since 1.0 Final Release
+
+* http://java.net/jira/browse/WEBSOCKET_SPEC-226[WEBSOCKET_SPEC-226]
+Session.addMessageHandler(MessageHandler) cannot work with lambda
+expressions.
+
+[appendix]
+[[changes-since-edr]]
+== Changes Since EDR
+
+[[changes-in-v014-since-v013]]
+=== Changes in v014 since v013
+
+* http://java.net/jira/browse/WEBSOCKET_SPEC-158[WEBSOCKET_SPEC-158]
+HandshakeRequest documentation
+* http://java.net/jira/browse/WEBSOCKET_SPEC-153[WEBSOCKET_SPEC-153]
+@OnClose and Endpoint.onClose() differences
+* http://java.net/jira/browse/WEBSOCKET_SPEC-116[WEBSOCKET_SPEC-116]
+WebSocketContainer.connectToServer ease of use / API change
+* http://java.net/jira/browse/WEBSOCKET_SPEC-114[WEBSOCKET_SPEC-114]
+Programmatic deployment of server endpoints
+* http://java.net/jira/browse/WEBSOCKET_SPEC-150[WEBSOCKET_SPEC-150]
+Encoder/Decoder lifecycle consistency between pe and ae’s
+* http://java.net/jira/browse/WEBSOCKET_SPEC-135[WEBSOCKET_SPEC-135]
+Improve modularity around client/server split
+* http://java.net/jira/browse/WEBSOCKET_SPEC-115[WEBSOCKET_SPEC-115] Pls
+revert to EndpointFactory instead of EndpointConfig scheme
+* http://java.net/jira/browse/WEBSOCKET_SPEC-79[WEBSOCKET_SPEC-79]
+Deployment on the server by instance
+* http://java.net/jira/browse/WEBSOCKET_SPEC-154[WEBSOCKET_SPEC-154]
+Incomplete javadoc for ContainerProvider#getContainer
+* http://java.net/jira/browse/WEBSOCKET_SPEC-157[WEBSOCKET_SPEC-157]
+Typo in ServerEndpointConfigurationBuilder javadocs
+* http://java.net/jira/browse/WEBSOCKET_SPEC-149[WEBSOCKET_SPEC-149]
+Refactor & rename: Make *Configuration interfaces abstract classes, and
+have builders be member classes. Rename Configurators
+* http://java.net/jira/browse/WEBSOCKET_SPEC-156[WEBSOCKET_SPEC-156]
+ClientEndpointConfigBuilder creation
+* http://java.net/jira/browse/WEBSOCKET_SPEC-155[WEBSOCKET_SPEC-155]
+DefaultClientEndpointConfig cannot be subclassed
+* http://java.net/jira/browse/WEBSOCKET_SPEC-58[WEBSOCKET_SPEC-58]
+Thorough list of smaller API, javadoc, spec suggestions based on the EDR
+draft
+* http://java.net/jira/browse/WEBSOCKET_SPEC-16[WEBSOCKET_SPEC-16] Which
+APIs are threadsafe ?
+* http://java.net/jira/browse/WEBSOCKET_SPEC-151[WEBSOCKET_SPEC-151]
+Clarify that primitive type encoder/decoder work with text messages
+* http://java.net/jira/browse/WEBSOCKET_SPEC-142[WEBSOCKET_SPEC-142]
+Remove Session#getId()
+* http://java.net/jira/browse/WEBSOCKET_SPEC-101[WEBSOCKET_SPEC-101]
+Programmatic MessageHandler registration
+
+[[changes-in-v013-since-v012]]
+=== Changes in v013 since v012
+
+* http://java.net/jira/browse/WEBSOCKET_SPEC-82[WEBSOCKET_SPEC-82]
+@WebSocketEndpoint’s configuration attribute
+* http://java.net/jira/browse/WEBSOCKET_SPEC-132[WEBSOCKET_SPEC-132]
+RemoteEndpoint#setBatchingAllowed(boolean) should throw IOException
+* http://java.net/jira/browse/WEBSOCKET_SPEC-139[WEBSOCKET_SPEC-139]
+getNegotiatedSubprotocol(): not sure if we can return null
+* http://java.net/jira/browse/WEBSOCKET_SPEC-138[WEBSOCKET_SPEC-138]
+websockets api javadoc: include message handler registration for onOpen
+method
+* http://java.net/jira/browse/WEBSOCKET_SPEC-69[WEBSOCKET_SPEC-69]
+Publish same programmatic endpoint type to many different paths
+* http://java.net/jira/browse/WEBSOCKET_SPEC-98[WEBSOCKET_SPEC-98]
+Consider a property bag on EndpointConfiguration instead of subclassing
+for shared application state
+* http://java.net/jira/browse/WEBSOCKET_SPEC-126[WEBSOCKET_SPEC-126]
+ServerEndpointConfiguration.matchesURI
+* http://java.net/jira/browse/WEBSOCKET_SPEC-128[WEBSOCKET_SPEC-128]
+DefaultServerConfiguration - methods implementation - b12
+* http://java.net/jira/browse/WEBSOCKET_SPEC-140[WEBSOCKET_SPEC-140]
+Clarify relationship between
+WebSocketContainer#setMaxSessionIdleTimeout() and Session#setTimeout()
+* http://java.net/jira/browse/WEBSOCKET_SPEC-133[WEBSOCKET_SPEC-133]
+DefaultServerConfiguration#getEndpointClass() should return
+Classlatexmath:[$<$]? extends Endpointlatexmath:[$>$]
+* http://java.net/jira/browse/WEBSOCKET_SPEC-141[WEBSOCKET_SPEC-141]
+websockets api: how to pass instance to ServerEndPointConfiguration ?
+* http://java.net/jira/browse/WEBSOCKET_SPEC-103[WEBSOCKET_SPEC-103]
+DefaultServerConfiguration used in @WebSocketEndpoint
+* http://java.net/jira/browse/WEBSOCKET_SPEC-144[WEBSOCKET_SPEC-144]
+Discrepancy between URIs of programmatic and annotated endpoint
+* http://java.net/jira/browse/WEBSOCKET_SPEC-147[WEBSOCKET_SPEC-147]
+@WebSocketClose: javadoc not in sync with the Java API Web Socket pdf
+document
+* http://java.net/jira/browse/WEBSOCKET_SPEC-145[WEBSOCKET_SPEC-145]
+Rename HandshakeRequest.getSession -> getHttpSession
+* http://java.net/jira/browse/WEBSOCKET_SPEC-143[WEBSOCKET_SPEC-143]
+ContainerProvider javadoc need to update the location of service
+provider
+* http://java.net/jira/browse/WEBSOCKET_SPEC-131[WEBSOCKET_SPEC-131]
+Consider merging RemoteEndpoint and Session
+* http://java.net/jira/browse/WEBSOCKET_SPEC-134[WEBSOCKET_SPEC-134]
+ContainerProvider#getWebSocketContainer()
+* http://java.net/jira/browse/WEBSOCKET_SPEC-88[WEBSOCKET_SPEC-88]
+CloseReason changes
+* http://java.net/jira/browse/WEBSOCKET_SPEC-136[WEBSOCKET_SPEC-136]
+Session.getRequestURI() . includes the query string ?
+* http://java.net/jira/browse/WEBSOCKET_SPEC-111[WEBSOCKET_SPEC-111]
+Missing WebSocketClient#configuration attribute
+* http://java.net/jira/browse/WEBSOCKET_SPEC-118[WEBSOCKET_SPEC-118]
+Scanning scheme forces creation of ServerEndpoinConfiguration class even
+for vanilla endpoints
+* http://java.net/jira/browse/WEBSOCKET_SPEC-97[WEBSOCKET_SPEC-97]
+Consider using jax-rs MultiValueMap to represent Http headers in the
+handshake request and response
+* http://java.net/jira/browse/WEBSOCKET_SPEC-137[WEBSOCKET_SPEC-137] An
+incoming message that is too big: should it cause the connection to
+close ? Or should the implementation report the error to the endpoint
+and move on ?
+* http://java.net/jira/browse/WEBSOCKET_SPEC-110[WEBSOCKET_SPEC-110]
+Rename SendHandler#setResult
+* http://java.net/jira/browse/WEBSOCKET_SPEC-9[WEBSOCKET_SPEC-9] API
+Usability: Consider API renaming, minor refactorizations for usability
+
+[[changes-in-v012-since-v011public-draft]]
+=== Changes in v012 since v011/Public Draft
+
+* http://java.net/jira/browse/WEBSOCKET_SPEC-89[WEBSOCKET_SPEC-89]
+Extension unification
+* http://java.net/jira/browse/WEBSOCKET_SPEC-94[WEBSOCKET_SPEC-94]
+WebSocketEndpoint.configuration should be an optional parameter
+* http://java.net/jira/browse/WEBSOCKET_SPEC-84[WEBSOCKET_SPEC-84] Typo
+WebSocketResponse#getHeaders()
+* http://java.net/jira/browse/WEBSOCKET_SPEC-91[WEBSOCKET_SPEC-91]
+WebSocketOpen javadoc
+* http://java.net/jira/browse/WEBSOCKET_SPEC-86[WEBSOCKET_SPEC-86]
+PongMessage typo and formatting
+* http://java.net/jira/browse/WEBSOCKET_SPEC-95[WEBSOCKET_SPEC-95]
+Clarify @WebSocketOpen, @WebSocketClose, @WebSocketError can each only
+annotate one method per annotated endpoint
+* http://java.net/jira/browse/WEBSOCKET_SPEC-52[WEBSOCKET_SPEC-52]
+Define inheritance semantics for annotations
+* http://java.net/jira/browse/WEBSOCKET_SPEC-75[WEBSOCKET_SPEC-75]
+Consider requiring BASIC and DIGEST authentication schemes in the client
+container.
+* http://java.net/jira/browse/WEBSOCKET_SPEC-96[WEBSOCKET_SPEC-96] Allow
+Java primitives and boxed equivalents as message parameters to
+@WebSocketMessage methods
+* http://java.net/jira/browse/WEBSOCKET_SPEC-119[WEBSOCKET_SPEC-119]
+WebSocketContainer can’t be a singleton
+* http://java.net/jira/browse/WEBSOCKET_SPEC-120[WEBSOCKET_SPEC-120]
+Allow multiple ClientContainers per VM
+* http://java.net/jira/browse/WEBSOCKET_SPEC-99[WEBSOCKET_SPEC-99]
+Define lifecycle and cardinality of encoders and decoders.
+* http://java.net/jira/browse/WEBSOCKET_SPEC-121[WEBSOCKET_SPEC-121]
+RemoteEndpoint#[sendPing()|sendPong()] should throw IOException
+* http://java.net/jira/browse/WEBSOCKET_SPEC-100[WEBSOCKET_SPEC-100]
+Clarify semantics of EJB SSB and Singletons and CDI managed beans -
+as-websockets
+* http://java.net/jira/browse/WEBSOCKET_SPEC-85[WEBSOCKET_SPEC-85] Some
+DefaultClientConfiguration methods return ClientEndpointConfiguration
+* http://java.net/jira/browse/WEBSOCKET_SPEC-102[WEBSOCKET_SPEC-102]
+CloseReason.CloseCodes
+* http://java.net/jira/browse/WEBSOCKET_SPEC-122[WEBSOCKET_SPEC-122]
+Behaviour of onMessage(some mutable object) not defined
+* http://java.net/jira/browse/WEBSOCKET_SPEC-127[WEBSOCKET_SPEC-127]
+Consider removing setBufferSize() on containers
+* http://java.net/jira/browse/WEBSOCKET_SPEC-130[WEBSOCKET_SPEC-130]
+Wrong javadoc for @WebSocketMessage return type
+* http://java.net/jira/browse/WEBSOCKET_SPEC-80[WEBSOCKET_SPEC-80]
+Semantics of undeploy of a websocket
+* http://java.net/jira/browse/WEBSOCKET_SPEC-53[WEBSOCKET_SPEC-53]
+Endpoint class qualifiers for @WebSocketEndpoint
+* http://java.net/jira/browse/WEBSOCKET_SPEC-117[WEBSOCKET_SPEC-117]
+Provide way to inform developers when connections timeout or close
+(without close frames being sent)
+* http://java.net/jira/browse/WEBSOCKET_SPEC-81[WEBSOCKET_SPEC-81]
+Consider using servlet security annotations to configure authorization
+and connection encryption
+* http://java.net/jira/browse/WEBSOCKET_SPEC-74[WEBSOCKET_SPEC-74]
+Consider scoping getOpenSessions() just to the endpoint
+* http://java.net/jira/browse/WEBSOCKET_SPEC-83[WEBSOCKET_SPEC-83]
+Define the portability semantics of ContainerProvider
+* http://java.net/jira/browse/WEBSOCKET_SPEC-93[WEBSOCKET_SPEC-93]
+ServerEndpointConfiguration#getEndpointClass() for annotated endpoints
+* http://java.net/jira/browse/WEBSOCKET_SPEC-92[WEBSOCKET_SPEC-92]
+Clarify javadoc on DecodeException
+* http://java.net/jira/browse/WEBSOCKET_SPEC-87[WEBSOCKET_SPEC-87]
+Session should extend Closeable
+* http://java.net/jira/browse/WEBSOCKET_SPEC-108[WEBSOCKET_SPEC-108]
+RemoteEndpoint#sendPing()/sendPong() data shouldn’t exceed 125 bytes
+* http://java.net/jira/browse/WEBSOCKET_SPEC-105[WEBSOCKET_SPEC-105]
+Extension parameters ordering
+* http://java.net/jira/browse/WEBSOCKET_SPEC-88[WEBSOCKET_SPEC-88]
+CloseReason changes
+* http://java.net/jira/browse/WEBSOCKET_SPEC-112[WEBSOCKET_SPEC-112]
+ServerApplicationConfiguration#getAnnotatedEndpointClasses(Setlatexmath:[$<$]Classlatexmath:[$>$]
+scanned) using Classlatexmath:[$<$]?latexmath:[$>$] instead of Class
+* http://java.net/jira/browse/WEBSOCKET_SPEC-104[WEBSOCKET_SPEC-104]
+Session - javadoc/error reporting
+* http://java.net/jira/browse/WEBSOCKET_SPEC-78[WEBSOCKET_SPEC-78]
+Specify extensions attribute in the annotation
+* http://java.net/jira/browse/WEBSOCKET_SPEC-72[WEBSOCKET_SPEC-72]
+Consider producing separate JAR files for client and server API bundles
+* http://java.net/jira/browse/WEBSOCKET_SPEC-113[WEBSOCKET_SPEC-113]
+Clarify websocket endpoints in EJB JARs do not need to be deployed
+
+[[changes-since-v011]]
+=== Changes since v011
+
+* Editorial cleanups
+
+[[changes-since-v010]]
+=== Changes since v010
+
+* Added batch mode to RemoteEndpoint
+* many additions to javadocs and formatting/editorial improvements to
+specification document
+
+[[changes-since-v009]]
+=== Changes since v009
+
+* New section on exception handling ([exception:error])
+* New and (hopefully final!) package arrangement to suit the
+client/server split.
+* Updated section on the relationship between web socket sessions,
+HttpSession and authenticated state ([javaee:httpsession]) and guidance
+for distributed implementations.
+* Full and updated description on application deployment on web
+containers. This now features a new ServerApplicationConfiguration class
+and removes programmatic server deployment.
+* ClientContainer/ServerContainer have now become one
+WebSocketContainer.
+* Removed EndpointFactory, replaced with ability to get the (custom)
+EndpointConfiguration from the onOpen method.
+* New Extension interface to model the websocket-extension parameters
+sent in the opening handshake.
+* Added ability to change the timeouts for async send operations.
+* Removed getInactiveTime() on Session due to performance concerns.
+* Added standard websocket handshake headers.
+
+[[changes-since-v008]]
+=== Changes since v008
+
+* Restricted the number of MessageHandlers that can be registered per
+Session to one per native websocket message type: text, binary, pong.
+* Added user property Map to Session.
+* Loosened the restrictions on @WebSocketMessage method parameters: now
+these methods can take any parameters that can be mapped to one of the
+MessageHandler types.
+* Refactored Endpoint and EndpointConfiguration and added
+EndpointFactory so that Endpoint instances can share state.
+
+[[changes-between-v008-and-edr-v006]]
+=== Changes between v008 and EDR (v006)
+
+* http://java.net/jira/browse/WEBSOCKET_SPEC-7[WEBSOCKET_SPEC-7]
+* http://java.net/jira/browse/WEBSOCKET_SPEC-10[WEBSOCKET_SPEC-10]
+* http://java.net/jira/browse/WEBSOCKET_SPEC-14[WEBSOCKET_SPEC-14]
+* http://java.net/jira/browse/WEBSOCKET_SPEC-50[WEBSOCKET_SPEC-50]
+* http://java.net/jira/browse/WEBSOCKET_SPEC-23[WEBSOCKET_SPEC-23]
+* http://java.net/jira/browse/WEBSOCKET_SPEC-61[WEBSOCKET_SPEC-61]
+* http://java.net/jira/browse/WEBSOCKET_SPEC-29[WEBSOCKET_SPEC-29]
+* http://java.net/jira/browse/WEBSOCKET_SPEC-28[WEBSOCKET_SPEC-28]
+* http://java.net/jira/browse/WEBSOCKET_SPEC-51[WEBSOCKET_SPEC-51]
+* http://java.net/jira/browse/WEBSOCKET_SPEC-57[WEBSOCKET_SPEC-57]
+* http://java.net/jira/browse/WEBSOCKET_SPEC-36[WEBSOCKET_SPEC-36]
+* http://java.net/jira/browse/WEBSOCKET_SPEC-44[WEBSOCKET_SPEC-44]
+* http://java.net/jira/browse/WEBSOCKET_SPEC-18[WEBSOCKET_SPEC-18]
+* http://java.net/jira/browse/WEBSOCKET_SPEC-54[WEBSOCKET_SPEC-54]
+* http://java.net/jira/browse/WEBSOCKET_SPEC-41[WEBSOCKET_SPEC-41]
+* http://java.net/jira/browse/WEBSOCKET_SPEC-23[WEBSOCKET_SPEC-23]
+
+plus a large number of smaller tweaks and editorial improvements.
+
+[bibliography]
+== Bibliography
+[1] I. Fette and A. Melnikov. RFC 6455: The WebSocket Protocol. RFC, IETF, December 2011. See
+http://www.ietf.org/rfc/rfc6455.txt.
+
+[2] Ian Hickson. The WebSocket API. Note, W3C, December 2012. See
+http://dev.w3.org/html5/websockets/.
+
+[3] S. Bradner. RFC 2119: Keywords for use in RFCs to Indicate Requirement Levels. RFC, IETF, March
+1997. See http://www.ietf.org/rfc/rfc2119.txt.
+
+[4] Danny Coward. Java API for WebSocket. JSR, JCP, 2013. See http://jcp.org/en/jsr/detail?id=356.
+
+[5] Expert group mailing list archive. Web site. See
+http://java.net/projects/websocket-spec/lists/jsr356-experts/archive.
+
+[6] J. Gregorio, R. Fielding, M. Hadley, M. Nottingham, and D. Orchard. RFC 6570: URI Template. RFC,
+IETF, March 2012. See http://www.ietf.org/rfc/rfc6570.txt.
+
+[7] Pete Muir. Contexts and Dependency Injection for Java EE. JSR, JCP, 2013. See
+http://jcp.org/en/jsr/detail?id=347.
+
+[8] Linda DeMichiel and Bill Shannon. Java Platform, Enterprise Edition 7 (Java EE 7) Specification.
+JSR, JCP, 2013. See http://jcp.org/en/jsr/detail?id=342.
