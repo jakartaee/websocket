@@ -440,8 +440,8 @@ this specification. This API is intended to be implemented either as a
 standalone websocket implementation, as part of a Java servlet
 container, or as part of a full Java EE platform implementation. The
 APIs that must be implemented to conform to the Java WebSocket API are
-all the Java apis in the packages *javax.websocket.** and
-**javax.websocket.server.***. Some of the non-api features of the Java
+all the Java apis in the packages *jakarta.websocket.** and
+**jakarta.websocket.server.***. Some of the non-api features of the Java
 WebSocket API are optional when the API is not implemented as part of
 the full Java EE platform, for example, the requirement that websocket
 endpoints be non-contextual managed beans (see Chapter 7). Such Java EE
@@ -452,7 +452,7 @@ intended for desktop, tablet or smartphone devices. This subset does not
 contain the ability to deploy server endpoints. This subset known as the
 Java WebSocket Client API. The APIs that must be implemented to conform
 to the Java WebSocket Client API are all the Java apis in the packages
-**javax.websocket.***.
+**jakarta.websocket.***.
 
 [[configuration]]
 == Configuration
@@ -1267,12 +1267,12 @@ handshake request, the apis may not longer be used. This restriction may
 be relaxed in a future version.
 
 When running on the web container, the *addEndpoint* methods may be
-called from a *javax.servlet.ServletContextListener* provided by the
+called from a *jakarta.servlet.ServletContextListener* provided by the
 developer and configured in the deployment descriptor of the web
 application. The websocket implementation must make the
 *ServerContainer* instance corresponding to this application available
 to the developer as a *ServletContext* attribute registered under the
-name **javax.websocket.server.ServerContainer**.
+name **jakarta.websocket.server.ServerContainer**.
 
 When running on a standalone container, the application deployment phase
 is undefined, so the developer will need to utilize whatever proprietary
@@ -1332,7 +1332,7 @@ Websocket endpoints running in the Java EE platform must have full
 dependency injection support as described in the CDI specification (Muir
 2013) Websocket implementations part of the Java EE platform are
 required to support field, method, and constructor injection using the
-javax.inject.Inject annotation into all websocket endpoint classes, as
+jakarta.inject.Inject annotation into all websocket endpoint classes, as
 well as the use of interceptors for these classes. [WSC-7.1.1-1]The
 details of this requirement are laid out in the Java EE Platform
 Specification (DeMichiel and Shannon 2013), section EE.5.2.5, and a
