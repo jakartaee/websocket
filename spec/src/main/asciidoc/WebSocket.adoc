@@ -1,5 +1,5 @@
 :sectnums:
-= Jakarta WebSocket Specification, Version 1.1
+= Jakarta WebSocket Specification, Version 2.0
 
 Copyright (c) 2011, 2019 Oracle and/or its affiliates. All rights reserved.
 
@@ -7,7 +7,7 @@ Oracle and Java are registered trademarks of Oracle and/or its
 affiliates. Other names may be trademarks of their respective owners. 
 
 Pavel Bucek <users@websocket-spec.java.net>
-v1.1, August 5, 2014
+v2.0, August 5, 2014
 
 Pavel Bucek +
 
