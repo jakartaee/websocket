@@ -34,7 +34,7 @@
       Make sure to change build_number property accordingly
       for non-final builds
     -->
-    <version>1.1.2-SNAPSHOT</version>
+    <version>2.0.0-SNAPSHOT</version>
     <name>Jakarta WebSocket - API Parent</name>
     <description>Jakarta WebSocket - API Parent</description>
     <url>https://projects.eclipse.org/projects/ee4j.websocket</url>
@@ -104,12 +104,12 @@
     </contributors>
 
     <properties>
-        <api_package>javax.websocket</api_package>
-        <spec_version>1.1</spec_version>
+        <api_package>jakarta.websocket</api_package>
+        <spec_version>2.0</spec_version>
         <!--<spec_build>02</spec_build>-->
-        <new_spec_version>1.1</new_spec_version>
-        <spec_impl_version>1.1.2</spec_impl_version>
-        <packages.export>javax.websocket.*</packages.export>
+        <new_spec_version>2.0</new_spec_version>
+        <spec_impl_version>2.0.0</spec_impl_version>
+        <packages.export>jakarta.websocket.*</packages.export>
     </properties>
 
     <build>
@@ -126,7 +126,7 @@
             <plugin>
                 <groupId>org.glassfish.copyright</groupId>
                 <artifactId>glassfish-copyright-maven-plugin</artifactId>
-                <version>1.46</version>
+                <version>2.3</version>
                 <configuration>
                     <excludeFile>etc/config/copyright-exclude</excludeFile>
                     <!--svn|mercurial|git - defaults to svn-->
@@ -177,7 +177,7 @@
                     <groups>
                         <group>
                             <title>Jakarta WebSocket Packages</title>
-                            <packages>javax.websocket*</packages>
+                            <packages>jakarta.websocket*</packages>
                         </group>
                     </groups>
                     <links>
@@ -210,7 +210,7 @@
                 <plugin>
                     <groupId>org.glassfish.build</groupId>
                     <artifactId>spec-version-maven-plugin</artifactId>
-                    <version>1.5</version>
+                    <version>2.0</version>
                     <configuration>
                         <specMode>jakarta</specMode>
                         <spec>
