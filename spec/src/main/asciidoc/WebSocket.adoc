@@ -30,21 +30,21 @@ protocol see:
 [[purpose]]
 === Purpose of this document
 
-This document in combination with the API documentation for the Java
-WebSocket API is the specification of the Java WebSocket API. The
+This document in combination with the API documentation for the Jakarta
+WebSocket API is the specification of the Jakarta WebSocket API. The
 specification defines the requirements that an implementation must meet
-in order to be an implementation of the Java WebSocket API. This
+in order to be an implementation of the Jakarta WebSocket API. This
 specification has been developed under the rules of the Java Community
 Process. Together with the Test Compatibility Kit (TCK) which tests that
 a given implementation meets the requirements of the specification, and
 Reference Implementation (RI) that implements this specification and
-which passes the TCK, this specification defines the Java standard for
+which passes the TCK, this specification defines the Jakarta standard for
 WebSocket application development.
 
 While there is much useful information in this document for developers
-using the Java WebSocket API, its purpose is not to be a developers
+using the Jakarta WebSocket API, its purpose is not to be a developers
 guide. Similarly, while there is much useful information in this
-document for developers who are creating an implementation of the Java
+document for developers who are creating an implementation of the Jakarta
 WebSocket API, its purpose is not to be a `How To' guide as to how to
 implement all the required features.
 
@@ -158,17 +158,17 @@ Joakim Erdfelt, Dianne Jiao, Michal Čonos and Jan Šupol.
 [[applications]]
 == Applications
 
-Java WebSocket applications consist of websocket endpoints. A websocket
+Jakarta WebSocket applications consist of websocket endpoints. A websocket
 endpoint is a Java object that represents one end of a websocket
 connection between two peers.
 
 There are two main means by which an endpoint can be created. The first
-means is to implement certain of the API classes from the Java WebSocket
+means is to implement certain of the API classes from the Jakarta WebSocket
 API with the required behavior to handle the endpoint lifecycle, consume
 and send messages, publish itself, or connect to a peer. Often, this
 specification will refer to this kind of endpoint as a __programmatic
 endpoint__. The second means is to decorate a Plain Old Java Object
-(POJO) with certain of the annotations from the Java WebSocket API. The
+(POJO) with certain of the annotations from the Jakarta WebSocket API. The
 implementation then takes these annotated classes and creates the
 appropriate objects at runtime to deploy the POJO as a websocket
 endpoint. Often, this specification will refer to this kind of endpoint
@@ -184,13 +184,13 @@ when the websocket connection is closed.
 [[api]]
 === API Overview
 
-This section gives a brief overview of the Java WebSocket API in order
+This section gives a brief overview of the Jakarta WebSocket API in order
 to set the stage for the detailed requirements that follow.
 
 [[endpoint-lifecycle]]
 ==== Endpoint Lifecycle
 
-A logical websocket endpoint is represented in the Java WebSocket API by
+A logical websocket endpoint is represented in the Jakarta WebSocket API by
 instances of the *Endpoint* class. Developers may subclass the
 *Endpoint* class with a public, concrete class in order to intercept
 lifecycle events of the endpoint: those of a peer connecting, an open
@@ -207,7 +207,7 @@ endpoint from one and only one peer.
 [[sessions]]
 ==== Sessions
 
-The Java WebSocket API models the sequence of interactions between an
+The Jakarta WebSocket API models the sequence of interactions between an
 endpoint and each of its peers using an instance of the *Session* class.
 The interactions between a peer and an endpoint begin with an open
 notification, followed by some number, possibly zero, of websocket
@@ -239,7 +239,7 @@ objects inserted into the websocket session if the data is marked
 [[receiving-messages]]
 ==== Receiving Messages
 
-The Java WebSocket API presents a variety of means for an endpoint to
+The Jakarta WebSocket API presents a variety of means for an endpoint to
 receive messages from its peers. Developers implement the subtype of the
 *MessageHandler* interface that suits the message delivery style that
 best suits their needs, and register the interest in messages from a
@@ -274,7 +274,7 @@ MessageHandler.Wholelatexmath:[$<$]Tlatexmath:[$>$])**.
 [[sending-messages]]
 ==== Sending Messages
 
-The Java WebSocket API models each peer of a session with an endpoint as
+The Jakarta WebSocket API models each peer of a session with an endpoint as
 an instance of the *RemoteEndpoint* interface. This interface and its
 two subtypes (**RemoteEndpoint.Whole** and **RemoteEndpoint.Partial**)
 contain a variety of methods for sending websocket messages from the
@@ -375,7 +375,7 @@ implementations, applications obtain instances of the
 
 Java annotations have become widely used as a means to add deployment
 characteristics to Java objects, particularly in the Jakarta EE platform.
-The Java WebSocket specification defines a small number of websocket
+The Jakarta WebSocket specification defines a small number of websocket
 annotations that allow developers to take Java classes and turn them
 into websocket endpoints. This section gives a short overview to set the
 stage for more detailed requirements later in this specification.
@@ -432,26 +432,26 @@ implementation receives a pong message addressed to this endpoint, it
 must call that MessageHandler or that annotated message. [WSC 2.2.5-2]
 
 [[clientapi]]
-=== Java WebSocket Client API
+=== Jakarta WebSocket Client API
 
-This specification defines two configurations of the Java WebSocket API.
-The Java WebSocket API is used to mean the full functionality defined in
+This specification defines two configurations of the Jakarta WebSocket API.
+The Jakarta WebSocket API is used to mean the full functionality defined in
 this specification. This API is intended to be implemented either as a
 standalone websocket implementation, as part of a Jakarta servlet
 container, or as part of a full Jakarta EE platform implementation. The
-APIs that must be implemented to conform to the Java WebSocket API are
+APIs that must be implemented to conform to the Jakarta WebSocket API are
 all the Java apis in the packages *jakarta.websocket.** and
-**jakarta.websocket.server.***. Some of the non-api features of the Java
+**jakarta.websocket.server.***. Some of the non-api features of the Jakarta
 WebSocket API are optional when the API is not implemented as part of
 the full Jakarta EE platform, for example, the requirement that websocket
 endpoints be non-contextual managed beans (see Chapter 7). Such Jakarta EE
 only features are clearly marked where they are described.
 
-The Java WebSocket API also contains a subset of its functionality
+The Jakarta WebSocket API also contains a subset of its functionality
 intended for desktop, tablet or smartphone devices. This subset does not
 contain the ability to deploy server endpoints. This subset known as the
-Java WebSocket Client API. The APIs that must be implemented to conform
-to the Java WebSocket Client API are all the Java apis in the packages
+Jakarta WebSocket Client API. The APIs that must be implemented to conform
+to the Jakarta WebSocket Client API are all the Java apis in the packages
 **jakarta.websocket.***.
 
 [[configuration]]
@@ -647,7 +647,7 @@ two different clients send a message at the same time.
 
 In order to connect a websocket client endpoint to its corresponding
 websocket server endpoint, the implementation requires configuration
-information. Aside from the list of encoders and decoders, the Java
+information. Aside from the list of encoders and decoders, the Jakarta
 WebSocket API needs the following attributes:
 
 [[subprotocols]]
@@ -680,7 +680,7 @@ particular application’s needs.
 == Annotations
 
 This section contains a full specification of the semantics of the
-annotations in the Java WebSocket API.
+annotations in the Jakarta WebSocket API.
 
 [[serverendpoint]]
 === @ServerEndpoint
@@ -1171,14 +1171,14 @@ method, if present, or by logging the error for later analysis. [WSC-5.2.3-1]
 [[packaging-and-deployment]]
 == Packaging and Deployment
 
-Java WebSocket applications are packaged using the usual conventions of
-the Java Platform.
+Jakarta WebSocket applications are packaged using the usual conventions of
+the Java and Jakarta Platforms.
 
 [[client-deployment-on-jdk]]
 === Client Deployment on JDK
 
 The class files for the websocket application and any application
-resources such as Java WebSocket client applications are packaged as JAR
+resources such as Jakarta WebSocket client applications are packaged as JAR
 files, along with any resources such as text or image files that it
 needs.
 
@@ -1201,7 +1201,7 @@ located under **WEB-INF/lib**.
 Jakarta EE containers are not required to support deployment of websocket
 endpoints if they are not packaged in a WAR file as described above.
 
-The Java WebSocket implementation must use the web container scanning
+The Jakarta WebSocket implementation must use the web container scanning
 mechanism defined in [Servlet 3.0] to find annotated and programmatic
 endpoints contained within the WAR file at deployment time. [WSC-6.2-1]
 This is done by scanning for classes annotated with *@ServerEndpoint*
@@ -1311,10 +1311,10 @@ must be the same as the servlet context root of the web application.
 [[platform-versions]]
 === Platform Versions
 
-The minimum versions of the Java platforms are:
+The minimum versions of the platforms are:
 
-* Java SE version 7, for the Java WebSocket client API [WSC-6.5-1].
-* Jakarta EE version 9, for the Java WebSocket server API [WSC-6.5-2].
+* Java SE version 7, for the Jakarta WebSocket client API [WSC-6.5-1].
+* Jakarta EE version 9, for the Jakarta WebSocket server API [WSC-6.5-2].
 
 [[jakartaee]]
 == Jakarta EE Environment
