@@ -437,7 +437,7 @@ must call that MessageHandler or that annotated message. [WSC 2.2.5-2]
 This specification defines two configurations of the Java WebSocket API.
 The Java WebSocket API is used to mean the full functionality defined in
 this specification. This API is intended to be implemented either as a
-standalone websocket implementation, as part of a Java servlet
+standalone websocket implementation, as part of a Jakarta servlet
 container, or as part of a full Java EE platform implementation. The
 APIs that must be implemented to conform to the Java WebSocket API are
 all the Java apis in the packages *jakarta.websocket.** and
@@ -1304,7 +1304,7 @@ a root or the URI space for websockets. Called the the websocket root,
 it is the URI to which all the relative websocket paths in the same
 application are relative. If the websocket server does not include the
 Servlet API, the websocket server may choose websocket root itself. If
-the websocket server includes the Java ServletAPI, the websocket root
+the websocket server includes the Jakarta ServletAPI, the websocket root
 must be the same as the servlet context root of the web application.
 [WSC-6.4-1]
 
