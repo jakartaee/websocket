@@ -374,7 +374,7 @@ implementations, applications obtain instances of the
 === Endpoints using WebSocket Annotations
 
 Java annotations have become widely used as a means to add deployment
-characteristics to Java objects, particularly in the Java EE platform.
+characteristics to Java objects, particularly in the Jakarta EE platform.
 The Java WebSocket specification defines a small number of websocket
 annotations that allow developers to take Java classes and turn them
 into websocket endpoints. This section gives a short overview to set the
@@ -438,13 +438,13 @@ This specification defines two configurations of the Java WebSocket API.
 The Java WebSocket API is used to mean the full functionality defined in
 this specification. This API is intended to be implemented either as a
 standalone websocket implementation, as part of a Jakarta servlet
-container, or as part of a full Java EE platform implementation. The
+container, or as part of a full Jakarta EE platform implementation. The
 APIs that must be implemented to conform to the Java WebSocket API are
 all the Java apis in the packages *jakarta.websocket.** and
 **jakarta.websocket.server.***. Some of the non-api features of the Java
 WebSocket API are optional when the API is not implemented as part of
-the full Java EE platform, for example, the requirement that websocket
-endpoints be non-contextual managed beans (see Chapter 7). Such Java EE
+the full Jakarta EE platform, for example, the requirement that websocket
+endpoints be non-contextual managed beans (see Chapter 7). Such Jakarta EE
 only features are clearly marked where they are described.
 
 The Java WebSocket API also contains a subset of its functionality
@@ -810,7 +810,7 @@ This class level annotation signifies that the Java class it decorates
 is to be deployed as a websocket client endpoint that will connect to a
 websocket endpoint residing on a websocket server. The class must have a
 public no-args constructor, and additionally may conform to one of the
-types listed in Chapter [javaee].
+types listed in Chapter [jakartaee].
 
 [[encoders-1]]
 ==== encoders
@@ -1073,8 +1073,8 @@ implementation must fulfill certain threading requirements in order to
 provide the developer a consistent threading environment for their
 applications.
 
-Unless backed by a Java EE component with a different lifecycle (See
-Chapter [javaee]), the container must use a unique instance of the
+Unless backed by a Jakarta EE component with a different lifecycle (See
+Chapter [jakartaee]), the container must use a unique instance of the
 endpoint per peer. [WSC-5.1-1] In all cases, the implementation must not
 invoke an endpoint instance with more than one thread per peer at a
 time. [WSC-5.1-2] The implementation may not invoke the close method on
@@ -1194,11 +1194,11 @@ the **WebSocketContainer**.
 === Application Deployment on Web Containers
 
 The class files for the endpoints and any resources they need such as
-text or image files are packaged into the Java EE-defined WAR file,
+text or image files are packaged into the Jakarta EE-defined WAR file,
 either directly under *WEB-INF/classes* or packaged as a JAR file and
 located under **WEB-INF/lib**.
 
-Java EE containers are not required to support deployment of websocket
+Jakarta EE containers are not required to support deployment of websocket
 endpoints if they are not packaged in a WAR file as described above.
 
 The Java WebSocket implementation must use the web container scanning
@@ -1314,32 +1314,32 @@ must be the same as the servlet context root of the web application.
 The minimum versions of the Java platforms are:
 
 * Java SE version 7, for the Java WebSocket client API [WSC-6.5-1].
-* Java EE version 6, for the Java WebSocket server API [WSC-6.5-2].
+* Jakarta EE version 9, for the Java WebSocket server API [WSC-6.5-2].
 
-[[javaee]]
-== Java EE Environment
+[[jakartaee]]
+== Jakarta EE Environment
 
-[[java-ee-environment]]
-=== Java EE Environment
+[[jakarta-ee-environment]]
+=== Jakarta EE Environment
 
-When supported on the Java EE platform, there are some additional
+When supported on the Jakarta EE platform, there are some additional
 requirements to support websocket applications.
 
 [[websocket-endpoints-and-dependency-injection]]
 ==== Websocket Endpoints and Dependency Injection
 
-Websocket endpoints running in the Java EE platform must have full
+Websocket endpoints running in the Jakarta EE platform must have full
 dependency injection support as described in the CDI specification (Muir
-2013) Websocket implementations part of the Java EE platform are
+2013) Websocket implementations part of the Jakarta EE platform are
 required to support field, method, and constructor injection using the
 jakarta.inject.Inject annotation into all websocket endpoint classes, as
 well as the use of interceptors for these classes. [WSC-7.1.1-1]The
-details of this requirement are laid out in the Java EE Platform
+details of this requirement are laid out in the Jakarta EE Platform
 Specification (DeMichiel and Shannon 2013), section EE.5.2.5, and a
 useful guide for implementations to meet the requirement is location in
 section EE.5.24.
 
-[[javaee:httpsession]]
+[[jakartaee:httpsession]]
 === Relationship with Http Session and Authenticated State
 
 It is often useful for developers who embed websocket server endpoints
@@ -1694,7 +1694,7 @@ specification document
 * New and (hopefully final!) package arrangement to suit the
 client/server split.
 * Updated section on the relationship between web socket sessions,
-HttpSession and authenticated state ([javaee:httpsession]) and guidance
+HttpSession and authenticated state ([jakartaee:httpsession]) and guidance
 for distributed implementations.
 * Full and updated description on application deployment on web
 containers. This now features a new ServerApplicationConfiguration class
