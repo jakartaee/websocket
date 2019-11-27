@@ -6,12 +6,9 @@ Copyright (c) 2011, 2019 Oracle and/or its affiliates. All rights reserved.
 Oracle and Java are registered trademarks of Oracle and/or its 
 affiliates. Other names may be trademarks of their respective owners. 
 
-Pavel Bucek <users@websocket-spec.java.net>
-v2.0, August 5, 2014
+The Jakarta WebSocket Community TBD, 2020
 
-Pavel Bucek +
-
-Comments to: users@websocket-spec.java.net
+Comments to: websocket-dev@eclipse.org
 
 [[introduction]]
 == Introduction
