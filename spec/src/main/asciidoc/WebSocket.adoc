@@ -32,7 +32,7 @@ This document in combination with the API documentation for the Jakarta
 WebSocket API is the specification of the Jakarta WebSocket API. The
 specification defines the requirements that an implementation must meet
 in order to be an implementation of the Jakarta WebSocket API. This
-specification has been developed under the rules of the Java Community
+specification has been developed under the rules of the Eclipse Foundation Specification
 Process. Together with the Test Compatibility Kit (TCK) which tests that
 a given implementation meets the requirements of the specification, and
 Reference Implementation (RI) that implements this specification and
@@ -107,14 +107,14 @@ Non-normative notes are formatted as shown below.
 
 This is a note.
 
-[[expert_group]]
-=== Expert Group Members
+[[jcp]]
+=== Previous work in the JCP
 
-This specification was developed in the Java Community Process as part
-of JSR 356 (Coward 2013). It is the result of the collaborative work of
+Prior to version 2.0, this specification was developed in the Java Community Process as part
+of JSR 356 (Coward 2013). It was the result of the collaborative work of
 the members of the JSR 356 expert group. The full public mail archive
 can be found at (“Expert group mailing list archive,” n.d.). The
-following are the expert group members:
+following were the expert group members:
 
 
 -- Jean-Francois Arcand (Individual Member)
@@ -145,11 +145,8 @@ following are the expert group members:
 
 -- Rossen Stoyanchev (VMware)
 
-[[acks]]
-=== Acknowledgements
-
-During the development of this specification we received many review
-comments, feedback and suggestions. Thanks in particular to: Jitendra
+During the development of this specification under the JCP many review
+comments, feedback and suggestions were received. Thanks in particular to: Jitendra
 Kotamraju, Martin Matula, Štěpán Kopřiva, Dhiru Panday, Jondean Healey,
 Joakim Erdfelt, Dianne Jiao, Michal Čonos and Jan Šupol.
 
@@ -1755,7 +1752,7 @@ http://dev.w3.org/html5/websockets/.
 [4] Danny Coward. Java API for WebSocket. JSR, JCP, 2013. See http://jcp.org/en/jsr/detail?id=356.
 
 [5] Expert group mailing list archive. Web site. See
-http://java.net/projects/websocket-spec/lists/jsr356-experts/archive.
+https://download.oracle.com/javaee-archive/websocket-spec.java.net/jsr356-experts/.
 
 [6] J. Gregorio, R. Fielding, M. Hadley, M. Nottingham, and D. Orchard. RFC 6570: URI Template. RFC,
 IETF, March 2012. See http://www.ietf.org/rfc/rfc6570.txt.
