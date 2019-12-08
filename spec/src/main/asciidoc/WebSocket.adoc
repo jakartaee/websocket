@@ -1,7 +1,8 @@
 :sectnums:
 = Jakarta WebSocket Specification, Version 2.0
 
-Copyright (c) 2011, 2019 Oracle and/or its affiliates. All rights reserved.
+Copyright (c) 2011, 2019 Oracle and/or its affiliates and others.
+All rights reserved.
 
 Oracle and Java are registered trademarks of Oracle and/or its 
 affiliates. Other names may be trademarks of their respective owners. 
