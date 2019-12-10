@@ -45,7 +45,7 @@ While there is much useful information in this document for developers
 using the Jakarta WebSocket API, its purpose is not to be a developers
 guide. Similarly, while there is much useful information in this
 document for developers who are creating an implementation of the Jakarta
-WebSocket API, its purpose is not to be a `How To' guide as to how to
+WebSocket API, its purpose is not to be a 'How To' guide as to how to
 implement all the required features.
 
 [[goals-of-the-specification]]
@@ -82,14 +82,14 @@ client endpoints and server endpoints::
 [[specification-conventions]]
 === Specification Conventions
 
-The keywords `MUST', `MUST NOT', `REQUIRED', `SHALL', `SHALL NOT',
-`SHOULD', `SHOULD NOT', `RECOMMENDED', `MAY', and `OPTIONAL' in this
+The keywords 'MUST', 'MUST NOT', 'REQUIRED', 'SHALL', 'SHALL NOT',
+'SHOULD', 'SHOULD NOT', 'RECOMMENDED', 'MAY', and 'OPTIONAL' in this
 document are to be interpreted as described in RFC 2119 (Bradner 1997).
 
 Additionally, requirements of the specification that can be tested using
 the conformance test suite are marked with the figure WSC (WebSocket
 Compatibility) followed by a number which is used to identify the
-requirement, for example `WSC-12'.
+requirement, for example 'WSC-12'.
 
 Java code and sample data fragments are formatted as shown in figure
 [ex1]:
@@ -97,14 +97,14 @@ Java code and sample data fragments are formatted as shown in figure
 1 package com.example.hello;
 
 public class Hello public static void main(String args[])
-System.out.println(``Hello World'');
+System.out.println(''Hello World'');
 
-URIs of the general form `http://example.org/...' and
-`http://example.com/...' represent application or context-dependent
+URIs of the general form 'http://example.org/...' and
+'http://example.com/...' represent application or context-dependent
 URIs.
 
 All parts of this specification are normative, with the exception of
-examples, notes and sections explicitly marked as `Non-Normative'.
+examples, notes and sections explicitly marked as 'Non-Normative'.
 Non-normative notes are formatted as shown below.
 
 This is a note.
@@ -505,9 +505,9 @@ However, it is possible for an incoming URI in an opening handshake
 request theoretically to match more than one endpoint path. For example,
 consider the following case:-
 
-incoming URI: ``/a/b''
+incoming URI: ''/a/b''
 
-endpoint A is mapped to ``/a/b''
+endpoint A is mapped to ''/a/b''
 
 endpoint B is mapped to /a/\{customer-name}
 
@@ -541,7 +541,7 @@ incoming URIs that do match: /a/b (with var=b), /a/apple (with
 var=apple)
 
 URIs that do NOT match: /a, /a/b/c (because empty string and strings
-with reserved characters ``/'' are not valid URI-template level 1
+with reserved characters ''/'' are not valid URI-template level 1
 expansions.)
 
 \iii) suppose we have three endpoints and their paths:
@@ -635,7 +635,7 @@ return a new instance of the endpoint class each time it is called. [WSC-3.1.7-2
 In this way, developers may deploy endpoints in such a way that only one
 instance of the endpoint class is instantiated for all the client
 connections to the logical endpoints. In this case, developers are
-cautioned that such a `singleton' instance of the endpoint class will
+cautioned that such a 'singleton' instance of the endpoint class will
 have to program with concurrent calling threads in mind, for example, if
 two different clients send a message at the same time.
 
@@ -693,7 +693,7 @@ not have final methods.
 ==== value
 
 The *value* attribute must be a Java string that is a partial URI or
-URI-template (level-1), with a leading `/'. For a definition of
+URI-template (level-1), with a leading '/'. For a definition of
 URI-templates, see (Gregorio et al. 2012). The implementation uses the
 value attribute to deploy the endpoint to the URI space of the WebSocket
 implementation. The implementation must treat the value as relative to
@@ -727,7 +727,7 @@ of the URIs
 * */bookings/MadisonWatson*
 
 However, were the endpoint annotation to be
-**@ServerEndpoint(``/bookings/SallyBrown'')**, then only a client
+**@ServerEndpoint(''/bookings/SallyBrown'')**, then only a client
 request to */bookings/SallyBrown* would be able to connect to this
 WebSocket endpoint.
 
@@ -909,7 +909,7 @@ public class BookingServer {
 
 In this example, if a client connects to this endpoint with the URI
 **/bookings/JohnSmith**, then the value of the *guestID* parameter will
-be **``JohnSmith''**.
+be **''JohnSmith''**.
 
 Here is an example where the path parameter is an Integer:
 
@@ -1434,7 +1434,7 @@ pre-authenticated request.
 This example snippet from a larger web.xml deployment descriptor shows a
 security constraint for a WebSocket endpoint. In the example, the
 WebSocket endpoint which matches on an incoming request URI of
-*`quotes/live'* relative to the context root of the containing web
+*'quotes/live'* relative to the context root of the containing web
 application is protected such that it may only be accessed using
 **wss://**, and is available only to authenticated users who belong
 either to the *GOLD_MEMBER* or *PLATINUM_MEMBER* roles.
