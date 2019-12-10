@@ -879,10 +879,10 @@ connected when the method is called. [WSC-4.3-3] Otherwise, the value of
 the String parameter annotated by this annotation must be set to *null*
 by the implementation. The association must follow these rules:
 
-if the parameter is a **String**, the container must use the value of
+* if the parameter is a **String**, the container must use the value of
 the path segment [WSC-4.3-4]
 
-if the parameter is a Java primitive type or boxed version thereof, the
+* if the parameter is a Java primitive type or boxed version thereof, the
 container must use the path segment string to construct the type with
 the same result as if it had used the public one argument String
 constructor to obtain the boxed type, and reduced to its primitive type
@@ -1297,7 +1297,7 @@ the duplicate submission.
 === WebSocket Server Paths
 
 WebSocket implementations that include server functionality must define
-a root or the URI space for websockets. Called the the WebSocket root,
+a root or the URI space for WebSockets. Called the the WebSocket root,
 it is the URI to which all the relative WebSocket paths in the same
 application are relative. If the WebSocket server does not include the
 Servlet API, the WebSocket server may choose WebSocket root itself. If
@@ -1345,7 +1345,7 @@ client basis between the web resources (JSPs, JSFs, Servlets for
 example) and the WebSocket endpoints servicing that client. Because
 WebSocket connections are initiated with an http request, there is an
 association between the HttpSession under which a client is operating
-and any websockets that are established within that **HttpSession**. The
+and any WebSockets that are established within that **HttpSession**. The
 API allows access in the opening handshake to the unique *HttpSession*
 corresponding to that same client. [WSC-7.2-1]
 
@@ -1391,7 +1391,7 @@ endpoints.
 [[authentication-of-websockets]]
 === Authentication of Websockets
 
-This specification does not define a mechanism by which websockets
+This specification does not define a mechanism by which WebSockets
 themselves can be authenticated. Rather, by building on the Servlet
 defined security mechanism, a WebSocket that requires authentication
 must rely on the opening handshake request that seeks to initiate a
@@ -1533,7 +1533,7 @@ RemoteEndpoint#setBatchingAllowed(boolean) should throw IOException
 * https://github.com/eclipse-ee4j/websocket-api/issues/139[Issue 139]
 getNegotiatedSubprotocol(): not sure if we can return null
 * https://github.com/eclipse-ee4j/websocket-api/issues/138[Issue 138]
-websockets API javadoc: include message handler registration for onOpen
+WebSockets API javadoc: include message handler registration for onOpen
 method
 * https://github.com/eclipse-ee4j/websocket-api/issues/69[Issue 69]
 Publish same programmatic endpoint type to many different paths
@@ -1551,7 +1551,7 @@ WebSocketContainer#setMaxSessionIdleTimeout() and Session#setTimeout()
 DefaultServerConfiguration#getEndpointClass() should return
 Class<? extends Endpoint>
 * https://github.com/eclipse-ee4j/websocket-api/issues/141[Issue 141]
-websockets API: how to pass instance to ServerEndPointConfiguration ?
+WebSockets API: how to pass instance to ServerEndPointConfiguration ?
 * https://github.com/eclipse-ee4j/websocket-api/issues/103[Issue 103]
 DefaultServerConfiguration used in @WebSocketEndpoint
 * https://github.com/eclipse-ee4j/websocket-api/issues/144[Issue 144]
