@@ -503,11 +503,11 @@ However, it is possible for an incoming URI in an opening handshake
 request theoretically to match more than one endpoint path. For example,
 consider the following case:-
 
-incoming URI: "/a/b"
+* incoming URI: "/a/b"
 
-endpoint A is mapped to "/a/b"
+* endpoint A is mapped to "/a/b"
 
-endpoint B is mapped to /a/\{customer-name}
+* endpoint B is mapped to /a/\{customer-name}
 
 The WebSocket implementation will attempt to match an incoming URI to an
 endpoint path (URI or level 1 URI-template) in the application in a
@@ -530,41 +530,45 @@ segment, there can only be at most one path, and it is the best match.
 
 Examples
 
-\i) suppose an endpoint has path /a/b/, the only incoming URI that
+["lowerroman"]
+. suppose an endpoint has path /a/b/, the only incoming URI that
 matches this is /a/b/
 
-\ii) suppose an endpoint is mapped to /a/\{var}
+. suppose an endpoint is mapped to /a/\{var}
 
-incoming URIs that do match: /a/b (with var=b), /a/apple (with
-var=apple)
+* incoming URIs that do match:
+** /a/b (with var=b)
+** /a/apple (with var=apple)
 
-URIs that do NOT match: /a, /a/b/c (because empty string and strings
+* URIs that do NOT match:
+** /a
+** /a/b/c (because empty string and strings
 with reserved characters "/" are not valid URI-template level 1
 expansions.)
 
-\iii) suppose we have three endpoints and their paths:
+. suppose we have three endpoints and their paths:
 
-endpoint A: /a/\{var}/c
+* endpoint A: /a/\{var}/c
 
-endpoint B: /a/b/c
+* endpoint B: /a/b/c
 
-endpoint C: /a/\{var1}/\{var2}
+* endpoint C: /a/\{var1}/\{var2}
 
-incoming URI: a/b/c matches B, not A or C, because an exact match is
+* incoming URI: a/b/c matches B, not A or C, because an exact match is
 preferred.
 
-incoming URI: a/d/c matches A with variable var=d, because an exact
+* incoming URI: a/d/c matches A with variable var=d, because an exact
 matching segment is preferred over a variable segment
 
-incoming URI: a/x/y/ matches C, with var1=x, var2=y
+* incoming URI: a/x/y/ matches C, with var1=x, var2=y
 
-\iv) suppose we have two endpoints
+. suppose we have two endpoints
 
-endpoint A: /\{var1}/d
+* endpoint A: /\{var1}/d
 
-endpoint B: /b/\{var2}
+* endpoint B: /b/\{var2}
 
-incoming URI: /b/d matches B with var2=d, not A with var1=b because the
+* incoming URI: /b/d matches B with var2=d, not A with var1=b because the
 matching process works from left to right.
 
 The implementation must not establish the connection unless there is a
