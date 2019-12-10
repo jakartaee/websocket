@@ -4,8 +4,10 @@
 Copyright (c) 2011, 2019 Oracle and/or its affiliates and others.
 All rights reserved.
 
-Oracle and Java are registered trademarks of Oracle and/or its 
-affiliates. Other names may be trademarks of their respective owners. 
+Eclipse is a registered trademark of the Eclipse Foundation. Jakarta
+is a trademark of the Eclipse Foundation. Oracle and Java are
+registered trademarks of Oracle and/or its  affiliates. Other names
+may be trademarks of their respective owners. 
 
 The Jakarta WebSocket Community TBD, 2020
 
@@ -51,7 +53,7 @@ implement all the required features.
 
 The goal of this specification is to define the requirements on
 containers that wish to support APIs for WebSocket programming on the
-Java and Jakarta Platforms. While the document may be a useful reference for
+Jakarta and Java Platforms. While the document may be a useful reference for
 developers who use the APIs defined by this specification, this document
 is not a developer guide.
 
@@ -1167,7 +1169,7 @@ method, if present, or by logging the error for later analysis. [WSC-5.2.3-1]
 == Packaging and Deployment
 
 Jakarta WebSocket applications are packaged using the usual conventions of
-the Java and Jakarta platforms.
+the Jakarta and Java platforms.
 
 [[client-deployment-on-jdk]]
 === Client Deployment on JDK
