@@ -1301,7 +1301,7 @@ a root or the URI space for WebSockets. Called the the WebSocket root,
 it is the URI to which all the relative WebSocket paths in the same
 application are relative. If the WebSocket server does not include the
 Servlet API, the WebSocket server may choose WebSocket root itself. If
-the WebSocket server includes the Jakarta ServletAPI, the WebSocket root
+the WebSocket server includes the Jakarta Servlet API, the WebSocket root
 must be the same as the Servlet context root of the web application.
 [WSC-6.4-1]
 
@@ -1310,8 +1310,8 @@ must be the same as the Servlet context root of the web application.
 
 The minimum versions of the platforms are:
 
-* Java SE version 7, for the Jakarta WebSocket client API [WSC-6.5-1].
-* Jakarta EE version 9, for the Jakarta WebSocket server API [WSC-6.5-2].
+* Java SE version 7, for the Jakarta WebSocket Client API [WSC-6.5-1].
+* Jakarta EE version 9, for the Jakarta WebSocket Server API [WSC-6.5-2].
 
 [[jakartaee]]
 == Jakarta EE Environment
@@ -1327,10 +1327,10 @@ requirements to support WebSocket applications.
 
 WebSocket endpoints running in the Jakarta EE platform must have full
 dependency injection support as described in the CDI specification (Muir
-2013) WebSocket implementations part of the Jakarta EE platform are
+2013). WebSocket implementations part of the Jakarta EE platform are
 required to support field, method, and constructor injection using the
 jakarta.inject.Inject annotation into all WebSocket endpoint classes, as
-well as the use of interceptors for these classes. [WSC-7.1.1-1]The
+well as the use of interceptors for these classes.[WSC-7.1.1-1] The
 details of this requirement are laid out in the Jakarta EE Platform
 Specification (DeMichiel and Shannon 2013), section EE.5.2.5, and a
 useful guide for implementations to meet the requirement is location in
@@ -1379,7 +1379,7 @@ needing to close the connection.
 WebSocket endpoints are secured using the web container security model.
 The goal of this is to make it easy for a WebSocket developer to declare
 whether access to a WebSocket server endpoint needs to be authenticated,
-and who can access it, and if it needs an encrypted connection or not. A
+who can access it, and if it needs an encrypted connection or not. A
 WebSocket which is mapped to a given *ws://* URI (as described in
 Chapters <<configuration>> and <<annotations>>) is protected in the
 deployment descriptor with a listing to a *http://* URI with same
@@ -1396,7 +1396,7 @@ themselves can be authenticated. Rather, by building on the Servlet
 defined security mechanism, a WebSocket that requires authentication
 must rely on the opening handshake request that seeks to initiate a
 connection to be previously authenticated. Typically, this will be
-performed by a Http authentication (perhaps basic or form-based) in the
+performed by an HTTP authentication (perhaps basic or form-based) in the
 web application containing the WebSocket prior to the opening handshake
 to the WebSocket.
 
