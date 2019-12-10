@@ -711,7 +711,6 @@ For example,
 [source,java]
 @ServerEndpoint("/bookings/{guest-id}")
 public class BookingServer {
-
     @OnMessage
     public void processBookingRequest(
         @PathParam("guest-id") String guestID,
