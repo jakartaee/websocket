@@ -515,7 +515,7 @@ manner equivalent to the following: [WSC-3.1.1-3]
 
 Since the endpoint paths are either relative URIs or URI templates level
 1, the paths do not match if they do not have the same number of
-segments, using ’/’ as the separator. So, the container will traverse
+segments, using '/' as the separator. So, the container will traverse
 the segments of the endpoint paths with the same number of segments as
 the incoming URI from left to right, comparing each segment with the
 corresponding segment of the incoming URI. At each segment, the
