@@ -435,8 +435,8 @@ this specification. This API is intended to be implemented either as a
 standalone WebSocket implementation, as part of a Jakarta Servlet
 container, or as part of a full Jakarta EE platform implementation. The
 APIs that must be implemented to conform to the Jakarta WebSocket API are
-all the Java APIs in the packages *jakarta.websocket.** and
-**jakarta.websocket.server.***. Some of the non-API features of the Jakarta
+all the Java APIs in the packages *jakarta.websocket.\** and
+*jakarta.websocket.server.**. Some of the non-API features of the Jakarta
 WebSocket API are optional when the API is not implemented as part of
 the full Jakarta EE platform, for example, the requirement that WebSocket
 endpoints be non-contextual managed beans (see Chapter 7). Such Jakarta EE
