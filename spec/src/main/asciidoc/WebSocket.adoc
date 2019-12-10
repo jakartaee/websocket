@@ -116,7 +116,7 @@ Prior to version 2.0, this specification was developed in the Java Community Pro
 of JSR 356 (Coward 2013). It was the result of the collaborative work of
 the members of the JSR 356 expert group. The full public mail archive
 can be found at (“Expert group mailing list archive,” n.d.). The
-following were the expert group members:
+expert group members were:
 
 
 -- Jean-Francois Arcand (Individual Member)
