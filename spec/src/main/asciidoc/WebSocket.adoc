@@ -263,10 +263,8 @@ class. This approach guarantees that generic type information will be
 present in the generated class file and the runtime will be able to get
 it. For any other case (Lambda Expressions included), one of following
 methods have to be used:
-*Session.addMessageHandler(Classlatexmath:[$<$]Tlatexmath:[$>$],
-MessageHandler.Partiallatexmath:[$<$]Tlatexmath:[$>$])* or
-**Session.addMessageHandler(Classlatexmath:[$<$]Tlatexmath:[$>$],
-MessageHandler.Wholelatexmath:[$<$]Tlatexmath:[$>$])**.
+*Session.addMessageHandler(Class<T>, MessageHandler.Partial<T>)* or
+*Session.addMessageHandler(Class<T>, MessageHandler.Whole<T>)*.
 
 [[sending-messages]]
 ==== Sending Messages
@@ -330,7 +328,7 @@ use the close code and reason sent in the WebSocket protocol close
 frame. If the close was initiated by the local container, for example if
 the local container determines the session has timed out, the local
 implementation must use the WebSocket protocol close code
-latexmath:[$1006$] (a code especially disallowed in close frames on the
+`1006` (a code especially disallowed in close frames on the
 wire), with a suitable close reason. That way the endpoint can determine
 whether the close was initiated remotely or locally. If the session is
 closed locally, the implementation must attempt to send the WebSocket
@@ -1025,12 +1023,12 @@ endpoint. [WSC-4.7-4]
 
 The maxMessageSize attribute allows the developer to specify the maximum
 size of message in bytes that the method it annotates will be able to
-process, or latexmath:[$-1$] to indicate that there is no maximum. The
-default is latexmath:[$-1$].
+process, or `-1` to indicate that there is no maximum. The
+default is `-1`.
 
 If an incoming message exceeds the maximum message size, the
 implementation must formally close the connection with a close code of
-latexmath:[$1009$] (Too Big). [WSC-4.7.1-1]
+`1009` (Too Big). [WSC-4.7.1-1]
 
 [[websockets-and-inheritance]]
 === WebSockets and Inheritance
@@ -1410,9 +1408,9 @@ opening handshake request and may not initiate a WebSocket connection
 === Authorization of Websockets
 
 A WebSocket’s authorization may be set by adding a
-*latexmath:[$<$]security-constraintlatexmath:[$>$]* element to the
+*<security-constraint>* element to the
 *web.xml* of the web application in which it is packaged. The
-latexmath:[$<$]url-patternlatexmath:[$>$] used in the security
+<url-pattern> used in the security
 constraint must be used by the container to match the request URI of the
 opening handshake of the WebSocket [WSC-8.2-1]. The implementation must
 interpret any http-method other than GET (or the default, missing) as
@@ -1549,7 +1547,7 @@ Clarify relationship between
 WebSocketContainer#setMaxSessionIdleTimeout() and Session#setTimeout()
 * https://github.com/eclipse-ee4j/websocket-api/issues/133[Issue 133]
 DefaultServerConfiguration#getEndpointClass() should return
-Classlatexmath:[$<$]? extends Endpointlatexmath:[$>$]
+Class<? extends Endpoint>
 * https://github.com/eclipse-ee4j/websocket-api/issues/141[Issue 141]
 websockets api: how to pass instance to ServerEndPointConfiguration ?
 * https://github.com/eclipse-ee4j/websocket-api/issues/103[Issue 103]
@@ -1661,8 +1659,8 @@ Extension parameters ordering
 * https://github.com/eclipse-ee4j/websocket-api/issues/88[Issue 88]
 CloseReason changes
 * https://github.com/eclipse-ee4j/websocket-api/issues/112[Issue 112]
-ServerApplicationConfiguration#getAnnotatedEndpointClasses(Setlatexmath:[$<$]Classlatexmath:[$>$]
-scanned) using Classlatexmath:[$<$]?latexmath:[$>$] instead of Class
+ServerApplicationConfiguration#getAnnotatedEndpointClasses(Set<Class>
+scanned) using Class<?> instead of Class
 * https://github.com/eclipse-ee4j/websocket-api/issues/104[Issue 104]
 Session - javadoc/error reporting
 * https://github.com/eclipse-ee4j/websocket-api/issues/78[Issue 78]
