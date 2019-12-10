@@ -766,7 +766,6 @@ using the *RemoteEndpoint* API [WSC-4.1.2-1].
 
 [[decoders]]
 ==== decoders
-^^^^^^^^
 
 The *decoders* attribute contains a (possibly empty) list of Java
 classes that are to act as decoder components for this endpoint. These
