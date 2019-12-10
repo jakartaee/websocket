@@ -435,8 +435,8 @@ this specification. This API is intended to be implemented either as a
 standalone WebSocket implementation, as part of a Jakarta servlet
 container, or as part of a full Jakarta EE platform implementation. The
 APIs that must be implemented to conform to the Jakarta WebSocket API are
-all the Java apis in the packages *jakarta.websocket.** and
-**jakarta.websocket.server.***. Some of the non-api features of the Jakarta
+all the Java APIs in the packages *jakarta.websocket.** and
+**jakarta.websocket.server.***. Some of the non-API features of the Jakarta
 WebSocket API are optional when the API is not implemented as part of
 the full Jakarta EE platform, for example, the requirement that WebSocket
 endpoints be non-contextual managed beans (see Chapter 7). Such Jakarta EE
@@ -446,7 +446,7 @@ The Jakarta WebSocket API also contains a subset of its functionality
 intended for desktop, tablet or smartphone devices. This subset does not
 contain the ability to deploy server endpoints. This subset known as the
 Jakarta WebSocket Client API. The APIs that must be implemented to conform
-to the Jakarta WebSocket Client API are all the Java apis in the packages
+to the Jakarta WebSocket Client API are all the Java APIs in the packages
 **jakarta.websocket.***.
 
 [[configuration]]
@@ -989,7 +989,7 @@ with *@ServerEndpoint* or **@ClientEndpoint**. The annotation defines
 that the decorated method be called whenever an incoming message is
 received. The method it decorates may have a number of forms for
 handling text, binary or pong messages, and for sending a message back
-immediately that are defined in detail in the api documentation for
+immediately that are defined in detail in the API documentation for
 **@OnMessage**.
 
 Any method annotated with *@OnMessage* that does not conform to the
@@ -1258,7 +1258,7 @@ using one of the *addEndpoint* methods of the *ServerContainer*
 interface. These methods are only operational during the application
 deployment phase of an application. Specifically, as soon as any of the
 server endpoints within the application have accepted an opening
-handshake request, the apis may not longer be used. This restriction may
+handshake request, the APIs may not longer be used. This restriction may
 be relaxed in a future version.
 
 When running on the web container, the *addEndpoint* methods may be
@@ -1531,7 +1531,7 @@ RemoteEndpoint#setBatchingAllowed(boolean) should throw IOException
 * https://github.com/eclipse-ee4j/websocket-api/issues/139[Issue 139]
 getNegotiatedSubprotocol(): not sure if we can return null
 * https://github.com/eclipse-ee4j/websocket-api/issues/138[Issue 138]
-websockets api javadoc: include message handler registration for onOpen
+websockets API javadoc: include message handler registration for onOpen
 method
 * https://github.com/eclipse-ee4j/websocket-api/issues/69[Issue 69]
 Publish same programmatic endpoint type to many different paths
@@ -1549,7 +1549,7 @@ WebSocketContainer#setMaxSessionIdleTimeout() and Session#setTimeout()
 DefaultServerConfiguration#getEndpointClass() should return
 Class<? extends Endpoint>
 * https://github.com/eclipse-ee4j/websocket-api/issues/141[Issue 141]
-websockets api: how to pass instance to ServerEndPointConfiguration ?
+websockets API: how to pass instance to ServerEndPointConfiguration ?
 * https://github.com/eclipse-ee4j/websocket-api/issues/103[Issue 103]
 DefaultServerConfiguration used in @WebSocketEndpoint
 * https://github.com/eclipse-ee4j/websocket-api/issues/144[Issue 144]
