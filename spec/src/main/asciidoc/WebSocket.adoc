@@ -1470,6 +1470,14 @@ either to the *GOLD_MEMBER* or *PLATINUM_MEMBER* roles.
 
 :sectnums!:
 [appendix]
+[[changes-since-1.1-final-release]]
+== Changes Since 1.1 Final Release
+* https://github.com/eclipse-ee4j/websocket-api/pull/312[Pull Request 312]
+Convert from javax.* to jakarta.*
+* https://github.com/eclipse-ee4j/websocket-api/pull/312[Pull Request 315]
+Update specification document for move to Jakarta EE
+
+[appendix]
 [[changes-since-1.0-final-release]]
 == Changes Since 1.0 Final Release
 
