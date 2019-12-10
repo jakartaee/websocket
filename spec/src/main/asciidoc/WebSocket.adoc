@@ -195,7 +195,7 @@ connection ending and an error being raised during the lifetime of the
 endpoint.
 
 Unless otherwise overridden by a developer provided configurator (see
-[configuration:creation]), the WebSocket implementation must use one
+<<configuration:creation>>), the WebSocket implementation must use one
 instance per application per VM of the *Endpoint* class to represent the
 logical endpoint per connected peer. [WSC 2.1.1-1] Each instance of the
 *Endpoint* class in this typical case only handles connections to the
@@ -807,7 +807,7 @@ This class level annotation signifies that the Java class it decorates
 is to be deployed as a WebSocket client endpoint that will connect to a
 WebSocket endpoint residing on a WebSocket server. The class must have a
 public no-args constructor, and additionally may conform to one of the
-types listed in Chapter [jakartaee].
+types listed in Chapter <<jakartaee>>.
 
 [[encoders-1]]
 ==== encoders
@@ -1071,7 +1071,7 @@ provide the developer a consistent threading environment for their
 applications.
 
 Unless backed by a Jakarta EE component with a different lifecycle (See
-Chapter [jakartaee]), the container must use a unique instance of the
+Chapter <<jakartaee>>), the container must use a unique instance of the
 endpoint per peer. [WSC-5.1-1] In all cases, the implementation must not
 invoke an endpoint instance with more than one thread per peer at a
 time. [WSC-5.1-2] The implementation may not invoke the close method on
@@ -1101,7 +1101,7 @@ example, the container may not have sufficient computing resources to
 deploy the application as specified. In this case, the container must
 provide an informative error message to the developer during the
 deployment process. [WSC-5.2.1-1] Other errors arise as a result of a
-malformed WebSocket application. Chapter [annotations] provides several
+malformed WebSocket application. Chapter <<annotations>> provides several
 examples of WebSocket endpoints that are malformed. In such cases, the
 container must provide an informative error message to the deployer
 during the deployment process. [WSC-5.2.1-2]
@@ -1199,7 +1199,7 @@ Jakarta EE containers are not required to support deployment of WebSocket
 endpoints if they are not packaged in a WAR file as described above.
 
 The Jakarta WebSocket implementation must use the web container scanning
-mechanism defined in [Servlet 3.0] to find annotated and programmatic
+mechanism defined in Servlet 3.0 to find annotated and programmatic
 endpoints contained within the WAR file at deployment time. [WSC-6.2-1]
 This is done by scanning for classes annotated with *@ServerEndpoint*
 and classes that extend **Endpoint**. See also section 4.8 for potential
@@ -1357,7 +1357,7 @@ user *Principal* for the associated WebSocket *Session* to be the user
 *Principal* that was present on the opening handshake. [WSC-7.2-2]
 
 In the case where a WebSocket endpoint is a protected resource in the
-web application (see Chapter [security]), that is to say, requires an
+web application (see Chapter <<security>>), that is to say, requires an
 authorized user to access it, then the WebSocket implementation must
 ensure that the WebSocket endpoint does not remain connected to its peer
 after the underlying implementation has decided the authenticated
@@ -1381,7 +1381,7 @@ The goal of this is to make it easy for a WebSocket developer to declare
 whether access to a WebSocket server endpoint needs to be authenticated,
 and who can access it, and if it needs an encrypted connection or not. A
 WebSocket which is mapped to a given *ws://* URI (as described in
-Chapters [configuration] and [annotations]) is protected in the
+Chapters <<configuration>> and <<annotations>>) is protected in the
 deployment descriptor with a listing to a *http://* URI with same
 hostname, port and path since this is the URL of its opening handshake.
 Accordingly, WebSocket developers may assign an authentication scheme,
