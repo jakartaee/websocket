@@ -793,7 +793,7 @@ the desired subprotocol to use for the connection it establishes
 ==== configurator
 
 The optional configurator attribute allows the developer to indicate
-that he would like the WebSocket implementation to use a developer
+that they would like the WebSocket implementation to use a developer
 provided implementation of **ServerEndpointConfig.Configurator**. If one
 is supplied, the WebSocket implementation must use this when configuring
 the endpoint. [WSC-4.1.5-1] The developer may use this technique to
@@ -843,7 +843,7 @@ match the incoming message [WSC-4.2.2-2]
 ==== configurator
 
 The optional *configurator* attribute allows the developer to indicate
-that he would like the WebSocket implementation to use a developer
+that they would like the WebSocket implementation to use a developer
 provided implementation of **ClientEndpointConfig.Configurator**. If one
 is supplied, the WebSocket implementation must use this when configuring
 the endpoint. [4.2.3-1] The developer may use this technique to share
