@@ -432,7 +432,7 @@ must call that MessageHandler or that annotated message. [WSC 2.2.5-2]
 This specification defines two configurations of the Jakarta WebSocket API.
 The Jakarta WebSocket API is used to mean the full functionality defined in
 this specification. This API is intended to be implemented either as a
-standalone WebSocket implementation, as part of a Jakarta servlet
+standalone WebSocket implementation, as part of a Jakarta Servlet
 container, or as part of a full Jakarta EE platform implementation. The
 APIs that must be implemented to conform to the Jakarta WebSocket API are
 all the Java APIs in the packages *jakarta.websocket.** and
@@ -1241,7 +1241,7 @@ WebSocket endpoints.
 === Application Deployment in Standalone WebSocket Server Containers
 
 This specification recommends standalone WebSocket server containers
-(i.e. those that do not include a servlet container) locates any
+(i.e. those that do not include a Servlet container) locates any
 WebSocket server endpoints and *ServerApplicationConfig* classes in the
 application bundle and deploys the set of all the server endpoints
 returned by the configuration classes. However, standalone WebSocket
@@ -1300,7 +1300,7 @@ it is the URI to which all the relative WebSocket paths in the same
 application are relative. If the WebSocket server does not include the
 Servlet API, the WebSocket server may choose WebSocket root itself. If
 the WebSocket server includes the Jakarta ServletAPI, the WebSocket root
-must be the same as the servlet context root of the web application.
+must be the same as the Servlet context root of the web application.
 [WSC-6.4-1]
 
 [[platform-versions]]
@@ -1390,7 +1390,7 @@ endpoints.
 === Authentication of Websockets
 
 This specification does not define a mechanism by which websockets
-themselves can be authenticated. Rather, by building on the servlet
+themselves can be authenticated. Rather, by building on the Servlet
 defined security mechanism, a WebSocket that requires authentication
 must rely on the opening handshake request that seeks to initiate a
 connection to be previously authenticated. Typically, this will be
@@ -1640,7 +1640,7 @@ Endpoint class qualifiers for @WebSocketEndpoint
 Provide way to inform developers when connections timeout or close
 (without close frames being sent)
 * https://github.com/eclipse-ee4j/websocket-api/issues/81[Issue 81]
-Consider using servlet security annotations to configure authorization
+Consider using Servlet security annotations to configure authorization
 and connection encryption
 * https://github.com/eclipse-ee4j/websocket-api/issues/74[Issue 74]
 Consider scoping getOpenSessions() just to the endpoint
