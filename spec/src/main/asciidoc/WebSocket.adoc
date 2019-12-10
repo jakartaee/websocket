@@ -37,8 +37,8 @@ in order to be an implementation of the Jakarta WebSocket API. This
 specification has been developed under the rules of the Eclipse Foundation Specification
 Process. Together with the Test Compatibility Kit (TCK) which tests that
 a given implementation meets the requirements of the specification, and
-Reference Implementation (RI) that implements this specification and
-which passes the TCK, this specification defines the Jakarta standard for
+Compatible Implementations (CIs) that implement this specification and
+which pass the TCK, this specification defines the Jakarta standard for
 WebSocket application development.
 
 While there is much useful information in this document for developers
