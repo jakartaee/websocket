@@ -97,7 +97,7 @@ Java code and sample data fragments are formatted as shown in figure
 1 package com.example.hello;
 
 public class Hello public static void main(String args[])
-System.out.println(''Hello World'');
+System.out.println("Hello World");
 
 URIs of the general form 'http://example.org/...' and
 'http://example.com/...' represent application or context-dependent
@@ -505,9 +505,9 @@ However, it is possible for an incoming URI in an opening handshake
 request theoretically to match more than one endpoint path. For example,
 consider the following case:-
 
-incoming URI: ''/a/b''
+incoming URI: "/a/b"
 
-endpoint A is mapped to ''/a/b''
+endpoint A is mapped to "/a/b"
 
 endpoint B is mapped to /a/\{customer-name}
 
@@ -541,7 +541,7 @@ incoming URIs that do match: /a/b (with var=b), /a/apple (with
 var=apple)
 
 URIs that do NOT match: /a, /a/b/c (because empty string and strings
-with reserved characters ''/'' are not valid URI-template level 1
+with reserved characters "/" are not valid URI-template level 1
 expansions.)
 
 \iii) suppose we have three endpoints and their paths:
@@ -727,7 +727,7 @@ of the URIs
 * */bookings/MadisonWatson*
 
 However, were the endpoint annotation to be
-**@ServerEndpoint(''/bookings/SallyBrown'')**, then only a client
+**@ServerEndpoint("/bookings/SallyBrown")**, then only a client
 request to */bookings/SallyBrown* would be able to connect to this
 WebSocket endpoint.
 
@@ -909,7 +909,7 @@ public class BookingServer {
 
 In this example, if a client connects to this endpoint with the URI
 **/bookings/JohnSmith**, then the value of the *guestID* parameter will
-be **''JohnSmith''**.
+be **"JohnSmith"**.
 
 Here is an example where the path parameter is an Integer:
 
