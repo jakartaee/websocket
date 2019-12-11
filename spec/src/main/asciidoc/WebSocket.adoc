@@ -91,13 +91,19 @@ the conformance test suite are marked with the figure WSC (WebSocket
 Compatibility) followed by a number which is used to identify the
 requirement, for example 'WSC-12'.
 
-Java code and sample data fragments are formatted as shown in figure
-[ex1]:
+Java code and sample data fragments are formatted as shown below:
 
-1 package com.example.hello;
+[source,java]
+----
+package com.example.hello;
 
-public class Hello public static void main(String args[])
-System.out.println("Hello World");
+public class Hello {
+
+    public static void main(String args[]) {
+        System.out.println("Hello World");
+    }
+}
+----
 
 URIs of the general form 'http://example.org/...' and
 'http://example.com/...' represent application or context-dependent
@@ -107,7 +113,7 @@ All parts of this specification are normative, with the exception of
 examples, notes and sections explicitly marked as 'Non-Normative'.
 Non-normative notes are formatted as shown below.
 
-This is a note.
+*Note:* _This is a note._
 
 [[jcp]]
 === Previous work in the JCP
@@ -309,8 +315,8 @@ public class MyHelloServer {
     }
 }
 
-Note: the examples are almost equivalent save for the annotated endpoint
-carries its own path mapping.
+*Note:* _The examples are almost equivalent save for the annotated endpoint
+carries its own path mapping._
 
 [[closing-connections]]
 ==== Closing Connections
@@ -1224,7 +1230,7 @@ without a corresponding **ServerEndpointConfig**, if there are no
 *ServerApplicationConfig* implementations to provide these configuration
 objects, no programmatic endpoints can be deployed.
 
-This means developers can easily deploy all the annotated endpoints in a
+*Note:* _This means developers can easily deploy all the annotated endpoints in a
 WAR file by simply bundling the class files for them into the WAR. This
 also means that programmatic endpoints cannot be deployed using this
 scanning mechanism unless a suitable *ServerApplicationConfig* is
@@ -1235,7 +1241,7 @@ allows the developer to limit a potentially lengthy scanning process by
 excluding certain JAR files from the scan (see Servlet 3.0, section
 8.2.1). This last case may be desirable in the case of a WAR file
 containing many JAR files that the developer knows do not contain any
-WebSocket endpoints.
+WebSocket endpoints._
 
 [[application-deployment-in-standalone-websocket-server-containers]]
 === Application Deployment in Standalone WebSocket Server Containers
