@@ -197,7 +197,7 @@ endpoint.
 Unless otherwise overridden by a developer provided configurator (see
 <<configuration:creation>>), the WebSocket implementation must use one
 instance per application per VM of the *Endpoint* class to represent the
-logical endpoint per connected peer. [WSC 2.1.1-1] Each instance of the
+logical endpoint per connected peer [WSC 2.1.1-1]. Each instance of the
 *Endpoint* class in this typical case only handles connections to the
 endpoint from one and only one peer.
 
@@ -211,7 +211,7 @@ notification, followed by some number, possibly zero, of WebSocket
 messages between the endpoint and peer, followed by a close notification
 or possibly a fatal error which terminates the connection. For each peer
 that is interacting with an endpoint, there is one unique *Session*
-instance that represents that interaction. [WSC 2.1.2-1] This *Session*
+instance that represents that interaction [WSC 2.1.2-1]. This *Session*
 instance corresponding to the connection with that peer is passed to the
 endpoint instance representing the logical endpoint at the key events in
 its lifecycle.
@@ -221,17 +221,17 @@ Developers may use the user property map accessible through the
 application specific information with a particular session. The
 WebSocket implementation must preserve this session data for later
 access until the completion of the *onClose()* method on the endpoint
-instance. [WSC 2.1.2-2]. After that time, the WebSocket implementation
+instance [WSC 2.1.2-2]. After that time, the WebSocket implementation
 is permitted to discard the developer data. A WebSocket implementation
 that chooses to pool *Session* instances may at that point re-use the
 same *Session* instance to represent a new connection provided it issues
-a new unique *Session* id. [WSC 2.1.2-3]
+a new unique *Session* id [WSC 2.1.2-3].
 
 WebSocket implementations that are part of a distributed container may
 need to migrate WebSocket sessions from one node to another in the case
 of a failover. Implementations are required to preserve developer data
 objects inserted into the WebSocket session if the data is marked
-**java.io.Serializable**. [WSC 2.1.2-4]
+*java.io.Serializable* [WSC 2.1.2-4].
 
 [[receiving-messages]]
 ==== Receiving Messages
@@ -244,7 +244,7 @@ particular peer by registering the handler on the Session instance
 corresponding to the peer.
 
 The API limits the registration of *MessageHandlers* per *Session* to be
-one *MessageHandler* per native WebSocket message type. [WSC 2.1.3-1] In
+one *MessageHandler* per native WebSocket message type [WSC 2.1.3-1]. In
 other words, the developer can only register at most one
 *MessageHandler* for incoming text messages, one *MessageHandler* for
 incoming binary messages, and one *MessageHandler* for incoming pong
@@ -321,7 +321,7 @@ If an open connection to a WebSocket endpoint is to be closed for any
 reason, whether as a result of receiving a WebSocket close event from
 the peer, or because the underlying implementation has reason to close
 the connection, the WebSocket implementation must invoke the *onClose()*
-method of the WebSocket endpoint. [WSC 2.1.5-1]
+method of the WebSocket endpoint [WSC 2.1.5-1].
 
 If the close was initiated by the remote peer, the implementation must
 use the close code and reason sent in the WebSocket protocol close
@@ -361,7 +361,7 @@ of the *WebSocketContainer* class. Each *WebSocketContainer* instance
 carries a number of configuration properties that apply to endpoints
 deployed within it. In server deployments of WebSocket implementations,
 there is one unique *WebSocketContainer* instance per application per
-Java VM. [WSC 2.1.7-1] In client deployments of WebSocket
+Java VM [WSC 2.1.7-1]. In client deployments of WebSocket
 implementations, applications obtain instances of the
 *WebSocketContainer* from the *ContainerProvider* class.
 
@@ -392,14 +392,14 @@ The method level *@OnOpen* and *@OnClose* annotations allow the
 developers to decorate methods on their *@ServerEndpoint* annotated Java
 class to specify that they must be called by the implementation when the
 resulting endpoint receives a new connection from a peer or when a
-connection from a peer is closed, respectively. [WSC 2.2.2-1]
+connection from a peer is closed, respectively [WSC 2.2.2-1].
 
 [[handling-messages]]
 ==== Handling Messages
 
 In order that the annotated endpoint can process incoming messages, the
 method level *@OnMessage* annotation allows the developer to indicate
-which methods the implementation must call when a message is received. [WSC 2.2.3-1]
+which methods the implementation must call when a message is received [WSC 2.2.3-1].
 
 [[handling-errors]]
 ==== Handling Errors
@@ -408,7 +408,7 @@ In order that an annotated endpoint can handle errors that occur as a
 arising from external events, for example on decoding an incoming
 message, an annotated endpoint can use the *@OnError* annotation to mark
 one of its methods must be called by the implementation with information
-about the error whenever such an error occurs. [WSC 2.2.4-1]
+about the error whenever such an error occurs [WSC 2.2.4-1].
 
 [[pings-and-pongs]]
 ==== Pings and Pongs
@@ -417,14 +417,14 @@ The ping/pong mechanism in the WebSocket protocol serves as a check that
 the connection is still active. Following the requirements of the
 protocol, if a WebSocket implementation receives a ping message from a
 peer, it must respond as soon as possible to that peer with a pong
-message containing the same application data. [WSC 2.2.5-1] Developers
+message containing the same application data [WSC 2.2.5-1]. Developers
 who wish to send a unidirectional pong message may do so using the
 *RemoteEndpoint* API. Developers wishing to listen for returning pong
 messages may either define a *MessageHandler* for them, or annotate a
 method using the *@OnMessage* annotation where the method stipulates a
 *PongMessage* as its message entity parameter. In either case, if the
 implementation receives a pong message addressed to this endpoint, it
-must call that MessageHandler or that annotated message. [WSC 2.2.5-2]
+must call that MessageHandler or that annotated message [WSC 2.2.5-2].
 
 [[clientapi]]
 === Jakarta WebSocket Client API
@@ -464,7 +464,7 @@ the container to support these configuration tasks.
 Both client and server endpoint configurations include a list of
 application provided encoder and decoder classes that the implementation
 must use to translate between WebSocket messages and application defined
-message objects. [WSC-3-1]
+message objects [WSC-3-1].
 
 Here follows the definition of the server-specific and client-specific
 configuration options.
@@ -479,7 +479,7 @@ implementation provided algorithms needed by the implementation to
 configure the endpoint. The WebSocket API allow certain of these
 configuration operations to be overriden by developers by providing a
 custom *ServerEndpointConfig.Configurator* implementation with the
-**ServerEndpointConfig**. [WSC-3.1-1]
+*ServerEndpointConfig* [WSC-3.1-1].
 
 These operations are laid out below.
 
@@ -492,12 +492,12 @@ collection of all endpoint paths and determine the best match. The
 incoming URI in an opening handshake request matches an enpoint path if
 either it is an exact match in the case where the endpoint path is a
 relative URI, and if it is a valid expansion of the endpoint path in the
-case where the endpoint path is a URI template. [WSC-3.1.1-1]
+case where the endpoint path is a URI template [WSC-3.1.1-1].
 
 An application that contains multiple endpoint paths that are the same
 relative URI is not a valid application. An application that contains
 multiple endpoint paths that are equivalent URI-templates is not a valid
-application. [WSC-3.1.1-2]
+application [WSC-3.1.1-2].
 
 However, it is possible for an incoming URI in an opening handshake
 request theoretically to match more than one endpoint path. For example,
@@ -572,7 +572,7 @@ matching segment is preferred over a variable segment
 matching process works from left to right.
 
 The implementation must not establish the connection unless there is a
-match. [WSC-3.1.1-4]
+match [WSC-3.1.1-4].
 
 [[subprotocol-negotiation]]
 ==== Subprotocol Negotiation
@@ -582,7 +582,7 @@ protocols in order of preference at creation time. During subprotocol
 negotiation, this configuration examines the client-supplied subprotocol
 list and selects the first subprotocol in the list it supports that is
 contained within the list provided by the client, or none if there is no
-match. [WSC-3.1.2-1]
+match [WSC-3.1.2-1].
 
 [[extension-modification]]
 ==== Extension Modification
@@ -590,20 +590,20 @@ match. [WSC-3.1.2-1]
 In the opening handshake, the client supplies a list of extensions that
 it would like to use. The default server configuration selects from
 those extensions the ones it supports, and places them in the same order
-as requested by the client. [WSC-3.1.3-1]
+as requested by the client [WSC-3.1.3-1].
 
 [[origin-check]]
 ==== Origin Check
 
 The default server configuration makes a check of the hostname provided
 in the Origin header, failing the handshake if the hostname cannot be
-verified. [WSC-3.1.4-1]
+verified [WSC-3.1.4-1].
 
 [[handshake-modification]]
 ==== Handshake Modification
 
 The default server configuration makes no modification of the opening
-handshake process other than that described above. [WSC-3.1.5-1]
+handshake process other than that described above [WSC-3.1.5-1].
 
 Developers may wish to customize the configuration and handshake
 negotiation policies laid out above. In order to do so, they may provide
@@ -630,9 +630,9 @@ instances of the same logical endpoint via the *EndpointConfig* object.
 The developer may control the creation of endpoint instances by
 supplying a *ServerEndpointConfig.Configurator* object that overrides
 the *getEndpointInstance()* call. The implementation must call this
-method each time a new client connects to the logical endpoint.
-[WSC-3.1.7-1] The platform default implementation of this method is to
-return a new instance of the endpoint class each time it is called. [WSC-3.1.7-2]
+method each time a new client connects to the logical endpoint
+[WSC-3.1.7-1]. The platform default implementation of this method is to
+return a new instance of the endpoint class each time it is called [WSC-3.1.7-2].
 
 In this way, developers may deploy endpoints in such a way that only one
 instance of the endpoint class is instantiated for all the client
@@ -655,7 +655,7 @@ WebSocket API needs the following attributes:
 The default client configuration uses the developer provided list of
 subprotocols, to send in order of preference, the names of the
 subprotocols it would like to use in the opening handshake it
-formulates. [WSC-3.2.1-1]
+formulates [WSC-3.2.1-1].
 
 [[extensions]]
 ==== Extensions
@@ -663,7 +663,7 @@ formulates. [WSC-3.2.1-1]
 The default client configuration must use the developer provided list of
 extensions to send, in order of preference, the extensions, including
 parameters, that it would like to use in the opening handshake it
-formulates. [WSC-3.2.2-1]
+formulates [WSC-3.2.2-1].
 
 [[client-configuration-modification]]
 ==== Client Configuration Modification
@@ -686,8 +686,8 @@ annotations in the Jakarta WebSocket API.
 
 This class level annotation signifies that the Java class it decorates
 must be deployed by the implementation as a WebSocket server endpoint
-and made available in the URI-space of the WebSocket implementation.
-[WSC-4.1-1] The class must be public, concrete, and have a public
+and made available in the URI-space of the WebSocket implementation
+[WSC-4.1-1]. The class must be public, concrete, and have a public
 no-args constructor. The class may or may not be final, and may or may
 not have final methods.
 
@@ -700,8 +700,8 @@ URI-templates, see (Gregorio et al. 2012). The implementation uses the
 value attribute to deploy the endpoint to the URI space of the WebSocket
 implementation. The implementation must treat the value as relative to
 the root URI of the WebSocket implementation in determining a match
-against the request URI of an incoming opening handshake request.
-[WSC-4.1.1-2] The semantics of matching for annotated endpoints is the
+against the request URI of an incoming opening handshake request
+[WSC-4.1.1-2]. The semantics of matching for annotated endpoints is the
 same as was defined in the previous chapter. The value attribute is
 mandatory; the implementation must reject a missing or malformed path at
 deployment time [WSC-4.1.1-3].
@@ -739,7 +739,7 @@ as described below.
 Applications that contain more than one annotated endpoint may
 inadvertently use the same relative URI. The WebSocket implementation
 must reject such an application at deployment time with an informative
-error message that there is a duplicate path that it cannot resolve. [WSC-4.1.1-4]
+error message that there is a duplicate path that it cannot resolve [WSC-4.1.1-4].
 
 Applications may contain an endpoint mapped to a path that is an
 expanded form of a URI template that is used by another endpoint in the
@@ -778,7 +778,7 @@ decoder in the list appropriate to the native WebSocket message type and
 pass the message in decoded object form to the WebSocket endpoint
 [WSC-4.1.3-1]. On *Decoder* implementations that have it, the
 implementation must use the *willDecode()* method on the decoder to
-determine if the *Decoder* will match the incoming message [WSC-4.1.3-2]
+determine if the *Decoder* will match the incoming message [WSC-4.1.3-2].
 
 [[subprotocols-1]]
 ==== subprotocols
@@ -796,7 +796,7 @@ The optional configurator attribute allows the developer to indicate
 that they would like the WebSocket implementation to use a developer
 provided implementation of **ServerEndpointConfig.Configurator**. If one
 is supplied, the WebSocket implementation must use this when configuring
-the endpoint. [WSC-4.1.5-1] The developer may use this technique to
+the endpoint [WSC-4.1.5-1]. The developer may use this technique to
 share state across all instances of the endpoint in addition to
 customizing the opening handshake.
 
@@ -837,7 +837,7 @@ first appropriate decoder in the list and pass the message in decoded
 object form to the WebSocket endpoint [WSC-4.2.2-1]. If the Decoder
 implementation has the method, the implementation must use the
 *willDecode()* method on the decoder to determine if the *Decoder* will
-match the incoming message [WSC-4.2.2-2]
+match the incoming message [WSC-4.2.2-2].
 
 [[configurator-1]]
 ==== configurator
@@ -867,31 +867,31 @@ an annotated endpoint class decorated with any of the annotations
 **@OnMessage**, **@OnError**, **@OnOpen**, **@OnClose**. The allowed
 types for these parameters are String, any Java primitive type, or boxed
 version thereof. Any other type annotated with this annotation is an
-error that the implementation must report at deployment time.
-[WSC-4.3-1] The *value* attribute of this annotation must be present
-otherwise the implementation must throw an error. [WSC-4.3-2] If the
+error that the implementation must report at deployment time
+[WSC-4.3-1]. The *value* attribute of this annotation must be present
+otherwise the implementation must throw an error [WSC-4.3-2]. If the
 *value* attribute of this annotation matches the variable name of an
 element of the URI-template used in the *@ServerEndpoint* annotation
 that annotates this annotated endpoint, then the implementation must
 associate the value of the parameter it annotates with the value of the
 path segment of the request URI to which the calling WebSocket frame is
-connected when the method is called. [WSC-4.3-3] Otherwise, the value of
+connected when the method is called [WSC-4.3-3]. Otherwise, the value of
 the String parameter annotated by this annotation must be set to *null*
 by the implementation. The association must follow these rules:
 
 * if the parameter is a **String**, the container must use the value of
-the path segment [WSC-4.3-4]
+the path segment [WSC-4.3-4].
 
 * if the parameter is a Java primitive type or boxed version thereof, the
 container must use the path segment string to construct the type with
 the same result as if it had used the public one argument String
 constructor to obtain the boxed type, and reduced to its primitive type
-if necessary. [WSC-4.3-5]
+if necessary [WSC-4.3-5].
 
 If the container cannot decode the path segment appropriately to the
 annotated path parameter, then the container must raise an
 *DecodeException* to the error handling method of the WebSocket
-containing the path segment. [WSC-4.3-6]
+containing the path segment [WSC-4.3-6].
 
 For example,
 
@@ -939,7 +939,7 @@ must pass in the newly created *Session* corresponding to the new
 connection [WSC-4.4-2]. Any Java class using this annotation on a method
 that does not follow these rules, or that uses this annotation on more
 than one method may not be deployed by the implementation and the error
-reported to the deployer. [WSC-4.4-3]
+reported to the deployer [WSC-4.4-3].
 
 [[onclose]]
 === @OnClose
@@ -962,7 +962,7 @@ endpoint together with the session [WSC-4.5-3].
 Any Java class using this annotation on a method that does not follow
 these rules, or that uses this annotation on more than one method may
 not be deployed by the implementation and the error reported to the
-deployer. [WSC-4.5-4]
+deployer [WSC-4.5-4].
 
 [[onerror]]
 === @OnError
@@ -981,7 +981,7 @@ parameter to this method [WSC-4.6-2].
 Any Java class using this annotation on a method that does not follow
 these rules, or that uses this annotation on more than one method may
 not be deployed by the implementation and the error reported to the
-deployer. [WSC-4.6-3]
+deployer [WSC-4.6-3].
 
 [[onmessage]]
 === @OnMessage
@@ -997,7 +997,7 @@ immediately that are defined in detail in the API documentation for
 Any method annotated with *@OnMessage* that does not conform to the
 forms defied therein is invalid. The WebSocket implementation must not
 deploy such an endpoint and must raise a deployment error if an attempt
-is made to deploy such an annotated endpoint. [WSC-4.7-1]
+is made to deploy such an annotated endpoint [WSC-4.7-1].
 
 If the method uses a class equivalent of a Java primitive as a method
 parameter to handle whole text messages, the implementation must use the
@@ -1005,20 +1005,20 @@ single String parameter constructor to attempt construct the object. If
 the method uses a Java primitive as a method parameter to handle whole
 text messages, the implementation must attempt to construct its class
 equivalent as described above, and then convert it to its primitive
-value. [WSC-4.7-2]
+value [WSC-4.7-2].
 
 If the method uses a Java primitive as a return value, the
 implementation must construct the text message to send using the
 standard Java string representation of the Java primitive. If the method
 uses a class equivalent of a Java primitive as a return value, the
 implementation must construct the text message from the Java primitive
-equivalent as just described. [WSC-4.7-3]
+equivalent as just described [WSC-4.7-3].
 
 Each WebSocket endpoint may only have one message handling method for
 each of the native WebSocket message formats: text, binary and pong. The
 WebSocket implementation must not deploy such an endpoint and must raise
 a deployment error if an attempt is made to deploy such an annotated
-endpoint. [WSC-4.7-4]
+endpoint [WSC-4.7-4].
 
 [[maxmessagesize]]
 ==== maxMessageSize
@@ -1030,7 +1030,7 @@ default is `-1`.
 
 If an incoming message exceeds the maximum message size, the
 implementation must formally close the connection with a close code of
-`1009` (Too Big). [WSC-4.7.1-1]
+`1009` (Too Big) [WSC-4.7.1-1].
 
 [[websockets-and-inheritance]]
 === WebSockets and Inheritance
@@ -1049,13 +1049,13 @@ subclass methods themselves are marked with a method level WebSocket
 annotation.
 
 Implementations should not deploy Java classes that mistakenly mix Java
-inheritance with WebSocket annotations in these ways. [WSC-4.8.1]
+inheritance with WebSocket annotations in these ways [WSC-4.8.1].
 
 Implementations that use archive scanning techniques to deploy endpoints
 on startup must filter out subclasses of annotated endpoints, in
 addition to other errent endpoint definitions such as annotated classes
 that are non-public when they build the list of annotated endpoints to
-deploy. [WSC-4.8.2]
+deploy [WSC-4.8.2].
 
 [[exception-handling-and-threading]]
 == Exception handling and Threading
@@ -1072,13 +1072,13 @@ applications.
 
 Unless backed by a Jakarta EE component with a different lifecycle (See
 Chapter <<jakartaee>>), the container must use a unique instance of the
-endpoint per peer. [WSC-5.1-1] In all cases, the implementation must not
+endpoint per peer [WSC-5.1-1]. In all cases, the implementation must not
 invoke an endpoint instance with more than one thread per peer at a
-time. [WSC-5.1-2] The implementation may not invoke the close method on
-an endpoint until after the open method has completed. [WSC-5.1-3]
+time [WSC-5.1-2]. The implementation may not invoke the close method on
+an endpoint until after the open method has completed [WSC-5.1-3].
 
 This guarantees that a WebSocket endpoint instance is never called by
-more than one container thread at a time per peer. [WSC-5.1-4]
+more than one container thread at a time per peer [WSC-5.1-4].
 
 If the implementation decides to process an incoming message in parts,
 it must ensure that the corresponding *onMessage()* calls are called
@@ -1100,53 +1100,53 @@ of a container malfunction during the deployment of the application. For
 example, the container may not have sufficient computing resources to
 deploy the application as specified. In this case, the container must
 provide an informative error message to the developer during the
-deployment process. [WSC-5.2.1-1] Other errors arise as a result of a
+deployment process [WSC-5.2.1-1]. Other errors arise as a result of a
 malformed WebSocket application. Chapter <<annotations>> provides several
 examples of WebSocket endpoints that are malformed. In such cases, the
 container must provide an informative error message to the deployer
-during the deployment process. [WSC-5.2.1-2]
+during the deployment process [WSC-5.2.1-2].
 
 In both cases, a deployment error raised during the deployment process
 must halt the deployment of the application, any well formed endpoints
 deployed prior to the error being raised must be removed from service
 and no more WebSocket endpoints from that application may be deployed by
-the container, even if they are valid. [WSC-5.2.1-3]
+the container, even if they are valid [WSC-5.2.1-3].
 
 If the deployment error occurs under the programmatic control of the
 developer, for example, when using the WebSocketContainer API to deploy
 a client endpoint, deployment errors must be reported by the container
-to the developer by using an instance of the DeploymentException.
-[WSC-5.2.1-4] Containers may choose the precise wording of the error
+to the developer by using an instance of the DeploymentException
+[WSC-5.2.1-4]. Containers may choose the precise wording of the error
 message in such cases.
 
 If the deployment error occurs while deployment is managed by the
 implementation, for example, as a result of deploying a WAR file where
 the endpoints are deployed by the container as a result of scanning the
 WAR file, the deployment error must be reported to the deployer by the
-implementation as part of the container specific deployment process. [WSC-5.2.1-5]
+implementation as part of the container specific deployment process [WSC-5.2.1-5].
 
 [[errors-originating-in-websocket-application-code]]
 ==== Errors Originating in WebSocket Application Code
 
 All errors arising during the functioning of a WebSocket endpoint must
-be caught by the WebSocket implementation. [WSC-5.2.2-1] Examples of
+be caught by the WebSocket implementation [WSC-5.2.2-1]. Examples of
 these errors include checked exceptions generated by *Decoders* used by
 the endpoint, runtime errors generated in the message handling code used
 by the endpoint. If the WebSocket endpoint has provided an error
 handling method, either by implementing the *onError()* method in the
 case of programmatic endpoints, or by using the @OnError annotation in
 the case of annotated endpoints, the implementation must invoke the
-error handling method with the error. [WSC-5.2.2-2]
+error handling method with the error [WSC-5.2.2-2].
 
 If the developer has not provided an error handling method on an
 endpoint that is generating errors, this indicates to the implementation
 that the developer does not wish to handle such errors. In these cases,
 the container must make this information available for later analysis,
-for example by logging it. [WSC-5.2.2-3]
+for example by logging it [WSC-5.2.2-3].
 
 If the error handling method of an endpoint itself is generating runtime
 errors, the container must make this information available for later
-analysis. [WSC-5.2.2-4]
+analysis [WSC-5.2.2-4].
 
 [[errors-originating-in-the-container-andor-underlying-connection]]
 ==== Errors Originating in the Container and/or Underlying Connection
@@ -1163,7 +1163,7 @@ functioning of the endpoint may allow the endpoint to continue
 functioning, but must report the error in message processing either as a
 checked exception returned by one of the send operations, or by
 delivering a the SessionException to the endpoint’s error handling
-method, if present, or by logging the error for later analysis. [WSC-5.2.3-1]
+method, if present, or by logging the error for later analysis [WSC-5.2.3-1].
 
 [[packaging-and-deployment]]
 == Packaging and Deployment
@@ -1200,28 +1200,28 @@ endpoints if they are not packaged in a WAR file as described above.
 
 The Jakarta WebSocket implementation must use the web container scanning
 mechanism defined in Servlet 3.0 to find annotated and programmatic
-endpoints contained within the WAR file at deployment time. [WSC-6.2-1]
+endpoints contained within the WAR file at deployment time [WSC-6.2-1].
 This is done by scanning for classes annotated with *@ServerEndpoint*
 and classes that extend **Endpoint**. See also section 4.8 for potential
 extra steps needed after the scan for annotated endpoints. Further, the
 WebSocket implementation must use the WebSocket scanning mechanism to
 find implementations of the *ServerApplicationConfig* interface packaged
-within the WAR file (or in any of its sub-JAR files). [WSC-6.2-2]
+within the WAR file (or in any of its sub-JAR files) [WSC-6.2-2].
 
 If scan of the WAR file locates one or more *ServerApplicationConfig*
 implementations, the WebSocket implementation must instantiate each of
 the *ServerApplicationConfig* classes it found. For each one, it must
 pass the results of the scan of the archive containing it (top level WAR
-or contained JAR) to its methods. [WSC-6.2-4] The set that is the union
+or contained JAR) to its methods [WSC-6.2-4]. The set that is the union
 of all the results obtained by calling the *getEndpointConfigs()* and
 *getAnnotatedEndpointClasses()* on the *ServerApplicationConfig* classes
 (that is to say, the annotated endpoint classes and configuration
 objects for programmatic endpoints) is the set that the WebSocket
-implementation must deploy. [WSC-6.2-5]
+implementation must deploy [WSC-6.2-5].
 
 If the WAR file contains no *ServerApplicationConfig* implementations,
 it must deploy all the annotated endpoints it located as a result of the
-scan. [WSC-6.2-3] Because programmatic endpoints cannot be deployed
+scan [WSC-6.2-3]. Because programmatic endpoints cannot be deployed
 without a corresponding **ServerEndpointConfig**, if there are no
 *ServerApplicationConfig* implementations to provide these configuration
 objects, no programmatic endpoints can be deployed.
@@ -1302,8 +1302,8 @@ it is the URI to which all the relative WebSocket paths in the same
 application are relative. If the WebSocket server does not include the
 Servlet API, the WebSocket server may choose WebSocket root itself. If
 the WebSocket server includes the Jakarta Servlet API, the WebSocket root
-must be the same as the Servlet context root of the web application.
-[WSC-6.4-1]
+must be the same as the Servlet context root of the web application
+[WSC-6.4-1].
 
 [[platform-versions]]
 === Platform Versions
@@ -1330,7 +1330,7 @@ dependency injection support as described in the CDI specification (Muir
 2013). WebSocket implementations part of the Jakarta EE platform are
 required to support field, method, and constructor injection using the
 jakarta.inject.Inject annotation into all WebSocket endpoint classes, as
-well as the use of interceptors for these classes.[WSC-7.1.1-1] The
+well as the use of interceptors for these classes [WSC-7.1.1-1]. The
 details of this requirement are laid out in the Jakarta EE Platform
 Specification (DeMichiel and Shannon 2013), section EE.5.2.5, and a
 useful guide for implementations to meet the requirement is location in
@@ -1347,25 +1347,25 @@ WebSocket connections are initiated with an http request, there is an
 association between the HttpSession under which a client is operating
 and any WebSockets that are established within that **HttpSession**. The
 API allows access in the opening handshake to the unique *HttpSession*
-corresponding to that same client. [WSC-7.2-1]
+corresponding to that same client [WSC-7.2-1].
 
 Similarly, if the opening handshake request is already authenticated
 with the server, the opening handshake API allows the developer to query
 the user *Principal* of the request. If the connection is established
 with the requesting client, the WebSocket implementation considers the
 user *Principal* for the associated WebSocket *Session* to be the user
-*Principal* that was present on the opening handshake. [WSC-7.2-2]
+*Principal* that was present on the opening handshake [WSC-7.2-2].
 
 In the case where a WebSocket endpoint is a protected resource in the
 web application (see Chapter <<security>>), that is to say, requires an
 authorized user to access it, then the WebSocket implementation must
 ensure that the WebSocket endpoint does not remain connected to its peer
 after the underlying implementation has decided the authenticated
-identity is no longer valid. [WSC-7.2-3] This may happen, for example,
+identity is no longer valid [WSC-7.2-3]. This may happen, for example,
 if the user logs out of the containing web application, or if the
 authentication times out or is invalidated for some other reason. In
 this situation, the WebSocket implementation must immediately close the
-connection using the WebSocket close status code 1008. [WSC-7.2-3]
+connection using the WebSocket close status code 1008 [WSC-7.2-3].
 
 On the other hand, if the WebSocket endpoint is not a protected resource
 in the web application, then the user identity under which an opening
@@ -1416,7 +1416,7 @@ A WebSocket’s authorization may be set by adding a
 constraint must be used by the container to match the request URI of the
 opening handshake of the WebSocket [WSC-8.2-1]. The implementation must
 interpret any http-method other than GET (or the default, missing) as
-not applying to the WebSocket. [WSC-8.2-2]
+not applying to the WebSocket [WSC-8.2-2].
 
 [[transport-guarantee]]
 === Transport Guarantee
@@ -1425,7 +1425,7 @@ A transport guarantee of *NONE* must be interpreted by the container as
 allowing unencrypted *ws://* connections to the WebSocket [WSC-8.3-1]. A
 transport guarantee of *CONFIDENTIAL* must be interpreted by the
 implementation as only allowing access to the WebSocket over an
-encrypted (**wss://**) connection [WSC-8.3-2] This may require a
+encrypted (**wss://**) connection [WSC-8.3-2]. This may require a
 pre-authenticated request.
 
 [[example]]
