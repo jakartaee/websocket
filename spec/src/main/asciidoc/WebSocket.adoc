@@ -1448,7 +1448,6 @@ either to the *GOLD_MEMBER* or *PLATINUM_MEMBER* roles.
             live quote WebSocket endpoint
         </description>
         <url-pattern>/quotes/live</url-pattern>
-        <http-method>GET</http-method>
     </web-resource-collection>
     <auth-constraint>
         <description>
