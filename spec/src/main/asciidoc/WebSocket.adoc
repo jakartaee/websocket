@@ -6,10 +6,10 @@ All rights reserved.
 
 Eclipse is a registered trademark of the Eclipse Foundation. Jakarta
 is a trademark of the Eclipse Foundation. Oracle and Java are
-registered trademarks of Oracle and/or its  affiliates. Other names
+registered trademarks of Oracle and/or its affiliates. Other names
 may be trademarks of their respective owners. 
 
-The Jakarta WebSocket Community TBD, 2020
+The Jakarta WebSocket Team TBD, 2020
 
 Comments to: websocket-dev@eclipse.org
 
