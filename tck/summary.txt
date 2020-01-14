@@ -609,7 +609,6 @@
 [javatest.batch] PASSED........com/sun/ts/tests/websocket/ee/javax/websocket/websocketmessage/WSClient.java#stringToAllNumbersTest_from_standalone
 [javatest.batch] PASSED........com/sun/ts/tests/websocket/ee/javax/websocket/websocketmessage/WSClient.java#stringToBooleanTest_from_standalone
 [javatest.batch] PASSED........com/sun/ts/tests/websocket/ee/javax/websocket/websocketmessage/WSClient.java#stringToCharTest_from_standalone
-[javatest.batch] Nov 21, 2019 2:09:22 PM Finished executing all tests, wait for cleanup...
 [javatest.batch] PASSED........com/sun/ts/tests/websocket/ee/javax/websocket/websocketmessage/WSClient.java#stringToTextsTest_from_standalone
 [javatest.batch] PASSED........com/sun/ts/tests/websocket/ee/javax/websocket/websocketmessagereturntype/WSClient.java#binaryEncoderTest_from_standalone
 [javatest.batch] PASSED........com/sun/ts/tests/websocket/ee/javax/websocket/websocketmessagereturntype/WSClient.java#binaryStreamEncoderTest_from_standalone
@@ -747,13 +746,14 @@
 [javatest.batch] PASSED........com/sun/ts/tests/websocket/spec/session/sessionid/WSClient.java#instanceTest_from_standalone
 [javatest.batch] PASSED........com/sun/ts/tests/websocket/spec/session/sessionid/WSClient.java#unique_from_standalone
 [javatest.batch] 
-[javatest.batch] Nov 21, 2019 2:09:22 PM Harness done with cleanup from test run.
-[javatest.batch] Total time = 2,273s
+[javatest.batch] Jan 14, 2020 2:44:40 PM Finished executing all tests, wait for cleanup...
+[javatest.batch] Jan 14, 2020 2:44:40 PM Harness done with cleanup from test run.
+[javatest.batch] Total time = 2,532s
 [javatest.batch] Setup time = 0s
 [javatest.batch] Cleanup time = 0s
 [javatest.batch] Test results: passed: 734
-[javatest.batch] Results written to /home/jenkins/agent/workspace/TCK_run/JTwork.
-[javatest.batch] Report written to /home/jenkins/agent/workspace/TCK_run/JTreport
+[javatest.batch] Results written to /home/jenkins/agent/workspace/TCK_run_custom/JTwork.
+[javatest.batch] Report written to /home/jenkins/agent/workspace/TCK_run_custom/JTreport
 
 BUILD SUCCESSFUL
-Total time: 37 minutes 59 seconds
+Total time: 42 minutes 20 seconds
