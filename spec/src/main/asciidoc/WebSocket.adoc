@@ -1,7 +1,7 @@
-:sectnums:
-= Jakarta WebSocket Specification, Version 2.0
+:sectnums!:
+== Jakarta WebSocket Specification, Version 2.0
 
-Copyright (c) 2011, 2019 Oracle and/or its affiliates and others.
+Copyright (c) 2011, 2020 Oracle and/or its affiliates and others.
 All rights reserved.
 
 Eclipse is a registered trademark of the Eclipse Foundation. Jakarta
@@ -9,10 +9,11 @@ is a trademark of the Eclipse Foundation. Oracle and Java are
 registered trademarks of Oracle and/or its affiliates. Other names
 may be trademarks of their respective owners. 
 
-The Jakarta WebSocket Team TBD, 2020
+The Jakarta WebSocket Team - {revdate}
 
 Comments to: websocket-dev@eclipse.org
 
+:sectnums:
 [[introduction]]
 == Introduction
 
@@ -1476,7 +1477,7 @@ either to the *GOLD_MEMBER* or *PLATINUM_MEMBER* roles.
 [[changes-since-1.1-final-release]]
 == Changes Since 1.1 Final Release
 * https://github.com/eclipse-ee4j/websocket-api/pull/312[Pull Request 312]
-Convert from javax.* to jakarta.*
+Convert from `javax.\*` to `jakarta.*`
 * https://github.com/eclipse-ee4j/websocket-api/pull/312[Pull Request 315]
 Update specification document for move to Jakarta EE
 
