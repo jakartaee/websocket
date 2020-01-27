@@ -1,5 +1,5 @@
 Jakarta WebSocket Specification
-============================
+===============================
 
 This project generates the Jakarta WebSocket Specification.
 
