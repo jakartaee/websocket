@@ -1,3 +1,4 @@
+:xrefstyle: short
 :sectnums!:
 == Jakarta WebSocket Specification, Version 2.0
 
@@ -69,7 +70,7 @@ connection::
   endpoints which are interacting using the WebSocket protocol.
 peer::
   Used in the context of a WebSocket endpoint, the WebSocket peer is
-  used to represent the another participant of the WebSocket
+  used to represent another participant of the WebSocket
   interactions with the endpoint.
 session::
   The term WebSocket session is used to represent a sequence of
@@ -245,7 +246,7 @@ objects inserted into the WebSocket session if the data is marked
 
 The Jakarta WebSocket API presents a variety of means for an endpoint to
 receive messages from its peers. Developers implement the subtype of the
-*MessageHandler* interface that suits the message delivery style that
+*MessageHandler* interface with the message delivery style that
 best suits their needs, and register the interest in messages from a
 particular peer by registering the handler on the Session instance
 corresponding to the peer.
@@ -429,7 +430,7 @@ messages may either define a *MessageHandler* for them, or annotate a
 method using the *@OnMessage* annotation where the method stipulates a
 *PongMessage* as its message entity parameter. In either case, if the
 implementation receives a pong message addressed to this endpoint, it
-must call that MessageHandler or that annotated message [WSC 2.2.5-2].
+must call that MessageHandler or that annotated method [WSC 2.2.5-2].
 
 [[clientapi]]
 === Jakarta WebSocket Client API
@@ -810,7 +811,7 @@ This class level annotation signifies that the Java class it decorates
 is to be deployed as a WebSocket client endpoint that will connect to a
 WebSocket endpoint residing on a WebSocket server. The class must have a
 public no-args constructor, and additionally may conform to one of the
-types listed in Chapter <<jakartaee>>.
+types listed in <<jakartaee>>.
 
 [[encoders-1]]
 ==== encoders
@@ -849,7 +850,7 @@ The optional *configurator* attribute allows the developer to indicate
 that they would like the WebSocket implementation to use a developer
 provided implementation of **ClientEndpointConfig.Configurator**. If one
 is supplied, the WebSocket implementation must use this when configuring
-the endpoint. [4.2.3-1] The developer may use this technique to share
+the endpoint [4.2.3-1]. The developer may use this technique to share
 state across all instances of the endpoint in addition to customizing
 the opening handshake.
 
@@ -1020,7 +1021,9 @@ implementation must construct the text message from the Java primitive
 equivalent as just described [WSC-4.7-3].
 
 Each WebSocket endpoint may only have one message handling method for
-each of the native WebSocket message formats: text, binary and pong. The
+each of the native WebSocket message formats: text, binary and pong. Any
+WebSocket endpoint that defines more than one message handling method
+for any of the native WebSocket message formats is invalid. The
 WebSocket implementation must not deploy such an endpoint and must raise
 a deployment error if an attempt is made to deploy such an annotated
 endpoint [WSC-4.7-4].
@@ -1076,7 +1079,7 @@ provide the developer a consistent threading environment for their
 applications.
 
 Unless backed by a Jakarta EE component with a different lifecycle (See
-the <<jakartaee>> chapter), the container must use a unique instance of the
+<<jakartaee>>), the container must use a unique instance of the
 endpoint per peer [WSC-5.1-1]. In all cases, the implementation must not
 invoke an endpoint instance with more than one thread per peer at a
 time [WSC-5.1-2]. The implementation may not invoke the close method on
@@ -1106,7 +1109,7 @@ example, the container may not have sufficient computing resources to
 deploy the application as specified. In this case, the container must
 provide an informative error message to the developer during the
 deployment process [WSC-5.2.1-1]. Other errors arise as a result of a
-malformed WebSocket application. The <<annotations>> chapter provides several
+malformed WebSocket application. <<annotations>> provides several
 examples of WebSocket endpoints that are malformed. In such cases, the
 container must provide an informative error message to the deployer
 during the deployment process [WSC-5.2.1-2].
@@ -1207,7 +1210,8 @@ The Jakarta WebSocket implementation must use the web container scanning
 mechanism defined in Servlet 3.0 to find annotated and programmatic
 endpoints contained within the WAR file at deployment time [WSC-6.2-1].
 This is done by scanning for classes annotated with *@ServerEndpoint*
-and classes that extend **Endpoint**. See also section 4.8 for potential
+and classes that extend **Endpoint**. See also
+<<websockets-and-inheritance>> for potential
 extra steps needed after the scan for annotated endpoints. Further, the
 WebSocket implementation must use the WebSocket scanning mechanism to
 find implementations of the *ServerApplicationConfig* interface packaged
@@ -1362,7 +1366,7 @@ user *Principal* for the associated WebSocket *Session* to be the user
 *Principal* that was present on the opening handshake [WSC-7.2-2].
 
 In the case where a WebSocket endpoint is a protected resource in the
-web application (see Chapter <<security>>), that is to say, requires an
+web application (see <<security>>), that is to say, requires an
 authorized user to access it, then the WebSocket implementation must
 ensure that the WebSocket endpoint does not remain connected to its peer
 after the underlying implementation has decided the authenticated
@@ -1386,7 +1390,7 @@ The goal of this is to make it easy for a WebSocket developer to declare
 whether access to a WebSocket server endpoint needs to be authenticated,
 who can access it, and if it needs an encrypted connection or not. A
 WebSocket which is mapped to a given *ws://* URI (as described in
-the <<configuration>> and <<annotations>> chapters) is protected in the
+<<configuration>> and <<annotations>>) is protected in the
 deployment descriptor with a listing to a *http://* URI with same
 hostname, port and path since this is the URL of its opening handshake.
 Accordingly, WebSocket developers may assign an authentication scheme,
@@ -1474,283 +1478,12 @@ either to the *GOLD_MEMBER* or *PLATINUM_MEMBER* roles.
 
 :sectnums!:
 [appendix]
-[[changes-since-1.1-final-release]]
-== Changes Since 1.1 Final Release
+[[changes-since-jsr-356]]
+== Changes Since JSR-356
 * https://github.com/eclipse-ee4j/websocket-api/pull/312[Pull Request 312]
 Convert from `javax.\*` to `jakarta.*`
 * https://github.com/eclipse-ee4j/websocket-api/pull/312[Pull Request 315]
 Update specification document for move to Jakarta EE
-
-plus a large number of smaller tweaks and editorial improvements.
-
-[appendix]
-[[changes-since-1.0-final-release]]
-== Changes Since 1.0 Final Release
-
-* https://github.com/eclipse-ee4j/websocket-api/issues/226[Issue 226]
-Session.addMessageHandler(MessageHandler) cannot work with lambda
-expressions.
-
-[appendix]
-[[changes-since-edr]]
-== Changes Since EDR
-
-[[changes-in-v014-since-v013]]
-=== Changes in v014 since v013
-
-* https://github.com/eclipse-ee4j/websocket-api/issues/158[Issue 158]
-HandshakeRequest documentation
-* https://github.com/eclipse-ee4j/websocket-api/issues/153[Issue 153]
-@OnClose and Endpoint.onClose() differences
-* https://github.com/eclipse-ee4j/websocket-api/issues/116[Issue 116]
-WebSocketContainer.connectToServer ease of use / API change
-* https://github.com/eclipse-ee4j/websocket-api/issues/114[Issue 114]
-Programmatic deployment of server endpoints
-* https://github.com/eclipse-ee4j/websocket-api/issues/150[Issue 150]
-Encoder/Decoder lifecycle consistency between pe and ae’s
-* https://github.com/eclipse-ee4j/websocket-api/issues/135[Issue 135]
-Improve modularity around client/server split
-* https://github.com/eclipse-ee4j/websocket-api/issues/115[Issue 115] Pls
-revert to EndpointFactory instead of EndpointConfig scheme
-* https://github.com/eclipse-ee4j/websocket-api/issues/79[Issue 79]
-Deployment on the server by instance
-* https://github.com/eclipse-ee4j/websocket-api/issues/154[Issue 154]
-Incomplete javadoc for ContainerProvider#getContainer
-* https://github.com/eclipse-ee4j/websocket-api/issues/157[Issue 157]
-Typo in ServerEndpointConfigurationBuilder javadocs
-* https://github.com/eclipse-ee4j/websocket-api/issues/149[Issue 149]
-Refactor & rename: Make *Configuration interfaces abstract classes, and
-have builders be member classes. Rename Configurators
-* https://github.com/eclipse-ee4j/websocket-api/issues/156[Issue 156]
-ClientEndpointConfigBuilder creation
-* https://github.com/eclipse-ee4j/websocket-api/issues/155[Issue 155]
-DefaultClientEndpointConfig cannot be subclassed
-* https://github.com/eclipse-ee4j/websocket-api/issues/58[Issue 58]
-Thorough list of smaller API, javadoc, spec suggestions based on the EDR
-draft
-* https://github.com/eclipse-ee4j/websocket-api/issues/16[Issue 16] Which
-APIs are threadsafe ?
-* https://github.com/eclipse-ee4j/websocket-api/issues/151[Issue 151]
-Clarify that primitive type encoder/decoder work with text messages
-* https://github.com/eclipse-ee4j/websocket-api/issues/142[Issue 142]
-Remove Session#getId()
-* https://github.com/eclipse-ee4j/websocket-api/issues/101[Issue 101]
-Programmatic MessageHandler registration
-
-[[changes-in-v013-since-v012]]
-=== Changes in v013 since v012
-
-* https://github.com/eclipse-ee4j/websocket-api/issues/82[Issue 82]
-@WebSocketEndpoint’s configuration attribute
-* https://github.com/eclipse-ee4j/websocket-api/issues/132[Issue 132]
-RemoteEndpoint#setBatchingAllowed(boolean) should throw IOException
-* https://github.com/eclipse-ee4j/websocket-api/issues/139[Issue 139]
-getNegotiatedSubprotocol(): not sure if we can return null
-* https://github.com/eclipse-ee4j/websocket-api/issues/138[Issue 138]
-WebSockets API javadoc: include message handler registration for onOpen
-method
-* https://github.com/eclipse-ee4j/websocket-api/issues/69[Issue 69]
-Publish same programmatic endpoint type to many different paths
-* https://github.com/eclipse-ee4j/websocket-api/issues/98[Issue 98]
-Consider a property bag on EndpointConfiguration instead of subclassing
-for shared application state
-* https://github.com/eclipse-ee4j/websocket-api/issues/126[Issue 126]
-ServerEndpointConfiguration.matchesURI
-* https://github.com/eclipse-ee4j/websocket-api/issues/128[Issue 128]
-DefaultServerConfiguration - methods implementation - b12
-* https://github.com/eclipse-ee4j/websocket-api/issues/140[Issue 140]
-Clarify relationship between
-WebSocketContainer#setMaxSessionIdleTimeout() and Session#setTimeout()
-* https://github.com/eclipse-ee4j/websocket-api/issues/133[Issue 133]
-DefaultServerConfiguration#getEndpointClass() should return
-Class<? extends Endpoint>
-* https://github.com/eclipse-ee4j/websocket-api/issues/141[Issue 141]
-WebSockets API: how to pass instance to ServerEndPointConfiguration ?
-* https://github.com/eclipse-ee4j/websocket-api/issues/103[Issue 103]
-DefaultServerConfiguration used in @WebSocketEndpoint
-* https://github.com/eclipse-ee4j/websocket-api/issues/144[Issue 144]
-Discrepancy between URIs of programmatic and annotated endpoint
-* https://github.com/eclipse-ee4j/websocket-api/issues/147[Issue 147]
-@WebSocketClose: javadoc not in sync with the Java API Web Socket pdf
-document
-* https://github.com/eclipse-ee4j/websocket-api/issues/145[Issue 145]
-Rename HandshakeRequest.getSession -> getHttpSession
-* https://github.com/eclipse-ee4j/websocket-api/issues/143[Issue 143]
-ContainerProvider javadoc need to update the location of service
-provider
-* https://github.com/eclipse-ee4j/websocket-api/issues/131[Issue 131]
-Consider merging RemoteEndpoint and Session
-* https://github.com/eclipse-ee4j/websocket-api/issues/134[Issue 134]
-ContainerProvider#getWebSocketContainer()
-* https://github.com/eclipse-ee4j/websocket-api/issues/88[Issue 88]
-CloseReason changes
-* https://github.com/eclipse-ee4j/websocket-api/issues/136[Issue 136]
-Session.getRequestURI() . includes the query string ?
-* https://github.com/eclipse-ee4j/websocket-api/issues/111[Issue 111]
-Missing WebSocketClient#configuration attribute
-* https://github.com/eclipse-ee4j/websocket-api/issues/118[Issue 118]
-Scanning scheme forces creation of ServerEndpoinConfiguration class even
-for vanilla endpoints
-* https://github.com/eclipse-ee4j/websocket-api/issues/97[Issue 97]
-Consider using jax-rs MultiValueMap to represent Http headers in the
-handshake request and response
-* https://github.com/eclipse-ee4j/websocket-api/issues/137[Issue 137] An
-incoming message that is too big: should it cause the connection to
-close ? Or should the implementation report the error to the endpoint
-and move on ?
-* https://github.com/eclipse-ee4j/websocket-api/issues/110[Issue 110]
-Rename SendHandler#setResult
-* https://github.com/eclipse-ee4j/websocket-api/issues/9[Issue 9] API
-Usability: Consider API renaming, minor refactorizations for usability
-
-[[changes-in-v012-since-v011public-draft]]
-=== Changes in v012 since v011/Public Draft
-
-* https://github.com/eclipse-ee4j/websocket-api/issues/89[Issue 89]
-Extension unification
-* https://github.com/eclipse-ee4j/websocket-api/issues/94[Issue 94]
-WebSocketEndpoint.configuration should be an optional parameter
-* https://github.com/eclipse-ee4j/websocket-api/issues/84[Issue 84] Typo
-WebSocketResponse#getHeaders()
-* https://github.com/eclipse-ee4j/websocket-api/issues/91[Issue 91]
-WebSocketOpen javadoc
-* https://github.com/eclipse-ee4j/websocket-api/issues/86[Issue 86]
-PongMessage typo and formatting
-* https://github.com/eclipse-ee4j/websocket-api/issues/95[Issue 95]
-Clarify @WebSocketOpen, @WebSocketClose, @WebSocketError can each only
-annotate one method per annotated endpoint
-* https://github.com/eclipse-ee4j/websocket-api/issues/52[Issue 52]
-Define inheritance semantics for annotations
-* https://github.com/eclipse-ee4j/websocket-api/issues/75[Issue 75]
-Consider requiring BASIC and DIGEST authentication schemes in the client
-container.
-* https://github.com/eclipse-ee4j/websocket-api/issues/96[Issue 96] Allow
-Java primitives and boxed equivalents as message parameters to
-@WebSocketMessage methods
-* https://github.com/eclipse-ee4j/websocket-api/issues/119[Issue 119]
-WebSocketContainer can’t be a singleton
-* https://github.com/eclipse-ee4j/websocket-api/issues/120[Issue 120]
-Allow multiple ClientContainers per VM
-* https://github.com/eclipse-ee4j/websocket-api/issues/99[Issue 99]
-Define lifecycle and cardinality of encoders and decoders.
-* https://github.com/eclipse-ee4j/websocket-api/issues/121[Issue 121]
-RemoteEndpoint#[sendPing()|sendPong()] should throw IOException
-* https://github.com/eclipse-ee4j/websocket-api/issues/100[Issue 100]
-Clarify semantics of EJB SSB and Singletons and CDI managed beans -
-as-websockets
-* https://github.com/eclipse-ee4j/websocket-api/issues/85[Issue 85] Some
-DefaultClientConfiguration methods return ClientEndpointConfiguration
-* https://github.com/eclipse-ee4j/websocket-api/issues/102[Issue 102]
-CloseReason.CloseCodes
-* https://github.com/eclipse-ee4j/websocket-api/issues/122[Issue 122]
-Behaviour of onMessage(some mutable object) not defined
-* https://github.com/eclipse-ee4j/websocket-api/issues/127[Issue 127]
-Consider removing setBufferSize() on containers
-* https://github.com/eclipse-ee4j/websocket-api/issues/130[Issue 130]
-Wrong javadoc for @WebSocketMessage return type
-* https://github.com/eclipse-ee4j/websocket-api/issues/80[Issue 80]
-Semantics of undeploy of a websocket
-* https://github.com/eclipse-ee4j/websocket-api/issues/53[Issue 53]
-Endpoint class qualifiers for @WebSocketEndpoint
-* https://github.com/eclipse-ee4j/websocket-api/issues/117[Issue 117]
-Provide way to inform developers when connections timeout or close
-(without close frames being sent)
-* https://github.com/eclipse-ee4j/websocket-api/issues/81[Issue 81]
-Consider using Servlet security annotations to configure authorization
-and connection encryption
-* https://github.com/eclipse-ee4j/websocket-api/issues/74[Issue 74]
-Consider scoping getOpenSessions() just to the endpoint
-* https://github.com/eclipse-ee4j/websocket-api/issues/83[Issue 83]
-Define the portability semantics of ContainerProvider
-* https://github.com/eclipse-ee4j/websocket-api/issues/93[Issue 93]
-ServerEndpointConfiguration#getEndpointClass() for annotated endpoints
-* https://github.com/eclipse-ee4j/websocket-api/issues/92[Issue 92]
-Clarify javadoc on DecodeException
-* https://github.com/eclipse-ee4j/websocket-api/issues/87[Issue 87]
-Session should extend Closeable
-* https://github.com/eclipse-ee4j/websocket-api/issues/108[Issue 108]
-RemoteEndpoint#sendPing()/sendPong() data shouldn’t exceed 125 bytes
-* https://github.com/eclipse-ee4j/websocket-api/issues/105[Issue 105]
-Extension parameters ordering
-* https://github.com/eclipse-ee4j/websocket-api/issues/88[Issue 88]
-CloseReason changes
-* https://github.com/eclipse-ee4j/websocket-api/issues/112[Issue 112]
-ServerApplicationConfiguration#getAnnotatedEndpointClasses(Set<Class>
-scanned) using Class<?> instead of Class
-* https://github.com/eclipse-ee4j/websocket-api/issues/104[Issue 104]
-Session - javadoc/error reporting
-* https://github.com/eclipse-ee4j/websocket-api/issues/78[Issue 78]
-Specify extensions attribute in the annotation
-* https://github.com/eclipse-ee4j/websocket-api/issues/72[Issue 72]
-Consider producing separate JAR files for client and server API bundles
-* https://github.com/eclipse-ee4j/websocket-api/issues/113[Issue 113]
-Clarify websocket endpoints in EJB JARs do not need to be deployed
-
-[[changes-since-v011]]
-=== Changes since v011
-
-* Editorial cleanups
-
-[[changes-since-v010]]
-=== Changes since v010
-
-* Added batch mode to RemoteEndpoint
-* many additions to javadocs and formatting/editorial improvements to
-specification document
-
-[[changes-since-v009]]
-=== Changes since v009
-
-* New section on exception handling ([exception:error])
-* New and (hopefully final!) package arrangement to suit the
-client/server split.
-* Updated section on the relationship between web socket sessions,
-HttpSession and authenticated state ([jakartaee:httpsession]) and guidance
-for distributed implementations.
-* Full and updated description on application deployment on web
-containers. This now features a new ServerApplicationConfiguration class
-and removes programmatic server deployment.
-* ClientContainer/ServerContainer have now become one
-WebSocketContainer.
-* Removed EndpointFactory, replaced with ability to get the (custom)
-EndpointConfiguration from the onOpen method.
-* New Extension interface to model the websocket-extension parameters
-sent in the opening handshake.
-* Added ability to change the timeouts for async send operations.
-* Removed getInactiveTime() on Session due to performance concerns.
-* Added standard WebSocket handshake headers.
-
-[[changes-since-v008]]
-=== Changes since v008
-
-* Restricted the number of MessageHandlers that can be registered per
-Session to one per native WebSocket message type: text, binary, pong.
-* Added user property Map to Session.
-* Loosened the restrictions on @WebSocketMessage method parameters: now
-these methods can take any parameters that can be mapped to one of the
-MessageHandler types.
-* Refactored Endpoint and EndpointConfiguration and added
-EndpointFactory so that Endpoint instances can share state.
-
-[[changes-between-v008-and-edr-v006]]
-=== Changes between v008 and EDR (v006)
-
-* https://github.com/eclipse-ee4j/websocket-api/issues/7[Issue 7]
-* https://github.com/eclipse-ee4j/websocket-api/issues/10[Issue 10]
-* https://github.com/eclipse-ee4j/websocket-api/issues/14[Issue 14]
-* https://github.com/eclipse-ee4j/websocket-api/issues/50[Issue 50]
-* https://github.com/eclipse-ee4j/websocket-api/issues/23[Issue 23]
-* https://github.com/eclipse-ee4j/websocket-api/issues/61[Issue 61]
-* https://github.com/eclipse-ee4j/websocket-api/issues/29[Issue 29]
-* https://github.com/eclipse-ee4j/websocket-api/issues/28[Issue 28]
-* https://github.com/eclipse-ee4j/websocket-api/issues/51[Issue 51]
-* https://github.com/eclipse-ee4j/websocket-api/issues/57[Issue 57]
-* https://github.com/eclipse-ee4j/websocket-api/issues/36[Issue 36]
-* https://github.com/eclipse-ee4j/websocket-api/issues/44[Issue 44]
-* https://github.com/eclipse-ee4j/websocket-api/issues/18[Issue 18]
-* https://github.com/eclipse-ee4j/websocket-api/issues/54[Issue 54]
-* https://github.com/eclipse-ee4j/websocket-api/issues/41[Issue 41]
-* https://github.com/eclipse-ee4j/websocket-api/issues/23[Issue 23]
 
 plus a large number of smaller tweaks and editorial improvements.
 
