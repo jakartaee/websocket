@@ -1476,10 +1476,15 @@ either to the *GOLD_MEMBER* or *PLATINUM_MEMBER* roles.
     </user-data-constraint>
 </security-constraint>
 
-:sectnums!:
 [appendix]
+== Changes
+
+This appendix lists the changes in the WebSocket specification.
+This appendix is non-normative.
+
 [[changes-since-jsr-356]]
-== Changes Since JSR-356
+=== Changes Between 2.0 and JSR-356
+
 * https://github.com/eclipse-ee4j/websocket-api/pull/312[Pull Request 312]
 Convert from `javax.\*` to `jakarta.*`
 * https://github.com/eclipse-ee4j/websocket-api/pull/312[Pull Request 315]
