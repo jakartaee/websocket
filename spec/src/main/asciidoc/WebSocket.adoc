@@ -467,7 +467,7 @@ application [WSC-3.1.1-2].
 
 However, it is possible for an incoming URI in an opening handshake
 request theoretically to match more than one endpoint path. For example,
-consider the following case:-
+consider the following case:
 
 * incoming URI: "/a/b"
 
