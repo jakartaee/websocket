@@ -508,7 +508,7 @@ matches this is /a/b/
 
 * URIs that do NOT match (because empty string and strings
 with reserved characters "/" are not valid URI-template level 1
-expansions.):
+expansions):
 ** /a
 ** /a/b/c
 
@@ -1143,7 +1143,7 @@ Jakarta WebSocket applications are packaged using the usual conventions of
 the Jakarta and Java platforms.
 
 [[client-deployment-on-jdk]]
-=== Client Deployment on JDK
+=== Client Deployment on JRE
 
 The class files for the WebSocket application and any application
 resources such as Jakarta WebSocket client applications are packaged as JAR
