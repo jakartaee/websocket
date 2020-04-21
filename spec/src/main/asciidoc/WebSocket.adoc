@@ -120,45 +120,8 @@ Non-normative notes are formatted as shown below.
 [[jcp]]
 === Previous work in the JCP
 
-Prior to version 2.0, this specification was developed in the Java Community Process as part
-of JSR 356 (Coward 2013). It was the result of the collaborative work of
-the members of the JSR 356 expert group. The full public mail archive
-can be found at (“Expert group mailing list archive,” n.d.). The
-expert group members were:
-
-
--- Jean-Francois Arcand (Individual Member)
-
--- Greg Wilkins (Intalio)
-
--- Scott Ferguson (Caucho Technology, Inc)
-
--- Joe Walnes (DRW Holdings, LLC)
-
--- Minehiko IIDA (Fujitsu Limited)
-
--- Wenbo Zhu (Google Inc.)
-
--- Bill Wigger (IBM)
-
--- Justin Lee (Individual Member)
-
--- Danny Coward (Oracle)
-
--- Rémy Maucherat (RedHat)
-
--- Moon Namkoong (TmaxSoft, Inc.)
-
--- Mark Thomas (VMware)
-
--- Wei Chen (Voxeo Corporation)
-
--- Rossen Stoyanchev (VMware)
-
-During the development of this specification under the JCP many review
-comments, feedback and suggestions were received. Thanks in particular to: Jitendra
-Kotamraju, Martin Matula, Štěpán Kopřiva, Dhiru Panday, Jondean Healey,
-Joakim Erdfelt, Dianne Jiao, Michal Čonos and Jan Šupol.
+Prior to version 2.0, this specification was developed in the Java
+Community Process as part of JSR 356.
 
 [[applications]]
 == Applications
@@ -1503,16 +1466,11 @@ http://dev.w3.org/html5/websockets/.
 [3] S. Bradner. RFC 2119: Keywords for use in RFCs to Indicate Requirement Levels. RFC, IETF, March
 1997. See http://www.ietf.org/rfc/rfc2119.txt.
 
-[4] Danny Coward. Java API for WebSocket. JSR, JCP, 2013. See http://jcp.org/en/jsr/detail?id=356.
-
-[5] Expert group mailing list archive. Web site. See
-https://download.oracle.com/javaee-archive/websocket-spec.java.net/jsr356-experts/.
-
-[6] J. Gregorio, R. Fielding, M. Hadley, M. Nottingham, and D. Orchard. RFC 6570: URI Template. RFC,
+[4] J. Gregorio, R. Fielding, M. Hadley, M. Nottingham, and D. Orchard. RFC 6570: URI Template. RFC,
 IETF, March 2012. See http://www.ietf.org/rfc/rfc6570.txt.
 
-[7] Pete Muir. Contexts and Dependency Injection for Java EE. JSR, JCP, 2013. See
+[5] Pete Muir. Contexts and Dependency Injection for Java EE. JSR, JCP, 2013. See
 http://jcp.org/en/jsr/detail?id=347.
 
-[8] Linda DeMichiel and Bill Shannon. Java Platform, Enterprise Edition 7 (Java EE 7) Specification.
+[6] Linda DeMichiel and Bill Shannon. Java Platform, Enterprise Edition 7 (Java EE 7) Specification.
 JSR, JCP, 2013. See http://jcp.org/en/jsr/detail?id=342.
