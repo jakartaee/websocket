@@ -1282,7 +1282,7 @@ must be the same as the Servlet context root of the web application
 
 The minimum versions of the platforms are:
 
-* Java SE version 7, for the Jakarta WebSocket Client API [WSC-6.5-1].
+* Java SE version 8, for the Jakarta WebSocket Client API [WSC-6.5-1].
 * Jakarta EE version 9, for the Jakarta WebSocket Server API [WSC-6.5-2].
 
 [[jakartaee]]
