@@ -115,8 +115,8 @@ public interface RemoteEndpoint {
     /**
      * This representation of the peer of a web socket conversation has the ability to send messages asynchronously. The
      * point of completion of the send is defined when all the supplied data has been written to the underlying
-     * connection. The completion handlers for the asynchronous methods are always called with a different thread from
-     * that which initiated the send.
+     * connection. The completion handlers for the asynchronous methods may be called with a different thread from that
+     * which initiated the send.
      */
     interface Async extends RemoteEndpoint {
 
