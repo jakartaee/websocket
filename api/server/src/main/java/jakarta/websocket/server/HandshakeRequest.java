@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018, 2019 Oracle and/or its affiliates and others.
+ * Copyright (c) 2018, 2020 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -23,7 +23,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * The handshake request represents the web socket defined Http GET request for the opening handshake of a web socket
+ * The handshake request represents the WebSocket defined HTTP GET request for the opening handshake of a WebSocket
  * session.
  *
  * @author dannycoward
@@ -47,8 +47,8 @@ public interface HandshakeRequest {
     static String SEC_WEBSOCKET_EXTENSIONS = "Sec-WebSocket-Extensions";
 
     /**
-     * Return the read only Map of Http Headers that came with the handshake request. The header names are case
-     * insensitive.
+     * Return the read only map of HTTP headers to header values that came with the handshake request. Note that the
+     * lookup of header names will be performed in a case insensitive manner.
      *
      * @return the list of headers.
      */
