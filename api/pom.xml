@@ -181,6 +181,13 @@
                             <packages>jakarta.websocket*</packages>
                         </group>
                     </groups>
+                    <tags>
+                        <tag>
+                            <name>implSpec</name>
+                            <placement>a</placement>
+                            <head>Implementation Requirements:</head>
+                        </tag>
+                    </tags>
                     <links>
                         <link>http://docs.oracle.com/javase/6/docs/api/</link>
                     </links>

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018, 2019 Oracle and/or its affiliates and others.
+ * Copyright (c) 2018, 2020 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -38,15 +38,21 @@ public interface Encoder {
      * This method is called with the endpoint configuration object of the endpoint this encoder is intended for when it
      * is about to be brought into service.
      *
+     * @implSpec The default implementation takes no action.
+     *
      * @param config the endpoint configuration object when being brought into service
      */
-    void init(EndpointConfig config);
+    default void init(EndpointConfig config) {
+    }
 
     /**
      * This method is called when the encoder is about to be removed from service in order that any resources the
      * encoder used may be closed gracefully.
+     *
+     * @implSpec The default implementation takes no action.
      */
-    void destroy();
+    default void destroy() {
+    }
 
     /**
      * This interface defines how to provide a way to convert a custom object into a text message.
