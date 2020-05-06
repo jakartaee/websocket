@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018, 2019 Oracle and/or its affiliates and others.
+ * Copyright (c) 2018, 2020 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * The handshake response represents the web socket-defined Http response that is the response to the opening handshake
+ * The handshake response represents the WebSocket-defined HTTP response that is the response to the opening handshake
  * request.
  *
  * @author dannycoward
@@ -34,9 +34,10 @@ public interface HandshakeResponse {
     static final String SEC_WEBSOCKET_ACCEPT = "Sec-WebSocket-Accept";
 
     /**
-     * Return the list of Http headers sent by the web socket server.
+     * Return the map of HTTP headers to header values sent by the WebSocket server. Note that the lookup of header
+     * names will be performed in a case insensitive manner.
      *
-     * @return the http headers .
+     * @return the HTTP headers.
      */
     Map<String, List<String>> getHeaders();
 }
