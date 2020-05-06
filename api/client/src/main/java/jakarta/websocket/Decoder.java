@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018, 2019 Oracle and/or its affiliates and others.
+ * Copyright (c) 2018, 2020 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -36,15 +36,21 @@ public interface Decoder {
      * This method is called with the endpoint configuration object of the endpoint this decoder is intended for when it
      * is about to be brought into service.
      *
+     * @implSpec The default implementation takes no action.
+     *
      * @param config the endpoint configuration object when being brought into service
      */
-    void init(EndpointConfig config);
+    default void init(EndpointConfig config) {
+    }
 
     /**
      * This method is called when the decoder is about to be removed from service in order that any resources the
      * decoder used may be closed gracefully.
+     *
+     * @implSpec The default implementation takes no action.
      */
-    void destroy();
+    default void destroy() {
+    }
 
     /**
      * This interface defines how a custom object (of type T) is decoded from a web socket message in the form of a byte
