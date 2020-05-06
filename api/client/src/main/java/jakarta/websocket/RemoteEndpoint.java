@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018, 2019 Oracle and/or its affiliates and others.
+ * Copyright (c) 2018, 2020 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -275,7 +275,10 @@ public interface RemoteEndpoint {
 
         /**
          * Opens an output stream on which a binary message may be sent. The developer must close the output stream in
-         * order to indicate that the complete message has been placed into the output stream.
+         * order to indicate that the complete message has been placed into the output stream. If no calls are made to
+         * one of the {@code write()} methods before the output stream is closed then no WebSocket binary messages will
+         * be sent. If at least one call is made to one of the {@code write()} methods before the output stream is
+         * closed then at least one WebSocket binary message will be sent even if that message is of zero length.
          *
          * @return the output stream to which the message will be written.
          * @throws IOException if there is a problem obtaining the OutputStream to write the binary message.
@@ -283,8 +286,12 @@ public interface RemoteEndpoint {
         OutputStream getSendStream() throws IOException;
 
         /**
-         * Opens an character stream on which a text message may be sent. The developer must close the writer in order
-         * to indicate that the complete message has been placed into the character stream.
+         * Opens a character stream on which a text message may be sent. The developer must close the writer in order to
+         * indicate that the complete message has been placed into the character stream. If no calls are made to one of
+         * the {@code write()} or {@code append()} methods before the writer is closed then no WebSocket text messages
+         * will be sent. If at least one call is made to one of the {@code write()} or {@code append()} methods before
+         * the writer is closed then at least one WebSocket text message will be sent even if that message is of zero
+         * length.
          *
          * @return the writer to which the message will be written.
          * @throws IOException if there is a problem obtaining the Writer to write the text message.
