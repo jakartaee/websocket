@@ -62,6 +62,11 @@ public interface Decoder {
 
         /**
          * Decode the given bytes into an object of type T.
+         * <p>
+         * It is not safe for other threads to use the ByteBuffer until the decoding of the given bytes is complete. If
+         * the decoding completes successfully, the buffer's limit will be unchanged and the buffer's position
+         * will be equal to the limit. If the decoding does not complete successfully, the state of the buffer is
+         * undefined.
          *
          * @param bytes the bytes to be decoded.
          * @return the decoded object.
@@ -72,6 +77,9 @@ public interface Decoder {
 
         /**
          * Answer whether the given bytes can be decoded into an object of type T.
+         * <p>
+         * It is not safe for other threads to use the ByteBuffer until this method completes. When the method
+         * completes, the buffer will be in the same state as it was at the start of the method call.
          *
          * @param bytes the bytes to be decoded.
          * @return whether or not the bytes can be decoded by this decoder.
