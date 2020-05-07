@@ -189,9 +189,10 @@ public interface RemoteEndpoint {
          * Initiates the asynchronous transmission of a custom developer object. The developer will have provided an
          * encoder for this object type in the endpoint configuration. Containers will by default be able to encode java
          * primitive types and their object equivalents, otherwise the developer must have provided an encoder for the
-         * object type in the endpoint configuration. Progress may be tracked using the Future object. The Future's
-         * get() methods return {@code null} upon successful completion. Errors in transmission are wrapped in the
-         * {@link java.util.concurrent.ExecutionException} thrown when querying the Future object.
+         * object type in the endpoint configuration. A developer-provided encoder for a Java primitive type and its
+         * object equivalent overrides the container default encoder. Progress may be tracked using the Future object.
+         * The Future's get() methods return {@code null} upon successful completion. Errors in transmission are wrapped
+         * in the {@link java.util.concurrent.ExecutionException} thrown when querying the Future object.
          *
          * @param data the object being sent.
          * @return the Future object representing the send operation.
@@ -203,8 +204,9 @@ public interface RemoteEndpoint {
         /**
          * Initiates the asynchronous transmission of a custom developer object. Containers will by default be able to
          * encode java primitive types and their object equivalents, otherwise the developer must have provided an
-         * encoder for the object type in the endpoint configuration. Developers are notified when transmission is
-         * complete through the supplied callback object.
+         * encoder for the object type in the endpoint configuration. A developer-provided encoder for a Java primitive
+         * type and its object equivalent overrides the container default encoder. Developers are notified when
+         * transmission is complete through the supplied callback object.
          *
          * @param data    the object being sent.
          * @param handler the handler that will be notified of progress, must not be {@code null}.
@@ -302,7 +304,7 @@ public interface RemoteEndpoint {
          * Sends a custom developer object, blocking until it has been transmitted. Containers will by default be able
          * to encode java primitive types and their object equivalents, otherwise the developer must have provided an
          * encoder for the object type in the endpoint configuration. A developer-provided encoder for a Java primitive
-         * type overrides the container default encoder.
+         * type and its object equivalent overrides the container default encoder.
          *
          * @param data the object to be sent.
          * @throws IOException              if there is a communication error sending the message object.
