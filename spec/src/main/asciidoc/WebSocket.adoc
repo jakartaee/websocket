@@ -726,10 +726,11 @@ classes must implement some form of the *Encoder* interface, have
 public no-arg constructors and be visible within the classpath of the
 application that this WebSocket endpoint is part of. The implementation
 must create a new instance of each encoder per connection per endpoint
-which guarantees no two threads are in the encoder at the same time. The
-implementation must attempt to encode application objects of matching
-parametrized type as the encoder when they are attempted to be sent
-using the *RemoteEndpoint* API [WSC-4.1.2-1].
+which guarantees no two threads are in the encoder at the same time. When
+sending an application object using the *RemoteEndpoint* API that is of a
+type that matches (same class or a sub-class) the parameterized type of
+the Encoder, the implementation must attempt to encode the object using
+the matching Encoder [WSC-4.1.2-1].
 
 [[decoders]]
 ==== decoders
@@ -785,10 +786,11 @@ classes must implement some form of the *Encoder* interface, have
 public no-arg constructors and be visible within the classpath of the
 application that this WebSocket endpoint is part of. The implementation
 must create a new instance of each encoder per connection per endpoint
-which guarantees no two threads are in the encoder at the same time. The
-implementation must attempt to encode application objects of matching
-parametrized type as the encoder when they are attempted to be sent
-using the *RemoteEndpoint* API [WSC-4.2.1-1].
+which guarantees no two threads are in the encoder at the same time. When
+sending an application object using the *RemoteEndpoint* API that is of a
+type that matches (same class or a sub-class) the parameterized type of
+the Encoder, the implementation must attempt to encode the object using
+the matching Encoder[WSC-4.2.1-1].
 
 [[decoders-1]]
 ==== decoders
