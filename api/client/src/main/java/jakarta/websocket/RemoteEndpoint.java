@@ -95,6 +95,11 @@ public interface RemoteEndpoint {
     /**
      * Send a Ping message containing the given application data to the remote endpoint. The corresponding Pong message
      * may be picked up using the MessageHandler.Pong handler.
+     * <p>
+     * It is not safe for other threads to use the ByteBuffer until the sending of this message is complete. If the
+     * sending of the message completes successfully, the buffer's limit will be unchanged and the buffer's position
+     * will be equal to the limit. If the sending of the message does not complete successfully, the state of the buffer
+     * is undefined.
      *
      * @param applicationData the data to be carried in the ping request.
      * @throws IOException              if the ping failed to be sent
@@ -105,6 +110,11 @@ public interface RemoteEndpoint {
     /**
      * Allows the developer to send an unsolicited Pong message containing the given application data in order to serve
      * as a unidirectional heartbeat for the session.
+     * <p>
+     * It is not safe for other threads to use the ByteBuffer until the sending of this message is complete. If the
+     * sending of the message completes successfully, the buffer's limit will be unchanged and the buffer's position
+     * will be equal to the limit. If the sending of the message does not complete successfully, the state of the buffer
+     * is undefined.
      *
      * @param applicationData the application data to be carried in the pong response.
      * @throws IOException              if the pong failed to be sent
@@ -167,6 +177,11 @@ public interface RemoteEndpoint {
          * transmitted. Developers use the returned Future object to track progress of the transmission. The Future's
          * get() method returns {@code null} upon successful completion. Errors in transmission are wrapped in the
          * {@link java.util.concurrent.ExecutionException} thrown when querying the Future object.
+         * <p>
+         * It is not safe for other threads to use the ByteBuffer until the sending of this message is complete. If the
+         * sending of the message completes successfully, the buffer's limit will be unchanged and the buffer's position
+         * will be equal to the limit. If the sending of the message does not complete successfully, the state of the
+         * buffer is undefined.
          *
          * @param data the data being sent.
          * @return the Future object representing the send operation.
@@ -178,6 +193,11 @@ public interface RemoteEndpoint {
          * Initiates the asynchronous transmission of a binary message. This method returns before the message is
          * transmitted. Developers provide a callback to be notified when the message has been transmitted. Errors in
          * transmission are given to the developer in the SendResult object.
+         * <p>
+         * It is not safe for other threads to use the ByteBuffer until the sending of this message is complete. If the
+         * sending of the message completes successfully, the buffer's limit will be unchanged and the buffer's position
+         * will be equal to the limit. If the sending of the message does not complete successfully, the state of the
+         * buffer is undefined.
          *
          * @param data    the data being sent, must not be {@code null}.
          * @param handler the handler that will be notified of progress, must not be {@code null}.
@@ -241,6 +261,11 @@ public interface RemoteEndpoint {
 
         /**
          * Send a binary message, returning when all of the message has been transmitted.
+         * <p>
+         * It is not safe for other threads to use the ByteBuffer until the sending of this message is complete. If the
+         * sending of the message completes successfully, the buffer's limit will be unchanged and the buffer's position
+         * will be equal to the limit. If the sending of the message does not complete successfully, the state of the
+         * buffer is undefined.
          *
          * @param data the message to be sent.
          * @throws IOException              if there is a problem delivering the message.
@@ -265,6 +290,11 @@ public interface RemoteEndpoint {
          * Send a binary message in parts, blocking until all of the message has been transmitted. The runtime reads the
          * message in order. Non-final parts are sent with isLast set to false. The final piece must be sent with isLast
          * set to true.
+         * <p>
+         * It is not safe for other threads to use the ByteBuffer until the sending of this partial message is complete.
+         * If the sending of the partial message completes successfully, the buffer's limit will be unchanged and the
+         * buffer's position will be equal to the limit. If the sending of the partial message does not complete
+         * successfully, the state of the buffer is undefined.
          *
          * @param partialByte the part of the message being sent.
          * @param isLast      Whether the partial message being sent is the last part of the message.
