@@ -259,7 +259,10 @@ public interface Session extends Closeable {
     URI getRequestURI();
 
     /**
-     * Return the request parameters associated with the request this session was opened under.
+     * Return the request parameters associated with the request this session was opened under. The request parameters
+     * will have been part of the HTTP upgrade request which is limited by RFC 6455 to only use the HTTP GET method.
+     * Therefore, the parameters in the returned Map will be a representation of the parameters contained in the query
+     * string.
      *
      * @return the unmodifiable map of the request parameters.
      */
