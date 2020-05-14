@@ -902,7 +902,8 @@ that the decorated method be called whenever a new client has connected
 to this endpoint. The container notifies the method after the connection
 has been established [WSC-4.4-1]. The decorated method can only have an
 optional *Session* parameter, an optional *EndpointConfig* parameter and
-zero to n *String* parameters annotated with a *@PathParam* annotation
+zero to n parameters (of type *String*, any Java primitive type, or boxed
+version thereof) annotated with a *@PathParam* annotation
 as parameters. If the *Session* parameter is present, the implementation
 must pass in the newly created *Session* corresponding to the new
 connection [WSC-4.4-2].
@@ -923,7 +924,8 @@ the remote peer, by the local container or by a call to
 **session.close()**. The container notifies the method before the
 connection is brought down [WSC-4.5-1]. The decorated method can only
 have optional *Session* parameter, optional *CloseReason* parameter and
-zero to n *String* parameters annotated with a *@PathParam* annotation
+zero to n parameters (of type *String*, any Java primitive type, or boxed
+version thereof) annotated with a *@PathParam* annotation
 as parameters. If the *Session* parameter is present, the implementation
 must pass in the about-to-be ended *Session* corresponding to the
 connection [WSC-4.5-2]. If the method itself throws an error, the
@@ -943,7 +945,8 @@ with *@ServerEndpoint* or **@ClientEndpoint**. The annotation defines
 that the decorated method be called whenever an error is generated on
 any of the connections to this endpoint. The decorated method can only
 have optional *Session* parameter, mandatory *Throwable* parameter and
-zero to n *String* parameters annotated with a *@PathParam* annotation
+zero to n parameters (of type *String*, any Java primitive type, or boxed
+version thereof) annotated with a *@PathParam* annotation
 as parameters. If the *Session* parameter is present, the implementation
 must pass in the *Session* in which the error occurred to the connection
 [WSC-4.6-1]. The container must pass the error as the *Throwable*
