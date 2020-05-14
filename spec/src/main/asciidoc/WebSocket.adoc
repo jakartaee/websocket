@@ -907,10 +907,10 @@ as parameters. If the *Session* parameter is present, the implementation
 must pass in the newly created *Session* corresponding to the new
 connection [WSC-4.4-2].
 
-Any Java class using this annotation on a method
-that does not follow these rules, or that uses this annotation on more
-than one method may not be deployed by the implementation and the error
-reported to the deployer [WSC-4.4-3].
+Any Java class using this annotation on a method that does not follow
+these rules, or that uses this annotation on more than one method must
+not be deployed by the implementation and the error must be reported to
+the deployer [WSC-4.4-3].
 
 [[onclose]]
 === @OnClose
@@ -931,9 +931,9 @@ implementation must pass this error to the *onError()* method of the
 endpoint together with the session [WSC-4.5-3].
 
 Any Java class using this annotation on a method that does not follow
-these rules, or that uses this annotation on more than one method may
-not be deployed by the implementation and the error reported to the
-deployer [WSC-4.5-4].
+these rules, or that uses this annotation on more than one method must
+not be deployed by the implementation and the error must be reported to
+the deployer [WSC-4.5-4].
 
 [[onerror]]
 === @OnError
@@ -950,9 +950,9 @@ must pass in the *Session* in which the error occurred to the connection
 parameter to this method [WSC-4.6-2].
 
 Any Java class using this annotation on a method that does not follow
-these rules, or that uses this annotation on more than one method may
-not be deployed by the implementation and the error reported to the
-deployer [WSC-4.6-3].
+these rules, or that uses this annotation on more than one method must
+not be deployed by the implementation and the error must be reported to
+the deployer [WSC-4.6-3].
 
 [[onmessage]]
 === @OnMessage
