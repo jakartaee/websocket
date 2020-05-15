@@ -453,7 +453,23 @@ These operations are laid out below.
 ==== URI Mapping
 
 This section describes the the URI mapping policy for server endpoints.
-The WebSocket implementation must compare the incoming URI to the
+
+All server endpoint paths must:
+
+* be a URI-template (level-1) or a partial URI
+* start with a leading '/'
+* not contain the sequences `/../`, `/./` or `//`
+
+Additionally, URI-template server endpoint paths must:
+
+* Only replace whole URI segments with variables
+* Not use the same variable more than once in a path 
+
+For a definition of URI segments, see RFC 3986 (Berners-Lee et al. 2005).
+For a definition of URI-templates, see RFC 6570 (Gregorio et al. 2012).
+
+The WebSocket implementation must compare the normalized - see section 6
+of RFC 3986 (Berners-Lee et al. 2005) - incoming URI to the
 collection of all endpoint paths and determine the best match. The
 incoming URI in an opening handshake request matches an endpoint path if
 either it is an exact match in the case where the endpoint path is a
@@ -1480,3 +1496,7 @@ http://jcp.org/en/jsr/detail?id=347.
 
 [6] Linda DeMichiel and Bill Shannon. Java Platform, Enterprise Edition 7 (Java EE 7) Specification.
 JSR, JCP, 2013. See http://jcp.org/en/jsr/detail?id=342.
+
+[7] T. Berners-Lee, R. Fielding and L. Masinter. RFC 3986: Uniform Resource Identifier
+(URI): Generic Syntax, IETF, January 2005.
+See https://tools.ietf.org/rfc/rfc3986.txt
