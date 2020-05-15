@@ -510,6 +510,7 @@ matches this is /a/b/
 with reserved characters "/" are not valid URI-template level 1
 expansions):
 ** /a
+** /a/b/
 ** /a/b/c
 
 
