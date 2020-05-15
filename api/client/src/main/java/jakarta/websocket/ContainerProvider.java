@@ -18,6 +18,7 @@
 package jakarta.websocket;
 
 import java.util.Iterator;
+import java.util.ServiceConfigurationError;
 import java.util.ServiceLoader;
 
 /**
@@ -38,6 +39,10 @@ public abstract class ContainerProvider {
      * WebSocketContainer implementation from the ContainerProvider implementation that is not {@code null}.
      *
      * @return an implementation provided instance of type WebSocketContainer
+     *
+     * @throws ServiceConfigurationError If there is a problem loading one of the discovered ContainerProvider
+     *         implementations. A ServiceConfigurationError is viewed as a serious problem so the exception is allowed
+     *         to propagate rather than swallowing the exception and attempting to load the next provider (if any).
      */
     public static WebSocketContainer getWebSocketContainer() {
         Iterator<ContainerProvider> providers = ServiceLoader.load(ContainerProvider.class).iterator();
