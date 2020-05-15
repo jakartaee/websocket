@@ -72,6 +72,13 @@ public abstract class Endpoint {
 
     /**
      * Developers must implement this method to be notified when a new conversation has just begun.
+     * <p>
+     * Note:
+     * <ul>
+     * <li>It is permitted to send messages from this method.</li>
+     * <li>It is permitted to add {@link MessageHandler}s from this method. No messages will be
+     *     mapped to the appropriate {@link MessageHandler} until this method has completed.</li>
+     * </ul>
      *
      * @param session the session that has just been activated.
      * @param config  the configuration used to configure this endpoint.
