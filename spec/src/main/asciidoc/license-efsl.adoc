@@ -14,7 +14,7 @@ endif::[]
 Release: {revdate}
 ....
 
-Copyright (c) 2020 Eclipse Foundation.
+Copyright (c) 2018, {revyear} Eclipse Foundation.
 
 === Eclipse Foundation Specification License
 
@@ -32,8 +32,8 @@ document, or portions thereof, that you use:
 * link or URL to the original Eclipse Foundation document.
 * All existing copyright notices, or if one does not exist, a notice
   (hypertext is preferred, but a textual representation is permitted)
-  of the form: "Copyright (c) [$date-of-document]
-  Eclipse Foundation, Inc. \<<url to this license>>"
+  of the form: "Copyright © [$date-of-document] Eclipse Foundation, Inc.
+  \<<url to this license>>"
 
 Inclusion of the full text of this NOTICE must be provided. We
 request that authorship attribution be provided in any software,
@@ -52,9 +52,10 @@ specification is expressly prohibited.
 
 The notice is:
 
-"Copyright (c) 2020 Eclipse Foundation. This software or document
-includes material copied from or derived from {doctitle} {revnumber}
-{revremark} [URI of the Eclipse Foundation specification document]."
+"Copyright © 2018, 2020 Eclipse Foundation. This software or document
+includes material copied from or derived from
+Jakarta ® WebSocket
+https://jakarta.ee/specifications/websocket/2.0/[https://jakarta.ee/specifications/websocket/2.0/]"
 
 ==== Disclaimers
 
