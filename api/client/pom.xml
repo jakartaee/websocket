@@ -32,6 +32,10 @@
     <description>Jakarta WebSocket - Client API</description>
     <url>https://projects.eclipse.org/projects/ee4j.websocket</url>
 
+    <properties>
+        <jpms.name>jakarta.websocket.client.api</jpms.name>
+    </properties>
+
     <build>
         <resources>
             <resource>
@@ -44,27 +48,18 @@
             </resource>
         </resources>
         <plugins>
+            <!-- Plugins from parent -->
             <plugin>
-                <groupId>org.glassfish.build</groupId>
-                <artifactId>spec-version-maven-plugin</artifactId>
-                <configuration>
-                    <specMode>jakarta</specMode>
-                    <spec>
-                        <nonFinal>false</nonFinal>
-                        <jarType>api</jarType>
-                        <apiPackage>${api_package}.client</apiPackage>
-                        <specVersion>${spec_version}</specVersion>
-                        <specImplVersion>${spec_impl_version}</specImplVersion>
-                    </spec>
-                </configuration>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>set-spec-properties</goal>
-                            <goal>check-module</goal>
-                        </goals>
-                    </execution>
-                </executions>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-enforcer-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.glassfish.copyright</groupId>
+                <artifactId>glassfish-copyright-maven-plugin</artifactId>
             </plugin>
             <plugin>
                 <groupId>org.apache.felix</groupId>
@@ -83,6 +78,14 @@
                         </manifestEntries>
                     </archive>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
             </plugin>
         </plugins>
     </build>

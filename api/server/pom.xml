@@ -32,6 +32,10 @@
     <description>Jakarta WebSocket - Server API</description>
     <url>https://projects.eclipse.org/projects/ee4j.websocket</url>
 
+    <properties>
+        <jpms.name>jakarta.websocket.api</jpms.name>
+    </properties>
+
     <build>
         <resources>
             <resource>
@@ -44,27 +48,18 @@
             </resource>
         </resources>
         <plugins>
+            <!-- Plugins from parent -->
             <plugin>
-                <groupId>org.glassfish.build</groupId>
-                <artifactId>spec-version-maven-plugin</artifactId>
-                <configuration>
-                    <specMode>jakarta</specMode>
-                    <spec>
-                        <nonFinal>false</nonFinal>
-                        <jarType>api</jarType>
-                        <apiPackage>${api_package}</apiPackage>
-                        <specVersion>${spec_version}</specVersion>
-                        <specImplVersion>${spec_impl_version}</specImplVersion>
-                    </spec>
-                </configuration>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>set-spec-properties</goal>
-                            <goal>check-module</goal>
-                        </goals>
-                    </execution>
-                </executions>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-enforcer-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.glassfish.copyright</groupId>
+                <artifactId>glassfish-copyright-maven-plugin</artifactId>
             </plugin>
             <plugin>
                 <groupId>org.apache.felix</groupId>
@@ -73,18 +68,34 @@
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-source-plugin</artifactId>
-                <configuration>
-                    <skip>true</skip>
-                </configuration>
-            </plugin>            
+                <artifactId>maven-jar-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>attach-source-jar</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                        <configuration>
+                            <classifier>sources</classifier>
+                            <classesDirectory>${project.build.directory}/sources</classesDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+            </plugin>
+
+            <!-- Module specific plugins -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
+                <version>2.6</version>
                 <executions>
                     <execution>
                         <id>sources-as-resources</id>
-                        <phase>package</phase>
+                        <phase>prepare-package</phase>
                         <goals>
                             <goal>copy-resources</goal>
                         </goals>
@@ -102,10 +113,11 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
+                <version>2.6</version>
                 <executions>
                     <execution>
                         <id>unpack-client-sources</id>
-                        <phase>package</phase>
+                        <phase>prepare-package</phase>
                         <goals>
                             <goal>unpack</goal>
                         </goals>
@@ -120,22 +132,6 @@
                                     <outputDirectory>${project.build.directory}/sources</outputDirectory>
                                 </artifactItem>
                             </artifactItems>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jar-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>attach-source-jar</id>
-                        <goals>
-                            <goal>jar</goal>
-                        </goals>
-                        <configuration>
-                            <classifier>sources</classifier>
-                            <classesDirectory>${project.build.directory}/sources</classesDirectory>
                         </configuration>
                     </execution>
                 </executions>
