@@ -27,48 +27,18 @@
         <version>1.0.6</version>
     </parent>
 
-    <groupId>org.eclipse.ee4j.websocket</groupId>
+    <groupId>jakarta.websocket</groupId>
     <artifactId>websocket-parent</artifactId>
-    <packaging>pom</packaging>
     <version>2.0.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
     <name>Jakarta WebSocket</name>
     <description>Jakarta WebSocket</description>
     <url>https://projects.eclipse.org/projects/ee4j.websocket</url>
-
-    <inceptionYear>2012</inceptionYear>
-
-    <scm>
-        <connection>scm:git:https://github.com/eclipse-ee4j/websocket-api</connection>
-        <developerConnection>scm:git:ssh://git@github.com/eclipse-ee4j/websocket-api</developerConnection>
-        <url>https://github.com/eclipse-ee4j/websocket-api</url>
-        <tag>1.1</tag>
-    </scm>
-
-    <properties>
-        <api_package>jakarta.websocket</api_package>
-        <spec_version>2.0</spec_version>
-        <!--<spec_build>02</spec_build>-->
-        <new_spec_version>2.0</new_spec_version>
-        <spec_impl_version>2.0.0</spec_impl_version>
-        <packages.export>jakarta.websocket.*</packages.export>
-    </properties>
 
     <modules>
         <module>api</module>
         <module>spec</module>
     </modules>
-
-    <licenses>
-        <license>
-            <name>Eclipse Public License 2.0</name>
-            <url>https://projects.eclipse.org/license/epl-2.0</url>
-            <distribution>repo</distribution>
-        </license>
-        <license>
-            <name>GNU General Public License, version 2 with the GNU Classpath Exception</name>
-            <url>https://projects.eclipse.org/license/secondary-gpl-2.0-cp</url>
-            <distribution>repo</distribution>
-        </license>
-    </licenses>
 
 </project>
