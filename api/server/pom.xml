@@ -71,7 +71,7 @@
                 <artifactId>maven-jar-plugin</artifactId>
                 <executions>
                     <execution>
-                        <id>attach-source-jar</id>
+                        <id>attach-sources</id>
                         <goals>
                             <goal>jar</goal>
                         </goals>
