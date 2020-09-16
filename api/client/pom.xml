@@ -33,7 +33,7 @@
     <url>https://projects.eclipse.org/projects/ee4j.websocket</url>
 
     <properties>
-        <jpms.name>jakarta.websocket.client.api</jpms.name>
+        <jpms.name>jakarta.websocket.client</jpms.name>
     </properties>
 
     <build>
@@ -74,7 +74,7 @@
                     <archive>
                         <manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile>
                         <manifestEntries>
-                            <Automatic-Module-Name>jakarta.websocket.client.api</Automatic-Module-Name>
+                            <Automatic-Module-Name>jakarta.websocket.client</Automatic-Module-Name>
                         </manifestEntries>
                     </archive>
                 </configuration>
