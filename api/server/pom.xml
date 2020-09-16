@@ -33,7 +33,7 @@
     <url>https://projects.eclipse.org/projects/ee4j.websocket</url>
 
     <properties>
-        <jpms.name>jakarta.websocket.api</jpms.name>
+        <jpms.name>jakarta.websocket</jpms.name>
     </properties>
 
     <build>
