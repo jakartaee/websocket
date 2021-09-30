@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018, 2020 Oracle and/or its affiliates and others.
+ * Copyright (c) 2018, 2021 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -96,7 +96,12 @@ public interface ServerEndpointConfig extends EndpointConfig {
             throw new RuntimeException("Cannot load platform configurator");
         }
 
-        ServerEndpointConfig.Configurator getContainerDefaultConfigurator() {
+        /**
+         * Return the platform default configurator.
+         *
+         * @return the platform default configurator
+         */
+        public ServerEndpointConfig.Configurator getContainerDefaultConfigurator() {
             if (this.containerDefaultConfigurator == null) {
                 this.containerDefaultConfigurator = fetchContainerDefaultConfigurator();
             }
