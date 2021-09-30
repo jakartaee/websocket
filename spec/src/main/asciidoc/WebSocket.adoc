@@ -1,8 +1,8 @@
 :xrefstyle: short
 :sectnums!:
-== Jakarta WebSocket Specification, Version 2.0
+== Jakarta WebSocket Specification, Version 2.1
 
-Copyright (c) 2011, 2020 Oracle and/or its affiliates and others.
+Copyright (c) 2011, 2021 Oracle and/or its affiliates and others.
 All rights reserved.
 
 Eclipse is a registered trademark of the Eclipse Foundation. Jakarta
@@ -223,6 +223,12 @@ messages. The WebSocket implementation must generate an error if this
 restriction is violated [WSC 2.1.3-2].
 
 Future versions of the specification may lift this restriction.
+
+The registered *MessageHandlers* for a *Session* may be changed at runtime.
+To avoid any ambiguity, once the container has identified a *MessageHandler*
+for a message, the *MessageHandler* is used for the entirety of the message
+irrespective of any subsequent changes to the *MessageHandlers* configured
+for the *Session*.
 
 Method *Session.addMessageHandler(MessageHandler)* is not safe for use
 in all circumstances, especially when using Lambda Expressions. The API
