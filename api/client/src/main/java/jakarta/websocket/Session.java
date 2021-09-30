@@ -65,6 +65,9 @@ public interface Session extends Closeable {
      * cases (Lambda Expressions, more complex inheritance or generic type arrangements), one of the following methods
      * have to be used: {@link #addMessageHandler(Class, jakarta.websocket.MessageHandler.Whole)} or
      * {@link #addMessageHandler(Class, jakarta.websocket.MessageHandler.Partial)}.
+     * <p>
+     * Once the container has identified a MessageHandler for a message, the MessageHandler is used for the entirety of
+     * the message irrespective of any subsequent changes to the MessageHandlers configured for the Session.
      *
      * @param handler the MessageHandler to be added.
      * @throws IllegalStateException if there is already a MessageHandler registered for the same native websocket
@@ -79,6 +82,9 @@ public interface Session extends Closeable {
      * maximum of one for handling incoming pong messages. For further details of which message handlers handle which of
      * the native websocket message types please see {@link MessageHandler.Whole} and {@link MessageHandler.Partial}.
      * Adding more than one of any one type will result in a runtime exception.
+     * <p>
+     * Once the container has identified a MessageHandler for a message, the MessageHandler is used for the entirety of
+     * the message irrespective of any subsequent changes to the MessageHandlers configured for the Session.
      *
      * @param <T>     type of message that the given handler is intended for.
      * @param clazz   type of the message processed by message handler to be registered.
@@ -96,6 +102,9 @@ public interface Session extends Closeable {
      * maximum of one for handling incoming pong messages. For further details of which message handlers handle which of
      * the native websocket message types please see {@link MessageHandler.Whole} and {@link MessageHandler.Partial}.
      * Adding more than one of any one type will result in a runtime exception.
+     * <p>
+     * Once the container has identified a MessageHandler for a message, the MessageHandler is used for the entirety of
+     * the message irrespective of any subsequent changes to the MessageHandlers configured for the Session.
      *
      * @param <T>     type of message that the given handler is intended for.
      * @param clazz   type of the message processed by message handler to be registered.
@@ -116,6 +125,9 @@ public interface Session extends Closeable {
     /**
      * Remove the given MessageHandler from the set belonging to this session. This method may block if the given
      * handler is processing a message until it is no longer in use.
+     * <p>
+     * Once the container has identified a MessageHandler for a message, the MessageHandler is used for the entirety of
+     * the message irrespective of any subsequent changes to the MessageHandlers configured for the Session.
      *
      * @param handler the handler to be removed.
      */
