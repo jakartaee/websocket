@@ -204,6 +204,12 @@ of a failover. Implementations are required to preserve developer data
 objects inserted into the WebSocket session if the data is marked
 *java.io.Serializable* [WSC 2.1.2-4].
 
+The user properties provided by the *Session* object are initially
+populated from the per *Session* shallow copy of the user properties
+provided by **EndpointConfig.getUserProperties()** that was passed to the
+*modifyHandshake()* method on the **ServerEndpointConfig.Configurator**
+including any modifications made during the execution of that method.
+
 [[receiving-messages]]
 ==== Receiving Messages
 
@@ -605,6 +611,13 @@ application specific headers in the handshake response. In order to do
 this, they may implement the *modifyHandshake()* method on the
 **ServerEndpointConfig.Configurator**, wherein they have full access to
 the *HandshakeRequest* and *HandshakeResponse* of the handshake.
+
+The user properties exposed during the *modifyHandshake()* method must
+be a per WebSocket connection (i.e. per *Session*) shallow copy of the
+user properties provided by **EndpointConfig.getUserProperties()**. When
+the *Session* object is created these user properties, including any
+modifications made during *modifyHandshake()*, must be used as the initial
+user properties for the *Session*.
 
 [[custom-state-or-processing-across-server-endpoint-instances]]
 ==== Custom State or Processing Across Server Endpoint Instances
