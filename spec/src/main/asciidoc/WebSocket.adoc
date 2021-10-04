@@ -655,6 +655,13 @@ extensions to send, in order of preference, the extensions, including
 parameters, that it would like to use in the opening handshake it
 formulates [WSC-3.2.2-1].
 
+[[sslcontext]]
+==== SSLContext
+
+The default client configuration uses the developer provided SSLContext to
+establish a secure WebSocket connection if the connection uses the wss
+protocol.
+
 [[client-configuration-modification]]
 ==== Client Configuration Modification
 
@@ -1473,6 +1480,12 @@ either to the *GOLD_MEMBER* or *PLATINUM_MEMBER* roles.
 
 This appendix lists the changes in the WebSocket specification.
 This appendix is non-normative.
+
+[[changes-since=2.0]]
+
+* https://github.com/eclipse-ee4j/websocket-api/issues/210[Issue 210]
+Introduce an API to allow client side configuration of TLS (wss) connections
+to a WebSocket server.
 
 [[changes-since-jsr-356]]
 === Changes Between 2.0 and JSR-356

@@ -22,6 +22,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
+import javax.net.ssl.SSLContext;
+
 /**
  * The ClientEndpointConfig is a special kind of endpoint configuration object that contains web socket configuration
  * information specific only to client endpoints. Developers deploying programmatic client endpoints can create
@@ -54,12 +56,21 @@ public interface ClientEndpointConfig extends EndpointConfig {
     List<Extension> getExtensions();
 
     /**
+     * Return the SSLContext to be used to establish a WebSocket (wss) connection to the server. The SSLContext will
+     * have initialised. For insecure WebSocket (ws) connections, this will be {@code null}.
+     *
+     * @return the SSLContext to use to establish a secure connection to the server or {@code null} if an insecure
+     *         connection should be established
+     */
+    SSLContext getSSLContext();
+
+    /**
      * Return the custom configurator for this configuration. If the developer did not provide one, the platform default
      * configurator is returned.
      *
      * @return the configurator in use with this configuration.
      */
-    public ClientEndpointConfig.Configurator getConfigurator();
+    ClientEndpointConfig.Configurator getConfigurator();
 
     /**
      * The Configurator class may be extended by developers who want to provide custom configuration algorithms, such as
@@ -120,6 +131,7 @@ public interface ClientEndpointConfig extends EndpointConfig {
         private List<Extension> extensions = Collections.emptyList();
         private List<Class<? extends Encoder>> encoders = Collections.emptyList();
         private List<Class<? extends Decoder>> decoders = Collections.emptyList();
+        private SSLContext sslContext = null;
         private ClientEndpointConfig.Configurator clientEndpointConfigurator = new ClientEndpointConfig.Configurator() {
 
         };
@@ -145,7 +157,7 @@ public interface ClientEndpointConfig extends EndpointConfig {
          */
         public ClientEndpointConfig build() {
             return new DefaultClientEndpointConfig(this.preferredSubprotocols, this.extensions, this.encoders,
-                    this.decoders, this.clientEndpointConfigurator);
+                    this.decoders, this.sslContext, this.clientEndpointConfigurator);
         }
 
         /**
@@ -206,6 +218,9 @@ public interface ClientEndpointConfig extends EndpointConfig {
             return this;
         }
 
+        public ClientEndpointConfig.Builder sslContext(SSLContext sslContext) {
+            this.sslContext = sslContext;
+            return this;
+        }
     }
-
 }
