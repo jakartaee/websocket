@@ -171,6 +171,11 @@ public interface ServerEndpointConfig extends EndpointConfig {
          * <p>
          * If the developer does not override this method, no further modification of the request and response are made
          * by the implementation.
+         * <p>
+         * The user properties made available via {@link ServerEndpointConfig#getUserProperties()} must be a per
+         * WebSocket connection (i.e. per {@link jakarta.websocket.Session}) copy of the user properties. This copy,
+         * including any modifications made to the user properties during the execution of this method must be used to
+         * populate the initial contents of {@link jakarta.websocket.Session#getUserProperties()}.
          *
          * @param sec      the configuration object involved in the handshake
          * @param request  the opening handshake request.

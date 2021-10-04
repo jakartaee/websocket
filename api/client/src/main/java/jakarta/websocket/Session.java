@@ -25,6 +25,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import jakarta.websocket.server.ServerEndpointConfig;
+
 /**
  * A Web Socket session represents a conversation between two web socket endpoints. As soon as the websocket handshake
  * completes successfully, the web socket implementation provides the endpoint an open websocket session. The endpoint
@@ -307,6 +309,16 @@ public interface Session extends Closeable {
      * using this Map may no longer be kept by the container. Web socket applications running on distributed
      * implementations of the web container should make any application specific objects stored here
      * java.io.Serializable, or the object may not be recreated after a failover.
+     * <p>
+     * For server sessions, the initial contents of this Map must be a shallow copy of the user properties map returned
+     * from {@link ServerEndpointConfig#getUserProperties()} at the point the
+     * {@link jakarta.websocket.server.ServerEndpointConfig.Configurator#modifyHandshake(ServerEndpointConfig,
+     * jakarta.websocket.server.HandshakeRequest, HandshakeResponse)} method exits.
+     * <p>
+     * For client sessions, the initial contents of this Map must be a shallow copy of the user properties map returned
+     * from {@link ClientEndpointConfig#getUserProperties()} for the {@link ClientEndpointConfig} passed to
+     * {@link WebSocketContainer#connectToServer(Class, ClientEndpointConfig, URI)} or
+     * {@link WebSocketContainer#connectToServer(Endpoint, ClientEndpointConfig, URI)}.
      *
      * @return an editable Map of application data.
      */
