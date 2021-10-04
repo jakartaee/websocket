@@ -264,7 +264,11 @@ public interface Session extends Closeable {
     void close(CloseReason closeReason) throws IOException;
 
     /**
-     * Return the URI under which this session was opened, including the query string if there is one.
+     * Return the complete URI under which this session was opened, from protocol to query string (if present). The URI
+     * should be identical to the complete URI used for the HTTP request that was upgraded to WebSocket apart from the
+     * protocol which should be changed to {@code ws} or {@code wss} as appropriate. It is the URI associated with the
+     * HTTP request that received the {@code 101 Switching Protocols} response that is used as the basis for this value
+     * - not an earlier, redirected request - if any.
      *
      * @return the request URI.
      */
