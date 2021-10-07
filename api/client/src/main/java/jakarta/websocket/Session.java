@@ -173,7 +173,9 @@ public interface Session extends Closeable {
 
     /**
      * Return the number of milliseconds before this conversation may be closed by the container if it is inactive, i.e.
-     * no messages are either sent or received in that time.
+     * no messages are either sent or received in that time. A value that is zero or negative indicates that this
+     * timeout will not be used. The read specific ({@link #getMaxReadIdleTimeout()} and/or write specific {@link
+     * #getMaxWriteIdleTimeout()} timeouts may still apply.
      *
      * @return the timeout in milliseconds.
      */
@@ -181,12 +183,52 @@ public interface Session extends Closeable {
 
     /**
      * Set the non-zero number of milliseconds before this session will be closed by the container if it is inactive, ie
-     * no messages are either sent or received. A value that is 0 or negative indicates the session will never timeout
-     * due to inactivity.
+     * no messages are either sent or received. A value that is 0 or negative indicates that this timeout will not be
+     * used. The read specific ({@link #getMaxReadIdleTimeout()} and/or write specific {@link #getMaxWriteIdleTimeout()}
+     * timeouts may still apply.
      *
      * @param milliseconds the number of milliseconds.
      */
     void setMaxIdleTimeout(long milliseconds);
+
+    /**
+     * Return the number of milliseconds before this conversation may be closed by the container if no messages are
+     * received in that time. A value that is zero or negative indicates that this timeout will not be used. The general
+     * read/write ({@link #getMaxIdleTimeout()} and/or write specific {@link #getMaxWriteIdleTimeout()} timeouts may
+     * still apply.
+     *
+     * @return the timeout in milliseconds.
+     */
+    long getMaxReadIdleTimeout();
+
+    /**
+     * Set the non-zero number of milliseconds before this session will be closed by the container if no messages are
+     * received. A value that is 0 or negative indicates that this timeout will not be used. The general read/write
+     * ({@link #getMaxReadIdleTimeout()} and/or write specific {@link #getMaxWriteIdleTimeout()} timeouts may still
+     * apply.
+     *
+     * @param milliseconds the number of milliseconds.
+     */
+    void setMaxReadIdleTimeout(long milliseconds);
+
+    /**
+     * Return the number of milliseconds before this conversation may be closed by the container if no messages are
+     * sent in that time. A value that is zero or negative indicates that this timeout will not be used. The general
+     * read/write ({@link #getMaxIdleTimeout()} and/or read specific {@link #getMaxReadIdleTimeout()} timeouts may still
+     * apply.
+     *
+     * @return the timeout in milliseconds.
+     */
+    long getMaxWriteIdleTimeout();
+
+    /**
+     * Set the non-zero number of milliseconds before this session will be closed by the container if no messages are
+     * sent. A value that is 0 or negative indicates that this timeout will not be used. The general read/write
+     * ({@link #getMaxReadIdleTimeout()} and/or read specific {@link #getMaxReadIdleTimeout()} timeouts may still apply.
+     *
+     * @param milliseconds the number of milliseconds.
+     */
+    void setMaxWriteIdleTimeout(long milliseconds);
 
     /**
      * Sets the maximum length of incoming binary messages that this Session can buffer.
