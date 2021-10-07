@@ -1137,6 +1137,11 @@ the endpoints are deployed by the container as a result of scanning the
 WAR file, the deployment error must be reported to the deployer by the
 implementation as part of the container specific deployment process [WSC-5.2.1-5].
 
+If the deployment error occurs while the web application is running
+(i.e. if the programmatic API is used to add a server endpoint after
+the deployment phase has completed), the error must be reported to the
+caller using an instance of the DeploymentException.
+
 [[errors-originating-in-websocket-application-code]]
 ==== Errors Originating in WebSocket Application Code
 
@@ -1270,11 +1275,11 @@ This specification also defines a mechanism for deployment of server
 endpoints that does not depend on Servlet container scanning of the
 application. Developers may deploy server endpoints programmatically by
 using one of the *addEndpoint* methods of the *ServerContainer*
-interface. These methods are only operational during the application
-deployment phase of an application. Specifically, as soon as any of the
-server endpoints within the application have accepted an opening
-handshake request, the APIs may not longer be used. This restriction may
-be relaxed in a future version.
+interface.
+
+Versions of this specification before 2.1 restricted the programmatic
+deployment of server endpoints to the application deployment phase of
+an application. As of version 2.1, this restriction no longer applies.
 
 When running on the web container, the *addEndpoint* methods may be
 called from a *jakarta.servlet.ServletContextListener* provided by the
@@ -1284,11 +1289,9 @@ application. The WebSocket implementation must make the
 to the developer as a *ServletContext* attribute registered under the
 name **jakarta.websocket.server.ServerContainer**.
 
-When running on a standalone container, the application deployment phase
-is undefined, so the developer will need to utilize whatever proprietary
-deployment time hooks the particular container has to offer in order to
-make a *ServerContainer* instance available to the developer at this
-time.
+When running on a standalone container, the developer will need to
+utilize whatever proprietary hooks the particular container has to
+offer to make a *ServerContainer* instance available to the developer.
 
 It is recommended that developers use either the programmatic deployment
 API, or base their application on the scanning and
