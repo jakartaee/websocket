@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018, 2019 Oracle and/or its affiliates and others.
+ * Copyright (c) 2018, 2021 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -182,4 +182,24 @@ public interface WebSocketContainer {
      * @return the set of extensions.
      */
     Set<Extension> getInstalledExtensions();
+
+    /**
+     * Add the given listener instance to the WebSocket container.
+     * <p>
+     * Listeners will be called in the order they were added.
+     * <p>
+     * Listener instances may be added multiple times and be called once for each time they were added.
+     *
+     * @param listener The listener to add
+     */
+    void addWebSocketContainerListener(WebSocketContainerListener listener);
+
+    /**
+     * Remove the given listener instance, if present, from the WebSocket container.
+     * <p>
+     * If a listener instance has been added multiple times, the fist instance of the listener will be removed.
+     *
+     * @param listener The listener to remove
+     */
+    void removeWebSocketContainerListener(WebSocketContainerListener listener);
 }
