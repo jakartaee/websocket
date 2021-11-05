@@ -55,7 +55,7 @@ The notice is:
 "Copyright © 2018, 2020 Eclipse Foundation. This software or document
 includes material copied from or derived from
 Jakarta ® WebSocket
-https://jakarta.ee/specifications/websocket/2.0/[https://jakarta.ee/specifications/websocket/2.0/]"
+https://jakarta.ee/specifications/websocket/2.1/[https://jakarta.ee/specifications/websocket/2.1/]"
 
 ==== Disclaimers
 
