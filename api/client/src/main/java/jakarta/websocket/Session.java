@@ -170,17 +170,18 @@ public interface Session extends Closeable {
     boolean isOpen();
 
     /**
-     * Return the number of milliseconds before this conversation may be closed by the container if it is inactive, i.e.
-     * no messages are either sent or received in that time.
+     * Return the number of milliseconds before this session will be closed by the container if it is inactive, i.e. no
+     * messages are either sent or received in that time. A value that is zero or negative indicates that this timeout
+     * will not be used.
      *
      * @return the timeout in milliseconds.
      */
     long getMaxIdleTimeout();
 
     /**
-     * Set the non-zero number of milliseconds before this session will be closed by the container if it is inactive, ie
-     * no messages are either sent or received. A value that is 0 or negative indicates the session will never timeout
-     * due to inactivity.
+     * Set the number of milliseconds before this session will be closed by the container if it is inactive, i.e. no
+     * messages are either sent or received in that time. A value that is zero or negative indicates that this timeout
+     * will not be used.
      *
      * @param milliseconds the number of milliseconds.
      */
