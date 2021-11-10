@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018, 2019 Oracle and/or its affiliates and others.
+ * Copyright (c) 2018, 2021 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -38,7 +38,7 @@ public interface WebSocketContainer {
 
     /**
      * Return the number of milliseconds the implementation will timeout attempting to send a websocket message for all
-     * RemoteEndpoints associated with this container. A non-positive number indicates the implementation will not
+     * RemoteEndpoints associated with this container. A zero or negative value indicates the implementation will not
      * timeout attempting to send a websocket message asynchronously. Note this default may be overridden in each
      * RemoteEndpoint.
      *
@@ -48,11 +48,11 @@ public interface WebSocketContainer {
 
     /**
      * Sets the number of milliseconds the implementation will timeout attempting to send a websocket message for all
-     * RemoteEndpoints associated with this container. A non-positive number indicates the implementation will not
+     * RemoteEndpoints associated with this container. A zero or negative value indicates the implementation will not
      * timeout attempting to send a websocket message asynchronously. Note this default may be overridden in each
      * RemoteEndpoint.
      *
-     * @param timeoutmillis the timeout in milliseconds or a non-positive number for no timeout
+     * @param timeoutmillis the timeout in milliseconds; use zero or negative value for no timeout
      */
     void setAsyncSendTimeout(long timeoutmillis);
 
@@ -130,7 +130,7 @@ public interface WebSocketContainer {
 
     /**
      * Return the default time in milliseconds after which any web socket sessions in this container will be closed if
-     * it has been inactive. A value that is 0 or negative indicates the sessions will never timeout due to inactivity.
+     * it has been inactive. A value that is zero or negative indicates the sessions will never timeout due to inactivity.
      * The value may be overridden on a per session basis using {@link Session#setMaxIdleTimeout(long) }
      *
      * @return the default number of milliseconds after which an idle session in this container will be closed
@@ -139,10 +139,10 @@ public interface WebSocketContainer {
 
     /**
      * Sets the default time in milliseconds after which any web socket sessions in this container will be closed if it
-     * has been inactive. A value that is 0 or negative indicates the sessions will never timeout due to inactivity. The
+     * has been inactive. A value that is zero or negative indicates the sessions will never timeout due to inactivity. The
      * value may be overridden on a per session basis using {@link Session#setMaxIdleTimeout(long) }
      *
-     * @param timeout the maximum time in milliseconds.
+     * @param timeout the maximum time in milliseconds; use zero or negative value for no timeout
      */
     void setDefaultMaxSessionIdleTimeout(long timeout);
 
