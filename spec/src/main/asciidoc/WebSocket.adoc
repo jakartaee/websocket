@@ -1490,14 +1490,31 @@ either to the *GOLD_MEMBER* or *PLATINUM_MEMBER* roles.
 This appendix lists the changes in the WebSocket specification.
 This appendix is non-normative.
 
+=== Changes Between 2.1 and 2.0
+
+* https://github.com/eclipse-ee4j/websocket-api/issues/190[Issue 190] and
+https://github.com/eclipse-ee4j/websocket-api/issues/192[Issue 192]
+Clarify that once the container has identified a MessageHandler for a message,
+the MessageHandler is used for the entirety of the message irrespective of any
+subsequent changes to the MessageHandlers configured for the Session.
+
+* https://github.com/eclipse-ee4j/websocket-api/issues/207[Issue 207]
+Add a getter for the default platform configurator.
+
+* https://github.com/eclipse-ee4j/websocket-api/issues/228[Issue 228]
+Clarify the expected behaviour for `Session.getRequestURI()`. The full RI should be returned.
+
+* https://github.com/eclipse-ee4j/websocket-api/issues/235[Issue 235]
+Clarify the expected handling of user properties.
+
 [[changes-since-jsr-356]]
 === Changes Between 2.0 and JSR-356
 
 * https://github.com/eclipse-ee4j/websocket-api/pull/312[Pull Request 312]
-Convert from `javax.\*` to `jakarta.*`
+Convert from `javax.\*` to `jakarta.*`.
+
 * https://github.com/eclipse-ee4j/websocket-api/pull/312[Pull Request 315]
 Update specification document for move to Jakarta EE
-
 plus a large number of smaller tweaks and editorial improvements.
 
 [bibliography]
