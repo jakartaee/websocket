@@ -1501,11 +1501,21 @@ subsequent changes to the MessageHandlers configured for the Session.
 * https://github.com/eclipse-ee4j/websocket-api/issues/207[Issue 207]
 Add a getter for the default platform configurator.
 
+* https://github.com/eclipse-ee4j/websocket-api/issues/211[Issue 211]
+Remove the restriction that, in a Jakarta web container environment, endpoints
+can only registered during the deployment of the web application. Also add a new
+method, `ServerContainer.upgradeHttpToWebSocket()` that allows a web application
+to programmatically dispatch a request to a WebSocket endpoint.
+
 * https://github.com/eclipse-ee4j/websocket-api/issues/228[Issue 228]
 Clarify the expected behaviour for `Session.getRequestURI()`. The full RI should be returned.
 
 * https://github.com/eclipse-ee4j/websocket-api/issues/235[Issue 235]
 Clarify the expected handling of user properties.
+
+* https://github.com/eclipse-ee4j/websocket-api/issues/382[Issue 382]
+Clarify that a zero or negative value disables the session idle timeout and improve
+the language used in the Javadoc for the other timeouts.
 
 [[changes-since-jsr-356]]
 === Changes Between 2.0 and JSR-356
