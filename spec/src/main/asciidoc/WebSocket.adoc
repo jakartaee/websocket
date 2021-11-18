@@ -1517,6 +1517,14 @@ Clarify the expected handling of user properties.
 Clarify that a zero or negative value disables the session idle timeout and improve
 the language used in the Javadoc for the other timeouts.
 
+* Removed the copy of the `jakarta.websocket.*` classes from the
+  `jakarta.websocket-api` jar and replaced the copy with a dependency on the
+  `jakarta.websocket-client-api` jar.
+
+* Added JPMS module descriptors that define the client module name as
+  `jakarta.websocket.client` and the server module name as `jakarta.websocket`
+  with the server module dpending on the client module.
+
 [[changes-since-jsr-356]]
 === Changes Between 2.0 and JSR-356
 
