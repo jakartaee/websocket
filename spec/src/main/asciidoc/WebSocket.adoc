@@ -1508,7 +1508,7 @@ method, `ServerContainer.upgradeHttpToWebSocket()` that allows a web application
 to programmatically dispatch a request to a WebSocket endpoint.
 
 * https://github.com/eclipse-ee4j/websocket-api/issues/228[Issue 228]
-Clarify the expected behaviour for `Session.getRequestURI()`. The full RI should be returned.
+Clarify the expected behaviour for `Session.getRequestURI()`. The full URI should be returned.
 
 * https://github.com/eclipse-ee4j/websocket-api/issues/235[Issue 235]
 Clarify the expected handling of user properties.
