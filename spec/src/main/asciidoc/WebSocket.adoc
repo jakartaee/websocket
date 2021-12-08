@@ -1523,7 +1523,7 @@ the language used in the Javadoc for the other timeouts.
 
 * Added JPMS module descriptors that define the client module name as
   `jakarta.websocket.client` and the server module name as `jakarta.websocket`
-  with the server module dpending on the client module.
+  with the server module depending on the client module.
 
 [[changes-since-jsr-356]]
 === Changes Between 2.0 and JSR-356
