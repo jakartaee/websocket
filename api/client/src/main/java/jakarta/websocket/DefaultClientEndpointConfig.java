@@ -22,6 +22,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.net.ssl.SSLContext;
+
 /**
  * The DefaultClientEndpointConfig is a concrete implementation of a client configuration.
  *
@@ -32,16 +34,18 @@ final class DefaultClientEndpointConfig implements ClientEndpointConfig {
     private List<Extension> extensions;
     private List<Class<? extends Encoder>> encoders;
     private List<Class<? extends Decoder>> decoders;
+    private SSLContext sslContext;
     private Map<String, Object> userProperties = new HashMap<>();
     private ClientEndpointConfig.Configurator clientEndpointConfigurator;
 
     DefaultClientEndpointConfig(List<String> preferredSubprotocols, List<Extension> extensions,
             List<Class<? extends Encoder>> encoders, List<Class<? extends Decoder>> decoders,
-            ClientEndpointConfig.Configurator clientEndpointConfigurator) {
+            SSLContext sslContext, ClientEndpointConfig.Configurator clientEndpointConfigurator) {
         this.preferredSubprotocols = Collections.unmodifiableList(preferredSubprotocols);
         this.extensions = Collections.unmodifiableList(extensions);
         this.encoders = Collections.unmodifiableList(encoders);
         this.decoders = Collections.unmodifiableList(decoders);
+        this.sslContext = sslContext;
         this.clientEndpointConfigurator = clientEndpointConfigurator;
     }
 
@@ -85,6 +89,17 @@ final class DefaultClientEndpointConfig implements ClientEndpointConfig {
     @Override
     public List<Class<? extends Decoder>> getDecoders() {
         return this.decoders;
+    }
+
+    /**
+     * SSLContext to use to secure WebSocket (wss) connections or {@code null} for insecure Websocket (ws) connections.
+     * If there is an existing connection to the server that uses the same SSLContext and that connection supports
+     * multiplexing WebSocket connections then the container may choose to re-use that connection rather than creating a
+     * new one. Containers may provide container specific configuration to control this behaviour.
+     */
+    @Override
+    public SSLContext getSSLContext() {
+        return this.sslContext;
     }
 
     /**

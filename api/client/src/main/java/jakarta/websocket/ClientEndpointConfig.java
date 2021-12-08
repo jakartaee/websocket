@@ -22,6 +22,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
+import javax.net.ssl.SSLContext;
+
 /**
  * The ClientEndpointConfig is a special kind of endpoint configuration object that contains web socket configuration
  * information specific only to client endpoints. Developers deploying programmatic client endpoints can create
@@ -52,6 +54,18 @@ public interface ClientEndpointConfig extends EndpointConfig {
      * @return the list of extensions, the empty list if there are none.
      */
     List<Extension> getExtensions();
+
+    /**
+     * Return the SSLContext to be used to establish a WebSocket (wss) connection to the server. The SSLContext will
+     * have initialised. For insecure WebSocket (ws) connections, this will be {@code null}. If there is an existing
+     * connection to the server that uses the same SSLContext and that connection supports multiplexing WebSocket
+     * connections then the container may choose to re-use that connection rather than creating a new one. Containers
+     * may provide container specific configuration to control this behaviour.
+     *
+     * @return the SSLContext to use to establish a secure connection to the server or {@code null} if an insecure
+     *         connection should be established
+     */
+    SSLContext getSSLContext();
 
     /**
      * Return the custom configurator for this configuration. If the developer did not provide one, the platform default
@@ -120,6 +134,7 @@ public interface ClientEndpointConfig extends EndpointConfig {
         private List<Extension> extensions = Collections.emptyList();
         private List<Class<? extends Encoder>> encoders = Collections.emptyList();
         private List<Class<? extends Decoder>> decoders = Collections.emptyList();
+        private SSLContext sslContext = null;
         private ClientEndpointConfig.Configurator clientEndpointConfigurator = new ClientEndpointConfig.Configurator() {
 
         };
@@ -145,7 +160,7 @@ public interface ClientEndpointConfig extends EndpointConfig {
          */
         public ClientEndpointConfig build() {
             return new DefaultClientEndpointConfig(this.preferredSubprotocols, this.extensions, this.encoders,
-                    this.decoders, this.clientEndpointConfigurator);
+                    this.decoders, this.sslContext, this.clientEndpointConfigurator);
         }
 
         /**
@@ -206,6 +221,19 @@ public interface ClientEndpointConfig extends EndpointConfig {
             return this;
         }
 
+        /**
+         * Assign the SSLContext to be used when connection to the WebSocket server. If there is an existing connection
+         * to the server that uses the same SSLContext and that connection supports multiplexing WebSocket connections
+         * then the container may choose to re-use that connection rather than creating a new one. Containers may
+         * provide container specific configuration to control this behaviour.
+         *
+         * @param sslContext The SSLContext which must be initialised for secure WebSocket (wss) connections or
+         *                  {@code null} for insecure WebSocket (ws) connections.
+         * @return this builder instance
+         */
+        public ClientEndpointConfig.Builder sslContext(SSLContext sslContext) {
+            this.sslContext = sslContext;
+            return this;
+        }
     }
-
 }
