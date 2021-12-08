@@ -668,6 +668,17 @@ extensions to send, in order of preference, the extensions, including
 parameters, that it would like to use in the opening handshake it
 formulates [WSC-3.2.2-1].
 
+[[sslcontext]]
+==== SSLContext
+
+The default client configuration uses the developer provided `SSLContext` to
+establish a secure WebSocket (wss) connection or an insecure WebSocket (ws)
+connection if the provided `SSLContext` is `null`. If there is an existing
+connection to the server that uses the same SSLContext and that connection
+supports multiplexing WebSocket connections then the container may choose to
+re-use that connection rather than creating a new one. Containers may provide
+container specific configuration to control this behaviour.
+
 [[client-configuration-modification]]
 ==== Client Configuration Modification
 
@@ -1500,6 +1511,9 @@ subsequent changes to the MessageHandlers configured for the Session.
 
 * https://github.com/eclipse-ee4j/websocket-api/issues/207[Issue 207]
 Add a getter for the default platform configurator.
+
+* https://github.com/eclipse-ee4j/websocket-api/issues/210[Issue 210]
+Provide an API for client-side TLS configuration.
 
 * https://github.com/eclipse-ee4j/websocket-api/issues/211[Issue 211]
 Remove the restriction that, in a Jakarta web container environment, endpoints
