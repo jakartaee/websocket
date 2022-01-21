@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-    Copyright (c) 2018, 2021 Oracle and/or its affiliates and others.
+    Copyright (c) 2018, 2022 Oracle and/or its affiliates and others.
     All rights reserved.
 
     This program and the accompanying materials are made available under the
@@ -31,6 +31,11 @@
     <name>Jakarta WebSocket - Server API</name>
     <description>Jakarta WebSocket - Server API</description>
     <url>https://projects.eclipse.org/projects/ee4j.websocket</url>
+
+    <properties>
+        <bundle.symbolicName>jakarta.websocket-api</bundle.symbolicName>
+        <extensionName>jakarta.websocket</extensionName>
+    </properties>
 
     <build>
         <resources>
