@@ -79,9 +79,9 @@
     </issueManagement>
 
     <properties>
-        <!-- Make sure the two versions are in sync with the maven version -->
+        <!-- Make sure the spec version is in sync with the maven version -->
         <spec.version>2.1</spec.version>
-        <bundle.version>2.1.0-SNAPSHOT</bundle.version>
+        <bundle.version>${project.version}</bundle.version>
         <vendorName>Eclipse Foundation</vendorName>
     </properties>
 
