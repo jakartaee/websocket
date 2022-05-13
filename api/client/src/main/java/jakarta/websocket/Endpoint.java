@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018, 2020 Oracle and/or its affiliates and others.
+ * Copyright (c) 2018, 2022 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -49,12 +49,13 @@ package jakarta.websocket;
  * <code>
  * public class EchoServer extends Endpoint {
  *
+ *     {@literal @}Override
  *     public void onOpen(Session session, EndpointConfig config) {
  *         final RemoteEndpoint remote = session.getBasicRemote();
- *         session.addMessageHandler(String.class, new MessageHandler.Whole&lt;String&lt;() {
+ *         session.addMessageHandler(String.class, new MessageHandler.Whole&lt;String&gt;() {
  *             public void onMessage(String text) {
  *                 try {
- *                     remote.sendString("Got your message (" + text + "). Thanks !");
+ *                     remote.sendText("Got your message (" + text + "). Thanks !");
  *                 } catch (IOException ioe) {
  *                     // handle send failure here
  *                 }
