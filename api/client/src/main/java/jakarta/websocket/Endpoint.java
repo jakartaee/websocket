@@ -51,7 +51,7 @@ package jakarta.websocket;
  *
  *     {@literal @}Override
  *     public void onOpen(Session session, EndpointConfig config) {
- *         final RemoteEndpoint remote = session.getBasicRemote();
+ *         final RemoteEndpoint.Basic remote = session.getBasicRemote();
  *         session.addMessageHandler(String.class, new MessageHandler.Whole&lt;String&gt;() {
  *             public void onMessage(String text) {
  *                 try {
