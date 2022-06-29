@@ -17,6 +17,8 @@
 
 package jakarta.websocket;
 
+import java.security.AccessController;
+import java.security.PrivilegedAction;
 import java.util.Iterator;
 import java.util.ServiceConfigurationError;
 import java.util.ServiceLoader;
@@ -45,6 +47,19 @@ public abstract class ContainerProvider {
      *         to propagate rather than swallowing the exception and attempting to load the next provider (if any).
      */
     public static WebSocketContainer getWebSocketContainer() {
+        if(System.getSecurityManager() == null) {
+            return getWebSocketContainerImpl();
+        } else {
+            return AccessController.doPrivileged(new PrivilegedAction<WebSocketContainer>() {
+                @Override
+                public WebSocketContainer run() {
+                    return getWebSocketContainerImpl();
+                }
+            });
+        }
+    }
+
+    private static WebSocketContainer getWebSocketContainerImpl() {
         Iterator<ContainerProvider> providers = ServiceLoader.load(ContainerProvider.class).iterator();
         if (providers.hasNext()) {
             do {
