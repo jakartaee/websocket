@@ -1549,7 +1549,7 @@ the language used in the Javadoc for the other timeouts.
 * https://github.com/eclipse-ee4j/websocket-api/pull/312[Pull Request 312]
 Convert from `javax.\*` to `jakarta.*`.
 
-* https://github.com/eclipse-ee4j/websocket-api/pull/312[Pull Request 315]
+* https://github.com/eclipse-ee4j/websocket-api/pull/315[Pull Request 315]
 Update specification document for move to Jakarta EE
 plus a large number of smaller tweaks and editorial improvements.
 
