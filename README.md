@@ -36,4 +36,4 @@ To make changes, fork this repository, make your changes, and submit a pull requ
 
 ## About Jakarta WebSocket
 
-Jakarta WebSocket defines defines a set of Java APIs for the development of WebSocket applications.
+Jakarta WebSocket defines a set of Java APIs for the development of WebSocket applications.
