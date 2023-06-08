@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018, 2020 Oracle and/or its affiliates and others.
+ * Copyright (c) 2018, 2023 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -47,7 +47,7 @@ public abstract class ContainerProvider {
      *         to propagate rather than swallowing the exception and attempting to load the next provider (if any).
      */
     public static WebSocketContainer getWebSocketContainer() {
-        if(System.getSecurityManager() == null) {
+        if (System.getSecurityManager() == null) {
             return getWebSocketContainerImpl();
         } else {
             return AccessController.doPrivileged(new PrivilegedAction<WebSocketContainer>() {
