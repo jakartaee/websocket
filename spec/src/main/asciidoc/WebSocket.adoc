@@ -2,7 +2,7 @@
 :sectnums!:
 == Jakarta WebSocket Specification, Version 2.2
 
-Copyright (c) 2011, 2022 Oracle and/or its affiliates and others.
+Copyright (c) 2011, 2023 Oracle and/or its affiliates and others.
 All rights reserved.
 
 Eclipse is a registered trademark of the Eclipse Foundation. Jakarta
@@ -398,14 +398,24 @@ The ping/pong mechanism in the WebSocket protocol serves as a check that
 the connection is still active. Following the requirements of the
 protocol, if a WebSocket implementation receives a ping message from a
 peer, it must respond as soon as possible to that peer with a pong
-message containing the same application data [WSC 2.2.5-1]. Developers
-who wish to send a unidirectional pong message may do so using the
-*RemoteEndpoint* API. Developers wishing to listen for returning pong
+message containing the same application data [WSC 2.2.5-1]. No notification
+mechanism is provided for applications to receive notification of ping messages
+as responding with a pong message is an implementation responsibility.
+
+Developers who wish to send a ping message may do so using the *RemoteEndpoint* API.
+
+Developers who wish to send an unsolicited pong message may do so using the *RemoteEndpoint* API.
+
+Developers wishing to listen for returning pong
 messages may either define a *MessageHandler* for them, or annotate a
 method using the *@OnMessage* annotation where the method stipulates a
 *PongMessage* as its message entity parameter. In either case, if the
 implementation receives a pong message addressed to this endpoint, it
 must call that MessageHandler or that annotated method [WSC 2.2.5-2].
+
+Implementations may provide an implementation specific mechanism to configure
+the sending of regular ping messages for a WebSocket connection. Alternatively,
+developers may opt to implement their own ping/pong strategy.
 
 [[clientapi]]
 === Jakarta WebSocket Client API
@@ -1503,7 +1513,8 @@ This appendix is non-normative.
 
 === Changes Between 2.2 and 2.1
 
-* TBD
+* https://github.com/jakartaee/websocket/issues/176[Issue 176]
+Clarify the responsibilities for sending ping messages.
 
 === Changes Between 2.1 and 2.0
 
