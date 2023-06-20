@@ -1516,6 +1516,9 @@ This appendix is non-normative.
 * https://github.com/jakartaee/websocket/issues/176[Issue 176]
 Clarify the responsibilities for sending ping messages.
 
+* https://github.com/jakartaee/websocket/issues/185[Issue 185]
+Add the `getSession()` method to `SendResult`.
+
 === Changes Between 2.1 and 2.0
 
 * https://github.com/eclipse-ee4j/websocket-api/issues/190[Issue 190] and
