@@ -1278,6 +1278,43 @@ excluding certain JAR files from the scan (see Servlet 3.0, section
 containing many JAR files that the developer knows do not contain any
 WebSocket endpoints._
 
+[[interaction-of-websocket-endpoints-with-servlet-mappings]]
+=== Interaction of WebSocket endpoints with Servlet mappings
+
+HTTP upgrade requests for WebSockets are mapped to **Filter**s and a *Servlet*
+using the standard Servlet specification request mapping rules.
+
+The WebSocket upgrade process behaves as if it is implemented as a *Filter* in
+the *FilterChain* and may, but is not required to be, implemented as such. The
+remainder of this section is written as if the WebSocket upgrade process has
+been implemented as a *Filter*. If the WebSocket upgrade process has not been
+implemented as a *Filter*, additional container specific configuration may be
+required.
+
+The position of the WebSocket upgrade *Filter* in the *FilterChain* is
+configured using the standard Filter ordering rules of the Servlet
+specification. *Filter* instances earlier in the *FilterChain* may wrap the
+request and/or response and these wrappers will be visible to, and may
+influence, the WebSocket upgrade *Filter*.
+
+By default, the WebSocket upgrade *Filter* is mapped to the dispatch types
+`REQUEST` and `FORWARD`.
+
+The concatenation of `servletPath` and `pathInfo` (`pathInfo` is ignored if it
+is `null`) must be used to match the HTTP upgrade request to a registered
+WebSocket endpoint as per <<uri-mapping>>. Only HTTP upgrade requests that match
+a registered WebSocket endpoint are handled by the WebSocket upgrade *Filter*.
+All other requests are passed to the next *Filter* in the *FilterChain*.
+
+If the HTTP upgrade request is processed by the WebSocket upgrade *Filter* but
+does not result in a successful upgrade to the WebSocket protocol, a suitable
+status code must be set on the HTTP response and the response committed. The
+HTTP upgrade request is not passed to the next *Filter* in the *FilterChain*.
+
+*ServletRequestListener* instances are called for the WebSocket upgrade process
+in the same way as for any other request/response (i.e. before the HTTP upgrade
+request processing enters the *FilterChain* and after it exits).
+
 [[application-deployment-in-standalone-websocket-server-containers]]
 === Application Deployment in Standalone WebSocket Server Containers
 
@@ -1515,6 +1552,10 @@ This appendix is non-normative.
 
 * https://github.com/jakartaee/websocket/issues/176[Issue 176]
 Clarify the responsibilities for sending ping messages.
+
+* https://github.com/jakartaee/websocket/issues/188[Issue 188]
+Clarify the interaction of the HTTP upgrade to WebSocket with Filters, Listeners
+and RequestDispatchers when deployed on a Servlet container.
 
 === Changes Between 2.1 and 2.0
 
