@@ -85,10 +85,9 @@
     <properties>
         <site.output.dir>${project.build.directory}/staging</site.output.dir>
         <maven.site.skip>true</maven.site.skip>
-        <asciidoctor.maven.plugin.version>2.0.0-RC.1</asciidoctor.maven.plugin.version>
-        <asciidoctorj.version>2.2.0</asciidoctorj.version>
+        <asciidoctorj.version>2.5.10</asciidoctorj.version>
         <asciidoctorj.pdf.version>1.5.3</asciidoctorj.pdf.version>
-        <jruby.version>9.2.11.1</jruby.version>
+        <jruby.version>9.3.13.0</jruby.version>
         <!-- status: DRAFT, BETA, etc., or blank for final -->
         <status>DRAFT</status>
         <maven.build.timestamp.format>MMMM dd, yyyy</maven.build.timestamp.format>
@@ -147,7 +146,6 @@
             <plugin>
                 <groupId>org.asciidoctor</groupId>
                 <artifactId>asciidoctor-maven-plugin</artifactId>
-                <version>${asciidoctor.maven.plugin.version}</version>
                 <dependencies>
                     <dependency>
                         <groupId>org.jruby</groupId>
@@ -174,6 +172,7 @@
                         </goals>
                         <configuration>
                             <backend>html5</backend>
+                            <sourceDirectory>${basedir}/src/main/asciidoc</sourceDirectory>
                             <outputFile>${project.build.directory}/generated-docs/websocket-spec-${project.version}.html</outputFile>
                             <attributes>
                                 <doctype>book</doctype>
@@ -197,6 +196,7 @@
                         </goals>
                         <configuration>
                             <backend>pdf</backend>
+                            <sourceDirectory>${basedir}/src/main/asciidoc</sourceDirectory>
                             <outputFile>${project.build.directory}/generated-docs/websocket-spec-${project.version}.pdf</outputFile>
                             <attributes>
                                 <pdf-stylesdir>${project.basedir}/src/main/theme</pdf-stylesdir>
@@ -219,12 +219,12 @@
                 </executions>
                 <configuration>
                     <sourceDocumentName>websocket-spec.adoc</sourceDocumentName>
-                    <sourceHighlighter>coderay</sourceHighlighter>
                     <attributes>
                         <revnumber>${project.version}</revnumber>
                         <revremark>${status}</revremark>
                         <revdate>${revisiondate}</revdate>
                         <revyear>${current.year}</revyear>
+                        <source-highlighter>coderay</source-highlighter>
                     </attributes>
                 </configuration>
             </plugin>
