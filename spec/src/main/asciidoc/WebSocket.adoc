@@ -1053,13 +1053,33 @@ WebSocket implementation must not deploy such an endpoint and must raise
 a deployment error if an attempt is made to deploy such an annotated
 endpoint [WSC-4.7-4].
 
+[[maxmessagebuffersize]]
+==== maxMessageBufferSize
+
+The maxMessageBufferSize attribute allows the developer to specify the
+maximum size of message in bytes that the method it annotates will be
+able to process, or `-1` to indicate that no maximum has been
+configured. The default is `-1`.
+
+If this attribute returns `-1` then the deprecated `maxMessageSize`
+attribute will be used instead.
+
+If an incoming message exceeds the maximum message size, the
+implementation must formally close the connection with a close code of
+`1009` (Too Big) [WSC-4.7.1-1].
+
 [[maxmessagesize]]
 ==== maxMessageSize
 
 The maxMessageSize attribute allows the developer to specify the maximum
 size of message in bytes that the method it annotates will be able to
-process, or `-1` to indicate that there is no maximum. The
+process, or `-1` to indicate that no maximum has been configured. The
 default is `-1`.
+
+This attribute is ignored unless `maxMessageBufferSize()` returns `-1`.
+
+This attribute should not be set to a value larger than
+`Integer#MAX_VALUE`.
 
 If an incoming message exceeds the maximum message size, the
 implementation must formally close the connection with a close code of
@@ -1518,6 +1538,12 @@ Clarify the responsibilities for sending ping messages.
 
 * https://github.com/jakartaee/websocket/issues/185[Issue 185]
 Add the `getSession()` method to `SendResult`.
+
+* https://github.com/jakartaee/websocket/issues/274[Issue 274]
+Deprecate `@OnMessage.maxMessageSize` as it is inconsistent with
+`Session.setMaxTextMessageBufferSize` and
+`Session.setMaxBinaryMessageBufferSize`
+and add `@OnMessage.maxMessageBufferSize` as a replacement.
 
 === Changes Between 2.1 and 2.0
 

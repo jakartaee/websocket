@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018, 2019 Oracle and/or its affiliates and others.
+ * Copyright (c) 2018, 2023 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -115,12 +115,35 @@ public @interface OnMessage {
 
     /**
      * Specifies the maximum size of message in bytes that the method this annotates will be able to process, or -1 to
-     * indicate that there is no maximum. The default is -1. This attribute only applies when the annotation is used to
-     * process whole messages, not to those methods that process messages in parts or use a stream or reader parameter
-     * to handle the incoming message. If the incoming whole message exceeds this limit, then the implementation
-     * generates an error and closes the connection using the reason that the message was too big.
+     * indicate that no maximum has been configured. The default is -1. This attribute only applies when the annotation
+     * is used to process whole messages, not to those methods that process messages in parts or use a stream or reader
+     * parameter to handle the incoming message. If the incoming whole message exceeds this limit, then the
+     * implementation generates an error and closes the connection using the reason that the message was too big.
+     * <p>
+     * This attribute is ignored unless {@link #maxMessageBufferSize()} returns {@code -1}.
+     * <p>
+     * This attribute should not be set to a value larger than {@code Integer#MAX_VALUE}.
+     *
+     * @return the maximum size in bytes.
+     *
+     * @deprecated Use {@link #maxMessageBufferSize()}
+     */
+    @Deprecated
+    public long maxMessageSize() default -1;
+
+    /**
+     * Specifies the maximum size of message in bytes that the method this annotates will be able to process, or -1 to
+     * indicate that no maximum has been configured. The default is -1. This attribute only applies when the annotation
+     * is used to process whole messages, not to those methods that process messages in parts or use a stream or reader
+     * parameter to handle the incoming message. If the incoming whole message exceeds this limit, then the
+     * implementation generates an error and closes the connection using the reason that the message was too big.
+     * <p>
+     * If this attribute returns {@code -1}, the container will fall-back to the deprecated {@link #maxMessageSize()}.
+     * If that attribute is larger than {@code Integer#MAX_VALUE} then the value of {@code Integer#MAX_VALUE} will be
+     * used and the container may log a warning regarding the invalid configuration.
      *
      * @return the maximum size in bytes.
      */
-    public long maxMessageSize() default -1;
+    public int maxMessageBufferSize() default -1;
+
 }
