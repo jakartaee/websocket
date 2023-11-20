@@ -1278,8 +1278,8 @@ excluding certain JAR files from the scan (see Servlet 3.0, section
 containing many JAR files that the developer knows do not contain any
 WebSocket endpoints._
 
-[[interaction-of-websocket-endpoints-with-servlet-mappings]]
-=== Interaction of WebSocket endpoints with Servlet mappings
+[[interaction-of-http-upgrade-to-websocket-with-the-servlet-api]]
+==== Interaction of HTTP upgrade to WebSocket with the Servlet API
 
 HTTP upgrade requests for WebSockets are mapped to **Filter**s and a *Servlet*
 using the standard Servlet specification request mapping rules.
@@ -1291,11 +1291,35 @@ been implemented as a *Filter*. If the WebSocket upgrade process has not been
 implemented as a *Filter*, additional container specific configuration may be
 required.
 
-The position of the WebSocket upgrade *Filter* in the *FilterChain* is
-configured using the standard Filter ordering rules of the Servlet
-specification. *Filter* instances earlier in the *FilterChain* may wrap the
-request and/or response and these wrappers will be visible to, and may
-influence, the WebSocket upgrade *Filter*.
+The WebSocket upgrade *Filter* is positioned in the *FilterChain* after any
+**Filter**s defined in the deployment descriptor (*web.xml*). Applications
+requiring that the WebSocket upgrade *Filter* is positioned earlier in the
+*FilterChain* may define it explicitly in the deployment descriptor.
+
+*Filter* instances earlier in the *FilterChain* may manipulate and/or wrap the
+request and/or response and these behaviours may influence the functionality of
+the WebSocket upgrade *Filter*. Developers should be aware that some *Filter*
+implementations may not have considered HTTP upgrade and configuring such
+**Filter**s before the WebSocket upgrade *Filter* in the *FilterChain* may break
+the HTTP upgrade process.
+
+If the response passed to the *doFilter()* method of the WebSocket upgrade
+*Filter* has been committed, then the WebSocket upgrade *Filter* will take no
+further action and pass the request and response to the next *Filter* in the
+*FilterChain*.
+
+If the response passed to the *doFilter()* method of the WebSocket upgrade
+*Filter* has not been committed and the WebSocket upgrade *Filter* determines
+that the criteria have been met to allow the upgrade to WebSocket to proceed,
+then the response will be reset before the WebSocket upgrade *Filter* writes the
+appropriate response headers and status code.
+
+Applications that require a greater degree of control over the HTTP upgrade
+process should use *WsServerContainer.upgradeHttpToWebSocket* method to manually
+trigger the HTTP upgrade process to WebSocket. Such applications will probably
+wish to avoid the use of WebSocket annotations so that the container does not
+automatically deploy WebSocket endpoints as described in
+<<application-deployment-on-web-containers>>.
 
 By default, the WebSocket upgrade *Filter* is mapped to the dispatch types
 `REQUEST` and `FORWARD`.
