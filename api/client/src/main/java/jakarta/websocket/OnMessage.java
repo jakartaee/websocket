@@ -120,30 +120,11 @@ public @interface OnMessage {
      * parameter to handle the incoming message. If the incoming whole message exceeds this limit, then the
      * implementation generates an error and closes the connection using the reason that the message was too big.
      * <p>
-     * This attribute is ignored unless {@link #maxMessageBufferSize()} returns {@code -1}.
-     * <p>
-     * This attribute should not be set to a value larger than {@code Integer#MAX_VALUE}.
+     * Setting this attribute to a value larger than {@code Integer#MAX_VALUE} will trigger a
+     * {@code DeploymentException} unless the JVM supports Strings (for text messages) or ByteBuffers (for binary
+     * messages) larger than {@code Integer#MAX_VALUE}. Note that, as of Java 22, there are no plans for such support.
      *
      * @return the maximum size in bytes.
-     *
-     * @deprecated Use {@link #maxMessageBufferSize()}
      */
-    @Deprecated
     public long maxMessageSize() default -1;
-
-    /**
-     * Specifies the maximum size of message in bytes that the method this annotates will be able to process, or -1 to
-     * indicate that no maximum has been configured. The default is -1. This attribute only applies when the annotation
-     * is used to process whole messages, not to those methods that process messages in parts or use a stream or reader
-     * parameter to handle the incoming message. If the incoming whole message exceeds this limit, then the
-     * implementation generates an error and closes the connection using the reason that the message was too big.
-     * <p>
-     * If this attribute returns {@code -1}, the container will fall-back to the deprecated {@link #maxMessageSize()}.
-     * If that attribute is larger than {@code Integer#MAX_VALUE} then the value of {@code Integer#MAX_VALUE} will be
-     * used and the container may log a warning regarding the invalid configuration.
-     *
-     * @return the maximum size in bytes.
-     */
-    public int maxMessageBufferSize() default -1;
-
 }
