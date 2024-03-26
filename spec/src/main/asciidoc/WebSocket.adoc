@@ -1400,6 +1400,12 @@ with the requesting client, the WebSocket implementation considers the
 user *Principal* for the associated WebSocket *Session* to be the user
 *Principal* that was present on the opening handshake [WSC-7.2-2].
 
+If a WebSocket endpoint has a requirement to interact with the HTTP session
+outside of the opening handshake, then the developer may call
+*HttpSession.getAccessor()* during the opening handshake and then use the
+provided *Accessor* instance to interact with the *HttpSession* until the
+session is invalidated or the session's ID is changed.
+
 In the case where a WebSocket endpoint is a protected resource in the
 web application (see <<security>>), that is to say, requires an
 authorized user to access it, then the WebSocket implementation must
