@@ -2,7 +2,7 @@
 :sectnums!:
 == Jakarta WebSocket Specification, Version 2.2
 
-Copyright (c) 2011, 2023 Oracle and/or its affiliates and others.
+Copyright (c) 2011, 2024 Oracle and/or its affiliates and others.
 All rights reserved.
 
 Eclipse is a registered trademark of the Eclipse Foundation. Jakarta
@@ -32,8 +32,8 @@ protocol see:
 [[purpose]]
 === Purpose of this document
 
-This document in combination with the API documentation for the Jakarta
-WebSocket API is the specification of the Jakarta WebSocket API. The
+This document, in combination with the API documentation for the Jakarta
+WebSocket API, is the specification of the Jakarta WebSocket API. The
 specification defines the requirements that an implementation must meet
 in order to be an implementation of the Jakarta WebSocket API. This
 specification has been developed under the Eclipse Foundation Specification
@@ -44,7 +44,7 @@ which pass the TCK, this specification defines the Jakarta standard for
 WebSocket application development.
 
 While there is much useful information in this document for developers
-using the Jakarta WebSocket API, its purpose is not to be a developers
+using the Jakarta WebSocket API, its purpose is not to be a developer's
 guide. Similarly, while there is much useful information in this
 document for developers who are creating an implementation of the Jakarta
 WebSocket API, its purpose is not to be a 'How To' guide as to how to
@@ -245,7 +245,7 @@ safely use this method is when you are directly implementing
 class. This approach guarantees that generic type information will be
 present in the generated class file and the runtime will be able to get
 it. For any other case (Lambda Expressions included), one of following
-methods have to be used:
+methods has to be used:
 *Session.addMessageHandler(Class<T>, MessageHandler.Partial<T>)* or
 *Session.addMessageHandler(Class<T>, MessageHandler.Whole<T>)*.
 
@@ -330,7 +330,7 @@ awaits connections from peers. In most deployments, a WebSocket client
 will connect to only one WebSocket server, and a WebSocket server will
 accept connections from several clients.
 
-Accordingly, the WebSocket API only distinguishes between endpoints that
+Accordingly, the WebSocket API only distinguishes endpoints that
 are WebSocket clients from endpoints that are WebSocket servers in the
 configuration and setup phase.
 
@@ -385,8 +385,8 @@ which methods the implementation must call when a message is received [WSC 2.2.3
 [[handling-errors]]
 ==== Handling Errors
 
-In order that an annotated endpoint can handle errors that occur as a
-arising from external events, for example on decoding an incoming
+In order that an annotated endpoint can handle errors that
+arise from external events, for example on decoding an incoming
 message, an annotated endpoint can use the *@OnError* annotation to mark
 one of its methods that must be called by the implementation with information
 about the error whenever such an error occurs [WSC 2.2.4-1].
@@ -1097,7 +1097,7 @@ that are non-public when they build the list of annotated endpoints to
 deploy [WSC-4.8.2].
 
 [[exception-handling-and-threading]]
-== Exception handling and Threading
+== Exception Handling and Threading
 
 [[threading-considerations]]
 === Threading Considerations
@@ -1253,7 +1253,7 @@ WebSocket implementation must use the WebSocket scanning mechanism to
 find implementations of the *ServerApplicationConfig* interface packaged
 within the WAR file (or in any of its sub-JAR files) [WSC-6.2-2].
 
-If scan of the WAR file locates one or more *ServerApplicationConfig*
+If a scan of the WAR file locates one or more *ServerApplicationConfig*
 implementations, the WebSocket implementation must instantiate each of
 the *ServerApplicationConfig* classes it found. For each one, it must
 pass the results of the scan of the archive containing it (top level WAR
@@ -1354,7 +1354,7 @@ must be the same as the Servlet context root of the web application
 The minimum versions of the platforms are:
 
 * Java SE version 8, for the Jakarta WebSocket Client API [WSC-6.5-1].
-* Jakarta EE version 9, for the Jakarta WebSocket Server API [WSC-6.5-2].
+* Jakarta EE version 11, for the Jakarta WebSocket Server API [WSC-6.5-2].
 
 [[jakartaee]]
 == Jakarta EE Environment
@@ -1478,7 +1478,7 @@ pre-authenticated request.
 This example snippet from a larger web.xml deployment descriptor shows a
 security constraint for a WebSocket endpoint. In the example, the
 WebSocket endpoint which matches on an incoming request URI of
-*'quotes/live'* relative to the context root of the containing web
+*'/quotes/live'* relative to the context root of the containing web
 application is protected such that it may only be accessed using
 **wss://**, and is available only to authenticated users who belong
 either to the *GOLD_MEMBER* or *PLATINUM_MEMBER* roles.
