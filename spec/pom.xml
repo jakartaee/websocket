@@ -173,7 +173,7 @@
                         <configuration>
                             <backend>html5</backend>
                             <sourceDirectory>${basedir}/src/main/asciidoc</sourceDirectory>
-                            <outputFile>${project.build.directory}/generated-docs/websocket-spec-${project.version}.html</outputFile>
+                            <outputFile>${project.build.directory}/generated-docs/jakarta-websocket-spec-${project.version}.html</outputFile>
                             <attributes>
                                 <doctype>book</doctype>
                                 <status>${status}</status>
@@ -197,7 +197,7 @@
                         <configuration>
                             <backend>pdf</backend>
                             <sourceDirectory>${basedir}/src/main/asciidoc</sourceDirectory>
-                            <outputFile>${project.build.directory}/generated-docs/websocket-spec-${project.version}.pdf</outputFile>
+                            <outputFile>${project.build.directory}/generated-docs/jakarta-websocket-spec-${project.version}.pdf</outputFile>
                             <attributes>
                                 <pdf-stylesdir>${project.basedir}/src/main/theme</pdf-stylesdir>
                                 <pdf-style>jakartaee</pdf-style>
