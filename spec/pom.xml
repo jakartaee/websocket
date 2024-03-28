@@ -28,7 +28,7 @@
 
     <groupId>jakarta.websocket</groupId>
     <artifactId>websocket-spec</artifactId>
-    <version>2.2-SNAPSHOT</version>
+    <version>2.2</version>
     <packaging>pom</packaging>
 
     <name>Jakarta WebSocket Specification</name>
