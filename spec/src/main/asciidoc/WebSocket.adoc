@@ -797,7 +797,7 @@ classes that are to act as decoder components for this endpoint. These
 classes must implement some form of the *Decoder* interface, have
 public no-arg constructors and be visible within the classpath of the
 application that this WebSocket endpoint is part of. The implementation
-must create a new instance of each encoder per connection per endpoint.
+must create a new instance of each decoder per connection per endpoint.
 The implementation must attempt to decode WebSocket messages using the
 decoder in the list appropriate to the native WebSocket message type and
 pass the message in decoded object form to the WebSocket endpoint
@@ -857,7 +857,7 @@ classes that are to act as decoder components for this endpoint. These
 classes must implement some form of the Decoder interface, have
 public no-arg constructors and be visible within the classpath of the
 application that this WebSocket endpoint is part of. The implementation
-must create a new instance of each encoder per connection per endpoint.
+must create a new instance of each decoder per connection per endpoint.
 The implementation must attempt to decode WebSocket messages using the
 first appropriate decoder in the list and pass the message in decoded
 object form to the WebSocket endpoint [WSC-4.2.2-1]. If the Decoder
