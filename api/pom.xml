@@ -244,9 +244,6 @@ Use is subject to <a href="{@docRoot}/doc-files/EFSL.html" target="_top">license
                                     <head>Implementation Requirements:</head>
                                 </tag>
                             </tags>
-                            <links>
-                                <link>https://docs.oracle.com/javase/8/docs/api/</link>
-                            </links>
                             <includeDependencySources>true</includeDependencySources>
                         </configuration>
                     </execution>
