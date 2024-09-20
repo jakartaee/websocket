@@ -9,10 +9,10 @@ assignees: ''
 
 **Challenged tests**
 List the challenged tests with the fully qualified classnames and then the test methods, e.g.
-ee.jakarta.tck.faces.test.javaee7.multiFieldValidation.Spec1IT#testFailingPreconditionsNotAfterAllInputComponents
+com.sun.ts.tests.websocket.api.jakarta.websocket.clientendpointconfig#constructortest()
 
 **TCK Version**
-Specify the version of the TCK, e.g. Jakarta Faces 4.0.x
+Specify the version of the TCK, e.g. Jakarta WebSocket 2.2.x
 
 **Description**
 A clear and concise description of why you think the tests are wrong.
