@@ -1,6 +1,5 @@
 /*
- * Copyright (c) 2018, 2019 Oracle and/or its affiliates and others.
- * Copyright (c) 2024 Contributors to the Eclipse Foundation
+ * Copyright (c) 2018, 2024 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
