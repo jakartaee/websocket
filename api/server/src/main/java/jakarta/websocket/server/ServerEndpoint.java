@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018, 2019 Oracle and/or its affiliates and others.
+ * Copyright (c) 2018, 2024 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -58,7 +58,7 @@ public @interface ServerEndpoint {
 
     /**
      * The URI or URI-template, level-1 (<a href="http://tools.ietf.org/html/rfc6570">See RFC 6570</a>) where the
-     * endpoint will be deployed. The URI us relative to the root of the web socket container and must begin with a
+     * endpoint will be deployed. The URI is relative to the root of the web socket container and must begin with a
      * leading "/". Trailing "/"'s are ignored. Examples:
      *
      * <pre>
