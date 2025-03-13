@@ -199,7 +199,7 @@ will be run and determine to which Servlet–compliant Web server the
   The default setting is `8080`.
   c.  Set the `web.home` property to the installation directory of Jakarta EE
   {JakartaEEVersion} CI.
-  e. Set the `porting.ts.url.class.1` property to your porting
+  d. Set the `porting.ts.url.class.1` property to your porting
   implementation class that is used for obtaining URLs. +
   The default setting for this property is
   `com.sun.ts.lib.implementation.sun.common.SunRIURL`.
