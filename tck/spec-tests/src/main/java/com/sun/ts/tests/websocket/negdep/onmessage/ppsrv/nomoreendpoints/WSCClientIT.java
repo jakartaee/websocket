@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 2015, 2023 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2015, 2025 Oracle and/or its affiliates and others.
+ * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -36,7 +37,7 @@ import com.sun.ts.tests.websocket.negdep.NegativeDeploymentClient;
  *                     lib.name;
  */
 /**
- * @OnMessage can contain one text message handling method. This test checks two
+ * {@code @OnMessage} can contain one text message handling method. This test checks two
  *            such methods fail the deployment.
  * @since 1.11
  */
@@ -63,22 +64,22 @@ public class WSCClientIT extends NegativeDeploymentClient {
 
 	/*
 	 * @testName: duplicateOnMessagePreventOtherEndpointFromBeingDeployedTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:SPEC:WSC-5.2.1-3;WebSocket:SPEC:WSC-4.7-4;
-	 * 
+	 *
 	 * @test_Strategy: In both cases, a deployment error raised during the
 	 * deployment process must halt the deployment of the application, any well
 	 * formed endpoints deployed prior to the error being raised must be removed
 	 * from service and no more websocket endpoints from that application may be
 	 * deployed by the container, even if they are valid.
-	 * 
+	 *
 	 * Each websocket endpoint may only have one message handling method for each of
 	 * the native websocket message formats: text, binary and pong. The websocket
 	 * implementation must not deploy such an endpoint and must raise a deployment
 	 * error if an attempt is made to deploy such an annotated endpoint. [WSC-4.7-4]
-	 * 
+	 *
 	 * To check the test fails when deployment pass, comment out of the
-	 * 
+	 *
 	 * @OnMessage of OnMessageServerEndpoint
 	 */
 	@Test
