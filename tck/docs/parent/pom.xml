@@ -160,7 +160,7 @@
                         <backend>pdf</backend>
                         <outputFile>${doc.pdf}</outputFile>
                         <attributes>
-                            <pdf-theme>${project.build.directory}/generated-docs/theme/jakartaee-theme.yml</pdf-theme>
+                            <pdf-stylesdir>${project.basedir}/src/theme</pdf-stylesdir>
                             <title-logo-image>image:img/jakarta_ee_logo_schooner_color_stacked_default.png[pdfwidth=4.25in,align=right]</title-logo-image>
                             <doctype>book</doctype>
                             <status>${status}</status>
