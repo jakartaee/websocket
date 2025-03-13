@@ -28,6 +28,14 @@
     <packaging>jar</packaging>
     <name>Jakarta Websocket TCK Spec Tests</name>
 
+    <dependencies>
+        <dependency>
+            <groupId>jakarta.tck</groupId>
+            <artifactId>websocket-tck-common</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+    </dependencies>
+
     <build>
         <plugins>
             <plugin>
