@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, 2023 Oracle and/or its affiliates and others.
+ * Copyright (c) 2013, 2025 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -73,7 +73,7 @@ public abstract class WebSocketCommonClient {
 	@ArquillianResource
 	@OperateOnDeployment("_DEFAULT_")
 	protected URL url;
-	
+
 	/**
 	 * Webserver host property
 	 */
@@ -269,7 +269,7 @@ public abstract class WebSocketCommonClient {
 
 	/**
 	 * Shortcut to invoke() when endpoint, content, and search is known
-	 * 
+	 *
 	 * @param endpoint the endpoint the request is built to go to.
 	 * @param content  the content to be set as setEntity(content.name())
 	 * @param search   a response would be searched for search.name()
@@ -282,7 +282,7 @@ public abstract class WebSocketCommonClient {
 
 	/**
 	 * Shortcut to invoke() when endpoint, content, and search is known
-	 * 
+	 *
 	 * @param endpoint the endpoint the request is built to go to.
 	 * @param content  the content to be set as setEntity(content.name())
 	 * @param search   a String the response would be searched for
@@ -295,7 +295,7 @@ public abstract class WebSocketCommonClient {
 
 	/**
 	 * Shortcut to invoke() when endpoint, content, and search is known
-	 * 
+	 *
 	 * @param endpoint the endpoint the request is built to go to.
 	 * @param content  the content to be set as setEntity(content)
 	 * @param search   the content of a response to be searched, or "" when does not
@@ -309,7 +309,7 @@ public abstract class WebSocketCommonClient {
 
 	/**
 	 * Shortcut to invoke() when endpoint, content, and search is known
-	 * 
+	 *
 	 * @param endpoint the endpoint the request is built to go to.
 	 * @param content  the content to be set as setEntity(content)
 	 * @param search   the content of a response to be searched, or "" when does not
@@ -332,7 +332,7 @@ public abstract class WebSocketCommonClient {
 
 	/**
 	 * Shortcut to invokeAgain(cleanup) when endpoint, content, and search is known
-	 * 
+	 *
 	 * @param content the content to be set as setEntity(content)
 	 * @param search  the content of a response to be searched, or "" when does not
 	 *                matter
@@ -352,7 +352,7 @@ public abstract class WebSocketCommonClient {
 	 * stored in TEST_PROPS.  Once the test has completed,
 	 * the properties in TEST_PROPS will be cleared.
 	 * </PRE>
-	 * 
+	 *
 	 * @throws Exception If an error occurs during the test run
 	 */
 	protected void invoke() throws Exception {
@@ -365,10 +365,10 @@ public abstract class WebSocketCommonClient {
 	 * stored in TEST_PROPS.  Once the test has completed,
 	 * the properties in TEST_PROPS will be cleared if cleanUp says so.
 	 * </PRE>
-	 * 
-	 * @throws Exception If an error occurs during the test run
+	 *
 	 * @param cleanUp Defines whether the test has ended
-	 * 
+	 *
+     * @throws Exception If an error occurs during the test run
 	 */
 	protected void invoke(boolean cleanUp) throws Exception {
 		invoke(cleanUp, false);
@@ -379,7 +379,7 @@ public abstract class WebSocketCommonClient {
 	 * {@link jakarta.websocket.Session} to a server {@link Endpoint}, the response
 	 * is caught by client {@link Endpoint} set by current {@link WebSocketTestCase}
 	 * <p/>
-	 * 
+	 *
 	 * @throws Exception
 	 */
 	protected void invokeAgain(boolean cleanUp) throws Exception {
@@ -392,12 +392,13 @@ public abstract class WebSocketCommonClient {
 	 * stored in TEST_PROPS. The current session is used. Once the test has completed,
 	 * the properties in TEST_PROPS will be cleared if cleanUp says so.
 	 * </PRE>
-	 * 
-	 * @throws Exception If an error occurs during the test run
+	 *
 	 * @param cleanUp Defines whether the test has ended
 	 * @param again   the request to server endpoint is performed on currently
 	 *                established session, when the session has not been closed
-	 *                after previous {@link #invoke(false)};
+	 *                after previous {@code invoke(false)}
+	 *
+     * @throws Exception If an error occurs during the test run
 	 */
 	protected void invoke(boolean cleanUp, boolean again) throws Exception {
 		logger.log(Logger.Level.TRACE, "[WebSocketCommonClient] invoke");
@@ -421,7 +422,7 @@ public abstract class WebSocketCommonClient {
 	 * Executes test case for the first time, or once again on existing
 	 * {@link WebSocketTestCase} and existing {@link Session} for a new
 	 * {@link Entity}
-	 * 
+	 *
 	 * @param again
 	 * @throws TestFailureException
 	 */
@@ -546,7 +547,7 @@ public abstract class WebSocketCommonClient {
 
 	/**
 	 * <code>cleanup</code> is called to cleanup after text execution
-	 * 
+	 *
 	 * @exception Exception if an error occurs
 	 */
 	@AfterEach
@@ -570,15 +571,13 @@ public abstract class WebSocketCommonClient {
 
 	/**
 	 * <code>setup</code> to initialize the tests.
-	 * 
-	 * @param args a <code>String[]</code> value
-	 * @param p    a <code>Properties</code> value
+	 *
 	 * @exception Exception if an error occurs
 	 */
 	@BeforeEach
 	public void setup() throws Exception {
 		logger.log(Logger.Level.TRACE, "setup method WebSocketCommonClient");
-		
+
 		String hostname = System.getProperty(SERVLETHOSTPROP);
 		String portnum = System.getProperty(SERVLETPORTPROP);
 
@@ -611,10 +610,10 @@ public abstract class WebSocketCommonClient {
 
 	/**
 	 * Asserts that a condition is true.
-	 * 
+	 *
 	 * @param condition tested condition
 	 * @param message   a space separated message[i].toString() compilation for
-	 *                  i=<0,message.length)
+	 *                  i=&lt;0,message.length)
 	 * @throws Exception when conditionTrue is not met with message provided
 	 */
 	public static void //
@@ -625,10 +624,10 @@ public abstract class WebSocketCommonClient {
 
 	/**
 	 * Asserts that a condition is false.
-	 * 
+	 *
 	 * @param condition tested condition
 	 * @param message   a space separated message[i].toString() compilation for
-	 *                  i=<0,message.length)
+	 *                  i=&lt;0,message.length)
 	 * @throws Exception when condition is not false with message provided
 	 */
 	public static void //
@@ -639,11 +638,11 @@ public abstract class WebSocketCommonClient {
 	/**
 	 * Asserts that two objects are equal. When instances of Comparable, such as
 	 * String, compareTo is used.
-	 * 
+	 *
 	 * @param first   first object
 	 * @param second  second object
 	 * @param message a space separated message[i].toString() compilation for
-	 *                i=<0,message.length)
+	 *                i=&lt;0,message.length)
 	 * @throws Exception when objects are not equal with message provided
 	 */
 	@SuppressWarnings("unchecked")
@@ -676,10 +675,10 @@ public abstract class WebSocketCommonClient {
 
 	/**
 	 * Asserts that an object is null.
-	 * 
+	 *
 	 * @param object  Assert that object is not null
 	 * @param message a space separated message[i].toString() compilation for
-	 *                i=<0,message.length)
+	 *                i=&lt;0,message.length)
 	 * @throws Exception when condition is not met with message provided
 	 */
 	public static void //
@@ -689,10 +688,10 @@ public abstract class WebSocketCommonClient {
 
 	/**
 	 * Asserts that an object is not null.
-	 * 
+	 *
 	 * @param object  Assert that object is not null
 	 * @param message a space separated message[i].toString() compilation for
-	 *                i=<0,message.length)
+	 *                i=&lt;0,message.length)
 	 * @throws Exception when condition is not met with message provided
 	 */
 	public static void //
@@ -702,7 +701,7 @@ public abstract class WebSocketCommonClient {
 
 	/**
 	 * Assert that given substring is a substring of given string
-	 * 
+	 *
 	 * @param string    the string to search substring in
 	 * @param substring the substring to be searched in a given string
 	 * @param message   space separated message values to be thrown
@@ -714,7 +713,7 @@ public abstract class WebSocketCommonClient {
 
 	/**
 	 * Assert that given substring is a substring of given string, case insensitive
-	 * 
+	 *
 	 * @param string    the string to search substring in
 	 * @param substring the substring to be searched in a given string
 	 * @param message   space separated message values to be thrown
@@ -726,7 +725,7 @@ public abstract class WebSocketCommonClient {
 
 	/**
 	 * Assert that given substring is not a substring of given string
-	 * 
+	 *
 	 * @param string    the string to search substring in
 	 * @param substring the substring to be searched in a given string
 	 * @param message   space separated message values to be thrown
@@ -739,7 +738,7 @@ public abstract class WebSocketCommonClient {
 	/**
 	 * Assert that given substring is not a substring of given string, case
 	 * insensitive
-	 * 
+	 *
 	 * @param string    the string to search substring in
 	 * @param substring the substring to be searched in a given string
 	 * @param message   space separated message values to be thrown
@@ -752,7 +751,7 @@ public abstract class WebSocketCommonClient {
 
 	/**
 	 * Assert that given subtext.toString() subject is a substring of given text
-	 * 
+	 *
 	 * @param text    the text.toString() object to search subtext.toString() in
 	 * @param subtext the subtext.toString() to be searched in a given
 	 *                text.toString()
@@ -766,7 +765,7 @@ public abstract class WebSocketCommonClient {
 	/**
 	 * Assert that given subtext.toString() subject is a substring of given text,
 	 * case insensitive
-	 * 
+	 *
 	 * @param text    the text.toString() object to search subtext.toString() in
 	 * @param subtext the subtext.toString() to be searched in a given
 	 *                text.toString()
@@ -853,7 +852,7 @@ public abstract class WebSocketCommonClient {
 	/**
 	 * Creates basic authentication header for given username and password, to be
 	 * simply recalled in client Configurator, for instance
-	 * 
+	 *
 	 * <pre>
 	 * Configurator configurator = new Configurator() {
 	 * 	public void beforeRequest(Map&lt;String, List&lt;String&gt;&gt; headers) {
@@ -862,15 +861,15 @@ public abstract class WebSocketCommonClient {
 	 * };
 	 * setClientConfigurator(configurator);
 	 * </pre>
-	 * 
+	 *
 	 * </p>
 	 * Note that this is done by client framework automatically when
-	 * 
+	 *
 	 * <pre>
 	 * setProperty(Property.BASIC_AUTH_USER, USER);
 	 * setProperty(Property.BASIC_AUTH_PASSWD, PASSWORD);
 	 * </pre>
-	 * 
+	 *
 	 * @param userName
 	 * @param password
 	 * @return a header map containing just Authorization header
@@ -892,12 +891,12 @@ public abstract class WebSocketCommonClient {
 	 * </p>
 	 * <p>
 	 * For instance, to delay the connection timeout, use
-	 * 
+	 *
 	 * <pre>
 	 * ClientManager cm = (ClientManager) clientContainer;
 	 * cm.getProperties().put(ClientProperties.HANDSHAKE_TIMEOUT, 500000);
 	 * </pre>
-	 * 
+	 *
 	 * @param clientContainer The container used for e.g.
 	 *                        {@link WebSocketContainer#connectToServer(Class, java.net.URI)}
 	 *                        </p>
@@ -909,7 +908,7 @@ public abstract class WebSocketCommonClient {
 	// ---------------------Setters ---------------------------------
 	/**
 	 * Sets the protocol the request starts with Default "ws"
-	 * 
+	 *
 	 * @param protocol
 	 */
 	protected void setRequestProtocol(String protocol) {

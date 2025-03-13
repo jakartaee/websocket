@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 2013, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2013, 2025 Oracle and/or its affiliates and others.
+ * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -93,12 +94,12 @@ public class StringUtil {
 
 	/**
 	 * Check that every single String in one List is contained in other List
-	 * 
+	 *
 	 * @param where         The other list where String items are searched
 	 * @param what          List of String items that are searched in the other List
 	 * @param caseSensitive define whether the occurrence of Strings is case
 	 *                      sensitive
-	 * @return true iff every single item in {@link where} List is in {@link what}
+	 * @return true iff every single item in {@code where} List is in {@code what}
 	 *         List
 	 */
 	public static boolean //
@@ -122,11 +123,11 @@ public class StringUtil {
 
 	/**
 	 * Check that every single T in one List is contained in other List
-	 * 
+	 *
 	 * @param where      The other list where T items are searched
 	 * @param what       List of T items that are searched in the other List
 	 * @param comparator see {@link Comparator}
-	 * @return true iff every single item in {@link where} List is in {@link what}
+	 * @return true iff every single item in {@code where} List is in {@code what}
 	 *         List
 	 */
 	public static <T> boolean //
@@ -150,10 +151,10 @@ public class StringUtil {
 
 	/**
 	 * Check that every single T in one List is contained in other List
-	 * 
+	 *
 	 * @param where The other list where T items are searched
 	 * @param what  List of T items that are searched in the other List
-	 * @return true iff every single item in {@link where} List is in {@link what}
+	 * @return true iff every single item in {@code where} List is in {@code what}
 	 *         List
 	 */
 	public static <T extends Comparable<? super T>> //
@@ -168,10 +169,10 @@ public class StringUtil {
 	/**
 	 * Check that every single T in one List is contained in other List in given
 	 * order
-	 * 
+	 *
 	 * @param where The other list where T items are searched
 	 * @param what  List of T items that are searched in the other List
-	 * @return true iff every single item in {@link where} List is in {@link what}
+	 * @return true iff every single item in {@code where} List is in {@code what}
 	 *         List
 	 */
 	public static <T extends Comparable<? super T>> //
