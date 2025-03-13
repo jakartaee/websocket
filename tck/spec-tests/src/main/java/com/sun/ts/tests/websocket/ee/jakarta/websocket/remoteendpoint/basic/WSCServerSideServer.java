@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, 2020 Oracle and/or its affiliates and others.
+ * Copyright (c) 2013, 2025 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -155,7 +155,7 @@ public class WSCServerSideServer {
 	 * does not have any force to hold that send operation in its thread, to check
 	 * the send operation is really unblocking and asynchronous
 	 *
-	 * @param asyncRemote
+	 * @param basicRemote
 	 * @return
 	 */
 	protected static String sendBinary(Basic basicRemote) {
