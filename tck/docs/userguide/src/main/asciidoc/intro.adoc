@@ -292,10 +292,13 @@ include::req-software.inc[]
   See the documentation for each of these software applications for
   installation instructions. See link:install.html#GBFTP[Chapter 3,
   "Installation,"] for instructions on installing the {TechnologyShortName} TCK.
-2.  Set up the {TechnologyShortName} TCK software. +
+  
+[start=2]
+.  Set up the {TechnologyShortName} TCK software. +
 See link:config.html#GBFVV[Chapter 4, "Setup and Configuration,"] for
 details about the following steps.
-  a.  Set up your shell environment.
-3.  Test the {TechnologyShortName} {TechnologyVersion} implementation. +
+[loweralpha]
+..  Set up your shell environment.
+.  Test the {TechnologyShortName} {TechnologyVersion} implementation. +
 Test the {TechnologyShortName} implementation installation by running
 the test suite.  See link:using.html#GBFWO[Chapter 5, "Executing Tests."]
