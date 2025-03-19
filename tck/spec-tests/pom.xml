@@ -28,11 +28,20 @@
     <packaging>jar</packaging>
     <name>Jakarta Websocket TCK Spec Tests</name>
 
+    <properties>
+        <sigtest.version>2.6</sigtest.version>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>jakarta.tck</groupId>
             <artifactId>websocket-tck-common</artifactId>
             <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.tck</groupId>
+            <artifactId>sigtest-maven-plugin</artifactId>
+            <version>${sigtest.version}</version>
         </dependency>
     </dependencies>
 
