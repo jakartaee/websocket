@@ -23,7 +23,7 @@
     <version>2.3.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
-    <name>Eclipse Foundation Technology Compatibility Kit User's Guide Parent for Jakarta WebSocket for Jakarta EE, Release 2.2</name>
+    <name>Eclipse Foundation Technology Compatibility Kit User's Guide Parent for Jakarta WebSocket for Jakarta EE, Release 2.3</name>
 
     <properties>
         <asciidoctorj.diagram.version>2.3.1</asciidoctorj.diagram.version>
@@ -45,7 +45,7 @@
         <!-- status: DRAFT, BETA, etc., or blank for final -->
         <status>DRAFT</status>
 
-        <ug.resources.version>2.2.0</ug.resources.version>
+        <ug.resources.version>2.3.0-SNAPSHOT.0</ug.resources.version>
         <ug.staging.dir>${project.build.directory}/staging</ug.staging.dir>
     </properties>
 
