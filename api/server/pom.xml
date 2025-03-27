@@ -88,6 +88,16 @@
                 <groupId>org.apache.felix</groupId>
                 <artifactId>maven-bundle-plugin</artifactId>
                 <extensions>true</extensions>
+                <configuration>
+                    <instructions>
+                        <!-- Needed to integrate ServiceLoader mechanism with OSGi -->
+                        <Require-Capability><![CDATA[
+                        osgi.extender;filter:="(osgi.extender=osgi.serviceloader.processor)",
+                        osgi.serviceloader;filter:="(osgi.serviceloader=jakarta.websocket.server.ServerEndpointConfig$Configurator)";cardinality:=multiple,
+                        osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))
+                        ]]></Require-Capability>
+                    </instructions>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
