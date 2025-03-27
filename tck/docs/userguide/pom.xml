@@ -30,7 +30,7 @@
     <artifactId>jakarta.websocket-tck-user-guide</artifactId>
     <packaging>pom</packaging>
 
-    <name>Eclipse Foundation Technology Compatibility Kit User's Guide for Jakarta WebSocket for Jakarta EE, Release 2.2</name>
+    <name>Eclipse Foundation Technology Compatibility Kit User's Guide for Jakarta WebSocket for Jakarta EE, Release 2.3</name>
 
     <properties>
 
