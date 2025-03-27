@@ -84,6 +84,13 @@ public interface ClientEndpointConfig extends EndpointConfig {
     public class Configurator {
 
         /**
+         * Default, no-arg constructor.
+         */
+        public Configurator() {
+            // Explicitly defined to silence Java compilation warning.
+        }
+
+        /**
          * This method is called by the implementation after it has formulated the handshake request that will be used
          * to initiate the connection to the server, but before it has sent any part of the request. This allows the
          * developer to inspect and modify the handshake request headers prior to the start of the handshake
