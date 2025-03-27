@@ -5,8 +5,8 @@ updates:
     target-branch: "master"
     schedule:
       interval: "weekly"
-      - package-ecosystem: "maven"
-        directory: "/"
-        target-branch: "2.2.x"
-        schedule:
-          interval: "weekly"
+  - package-ecosystem: "maven"
+    directory: "/"
+    target-branch: "2.2.x"
+    schedule:
+      interval: "weekly"
