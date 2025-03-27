@@ -23,7 +23,7 @@ package jakarta.websocket;
  * @author dannycoward
  */
 public class EncodeException extends Exception {
-    private final Object object;
+    private transient final Object object;
     private static final long serialVersionUID = 006;
 
     /**

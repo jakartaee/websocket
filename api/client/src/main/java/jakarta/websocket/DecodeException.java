@@ -25,7 +25,7 @@ import java.nio.ByteBuffer;
  * @author dannycoward
  */
 public class DecodeException extends Exception {
-    private final ByteBuffer bb;
+    private transient final ByteBuffer bb;
     private final String encodedString;
     private static final long serialVersionUID = 006;
 

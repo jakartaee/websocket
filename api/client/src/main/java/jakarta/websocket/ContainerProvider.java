@@ -61,6 +61,13 @@ public abstract class ContainerProvider {
     }
 
     /**
+     * Default, no-arg constructor.
+     */
+    public ContainerProvider() {
+        // Explicitly defined to silence Java compilation warning.
+    }
+
+    /**
      * Create a new instance of the the WebSocket container implementation.
      *
      * @return the new instance
