@@ -97,6 +97,13 @@ public interface ServerEndpointConfig extends EndpointConfig {
         }
 
         /**
+         * Default, no-arg constructor.
+         */
+        public Configurator() {
+            // Explicitly defined to silence Java compilation warning.
+        }
+
+        /**
          * Return the platform default configurator.
          *
          * @return the platform default configurator

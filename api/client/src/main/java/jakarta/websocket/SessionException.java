@@ -23,7 +23,7 @@ package jakarta.websocket;
  * @author dannycoward
  */
 public class SessionException extends Exception {
-    private final Session session;
+    private transient final Session session;
     private static final long serialVersionUID = 014;
 
     /**

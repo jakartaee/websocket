@@ -72,6 +72,13 @@ package jakarta.websocket;
 public abstract class Endpoint {
 
     /**
+     * Default, no-arg constructor.
+     */
+    public Endpoint() {
+        // Explicitly defined to silence Java compilation warning.
+    }
+
+    /**
      * Developers must implement this method to be notified when a new conversation has just begun.
      * <p>
      * Note:
