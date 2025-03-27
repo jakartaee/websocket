@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, 2020 Oracle and/or its affiliates and others.
+ * Copyright (c) 2013, 2025 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -40,7 +40,7 @@ public class WSCModifyHandshakeServer {
 		if (msg.equals("origin"))
 			ret = ModifyHandshakeConfigurator.isCheckedOriginBeforeModifyHandshake();
 		else if (msg.equals("config"))
-			ret = ModifyHandshakeConfigurator.getConfig().getClass().getName().equals(config.getClass().getName());
+			ret = ServerEndpointConfig.class.isAssignableFrom(config.getClass());
 		else if (msg.equals("request"))
 			ret = ModifyHandshakeConfigurator.getRequest() != null;
 		else if (msg.equals("response"))
