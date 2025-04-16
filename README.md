@@ -20,7 +20,7 @@ The API jars can then be found in `/api/client/target` and `/api/server/target`.
 
 ### Specification
 
-Jakarta Expression Language specification can be built by executing the following from the project root:
+Jakarta WebSocket specification can be built by executing the following from the project root:
 
 ```
 cd spec
@@ -37,3 +37,9 @@ To make changes, fork this repository, make your changes, and submit a pull requ
 ## About Jakarta WebSocket
 
 Jakarta WebSocket defines a set of Java APIs for the development of WebSocket applications.
+
+
+## TCK Challenges
+
+All test challenges for Jakarta WebSocket must be resolved by Active Resolution.
+Please see the TCK Users guide for more details.
