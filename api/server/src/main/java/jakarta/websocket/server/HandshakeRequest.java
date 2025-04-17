@@ -109,6 +109,8 @@ public interface HandshakeRequest {
      *
      * @return An ordered array of client certificates, with the client's own certificate first followed by any
      *             certificate authorities or {@code null} if the client did not present a certificate.
+     *
+     * @since WebSocket 2.3
      */
     X509Certificate[] getUserX509CertificateChain();
 }
