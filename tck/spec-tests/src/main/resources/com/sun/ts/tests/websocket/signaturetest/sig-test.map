@@ -17,4 +17,4 @@
 ###############################################################
 # The signature test mapping file for the Websocket TCK.
 ###############################################################
-jakarta.websocket=2.2
+jakarta.websocket=2.3
