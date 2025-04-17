@@ -2,7 +2,7 @@
 :sectnums!:
 == Jakarta WebSocket Specification, Version 2.3
 
-Copyright (c) 2011, 2024 Oracle and/or its affiliates and others.
+Copyright (c) 2011, 2025 Oracle and/or its affiliates and others.
 All rights reserved.
 
 Eclipse is a registered trademark of the Eclipse Foundation. Jakarta
@@ -1524,6 +1524,10 @@ This appendix lists the changes in the WebSocket specification.
 This appendix is non-normative.
 
 === Changes Between 2.3 and 2.2
+
+* https://github.com/jakartaee/websocket/issues/242[Issue 242]
+Add the `X509Certificate[] getUserX509CertificateChain()` method to `HandshakeRequest` so the client certificate chain,
+if present, is available during the WebSocket handshake.
 
 === Changes Between 2.2 and 2.1
 
