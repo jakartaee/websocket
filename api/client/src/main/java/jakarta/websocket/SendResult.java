@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018, 2023 Oracle and/or its affiliates and others.
+ * Copyright (c) 2018, 2025 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -34,6 +34,8 @@ final public class SendResult {
      *
      * @param session   the WebSocket session in which the message was sent
      * @param exception the exception causing a send failure.
+     *
+     * @since WebSocket 2.2
      */
     public SendResult(Session session, Throwable exception) {
         this.session = session;
@@ -45,6 +47,8 @@ final public class SendResult {
      * Construct a SendResult signifying a successful send carrying no exception.
      *
      * @param session   the WebSocket session in which the message was sent
+     *
+     * @since WebSocket 2.2
      */
     public SendResult(Session session) {
         this.session = session;
@@ -102,6 +106,8 @@ final public class SendResult {
      * The WebSocket session in which the session was sent.
      *
      * @return the WebSocket session in which the session was sent or {@code null} if not known.
+     *
+     * @since WebSocket 2.2
      */
     public Session getSession() {
         return session;

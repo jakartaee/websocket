@@ -64,6 +64,8 @@ public interface ClientEndpointConfig extends EndpointConfig {
      *
      * @return the SSLContext to use to establish a secure connection to the server or {@code null} if an insecure
      *         connection should be established
+     *
+     * @since WebSocket 2.1
      */
     SSLContext getSSLContext();
 
@@ -237,6 +239,8 @@ public interface ClientEndpointConfig extends EndpointConfig {
          * @param sslContext The SSLContext which must be initialised for secure WebSocket (wss) connections or
          *                  {@code null} for insecure WebSocket (ws) connections.
          * @return this builder instance
+         *
+         * @since WebSocket 2.1
          */
         public ClientEndpointConfig.Builder sslContext(SSLContext sslContext) {
             this.sslContext = sslContext;

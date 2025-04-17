@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018, 2021 Oracle and/or its affiliates and others.
+ * Copyright (c) 2018, 2025 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -96,6 +96,8 @@ final class DefaultClientEndpointConfig implements ClientEndpointConfig {
      * If there is an existing connection to the server that uses the same SSLContext and that connection supports
      * multiplexing WebSocket connections then the container may choose to re-use that connection rather than creating a
      * new one. Containers may provide container specific configuration to control this behaviour.
+     *
+     * @since WebSocket 2.1
      */
     @Override
     public SSLContext getSSLContext() {
