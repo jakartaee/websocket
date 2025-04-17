@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, 2023 Oracle and/or its affiliates and others.
+ * Copyright (c) 2013, 2025 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -16,8 +16,6 @@
  */
 
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.server.handshakerequest;
-
-import java.io.IOException;
 
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit5.ArquillianExtension;
@@ -42,10 +40,9 @@ import jakarta.websocket.HandshakeResponse;
  */
 @ExtendWith(ArquillianExtension.class)
 public class WSCClientIT extends WebSocketCommonClient {
-	private static final long serialVersionUID = 6725664656725817177L;
 
 	@Deployment(testable = false)
-	public static WebArchive createDeployment() throws IOException {
+	public static WebArchive createDeployment() {
 
 		WebArchive archive = ShrinkWrap.create(WebArchive.class, "wsc_ee_jakarta_websocket_handshakerequest_web.war");
 		archive.addPackages(true, Filters.exclude(WSCClientIT.class),
@@ -53,7 +50,7 @@ public class WSCClientIT extends WebSocketCommonClient {
 		archive.addPackages(true, "com.sun.ts.tests.websocket.common.stringbean");
 		archive.addClasses(IOUtil.class);
 		return archive;
-	};
+	}
 
 	public WSCClientIT() throws Exception {
 		setContextRoot("wsc_ee_jakarta_websocket_handshakerequest_web");
@@ -68,14 +65,14 @@ public class WSCClientIT extends WebSocketCommonClient {
 
 	/*
 	 * @testName: getHeadersIsReadonlyTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:JAVADOC:174; WebSocket:JAVADOC:77;
 	 * WebSocket:JAVADOC:15; WebSocket:JAVADOC:210;
-	 * 
+	 *
 	 * @test_Strategy: HandshakeRequest.getHeaders HandshakeResponse.getHeaders
 	 * ClientEndpointConfig.Configurator.afterResponse
 	 * ServerEndpointConfig.Configurator.modifyHandshake
-	 * 
+	 *
 	 * Return the read only Map of Http Headers that came with the handshake
 	 * request.
 	 */
@@ -100,15 +97,15 @@ public class WSCClientIT extends WebSocketCommonClient {
 
 	/*
 	 * @testName: getHeadersHasCaseInsensitiveNamesTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:JAVADOC:174; WebSocket:JAVADOC:77;
 	 * WebSocket:JAVADOC:15; WebSocket:JAVADOC:16; WebSocket:JAVADOC:210;
-	 * 
+	 *
 	 * @test_Strategy: HandshakeRequest.getHeaders HandshakeResponse.getHeaders
 	 * ClientEndpointConfig.Configurator.afterResponse
 	 * ClientEndpointConfig.Configurator.beforeRequest
 	 * ServerEndpointConfig.Configurator.modifyHandshake
-	 * 
+	 *
 	 * The header names are case insensitive.
 	 */
 	@Test
@@ -126,14 +123,14 @@ public class WSCClientIT extends WebSocketCommonClient {
 
 	/*
 	 * @testName: getParameterMapIsUnmodifiableTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:JAVADOC:176; WebSocket:JAVADOC:77;
 	 * WebSocket:JAVADOC:15; WebSocket:JAVADOC:210;
-	 * 
+	 *
 	 * @test_Strategy: HandshakeRequest.getParameterMap HandshakeResponse.getHeaders
 	 * ClientEndpointConfig.Configurator.afterResponse
 	 * ServerEndpointConfig.Configurator.modifyHandshake
-	 * 
+	 *
 	 * Returns: the unmodifiable map of the request parameters.
 	 */
 	@Test
@@ -157,14 +154,14 @@ public class WSCClientIT extends WebSocketCommonClient {
 
 	/*
 	 * @testName: getParameterMapOneParamTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:JAVADOC:176; WebSocket:JAVADOC:77;
 	 * WebSocket:JAVADOC:15; WebSocket:JAVADOC:210;
-	 * 
+	 *
 	 * @test_Strategy: HandshakeRequest.getParameterMap HandshakeResponse.getHeaders
 	 * ClientEndpointConfig.Configurator.afterResponse
 	 * ServerEndpointConfig.Configurator.modifyHandshake
-	 * 
+	 *
 	 * Returns: the unmodifiable map of the request parameters.
 	 */
 	@Test
@@ -181,14 +178,14 @@ public class WSCClientIT extends WebSocketCommonClient {
 
 	/*
 	 * @testName: getParameterMapOneParamOneQueryParamTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:JAVADOC:176; WebSocket:JAVADOC:77;
 	 * WebSocket:JAVADOC:15; WebSocket:JAVADOC:210;
-	 * 
+	 *
 	 * @test_Strategy: HandshakeRequest.getParameterMap HandshakeResponse.getHeaders
 	 * ClientEndpointConfig.Configurator.afterResponse
 	 * ServerEndpointConfig.Configurator.modifyHandshake
-	 * 
+	 *
 	 * Returns: the unmodifiable map of the request parameters.
 	 */
 	@Test
@@ -208,14 +205,14 @@ public class WSCClientIT extends WebSocketCommonClient {
 
 	/*
 	 * @testName: getParameterMapTwoParamsTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:JAVADOC:176; WebSocket:JAVADOC:77;
 	 * WebSocket:JAVADOC:15; WebSocket:JAVADOC:210;
-	 * 
+	 *
 	 * @test_Strategy: HandshakeRequest.getParameterMap HandshakeResponse.getHeaders
 	 * ClientEndpointConfig.Configurator.afterResponse
 	 * ServerEndpointConfig.Configurator.modifyHandshake
-	 * 
+	 *
 	 * Returns: the unmodifiable map of the request parameters.
 	 */
 	@Test
@@ -234,14 +231,14 @@ public class WSCClientIT extends WebSocketCommonClient {
 
 	/*
 	 * @testName: getQueryStringTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:JAVADOC:177; WebSocket:JAVADOC:77;
 	 * WebSocket:JAVADOC:15; WebSocket:JAVADOC:210;
-	 * 
+	 *
 	 * @test_Strategy: HandshakeRequest.getQueryString HandshakeResponse.getHeaders
 	 * ClientEndpointConfig.Configurator.afterResponse
 	 * ServerEndpointConfig.Configurator.modifyHandshake
-	 * 
+	 *
 	 * Return the query string associated with the request.
 	 */
 	@Test
@@ -257,14 +254,14 @@ public class WSCClientIT extends WebSocketCommonClient {
 
 	/*
 	 * @testName: getRequestUriTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:JAVADOC:178; WebSocket:JAVADOC:77;
 	 * WebSocket:JAVADOC:15; WebSocket:JAVADOC:210;
-	 * 
+	 *
 	 * @test_Strategy: HandshakeRequest.getRequestUri HandshakeResponse.getHeaders
 	 * ClientEndpointConfig.Configurator.afterResponse
 	 * ServerEndpointConfig.Configurator.modifyHandshake
-	 * 
+	 *
 	 * Returns: the request uri of the handshake request.
 	 */
 	@Test
@@ -280,14 +277,14 @@ public class WSCClientIT extends WebSocketCommonClient {
 
 	/*
 	 * @testName: getUserPrincipalNotAuthenticatedTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:JAVADOC:179; WebSocket:JAVADOC:77;
 	 * WebSocket:JAVADOC:15; WebSocket:JAVADOC:210;
-	 * 
+	 *
 	 * @test_Strategy: HandshakeRequest.getUserPrincipal
 	 * HandshakeResponse.getHeaders ClientEndpointConfig.Configurator.afterResponse
 	 * ServerEndpointConfig.Configurator.modifyHandshake
-	 * 
+	 *
 	 * Return the authenticated user or null if no user is authenticated for this
 	 * handshake.
 	 */
@@ -303,14 +300,14 @@ public class WSCClientIT extends WebSocketCommonClient {
 
 	/*
 	 * @testName: isUserInRoleNotAuthenticatedTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:JAVADOC:180; WebSocket:JAVADOC:77;
 	 * WebSocket:JAVADOC:15; WebSocket:JAVADOC:210;
-	 * 
+	 *
 	 * @test_Strategy: HandshakeRequest.isUserInRole HandshakeResponse.getHeaders
 	 * ClientEndpointConfig.Configurator.afterResponse
 	 * ServerEndpointConfig.Configurator.modifyHandshake
-	 * 
+	 *
 	 * If the user has not been authenticated, the method returns false.
 	 */
 	@Test
@@ -321,5 +318,15 @@ public class WSCClientIT extends WebSocketCommonClient {
 		setClientEndpointConfig(config);
 		invoke("isuserinrole", "anything", "anything");
 		configurator.assertAfterResponseHasBeenCalled();
+	}
+
+	@Test
+	public void getUserX509CertificateChainNotAuthenticatedTest() throws Exception {
+        ClientConfigurator configurator = new ClientConfigurator();
+        configurator.addToResponse(GetUserX509CertificateChainNotAuthenticatedConfigurator.KEY, String.valueOf(true));
+        ClientEndpointConfig config = ClientEndpointConfig.Builder.create().configurator(configurator).build();
+        setClientEndpointConfig(config);
+        invoke("getuserx509certificatechain", "anything", "anything");
+        configurator.assertAfterResponseHasBeenCalled();
 	}
 }
