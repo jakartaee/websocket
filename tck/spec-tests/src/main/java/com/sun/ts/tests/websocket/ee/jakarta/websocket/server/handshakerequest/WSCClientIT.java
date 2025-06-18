@@ -329,4 +329,98 @@ public class WSCClientIT extends WebSocketCommonClient {
         invoke("getuserx509certificatechain", "anything", "anything");
         configurator.assertAfterResponseHasBeenCalled();
     }
+
+    @Test
+    public void getLocalAddressTest() throws Exception {
+        ClientConfigurator configurator = new ClientConfigurator();
+        configurator.addToResponse(GetLocalAddressConfigurator.KEY, String.valueOf(true));
+        ClientEndpointConfig config = ClientEndpointConfig.Builder.create().configurator(configurator).build();
+        setClientEndpointConfig(config);
+        invoke("getlocaladdress", "anything", "anything");
+        configurator.assertAfterResponseHasBeenCalled();
+    }
+
+    @Test
+    public void getLocalHostNameTest() throws Exception {
+        ClientConfigurator configurator = new ClientConfigurator();
+        configurator.addToResponse(GetLocalHostNameConfigurator.KEY, String.valueOf(true));
+        ClientEndpointConfig config = ClientEndpointConfig.Builder.create().configurator(configurator).build();
+        setClientEndpointConfig(config);
+        invoke("getlocalhostname", "anything", "anything");
+        configurator.assertAfterResponseHasBeenCalled();
+    }
+
+    @Test
+    public void getLocalPortTest() throws Exception {
+        ClientConfigurator configurator = new ClientConfigurator();
+        configurator.addToResponse(GetLocalPortConfigurator.KEY, String.valueOf(true));
+        ClientEndpointConfig config = ClientEndpointConfig.Builder.create().configurator(configurator).build();
+        setClientEndpointConfig(config);
+        invoke("getlocalport", "anything", "anything");
+        configurator.assertAfterResponseHasBeenCalled();
+    }
+
+    @Test
+    public void getRemoteAddressTest() throws Exception {
+        ClientConfigurator configurator = new ClientConfigurator();
+        configurator.addToResponse(GetRemoteAddressConfigurator.KEY, String.valueOf(true));
+        ClientEndpointConfig config = ClientEndpointConfig.Builder.create().configurator(configurator).build();
+        setClientEndpointConfig(config);
+        invoke("getremoteaddress", "anything", "anything");
+        configurator.assertAfterResponseHasBeenCalled();
+    }
+
+    @Test
+    public void getRemoteHostNameTest() throws Exception {
+        ClientConfigurator configurator = new ClientConfigurator();
+        configurator.addToResponse(GetRemoteHostNameConfigurator.KEY, String.valueOf(true));
+        ClientEndpointConfig config = ClientEndpointConfig.Builder.create().configurator(configurator).build();
+        setClientEndpointConfig(config);
+        invoke("getremotehostname", "anything", "anything");
+        configurator.assertAfterResponseHasBeenCalled();
+    }
+
+    @Test
+    public void getRemotePortTest() throws Exception {
+        ClientConfigurator configurator = new ClientConfigurator();
+        configurator.addToResponse(GetRemotePortConfigurator.KEY, String.valueOf(true));
+        ClientEndpointConfig config = ClientEndpointConfig.Builder.create().configurator(configurator).build();
+        setClientEndpointConfig(config);
+        invoke("getremoteport", "anything", "anything");
+        configurator.assertAfterResponseHasBeenCalled();
+    }
+
+    @Test
+    public void getLocaleNoHeaderTest() throws Exception {
+        ClientConfigurator configurator = new ClientConfigurator();
+        configurator.addToResponse(GetLocaleNoHeaderConfigurator.KEY, String.valueOf(true));
+        ClientEndpointConfig config = ClientEndpointConfig.Builder.create().configurator(configurator).build();
+        setClientEndpointConfig(config);
+        invoke("getlocalenoheader", "anything", "anything");
+        configurator.assertAfterResponseHasBeenCalled();
+    }
+
+    @Test
+    public void getLocaleFrenchTest() throws Exception {
+        ClientConfigurator configurator = new ClientConfigurator();
+        configurator.addToRequest(GetLocaleFrenchConfigurator.REQUEST_KEY,
+                GetLocaleFrenchConfigurator.REQUEST_VALUES);
+        configurator.addToResponse(GetLocaleFrenchConfigurator.KEY, String.valueOf(true));
+        ClientEndpointConfig config = ClientEndpointConfig.Builder.create().configurator(configurator).build();
+        setClientEndpointConfig(config);
+        invoke("getlocalefrench", "anything", "anything");
+        configurator.assertAfterResponseHasBeenCalled();
+    }
+
+    @Test
+    public void getLocaleGermanTest() throws Exception {
+        ClientConfigurator configurator = new ClientConfigurator();
+        configurator.addToRequest(GetLocaleGermanConfigurator.REQUEST_KEY,
+                GetLocaleGermanConfigurator.REQUEST_VALUES);
+        configurator.addToResponse(GetLocaleGermanConfigurator.KEY, String.valueOf(true));
+        ClientEndpointConfig config = ClientEndpointConfig.Builder.create().configurator(configurator).build();
+        setClientEndpointConfig(config);
+        invoke("getlocalegerman", "anything", "anything");
+        configurator.assertAfterResponseHasBeenCalled();
+    }
 }
