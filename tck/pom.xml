@@ -147,6 +147,7 @@
             <!-- Create Javadoc for API jar -->
             <plugin>
                 <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.11.2</version>
                 <configuration>
                     <doclint>none</doclint>
                 </configuration>
@@ -156,6 +157,15 @@
                         <goals>
                             <goal>jar</goal>
                         </goals>
+                        <configuration>
+                            <tags>
+                                <tag>
+                                    <name>implSpec</name>
+                                    <placement>a</placement>
+                                    <head>Implementation Requirements:</head>
+                                </tag>
+                            </tags>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
