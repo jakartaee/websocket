@@ -108,7 +108,9 @@ public interface ClientEndpointConfig extends EndpointConfig {
         /**
          * This method is called by the implementation after it has received a handshake response from the server as a
          * result of a handshake interaction it initiated. The developer may implement this method in order to inspect
-         * the returning handshake response.
+         * the returning handshake response. This method is called after both a successful and unsuccessful handshake.
+         * For a failed handshake, depending on the how the handshake fails, an HTTP response may not be received and in
+         * that case the {@link HandshakeResponse} will contain an empty header map.
          *
          * @param hr the handshake response sent by the server.
          */
