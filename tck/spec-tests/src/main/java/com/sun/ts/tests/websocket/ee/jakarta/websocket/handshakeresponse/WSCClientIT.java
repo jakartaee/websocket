@@ -54,7 +54,7 @@ public class WSCClientIT extends WebSocketCommonClient {
                 "com.sun.ts.tests.websocket.ee.jakarta.websocket.handshakeresponse");
         archive.addClasses(IOUtil.class);
         return archive;
-    };
+    }
 
     public WSCClientIT() throws Exception {
         setContextRoot("wsc_ee_jakarta_websocket_handshakeresponse_web");
