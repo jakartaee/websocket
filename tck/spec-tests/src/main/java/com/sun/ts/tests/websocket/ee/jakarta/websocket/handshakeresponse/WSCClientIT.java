@@ -17,8 +17,6 @@
 
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.handshakeresponse;
 
-import java.io.IOException;
-
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit5.ArquillianExtension;
 import org.jboss.shrinkwrap.api.Filters;
@@ -45,7 +43,7 @@ import jakarta.websocket.DeploymentException;
 public class WSCClientIT extends WebSocketCommonClient {
 
     @Deployment(testable = false)
-    public static WebArchive createDeployment() throws IOException {
+    public static WebArchive createDeployment() {
 
         WebArchive archive = ShrinkWrap.create(WebArchive.class, "wsc_ee_jakarta_websocket_handshakeresponse_web.war");
         archive.addPackages(true, Filters.exclude(WSCClientIT.class),
