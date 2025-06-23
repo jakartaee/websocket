@@ -24,6 +24,8 @@ import org.jboss.arquillian.junit5.ArquillianExtension;
 import org.jboss.shrinkwrap.api.Filters;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
@@ -32,6 +34,7 @@ import com.sun.ts.tests.websocket.common.impl.ClientConfigurator;
 import com.sun.ts.tests.websocket.common.util.IOUtil;
 
 import jakarta.websocket.ClientEndpointConfig;
+import jakarta.websocket.DeploymentException;
 
 /*
  * @class.setup_props: webServerHost;
@@ -110,6 +113,25 @@ public class WSCClientIT extends WebSocketCommonClient {
         ClientEndpointConfig config = ClientEndpointConfig.Builder.create().configurator(configurator).build();
         setClientEndpointConfig(config);
         invoke("setheaders", "anything", "anything");
+        configurator.assertBeforeRequestHasBeenCalled();
+        configurator.assertAfterResponseHasBeenCalled();
+    }
+
+
+    @Test
+    public void failedConnectionTest() throws Exception {
+        ClientConfigurator configurator = new ClientConfigurator();
+        ClientEndpointConfig config = ClientEndpointConfig.Builder.create().configurator(configurator).build();
+        setClientEndpointConfig(config);
+        DeploymentException expectedFailure = null;
+        try {
+            invoke("doesNotExist", "anything", "anything");
+        } catch (Exception e) {
+            if (e.getCause() instanceof DeploymentException) {
+                expectedFailure = (DeploymentException) e.getCause();
+            }
+        }
+        Assertions.assertNotNull(expectedFailure, "WebSocket request to nonexistent endpoint did not fail");
         configurator.assertBeforeRequestHasBeenCalled();
         configurator.assertAfterResponseHasBeenCalled();
     }
