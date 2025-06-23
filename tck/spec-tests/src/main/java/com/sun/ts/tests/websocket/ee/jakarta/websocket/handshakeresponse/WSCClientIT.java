@@ -44,8 +44,6 @@ import jakarta.websocket.DeploymentException;
 @ExtendWith(ArquillianExtension.class)
 public class WSCClientIT extends WebSocketCommonClient {
 
-    private static final long serialVersionUID = 2315071335485201973L;
-
     @Deployment(testable = false)
     public static WebArchive createDeployment() throws IOException {
 
