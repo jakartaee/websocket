@@ -1529,6 +1529,10 @@ This appendix is non-normative.
 Add the `X509Certificate[] getUserX509CertificateChain()` method to `HandshakeRequest` so the client certificate chain,
 if present, is available during the WebSocket handshake.
 
+* https://github.com/jakartaee/websocket/issues/417[Issue 417]
+Clarify that `ClientEndPoint.Configurator.afterResponse(HandshakeResponse)` is to be called after both successful and
+unsuccessful WebSocket handshakes.
+
 === Changes Between 2.2 and 2.1
 
 * https://github.com/jakartaee/websocket/issues/176[Issue 176]
