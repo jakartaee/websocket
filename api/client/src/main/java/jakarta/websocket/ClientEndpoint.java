@@ -78,4 +78,16 @@ public @interface ClientEndpoint {
      *         annotation.
      */
     public Class<? extends ClientEndpointConfig.Configurator> configurator() default ClientEndpointConfig.Configurator.class;
+
+    Extension[] extensions() default {};
+
+    @interface Extension {
+        String name();
+        Parameter[] parameters() default {};
+    }
+
+    @interface Parameter {
+        String name();
+        String value();
+    }
 }
