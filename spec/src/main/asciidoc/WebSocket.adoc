@@ -593,10 +593,32 @@ match [WSC-3.1.2-1].
 [[extension-modification]]
 ==== Extension Modification
 
-In the opening handshake, the client supplies a list of extensions that
-it would like to use. The default server configuration selects from
-those extensions the ones it supports, and places them in the same order
-as requested by the client [WSC-3.1.3-1].
+The starting point to determine the extensions and parameters the default server
+configuration must return in the opening handshake response is the list of
+extensions and parameters providing by the client in the opening handshake. The
+order in which extensions are presented in the opening handshake must be
+maintained as the order determines the order in which the extensions will
+process WebSocket messages.
+
+Any extension whose name is not included in the list of extensions returned by
+`ServerContainer.getInstalledExtensions()` must be excluded from the opening
+handshake response. Implementation and configuration of supported extensions is
+container specific.
+
+The client may include the same extension multiple times. This signifies that
+different configurations of the extension are acceptable with the variations
+listed in preference order from most preferred to least preferred. The server
+should include its preferred configuration in the opening handshake response.
+If none of the requested configurations are acceptable, the extension is not
+included in the opening handshake response [WSC-3.1.3-1].
+
+Determination of acceptable parameters is extension implementation specific.
+
+Extensions are always optional in the WebSocket protocol. If a server wishes to
+require that an extension is present, it may provide a custom
+`ServerEndpointConfig.Configurator`, override `getNegotiatedExtensions` and fail
+the handshake, e.g. by throwing an `Exception`, if the required extension(s)
+is(are) not present.
 
 [[origin-check]]
 ==== Origin Check
@@ -673,10 +695,29 @@ formulates [WSC-3.2.1-1].
 [[extensions]]
 ==== Extensions
 
-The default client configuration must use the developer provided list of
-extensions to send, in order of preference, the extensions, including
-parameters, that it would like to use in the opening handshake it
-formulates [WSC-3.2.2-1].
+The starting point to determine the extensions and parameters the default client
+configuration must request in the opening handshake request is the developer
+provided list of extensions and parameters for the endpoint. The order in which
+extensions are specified must be maintained as the order determines the order in
+which the extensions will process WebSocket messages.
+
+Any extension whose name is not included in the list of extensions returned by
+`WebSocketContainer.getInstalledExtensions()` must be excluded from the opening
+handshake request. Implementation and configuration of supported extensions is
+container specific.
+
+The developer provided list may include an extension multiple times. This
+signifies that different configurations of the extension are acceptable with the
+variations listed in preference order from most preferred to least preferred.
+
+The default client configuration must use the remaining extensions, in order of
+preference and including parameters, in the opening handshake it formulates
+[WSC-3.2.2-1].
+
+Extensions are always optional in the WebSocket protocol. If a client wishes to
+require that an extension is present, it may examine the handshake response via
+`ClientEndpointConfig.Configurator.afterResponse()` and fail the handshake, e.g.
+by throwing an `Exception`, if the required extension(s) is(are) not present.
 
 [[sslcontext]]
 ==== SSLContext
