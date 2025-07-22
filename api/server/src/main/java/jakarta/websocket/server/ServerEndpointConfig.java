@@ -137,16 +137,17 @@ public interface ServerEndpointConfig extends EndpointConfig {
         }
 
         /**
-         * Return the ordered list of extensions that t server endpoint will support given the requested extension list
-         * passed in, the empty list if none. See <a href="http://tools.ietf.org/html/rfc6455#section-9.1">Negotiating
-         * Extensions</a>
+         * Return the ordered list of extensions that the server endpoint will support given the requested extension
+         * list passed in, the empty list if none. See
+         * <a href="http://tools.ietf.org/html/rfc6455#section-9.1">Negotiating Extensions</a>
          *
          * <p>
          * The default platform implementation of this method returns a list containing all of the requested extensions
          * passed to this method that it supports, using the order in the requested extensions, the empty list if none.
          *
-         * @param installed the union of the extensions defined for the endpoint and
-         *            {@link ServerContainer#getInstalledExtensions()}.
+         * @param installed the intersection of the extensions defined for the endpoint
+         *            ({@link ServerEndpointConfig#getExtensions()}) and those supported by the server
+         *            ({@link ServerContainer#getInstalledExtensions()}).
          * @param requested the requested extensions, in the order they were requested by the client
          * @return the list of extensions negotiated, the empty list if none.
          */
