@@ -88,6 +88,6 @@ public @interface ClientEndpoint {
 
     @interface Parameter {
         String name();
-        String value();
+        String value() default "";
     }
 }
