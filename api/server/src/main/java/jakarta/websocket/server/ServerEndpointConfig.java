@@ -151,7 +151,8 @@ public interface ServerEndpointConfig extends EndpointConfig {
          * @param installed the extensions supported by the server ({@link ServerContainer#getInstalledExtensions()})
          *            unless the extensions defined for the endpoint ({@link ServerEndpointConfig#getExtensions()}) is a
          *            non-empty list, in which case this is the intersection (based solely on extension name) of the
-         *            extensions defined for the endpoint and those supported by the server
+         *            extensions defined for the endpoint and those supported by the server less any extensions defined
+         *            for the endpoint where the name is prefixed by `&lt;`
          * @param requested the requested extensions, in the order they were requested by the client
          * @return the list of extensions negotiated, the empty list if none.
          */

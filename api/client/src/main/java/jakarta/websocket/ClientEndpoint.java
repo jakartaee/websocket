@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018, 2019 Oracle and/or its affiliates and others.
+ * Copyright (c) 2018, 2025 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -79,15 +79,13 @@ public @interface ClientEndpoint {
      */
     public Class<? extends ClientEndpointConfig.Configurator> configurator() default ClientEndpointConfig.Configurator.class;
 
-    Extension[] extensions() default {};
-
-    @interface Extension {
-        String name();
-        Parameter[] parameters() default {};
-    }
-
-    @interface Parameter {
-        String name();
-        String value() default "";
-    }
+    /**
+     * The list of extension configurations that the client would like to use if supported by both the client container
+     * and the server container. Extensions will be used in the order they are listed. The same extension may appear
+     * multiple times with different configurations. Where an extension is listed with multiple configurations, the
+     * configurations must be provided in preference order.
+     *
+     * @return The list of extensions the client would like to use
+     */
+    ExtensionConfig[] extensionConfigs() default {};
 }

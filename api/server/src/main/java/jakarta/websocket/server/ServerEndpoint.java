@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018, 2024 Oracle and/or its affiliates and others.
+ * Copyright (c) 2018, 2025 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -23,6 +23,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 import jakarta.websocket.Decoder;
 import jakarta.websocket.Encoder;
+import jakarta.websocket.ExtensionConfig;
 
 /**
  * This class level annotation declares that the class it decorates is a web socket endpoint that will be deployed and
@@ -108,4 +109,15 @@ public @interface ServerEndpoint {
      *         annotation.
      */
     public Class<? extends ServerEndpointConfig.Configurator> configurator() default ServerEndpointConfig.Configurator.class;
+
+    /**
+     * The list of extension configurations that the server is prepared to accept if the client requests one and the
+     * server container supports it.  If the extension name is prefaced with {@code &lt;}, it represents an extension
+     * that the server does not wish to accept regardless of whether the client requests it and/or the server container
+     * supports it. Listing the same extension with and without the {@code &lt;} prefix is not valid and will trigger an
+     * error on deployment.
+     *
+     * @return the list of extensions configurations the server is prepared to accept
+     */
+    ExtensionConfig[] extensionConfigs() default {};
 }
