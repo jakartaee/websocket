@@ -600,10 +600,15 @@ order in which extensions are presented in the opening handshake must be
 maintained as the order determines the order in which the extensions will
 process WebSocket messages.
 
-Any extension whose name is not included in the list of extensions returned by
+Any extension whose name is returned from `ServerEndpointConfig.getExtensions()`
+where the name is prefixed with a `<`, must be excluded from the opening
+handshake response.
+
+If `ServerContainer.getInstalledExtensions()` (excluding extensions with names
+prefaced with `<`) is a non-empty list, any extension whose name is not
+included in the list of extensions returned by
 `ServerContainer.getInstalledExtensions()` must be excluded from the opening
-handshake response. Implementation and configuration of supported extensions is
-container specific.
+handshake response.
 
 The client may include the same extension multiple times. This signifies that
 different configurations of the extension are acceptable with the variations
@@ -873,6 +878,16 @@ the endpoint [WSC-4.1.5-1]. The developer may use this technique to
 share state across all instances of the endpoint in addition to
 customizing the opening handshake.
 
+==== extensionConfigs
+
+The optional extensionConfigs attribute allows the developer to indicate which
+WebSocket extensions this endpoint is prepared to accept if the extension is
+requested by the client and it is supported by the server container. If an
+extension name is prefaced with `<` that indicates that the extension must not
+be used regardless of whether the client requests it and/or the server container
+supports it. Listing the same extension with and without the `<` prefix is not
+valid and will trigger a `DeploymentException` on deployment.
+
 [[clientendpoint]]
 === @ClientEndpoint
 
@@ -932,6 +947,17 @@ names of the subprotocols that this endpoint is willing to support. The
 implementation must use this list in the opening handshake to negotiate
 the desired subprotocol to use for the connection it establishes
 [WSC-4.2.4-1].
+
+==== extensionConfigs
+
+The optional extensionConfigs attribute allows the developer to indicate which
+WebSocket extensions this endpoint would like to request if the extension is
+supported by the client and server containers and permitted by the server
+endpoint. Extensions should be listed in the order they should be used. The same
+extension may appear multiple times with different configurations. Where an
+extension is listed with multiple configurations, the configurations must be
+provided in preference order. Extensions should be listed in preference order
+and the same extension may appear multiple times with different configurations.
 
 [[pathparam]]
 === @PathParam
