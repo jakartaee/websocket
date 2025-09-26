@@ -178,6 +178,7 @@
                             <outputFile>${project.build.directory}/generated-docs/jakarta-websocket-spec-${project.version}.html</outputFile>
                             <attributes>
                                 <doctype>book</doctype>
+                                <docinfo>private-head</docinfo>
                                 <status>${status}</status>
                                 <data-uri />
                                 <icons>font</icons>
