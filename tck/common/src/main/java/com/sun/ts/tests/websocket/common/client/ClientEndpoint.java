@@ -68,7 +68,7 @@ public abstract class ClientEndpoint<T extends Object> extends Endpoint implemen
 
 		public static void resetData() {
 			synchronized (LOCK) {
-				WebSocketCommonClient.logTrace("Reseting callback and message", "");
+				WebSocketCommonClient.logTrace("Resetting callback and message", "");
 				sb = new StringBuffer();
 				websocketError = null;
 				callback = null;

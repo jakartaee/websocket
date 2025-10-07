@@ -22,7 +22,7 @@ import jakarta.websocket.Encoder;
 import jakarta.websocket.EndpointConfig;
 
 public class ThrowingTextCoder implements Encoder.Text<String> {
-	public static final String ERROR = "TCK intended Exception on transmition";
+	public static final String ERROR = "TCK intended Exception on transmission";
 
 	@Override
 	public void init(EndpointConfig config) {

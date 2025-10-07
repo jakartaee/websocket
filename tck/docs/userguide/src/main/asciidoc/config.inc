@@ -81,7 +81,7 @@ slashes as a path separator instead.
   a. JAR file for the {TechnologyShortName} {TechnologyVersion} API. +
   eg.  `${web.home}/modules/jakarta.websocket-api.jar`.
   b. Arquillian JAR arquillian-junit5-container
-  Maven cordinates :  
+  Maven coordinates :  
 +
 [source,oac_no_warn]
 ----
@@ -93,7 +93,7 @@ slashes as a path separator instead.
 ----
 +
   c. JUnit 5 jars (5.7.2+)
-  Maven cordinates :
+  Maven coordinates :
 +
 [source,oac_no_warn]
 ----
@@ -107,7 +107,7 @@ slashes as a path separator instead.
 ----
 +
  d. sigtest-maven-plugin (1.4) to run the signature tests.
-  Maven cordinates :
+  Maven coordinates :
 +
 [source,oac_no_warn]
 ----
@@ -208,7 +208,7 @@ will be run and determine to which Servlet–compliant Web server the
   a. JAR file for the {TechnologyShortName} {TechnologyVersion} API. +
   eg.  `${web.home}/modules/jakarta.websocket-api.jar`.
   b. Arquillian JAR arquillian-junit5-container
-  Maven cordinates :  
+  Maven coordinates :  
 +
 [source,oac_no_warn]
 ----
@@ -220,7 +220,7 @@ will be run and determine to which Servlet–compliant Web server the
 ----
 +
   c. JUnit 5 jars (5.7.2+)
-  Maven cordinates :
+  Maven coordinates :
 +
 [source,oac_no_warn]
 ----

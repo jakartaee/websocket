@@ -65,7 +65,7 @@ public class MessageValidator {
 				}
 
 				logger.log(Logger.Level.INFO,"[MessageValidator] Found search string: '" + search + "' at index '" + searchIdx);
-				// the new searchIdx is the old index plus the lenght of the
+				// the new searchIdx is the old index plus the length of the
 				// search string.
 				startIdx = searchIdx + search.length();
 			}

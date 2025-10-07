@@ -920,7 +920,7 @@ public class WSProgramaticClientIT extends WebSocketCommonClient {
 	}
 
 	private void invokeGetDestroy(Class<?> searchClazz) throws Exception {
-		// Sleep current tread to give server time to call destroy() should not
+		// Sleep current thread to give server time to call destroy() should not
 		// be needed, just for sake
 		TestUtil.sleepMsec(500);
 		invokeLogger("getdestroy", searchClazz.getName());
@@ -954,7 +954,7 @@ public class WSProgramaticClientIT extends WebSocketCommonClient {
 
 	protected void assertDestroy(Class<?> searchClazz) throws Exception {
 		System.gc();
-		// Sleep current tread to give server time to call destroy() should not
+		// Sleep current thread to give server time to call destroy() should not
 		// be needed, just for sake
 		TestUtil.sleepMsec(500);
 		String log = WSCLoggerServer.operation("getdestroy");

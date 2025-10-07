@@ -414,7 +414,7 @@ public class WSCClientIT extends WebSocketCommonClient {
 	 * @assertion_ids:
 	 * 
 	 * @test_Strategy: Obtain the container default configurator from two separate
-	 * endpoints and check that the same object is ontained.
+	 * endpoints and check that the same object is contained.
 	 */
 	@Test
 	public void getContainerDefaultConfiguratorTest() throws Exception {

@@ -222,7 +222,7 @@ href="https://raw.githubusercontent.com/eclipse-ee4j/jakartaee-tck/master/intern
 		</assertion>
 		<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
 			<id>WebSocket:SPEC:WSC-3.1-1</id>
-			<description>The WebSocket API allow certain of these configuration operations to be overriden by developers by providing a custom ServerEndpointConfig.Configurator implementation with the ServerEndpointConfig.</description>
+			<description>The WebSocket API allow certain of these configuration operations to be overridden by developers by providing a custom ServerEndpointConfig.Configurator implementation with the ServerEndpointConfig.</description>
 			<keywords>
 				<keyword></keyword>
 			</keywords>
@@ -234,7 +234,7 @@ href="https://raw.githubusercontent.com/eclipse-ee4j/jakartaee-tck/master/intern
 		</assertion>
 		<assertion required="true" impl-spec="false" defined-by="technology" status="active" testable="true">
 			<id>WebSocket:SPEC:WSC-3.1.1-1</id>
-			<description>The incoming URI in an opening handshake request matches an enpoint path if either it is an exact match in the case where the endpoint path is a relative URI, and if it is a valid expansion of the endpoint path in the case where the endpoint path is a URI template.</description>
+			<description>The incoming URI in an opening handshake request matches an endpoint path if either it is an exact match in the case where the endpoint path is a relative URI, and if it is a valid expansion of the endpoint path in the case where the endpoint path is a URI template.</description>
 			<keywords>
 				<keyword></keyword>
 			</keywords>

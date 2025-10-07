@@ -27,7 +27,7 @@ import com.sun.ts.lib.porting.TSURLInterface;
  * This is a J2EE Reference specific implementation of the TSURLInterface which
  * is to be used for J2EE-TS testing. TS tests use this interface to obtain the
  * URL String to use to access a given web component. If a given J2EE Server
- * implmentation requires that URLs be created in a different manner, then this
+ * implementation requires that URLs be created in a different manner, then this
  * implementation can be replaced.
  *
  * @author Kyle Grucci
