@@ -101,7 +101,7 @@ public class WSCClientIT extends WebSocketCommonClient {
 	public void annotationOnMethodIsOverridenTest() throws Exception {
 		setAnnotatedClientEndpoint(new AnnotatedClientEndpointSubclassWithOverrideAndAnnotations());
 		invoke("echo", MESSAGE, MESSAGE);
-		logMsg("Annotations have been overriden as expected");
+		logMsg("Annotations have been overridden as expected");
 	}
 
 	/*

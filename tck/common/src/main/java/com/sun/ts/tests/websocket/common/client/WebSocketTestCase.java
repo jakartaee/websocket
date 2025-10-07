@@ -433,7 +433,7 @@ public class WebSocketTestCase extends WebTestCase {
 	}
 
 	/**
-	 * set ClientEndpoint class. This endpoint class can be overriden by client
+	 * set ClientEndpoint class. This endpoint class can be overridden by client
 	 * endpoint instance set by {@link #setClientEndpointInstance}
 	 */
 	protected void setClientEndpoint(Class<? extends ClientEndpoint<?>> endpoint) {

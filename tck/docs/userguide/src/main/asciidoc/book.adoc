@@ -1,4 +1,4 @@
-= TCK User's Guide for Technology Implementors
+= TCK User's Guide for Technology Implementers
 
 include::title.adoc[]
 
