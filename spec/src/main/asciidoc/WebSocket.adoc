@@ -194,7 +194,7 @@ WebSocket implementation must preserve this session data for later
 access until the completion of the *onClose()* method on the endpoint
 instance [WSC 2.1.2-2]. After that time, the WebSocket implementation
 is permitted to discard the developer data. A WebSocket implementation
-that chooses to pool *Session* instances may at that point re-use the
+that chooses to pool *Session* instances may at that point reuse the
 same *Session* instance to represent a new connection provided it issues
 a new unique *Session* id [WSC 2.1.2-3].
 
@@ -465,7 +465,7 @@ for client connections, the container requires a *ServerEndpointConfig*
 instance. This object holds configuration data and the default
 implementation provided algorithms needed by the implementation to
 configure the endpoint. The WebSocket API allow certain of these
-configuration operations to be overriden by developers by providing a
+configuration operations to be overridden by developers by providing a
 custom *ServerEndpointConfig.Configurator* implementation with the
 *ServerEndpointConfig* [WSC-3.1-1].
 
@@ -686,7 +686,7 @@ establish a secure WebSocket (wss) connection or an insecure WebSocket (ws)
 connection if the provided `SSLContext` is `null`. If there is an existing
 connection to the server that uses the same SSLContext and that connection
 supports multiplexing WebSocket connections then the container may choose to
-re-use that connection rather than creating a new one. Containers may provide
+reuse that connection rather than creating a new one. Containers may provide
 container specific configuration to control this behaviour.
 
 [[client-configuration-modification]]
