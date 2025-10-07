@@ -59,7 +59,7 @@ public interface ClientEndpointConfig extends EndpointConfig {
      * Return the SSLContext to be used to establish a WebSocket (wss) connection to the server. The SSLContext will
      * have initialised. For insecure WebSocket (ws) connections, this will be {@code null}. If there is an existing
      * connection to the server that uses the same SSLContext and that connection supports multiplexing WebSocket
-     * connections then the container may choose to re-use that connection rather than creating a new one. Containers
+     * connections then the container may choose to reuse that connection rather than creating a new one. Containers
      * may provide container specific configuration to control this behaviour.
      *
      * @return the SSLContext to use to establish a secure connection to the server or {@code null} if an insecure
@@ -235,7 +235,7 @@ public interface ClientEndpointConfig extends EndpointConfig {
         /**
          * Assign the SSLContext to be used when connection to the WebSocket server. If there is an existing connection
          * to the server that uses the same SSLContext and that connection supports multiplexing WebSocket connections
-         * then the container may choose to re-use that connection rather than creating a new one. Containers may
+         * then the container may choose to reuse that connection rather than creating a new one. Containers may
          * provide container specific configuration to control this behaviour.
          *
          * @param sslContext The SSLContext which must be initialised for secure WebSocket (wss) connections or
