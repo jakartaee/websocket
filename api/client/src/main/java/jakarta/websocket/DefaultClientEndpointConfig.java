@@ -94,7 +94,7 @@ final class DefaultClientEndpointConfig implements ClientEndpointConfig {
     /**
      * SSLContext to use to secure WebSocket (wss) connections or {@code null} for insecure Websocket (ws) connections.
      * If there is an existing connection to the server that uses the same SSLContext and that connection supports
-     * multiplexing WebSocket connections then the container may choose to reuse that connection rather than creating a
+     * multiplexing WebSocket connections then the container may choose to re-use that connection rather than creating a
      * new one. Containers may provide container specific configuration to control this behaviour.
      *
      * @since WebSocket 2.1
