@@ -1533,6 +1533,9 @@ if present, is available during the WebSocket handshake.
 Clarify that `ClientEndPoint.Configurator.afterResponse(HandshakeResponse)` is to be called after both successful and
 unsuccessful WebSocket handshakes.
 
+* https://github.com/jakartaee/websocket/issues/517[Issue 517]
+Clarify that `RemoteEndpoint.Async.setSendTimeout(long)` applies per websocket message
+
 === Changes Between 2.2 and 2.1
 
 * https://github.com/jakartaee/websocket/issues/176[Issue 176]
