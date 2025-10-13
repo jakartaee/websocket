@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018, 2021 Oracle and/or its affiliates and others.
+ * Copyright (c) 2018, 2025 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -142,7 +142,9 @@ public interface RemoteEndpoint {
         /**
          * Sets the number of milliseconds the implementation will timeout attempting to send a websocket message. A
          * zero or negative value indicates the implementation will not timeout attempting to send a websocket message
-         * asynchronously. This value overrides the default value assigned in the WebSocketContainer.
+         * asynchronously. This value overrides the default value assigned in the WebSocketContainer. This timeout 
+         * applies per message to sends initiated after this call completes.  If batching is enabled, the timeout 
+         * applies once the messages are flushed. The default is -1.
          *
          * @param timeoutmillis The number of milliseconds this RemoteEndpoint will wait before timing out an incomplete
          *                      asynchronous message send.
