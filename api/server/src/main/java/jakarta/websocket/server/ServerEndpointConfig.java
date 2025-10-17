@@ -63,7 +63,9 @@ public interface ServerEndpointConfig extends EndpointConfig {
     List<String> getSubprotocols();
 
     /**
-     * Return the websocket extensions configured.
+     * Return the websocket extensions configured. If non-empty, the extensions available to WebSocket clients will be
+     * the intersection of the configured extensions and those supported by the server. If this list is empty, all
+     * extensions supported by the server will be available to clients.
      *
      * @return the list of extensions, the empty list if none.
      */
@@ -137,15 +139,20 @@ public interface ServerEndpointConfig extends EndpointConfig {
         }
 
         /**
-         * Return the ordered list of extensions that t server endpoint will support given the requested extension list
-         * passed in, the empty list if none. See <a href="http://tools.ietf.org/html/rfc6455#section-9.1">Negotiating
-         * Extensions</a>
+         * Return the ordered list of extensions that the server endpoint will support given the requested extension
+         * list passed in, the empty list if none. See
+         * <a href="http://tools.ietf.org/html/rfc6455#section-9.1">Negotiating Extensions</a>
          *
          * <p>
          * The default platform implementation of this method returns a list containing all of the requested extensions
-         * passed to this method that it supports, using the order in the requested extensions, the empty list if none.
+         * passed to this method less any extensions where the extension is not named in the installed extensions passed
+         * to this method. The results are in the order they appeared in the requested extensions.
          *
-         * @param installed the installed extensions on the implementation.
+         * @param installed the extensions supported by the server ({@link ServerContainer#getInstalledExtensions()})
+         *            unless the extensions defined for the endpoint ({@link ServerEndpointConfig#getExtensions()}) is a
+         *            non-empty list, in which case this is the intersection (based solely on extension name) of the
+         *            extensions defined for the endpoint and those supported by the server less any extensions defined
+         *            for the endpoint where the name is prefixed by `&lt;`
          * @param requested the requested extensions, in the order they were requested by the client
          * @return the list of extensions negotiated, the empty list if none.
          */
@@ -330,6 +337,7 @@ public interface ServerEndpointConfig extends EndpointConfig {
          * Sets the extensions to use in the configuration.
          *
          * @param extensions the extensions to use.
+         *
          * @return this builder instance.
          */
         public ServerEndpointConfig.Builder extensions(List<Extension> extensions) {

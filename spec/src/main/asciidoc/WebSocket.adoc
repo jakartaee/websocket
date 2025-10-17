@@ -593,10 +593,44 @@ match [WSC-3.1.2-1].
 [[extension-modification]]
 ==== Extension Modification
 
-In the opening handshake, the client supplies a list of extensions that
-it would like to use. The default server configuration selects from
-those extensions the ones it supports, and places them in the same order
-as requested by the client [WSC-3.1.3-1].
+The starting point to determine the extensions and parameters the default server
+configuration must return in the opening handshake response is the list of
+extensions and parameters providing by the client in the opening handshake. The
+order in which extensions are presented in the opening handshake must be
+maintained as the order determines the order in which the extensions will
+process WebSocket messages.
+
+Any extension whose name is returned from `ServerEndpointConfig.getExtensions()`
+where the name is prefixed with a `<`, must be excluded from the opening
+handshake response.
+
+If `ServerContainer.getInstalledExtensions()` (excluding extensions with names
+prefaced with `<`) is a non-empty list, any extension whose name is not
+included in the list of extensions returned by
+`ServerContainer.getInstalledExtensions()` must be excluded from the opening
+handshake response.
+
+The client may include the same extension multiple times. This signifies that
+different configurations of the extension are acceptable with the variations
+listed in preference order from most preferred to least preferred. For each
+remaining extension, the server selects its preferred configuration from the
+configurations provided by the client. If allowed by the extension's
+specification, the server may add or remove extension parameters to/from the
+client provided configuration.
+
+The server includes its chosen configuration for each requested extension in the
+opening handshake response. If none of the requested configurations for an
+extension are acceptable to the server, the extension is not included in the
+opening handshake response. The opening handshake response is the final,
+authoritative extension configuration for the WebSocket session. [WSC-3.1.3-1].
+
+Determination of acceptable parameters is extension implementation specific.
+
+Extensions are always optional in the WebSocket protocol. If a server wishes to
+require that an extension is present, it may provide a custom
+`ServerEndpointConfig.Configurator`, override `getNegotiatedExtensions` and fail
+the handshake, e.g. by throwing an `Exception`, if the required extension(s)
+is(are) not present.
 
 [[origin-check]]
 ==== Origin Check
@@ -673,10 +707,29 @@ formulates [WSC-3.2.1-1].
 [[extensions]]
 ==== Extensions
 
-The default client configuration must use the developer provided list of
-extensions to send, in order of preference, the extensions, including
-parameters, that it would like to use in the opening handshake it
-formulates [WSC-3.2.2-1].
+The starting point to determine the extensions and parameters the default client
+configuration must request in the opening handshake request is the developer
+provided list of extensions and parameters for the endpoint. The order in which
+extensions are specified must be maintained as the order determines the order in
+which the extensions will process WebSocket messages.
+
+Any extension whose name is not included in the list of extensions returned by
+`WebSocketContainer.getInstalledExtensions()` must be excluded from the opening
+handshake request. Implementation and configuration of supported extensions is
+container specific.
+
+The developer provided list may include an extension multiple times. This
+signifies that different configurations of the extension are acceptable with the
+variations listed in preference order from most preferred to least preferred.
+
+The default client configuration must use the remaining extensions, in order of
+preference and including parameters, in the opening handshake it formulates
+[WSC-3.2.2-1].
+
+Extensions are always optional in the WebSocket protocol. If a client wishes to
+require that an extension is present, it may examine the handshake response via
+`ClientEndpointConfig.Configurator.afterResponse()` and fail the handshake, e.g.
+by throwing an `Exception`, if the required extension(s) is(are) not present.
 
 [[sslcontext]]
 ==== SSLContext
@@ -825,6 +878,16 @@ the endpoint [WSC-4.1.5-1]. The developer may use this technique to
 share state across all instances of the endpoint in addition to
 customizing the opening handshake.
 
+==== extensionConfigs
+
+The optional extensionConfigs attribute allows the developer to indicate which
+WebSocket extensions this endpoint is prepared to accept if the extension is
+requested by the client and it is supported by the server container. If an
+extension name is prefaced with `<` that indicates that the extension must not
+be used regardless of whether the client requests it and/or the server container
+supports it. Listing the same extension with and without the `<` prefix is not
+valid and will trigger a `DeploymentException` on deployment.
+
 [[clientendpoint]]
 === @ClientEndpoint
 
@@ -884,6 +947,17 @@ names of the subprotocols that this endpoint is willing to support. The
 implementation must use this list in the opening handshake to negotiate
 the desired subprotocol to use for the connection it establishes
 [WSC-4.2.4-1].
+
+==== extensionConfigs
+
+The optional extensionConfigs attribute allows the developer to indicate which
+WebSocket extensions this endpoint would like to request if the extension is
+supported by the client and server containers and permitted by the server
+endpoint. Extensions should be listed in the order they should be used. The same
+extension may appear multiple times with different configurations. Where an
+extension is listed with multiple configurations, the configurations must be
+provided in preference order. Extensions should be listed in preference order
+and the same extension may appear multiple times with different configurations.
 
 [[pathparam]]
 === @PathParam
@@ -1528,6 +1602,9 @@ This appendix is non-normative.
 * https://github.com/jakartaee/websocket/issues/242[Issue 242]
 Add the `X509Certificate[] getUserX509CertificateChain()` method to `HandshakeRequest` so the client certificate chain,
 if present, is available during the WebSocket handshake.
+
+* https://github.com/jakartaee/websocket/issues/517[Issue 340]
+Clarify the handling of WebSocket extensions.
 
 * https://github.com/jakartaee/websocket/issues/417[Issue 417]
 Clarify that `ClientEndPoint.Configurator.afterResponse(HandshakeResponse)` is to be called after both successful and
