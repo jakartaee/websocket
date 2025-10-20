@@ -28,7 +28,7 @@
     <properties>
         <asciidoctorj.diagram.version>2.3.1</asciidoctorj.diagram.version>
         <asciidoctorj.maven.plugin.version>3.2.0</asciidoctorj.maven.plugin.version>
-        <asciidoctorj.pdf.version>2.3.20</asciidoctorj.pdf.version>
+        <asciidoctorj.pdf.version>2.3.21</asciidoctorj.pdf.version>
 
         <!-- plugin versions -->
         <asciidoctorj.version>3.0.0</asciidoctorj.version>
