@@ -25,4 +25,4 @@ include::license-efsl.adoc[]
 
 // == Scope
 :sectnums:
-include::WebSocket.adoc[]
+include::websocket-spec-body.adoc[]
