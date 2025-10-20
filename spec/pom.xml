@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-    Copyright (c) 2019, 2024 Contributors to the Eclipse Foundation.
+    Copyright (c) 2019, 2025 Contributors to the Eclipse Foundation.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -16,13 +16,14 @@
     SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
 
 -->
+
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
         <groupId>org.eclipse.ee4j</groupId>
         <artifactId>project</artifactId>
-        <version>1.0.9</version>
+        <version>2.0.0-M1</version>
         <relativePath/>
     </parent>
 
@@ -35,10 +36,13 @@
     <description>Jakarta WebSocket - Specification</description>
     <url>https://projects.eclipse.org/projects/ee4j.websocket</url>
 
+    <!--
+        Override the license in the parent POM as specifications all use the EFSL. 
+    -->
     <licenses>
         <license>
-            <name>Eclipse Foundation Specification License – v1.0</name>
-            <url>https://www.eclipse.org/legal/efsl.php</url>
+            <name>Eclipse Foundation Specification License – v2.0</name>
+            <url>https://www.eclipse.org/legal/efsl/</url>
             <distribution>repo</distribution>
         </license>
     </licenses>
@@ -51,7 +55,6 @@
             <email>websocket-dev@eclipse.org</email>
         </developer>
     </developers>
-
     <contributors>
        <contributor>
            <name>Jakarta WebSocket Contributors</name>
@@ -97,7 +100,7 @@
     <build>
         <defaultGoal>package</defaultGoal>
         <plugins>
-            <!-- Sets minimal Maven version to 3.5.4 and Java version to 8 -->
+            <!-- Sets minimal Maven version and Java version-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-enforcer-plugin</artifactId>
@@ -110,12 +113,11 @@
                         <configuration>
                             <rules>
                                 <requireMavenVersion>
-                                    <version>3.5.4</version>
-                                    <message>You need Maven 3.5.4 or higher</message>
+                                    <version>3.8.6</version>
                                 </requireMavenVersion>
+                                <!-- Plugins used to build spec require Java 21 so use 21 a minimum for all modules -->
                                 <requireJavaVersion>
-                                    <version>1.8</version>
-                                    <message>You need JDK8 or higher</message>
+                                    <version>21</version>
                                 </requireJavaVersion>
                             </rules>
                         </configuration>
@@ -177,6 +179,8 @@
                             <sourceDirectory>${basedir}/src/main/asciidoc</sourceDirectory>
                             <outputFile>${project.build.directory}/generated-docs/jakarta-websocket-spec-${project.version}.html</outputFile>
                             <attributes>
+                                <source-highlighter>coderay</source-highlighter>
+                                <imagesdir>images</imagesdir>
                                 <doctype>book</doctype>
                                 <docinfo>private-head</docinfo>
                                 <status>${status}</status>
@@ -202,6 +206,8 @@
                             <sourceDirectory>${basedir}/src/main/asciidoc</sourceDirectory>
                             <outputFile>${project.build.directory}/generated-docs/jakarta-websocket-spec-${project.version}.pdf</outputFile>
                             <attributes>
+                                <source-highlighter>coderay</source-highlighter>
+                                <imagesdir>images</imagesdir>
                                 <pdf-stylesdir>${project.basedir}/src/main/theme</pdf-stylesdir>
                                 <pdf-style>jakartaee</pdf-style>
                                 <doctype>book</doctype>
@@ -227,7 +233,6 @@
                         <revremark>${status}</revremark>
                         <revdate>${revisiondate}</revdate>
                         <revyear>${current.year}</revyear>
-                        <source-highlighter>coderay</source-highlighter>
                     </attributes>
                 </configuration>
             </plugin>
