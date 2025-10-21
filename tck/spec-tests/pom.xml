@@ -29,6 +29,9 @@
     <name>Jakarta Websocket TCK Spec Tests</name>
 
     <properties>
+        <!-- API version for signature test-->
+        <api.version>2.3</api.version>
+        <!-- Dependencies -->
         <sigtest.version>2.6</sigtest.version>
     </properties>
 
@@ -81,4 +84,35 @@
             </resource>
         </resources>
     </build>
+    
+    <profiles>
+        <profile>
+            <id>record-signature</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>jakarta.tck</groupId>
+                        <artifactId>sigtest-maven-plugin</artifactId>
+                        <version>${sigtest.version}</version>
+                        <configuration>
+                            <sigfile>${project.build.directory}/jakarta.websocket.sig_${api.version}</sigfile>
+                            <packages>jakarta.websocket,jakarta.websocket.server</packages>
+                            <version>${api.version}</version>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>generate</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
 </project>
