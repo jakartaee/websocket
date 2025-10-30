@@ -733,6 +733,51 @@ public class WSClientIT extends WebSocketCommonClient {
 		}
 	}
 
+	/*
+	 * @testName: testClientSideUserProperties
+	 * @assertion_ids: WebSocket:JAVADOC:214
+	 * @test_Strategy: Verify that user properties on ClientEndpointConfig and Session are shallow copies and that the session is prepopulated with the user properties from the ClientEndpointConfig
+	 */
+	@Test
+	public void testClientSideUserProperties() throws Exception {
+
+			boolean passed = true;
+			StringBuilder errorMessageBuilder = new StringBuilder();
+
+			ClientEndpointConfig up_cec = (ClientEndpointConfig) new UserPropertiesClientEndpointConfig();
+			WebSocketContainer clientContainer = ContainerProvider.getWebSocketContainer();
+			Session session = clientContainer.connectToServer(TCKBasicEndpoint.class, up_cec,
+					new URI("ws://" + _hostname + ":" + _port + CONTEXT_ROOT + "/TCKTestServer"));
+
+			// Test 1: Different Map Objects (Shallow Copy)
+			if(up_cec.getUserProperties() == session.getUserProperties()){
+				passed = false;
+				errorMessageBuilder.append("User properties on ClientEndpointConfig and Session are the same object!. Session#getUserProperties should return a shallow copy!\n");
+			}
+			// Test 2: Prepopulation 
+			if(session.getUserProperties().get("CEC-1") == null){
+				passed = false;
+				errorMessageBuilder.append("Client session is not prepopulated with UserPropertiesClientEndpointConfig's user properties!\n");
+			}
+			// Test 3: Same Object Reference within Map
+			if(session.getUserProperties().get("CEC-1") != up_cec.getUserProperties().get("CEC-1")){
+				passed = false;
+				errorMessageBuilder.append("The 'CEC-1' object should be the same reference\n");
+			}
+			// Test 4: Map Independency (related to Test 1)
+			session.getUserProperties().put("Session-1", "Session-1");
+			if(up_cec.getUserProperties().get("Session-1") != null){
+				passed = false;
+				errorMessageBuilder.append("Maps are not independent!\n");
+			}
+
+			session.close();
+
+			if(passed == false) { 
+				throw new Exception("testClientSideUserProperties failed due to -> " + errorMessageBuilder.toString());
+			}
+	}
+
 	@Override
 	public void cleanup() throws Exception {
 		super.cleanup();
