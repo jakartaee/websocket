@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021 Contributors to the Eclipse Foundation.
+ * Copyright (c) 2021, 2025 Contributors to the Eclipse Foundation.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -31,12 +31,6 @@ public class UserPropertiesConfigurator extends Configurator {
 	@Override
 	public void modifyHandshake(ServerEndpointConfig sec, HandshakeRequest request, HandshakeResponse response) {
 		Map<String, Object> userProperties = sec.getUserProperties();
-
-		// First check that the expected properties are present
-		if (userProperties.size() != 2) {
-			throw new IllegalStateException(
-					"User properties map has [" + userProperties.size() + "] entries when 2 are expected");
-		}
 
 		// Then check that both expected keys are present
 		checkKey(userProperties, UserPropertiesServerEndpointConfig.KEY_1);
