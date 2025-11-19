@@ -67,8 +67,7 @@ public class WSClientIT extends WebSocketCommonClient {
 	 */
 	@Test
 	public void subprotocolsMatchTest() throws Exception {
-		WSCMatchedSubprotocolClientEndpoint endpoint = new WSCMatchedSubprotocolClientEndpoint();
-		setAnnotatedClientEndpointInstance(endpoint);
+		setAnnotatedClientEndpoint(WSCMatchedSubprotocolClientEndpoint.class);
 		invoke("subprotocol", OPS.NEGOTIATED, StringUtil.WEBSOCKET_SUBPROTOCOLS_1);
 	}
 
@@ -82,8 +81,7 @@ public class WSClientIT extends WebSocketCommonClient {
 	 */
 	@Test
 	public void subprotocolsNotMatchTest() throws Exception {
-		WSCUnmatchedSubprotocolClientEndpoint endpoint = new WSCUnmatchedSubprotocolClientEndpoint();
-		setAnnotatedClientEndpointInstance(endpoint);
+		setAnnotatedClientEndpoint(WSCUnmatchedSubprotocolClientEndpoint.class);
 		invoke("subprotocol", OPS.NEGOTIATED, "{}");
 	}
 
@@ -101,8 +99,7 @@ public class WSClientIT extends WebSocketCommonClient {
 	 */
 	@Test
 	public void configuratorTest() throws Exception {
-		WSCConfiguratedClientEndpoint endpoint = new WSCConfiguratedClientEndpoint();
-		setAnnotatedClientEndpointInstance(endpoint);
+		setAnnotatedClientEndpoint(WSCConfiguratedClientEndpoint.class);
 		invoke("echo", OPS.ECHO_MSG, OPS.ECHO_MSG);
 		ClientConfigurator configurator = ClientConfiguratorHolderClientConfigurator.getConfigurator();
 		configurator.assertBeforeRequestHasBeenCalled();
