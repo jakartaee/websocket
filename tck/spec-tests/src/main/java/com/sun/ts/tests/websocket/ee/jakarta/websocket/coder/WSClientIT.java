@@ -15,7 +15,6 @@
  */
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.coder;
 
-import java.io.IOException;
 import java.nio.ByteBuffer;
 
 import org.jboss.arquillian.container.test.api.Deployment;
@@ -46,7 +45,7 @@ public class WSClientIT extends WebSocketCommonClient {
 	protected static final String ECHO = "Echo message";
 
 	@Deployment(testable = false)
-	public static WebArchive createDeployment() throws IOException {
+	public static WebArchive createDeployment() {
 		WebArchive archive = ShrinkWrap.create(WebArchive.class, "wsc_ee_coder_web.war");
 		archive.addClasses(StringBean.class, StringBeanBinaryDecoder.class, StringBeanBinaryEncoder.class,
 				StringBeanBinaryStreamEncoder.class, StringBeanBinaryStreamDecoder.class, StringBeanTextEncoder.class,
@@ -56,7 +55,7 @@ public class WSClientIT extends WebSocketCommonClient {
 				"com.sun.ts.tests.websocket.ee.jakarta.websocket.coder");
 
 		return archive;
-	};
+	}
 
 	public WSClientIT() throws Exception {
 		setContextRoot("wsc_ee_coder_web");
