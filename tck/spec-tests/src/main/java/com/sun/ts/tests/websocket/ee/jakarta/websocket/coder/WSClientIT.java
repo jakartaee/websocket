@@ -472,7 +472,7 @@ public class WSClientIT extends WebSocketCommonClient {
 	@Test
 	public void textEncoderInitDestroyOnClientTest() throws Exception {
 		clientClear();
-		setAnnotatedClientEndpoint(new WSCEndpointWithTextEncoder());
+		setAnnotatedClientEndpointInstance(new WSCEndpointWithTextEncoder());
 		invoke("simpleecho", new StringBean(ECHO), ECHO);
 		assertInit(InitDestroyTextEncoder.class);
 		assertDestroy(InitDestroyTextEncoder.class);
@@ -496,7 +496,7 @@ public class WSClientIT extends WebSocketCommonClient {
 	@Test
 	public void textStreamEncoderInitDestroyOnClientTest() throws Exception {
 		clientClear();
-		setAnnotatedClientEndpoint(new WSCEndpointWithTextStreamEncoder());
+		setAnnotatedClientEndpointInstance(new WSCEndpointWithTextStreamEncoder());
 		invoke("simpleecho", new StringBean(ECHO), ECHO);
 		assertInit(InitDestroyTextStreamEncoder.class);
 		assertDestroy(InitDestroyTextStreamEncoder.class);
@@ -520,7 +520,7 @@ public class WSClientIT extends WebSocketCommonClient {
 	@Test
 	public void binaryEncoderInitDestroyOnClientTest() throws Exception {
 		clientClear();
-		setAnnotatedClientEndpoint(new WSCEndpointWithBinaryEncoder());
+		setAnnotatedClientEndpointInstance(new WSCEndpointWithBinaryEncoder());
 		invoke("simpleecho", new StringBean(ECHO), ECHO);
 		assertInit(InitDestroyBinaryEncoder.class);
 		assertDestroy(InitDestroyBinaryEncoder.class);
@@ -544,7 +544,7 @@ public class WSClientIT extends WebSocketCommonClient {
 	@Test
 	public void binaryStreamEncoderInitDestroyOnClientTest() throws Exception {
 		clientClear();
-		setAnnotatedClientEndpoint(new WSCEndpointWithBinaryStreamEncoder());
+		setAnnotatedClientEndpointInstance(new WSCEndpointWithBinaryStreamEncoder());
 		invoke("simpleecho", new StringBean(ECHO), ECHO);
 		assertInit(InitDestroyBinaryStreamEncoder.class);
 		assertDestroy(InitDestroyBinaryStreamEncoder.class);
@@ -572,7 +572,7 @@ public class WSClientIT extends WebSocketCommonClient {
 	@Test
 	public void textDecoderInitDestroyOnClientTest() throws Exception {
 		clientClear();
-		setAnnotatedClientEndpoint(new WSCEndpointWithTextDecoder());
+		setAnnotatedClientEndpointInstance(new WSCEndpointWithTextDecoder());
 		invoke("simpleecho", ECHO, ECHO);
 		assertInit(InitDestroyTextDecoder.class);
 		assertDestroy(InitDestroyTextDecoder.class);
@@ -597,7 +597,7 @@ public class WSClientIT extends WebSocketCommonClient {
 	@Test
 	public void textStreamDecoderInitDestroyOnClientTest() throws Exception {
 		clientClear();
-		setAnnotatedClientEndpoint(new WSCEndpointWithTextStreamDecoder());
+		setAnnotatedClientEndpointInstance(new WSCEndpointWithTextStreamDecoder());
 		invoke("simpleecho", ECHO, ECHO);
 		assertInit(InitDestroyTextStreamDecoder.class);
 		assertDestroy(InitDestroyTextStreamDecoder.class);
@@ -623,7 +623,7 @@ public class WSClientIT extends WebSocketCommonClient {
 	@Test
 	public void binaryDecoderInitDestroyOnClientTest() throws Exception {
 		clientClear();
-		setAnnotatedClientEndpoint(new WSCEndpointWithBinaryDecoder());
+		setAnnotatedClientEndpointInstance(new WSCEndpointWithBinaryDecoder());
 		invoke("simplebin", ECHO, ECHO);
 		assertInit(InitDestroyBinaryDecoder.class);
 		assertDestroy(InitDestroyBinaryDecoder.class);
@@ -648,7 +648,7 @@ public class WSClientIT extends WebSocketCommonClient {
 	@Test
 	public void binaryStreamDecoderInitDestroyOnClientTest() throws Exception {
 		clientClear();
-		setAnnotatedClientEndpoint(new WSCEndpointWithBinaryStreamDecoder());
+		setAnnotatedClientEndpointInstance(new WSCEndpointWithBinaryStreamDecoder());
 		invoke("simplebin", ECHO, ECHO);
 		assertInit(InitDestroyBinaryStreamDecoder.class);
 		assertDestroy(InitDestroyBinaryStreamDecoder.class);
@@ -670,7 +670,7 @@ public class WSClientIT extends WebSocketCommonClient {
 	@Test
 	public void textEncoderEncodeOnClientTest() throws Exception {
 		clientClear();
-		setAnnotatedClientEndpoint(new WSCEndpointWithTextEncoder());
+		setAnnotatedClientEndpointInstance(new WSCEndpointWithTextEncoder());
 		invoke("simpleecho", new StringBean(ECHO), ECHO);
 		assertCode(InitDestroyTextEncoder.class);
 	}
@@ -689,7 +689,7 @@ public class WSClientIT extends WebSocketCommonClient {
 	@Test
 	public void textStreamEncoderEncodeOnClientTest() throws Exception {
 		clientClear();
-		setAnnotatedClientEndpoint(new WSCEndpointWithTextStreamEncoder());
+		setAnnotatedClientEndpointInstance(new WSCEndpointWithTextStreamEncoder());
 		invoke("simpleecho", new StringBean(ECHO), ECHO);
 		assertCode(InitDestroyTextStreamEncoder.class);
 	}
@@ -708,7 +708,7 @@ public class WSClientIT extends WebSocketCommonClient {
 	@Test
 	public void binaryEncoderEncodeOnClientTest() throws Exception {
 		clientClear();
-		setAnnotatedClientEndpoint(new WSCEndpointWithBinaryEncoder());
+		setAnnotatedClientEndpointInstance(new WSCEndpointWithBinaryEncoder());
 		invoke("simpleecho", new StringBean(ECHO), ECHO);
 		assertCode(InitDestroyBinaryEncoder.class);
 	}
@@ -728,7 +728,7 @@ public class WSClientIT extends WebSocketCommonClient {
 	@Test
 	public void binaryStreamEncoderEncodeOnClientTest() throws Exception {
 		clientClear();
-		setAnnotatedClientEndpoint(new WSCEndpointWithBinaryStreamEncoder());
+		setAnnotatedClientEndpointInstance(new WSCEndpointWithBinaryStreamEncoder());
 		invoke("simpleecho", new StringBean(ECHO), ECHO);
 		assertCode(InitDestroyBinaryStreamEncoder.class);
 	}
@@ -751,7 +751,7 @@ public class WSClientIT extends WebSocketCommonClient {
 	@Test
 	public void textDecoderDecodeOnClientTest() throws Exception {
 		clientClear();
-		setAnnotatedClientEndpoint(new WSCEndpointWithTextDecoder());
+		setAnnotatedClientEndpointInstance(new WSCEndpointWithTextDecoder());
 		invoke("simpleecho", ECHO, ECHO);
 		assertCode(InitDestroyTextDecoder.class);
 		assertWillCode(InitDestroyTextDecoder.class);
@@ -773,7 +773,7 @@ public class WSClientIT extends WebSocketCommonClient {
 	@Test
 	public void textStreamDecoderDecodeOnClientTest() throws Exception {
 		clientClear();
-		setAnnotatedClientEndpoint(new WSCEndpointWithTextStreamDecoder());
+		setAnnotatedClientEndpointInstance(new WSCEndpointWithTextStreamDecoder());
 		invoke("simpleecho", ECHO, ECHO);
 		assertCode(InitDestroyTextStreamDecoder.class);
 	}
@@ -794,7 +794,7 @@ public class WSClientIT extends WebSocketCommonClient {
 	@Test
 	public void binaryDecoderDecodeOnClientTest() throws Exception {
 		clientClear();
-		setAnnotatedClientEndpoint(new WSCEndpointWithBinaryDecoder());
+		setAnnotatedClientEndpointInstance(new WSCEndpointWithBinaryDecoder());
 		invoke("simplebin", ECHO, ECHO);
 		assertCode(InitDestroyBinaryDecoder.class);
 		assertWillCode(InitDestroyBinaryDecoder.class);
@@ -816,7 +816,7 @@ public class WSClientIT extends WebSocketCommonClient {
 	@Test
 	public void binaryStreamDecoderDecodeOnClientTest() throws Exception {
 		clientClear();
-		setAnnotatedClientEndpoint(new WSCEndpointWithBinaryStreamDecoder());
+		setAnnotatedClientEndpointInstance(new WSCEndpointWithBinaryStreamDecoder());
 		invoke("simplebin", ECHO, ECHO);
 		assertCode(InitDestroyBinaryStreamDecoder.class);
 	}
@@ -833,7 +833,7 @@ public class WSClientIT extends WebSocketCommonClient {
 	@Test
 	public void binaryDecoderWillDecodeOnClientTest() throws Exception {
 		clientClear();
-		setAnnotatedClientEndpoint(new WSCEndpointWithBinaryDecoders());
+		setAnnotatedClientEndpointInstance(new WSCEndpointWithBinaryDecoders());
 		invoke("simplebin", ECHO, ECHO);
 		assertWillCode(WillDecodeFirstBinaryDecoder.class);
 		assertWillCode(WillDecodeSecondBinaryDecoder.class);
@@ -853,7 +853,7 @@ public class WSClientIT extends WebSocketCommonClient {
 	@Test
 	public void textDecoderWillDecodeOnClientTest() throws Exception {
 		clientClear();
-		setAnnotatedClientEndpoint(new WSCEndpointWithTextDecoders());
+		setAnnotatedClientEndpointInstance(new WSCEndpointWithTextDecoders());
 		invoke("simpleecho", ECHO, ECHO);
 		assertWillCode(WillDecodeFirstTextDecoder.class);
 		assertWillCode(WillDecodeSecondTextDecoder.class);

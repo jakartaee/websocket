@@ -920,27 +920,41 @@ public abstract class WebSocketCommonClient {
 	}
 
 	/**
-	 * set ClientEndpoint class. This endpoint class can be overridden by client
-	 * endpoint instance set by {@link #setClientEndpointInstance}
+     * Set the ClientEndpoint class. This endpoint class can be overridden by
+     * the client endpoint instance/class set by
+     * {@link #setClientEndpointInstance},
+     * {@link #setAnnotatedClientEndpoint(Class)} or
+     * {@link #setAnnotatedClientEndpointInstance(AnnotatedClientEndpoint)}.
 	 */
 	protected void setClientEndpoint(Class<? extends ClientEndpoint<?>> endpoint) {
 		getTestCase().setClientEndpoint(endpoint);
 	}
 
 	/**
-	 * The ClientEndpoint instance. It holds precedence over ClientEndpoint class
-	 * set by {@link #setClientEndpoint}
+     * The ClientEndpoint instance. It tasks precedence over the ClientEndpoint
+     * class set by {@link #setClientEndpoint}.
 	 */
 	protected void setClientEndpointInstance(ClientEndpoint<?> endpointInstance) {
 		getTestCase().setClientEndpointInstance(endpointInstance);
 	}
 
+    /**
+     * The annotated client endpoint alternative to ClientEndpoint instance. It
+     * takes precedence over the ClientEndpoint class set by
+     * {@link #setClientEndpoint}.
+     */
+    protected void setAnnotatedClientEndpoint(Class<? extends AnnotatedClientEndpoint<?>> annotatedEndpoint) {
+        getTestCase().setAnnotatedClientEndpoint(annotatedEndpoint);
+    }
+
+
 	/**
-	 * The annotated client endpoint alternative to ClientEndpoint instance. It has
-	 * precedence over ClientEndpoint class set by {@link #setClientEndpoint}
+     * The annotated client endpoint instance alternative to ClientEndpoint
+     * instance. It takes precedence over the ClientEndpoint class set by
+     * {@link #setClientEndpoint}.
 	 */
-	protected void setAnnotatedClientEndpoint(AnnotatedClientEndpoint<?> annotatedEndpoint) {
-		getTestCase().setAnnotatedClientEndpoint(annotatedEndpoint);
+	protected void setAnnotatedClientEndpointInstance(AnnotatedClientEndpoint<?> annotatedEndpointInstance) {
+		getTestCase().setAnnotatedClientEndpointInstance(annotatedEndpointInstance);
 	}
 
 	/**

@@ -93,7 +93,7 @@ public class WSCClientIT extends NegativeDeploymentClient {
 	public void stringIntOnMessageTest() throws Exception {
 		setEntity("anything");
 		OnMessageClientEndpoint endpoint = new OnMessageClientEndpoint();
-		setAnnotatedClientEndpoint(endpoint);
+		setAnnotatedClientEndpointInstance(endpoint);
 		setProperty(Property.REQUEST, buildRequest("echo"));
 		setProperty(Property.STATUS_CODE, "-1");
 		logExceptionOnInvocation(false);

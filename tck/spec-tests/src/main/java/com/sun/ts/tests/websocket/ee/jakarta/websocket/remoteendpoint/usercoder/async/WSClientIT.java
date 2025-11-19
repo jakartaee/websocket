@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, 2023 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2013, 2025 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -66,9 +66,9 @@ public class WSClientIT extends WebSocketCommonClient {
 
 	/*
 	 * @testName: sendObjectPrimitivesTextEncoderOnServerTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:JAVADOC:96; WebSocket:JAVADOC:61;
-	 * 
+	 *
 	 * @test_Strategy: A developer-provided encoder for a Java primitive type
 	 * overrides the container default encoder. Encoder.Text.encode
 	 */
@@ -80,9 +80,9 @@ public class WSClientIT extends WebSocketCommonClient {
 
 	/*
 	 * @testName: sendObjectPrimitivesTextEncoderOnClientTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:JAVADOC:96; WebSocket:JAVADOC:61;
-	 * 
+	 *
 	 * @test_Strategy: A developer-provided encoder for a Java primitive type
 	 * overrides the container default encoder. Encoder.Text.encode
 	 */
@@ -91,7 +91,7 @@ public class WSClientIT extends WebSocketCommonClient {
 		WSCTextClientEndpoint client = new WSCTextClientEndpoint();
 
 		for (Object clientEntity : OPS.getClientEntities()) {
-			setAnnotatedClientEndpoint(client);
+			setAnnotatedClientEndpointInstance(client);
 			setEntity(clientEntity);
 			setClientCallback(new AsyncEndpointCallback(entity));
 			invoke("echo", clientEntity, CoderSuperClass.COMMON_CODED_STRING);
@@ -100,9 +100,9 @@ public class WSClientIT extends WebSocketCommonClient {
 
 	/*
 	 * @testName: sendObjectPrimitivesTextStreamEncoderOnServerTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:JAVADOC:96; WebSocket:JAVADOC:63;
-	 * 
+	 *
 	 * @test_Strategy: A developer-provided encoder for a Java primitive type
 	 * overrides the container default encoder. Encoder.TextStream.encode
 	 */
@@ -114,9 +114,9 @@ public class WSClientIT extends WebSocketCommonClient {
 
 	/*
 	 * @testName: sendObjectPrimitivesTextStreamEncoderOnClientTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:JAVADOC:96; WebSocket:JAVADOC:63;
-	 * 
+	 *
 	 * @test_Strategy: A developer-provided encoder for a Java primitive type
 	 * overrides the container default encoder. Encoder.TextStream.encode
 	 */
@@ -125,7 +125,7 @@ public class WSClientIT extends WebSocketCommonClient {
 		WSCTextStreamClientEndpoint client = new WSCTextStreamClientEndpoint();
 
 		for (Object clientEntity : OPS.getClientEntities()) {
-			setAnnotatedClientEndpoint(client);
+			setAnnotatedClientEndpointInstance(client);
 			setEntity(clientEntity);
 			setClientCallback(new AsyncEndpointCallback(entity));
 			invoke("echo", clientEntity, CoderSuperClass.COMMON_CODED_STRING);
@@ -134,9 +134,9 @@ public class WSClientIT extends WebSocketCommonClient {
 
 	/*
 	 * @testName: sendObjectPrimitivesBinaryEncoderOnServerTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:JAVADOC:96; WebSocket:JAVADOC:56;
-	 * 
+	 *
 	 * @test_Strategy: A developer-provided encoder for a Java primitive type
 	 * overrides the container default encoder. Encoder.Binary.encode
 	 */
@@ -150,9 +150,9 @@ public class WSClientIT extends WebSocketCommonClient {
 
 	/*
 	 * @testName: sendObjectPrimitivesBinaryEncoderOnClientTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:JAVADOC:96; WebSocket:JAVADOC:56;
-	 * 
+	 *
 	 * @test_Strategy: A developer-provided encoder for a Java primitive type
 	 * overrides the container default encoder. Encoder.Binary.encode
 	 */
@@ -161,7 +161,7 @@ public class WSClientIT extends WebSocketCommonClient {
 		WSCBinaryClientEndpoint client = new WSCBinaryClientEndpoint();
 
 		for (Object clientEntity : OPS.getClientEntities()) {
-			setAnnotatedClientEndpoint(client);
+			setAnnotatedClientEndpointInstance(client);
 			setEntity(clientEntity);
 			setClientCallback(new AsyncEndpointCallback(entity));
 			invoke("echo", clientEntity, CoderSuperClass.COMMON_CODED_STRING);
@@ -170,9 +170,9 @@ public class WSClientIT extends WebSocketCommonClient {
 
 	/*
 	 * @testName: sendObjectPrimitivesBinaryStreamEncoderOnServerTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:JAVADOC:96; WebSocket:JAVADOC:58;
-	 * 
+	 *
 	 * @test_Strategy: A developer-provided encoder for a Java primitive type
 	 * overrides the container default encoder. Encoder.BinaryStream.encode
 	 */
@@ -186,9 +186,9 @@ public class WSClientIT extends WebSocketCommonClient {
 
 	/*
 	 * @testName: sendObjectPrimitivesBinaryStreamEncoderOnClientTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:JAVADOC:96; WebSocket:JAVADOC:58;
-	 * 
+	 *
 	 * @test_Strategy: A developer-provided encoder for a Java primitive type
 	 * overrides the container default encoder. Encoder.BinaryStream.encode
 	 */
@@ -197,7 +197,7 @@ public class WSClientIT extends WebSocketCommonClient {
 		WSCBinaryStreamClientEndpoint client = new WSCBinaryStreamClientEndpoint();
 
 		for (Object clientEntity : OPS.getClientEntities()) {
-			setAnnotatedClientEndpoint(client);
+			setAnnotatedClientEndpointInstance(client);
 			setEntity(clientEntity);
 			setClientCallback(new AsyncEndpointCallback(entity));
 			invoke("echo", clientEntity, CoderSuperClass.COMMON_CODED_STRING);
