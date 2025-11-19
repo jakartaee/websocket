@@ -94,7 +94,7 @@ public class WSCClientIT extends NegativeDeploymentClient {
 	public void pongBooleanOnMessageTest() throws Exception {
 		setEntity(ByteBuffer.wrap("anything".getBytes()));
 		OnMessageClientEndpoint endpoint = new OnMessageClientEndpoint();
-		setAnnotatedClientEndpoint(endpoint);
+		setAnnotatedClientEndpointInstance(endpoint);
 		setProperty(Property.REQUEST, buildRequest("echo"));
 		setProperty(Property.STATUS_CODE, "-1");
 		logExceptionOnInvocation(false);
