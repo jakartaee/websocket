@@ -16,8 +16,6 @@
 
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.clientendpoint;
 
-import java.io.IOException;
-
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit5.ArquillianExtension;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
@@ -37,10 +35,9 @@ import com.sun.ts.tests.websocket.common.util.StringUtil;
  */
 @ExtendWith(ArquillianExtension.class)
 public class WSClientIT extends WebSocketCommonClient {
-	private static final long serialVersionUID = 5512614247407170347L;
 
 	@Deployment(testable = false)
-	public static WebArchive createDeployment() throws IOException {
+	public static WebArchive createDeployment() {
 
 		WebArchive archive = ShrinkWrap.create(WebArchive.class, "wsc_ee_clientendpoint_web.war");
 		archive.addClasses(GetNegotiatedSubprotocolConfigurator.class, OPS.class, WSCEchoServer.class,
