@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, 2023 Oracle and/or its affiliates and others.
+ * Copyright (c) 2013, 2025 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -51,14 +51,14 @@ import jakarta.websocket.WebSocketContainer;
  * This one uses existing routines to check result of client-server
  * request-response by websocket technology
  * </p>
- * 
+ *
  * TODO Create an instance of endpoint class using reflection with zero arg
  * constructor from the given ClientEndpoint class
  * <li>Then ClientEndpoinData do not need to be static, make it accessible from
  * CientEndpoint instance</li>
  * <li>Do not forget to pass a reference of the endpoint instance to each single
  * callback for ClientEndpointData to be accessible from the callback</li>
- * 
+ *
  * @author supol
  */
 public class WebSocketTestCase extends WebTestCase {
@@ -88,12 +88,19 @@ public class WebSocketTestCase extends WebTestCase {
 	 */
 	protected ClientEndpoint<?> endpointInstance = null;
 
+    /**
+     * An annotated endpoint class, in this implementation merely a bridge to
+     * ClientEndpoint, to be sure the annotated methods are called and also to have
+     * all the EndpointCallbacks working there
+     */
+	protected Class<? extends AnnotatedClientEndpoint<?>> annotatedEndpoint = null;
+
 	/**
-	 * An annotated endpoint, in this implementation merely a bridge to
+	 * An instance of an annotated endpoint, in this implementation merely a bridge to
 	 * ClientEndpoint, to be sure the annotated methods are called and also to have
 	 * all the EndpointCallbacks working there
 	 */
-	protected AnnotatedClientEndpoint<?> annotatedEndpoint = null;
+	protected AnnotatedClientEndpoint<?> annotatedEndpointInstance = null;
 
 	/**
 	 * A single master callback to be used in client end point
@@ -152,7 +159,7 @@ public class WebSocketTestCase extends WebTestCase {
 
 	/**
 	 * Executes the test case.
-	 * 
+	 *
 	 * @throws TestFailureException  if the test fails for any reason.
 	 * @throws IllegalStateException if no request was configured or if no Validator
 	 *                               is available at runtime.
@@ -196,7 +203,7 @@ public class WebSocketTestCase extends WebTestCase {
 
 	/**
 	 * Validate this test case instance
-	 * 
+	 *
 	 * @throws TestFailureException
 	 */
 	protected void validate() throws TestFailureException {
@@ -257,11 +264,22 @@ public class WebSocketTestCase extends WebTestCase {
 	}
 
 	protected Session connectToServer(WebSocketContainer clientContainer, String path) throws Exception {
-		WebSocketCommonClient.assertTrue(endpointInstance == null || annotatedEndpoint == null,
-				"Either a ClientEndpoint instance or Annotated endpoint can be used, not both");
+	    boolean found = false;
+	    for (Object obj : new Object[] { endpointInstance, annotatedEndpoint, annotatedEndpointInstance }) {
+	        if (obj != null) {
+	            if (found) {
+	                throw new Exception("Only one of endpointInstance, annotatedEndpoint, " +
+	                        "annotatedEndpointInstance may be configured per test");
+	            } else {
+	                found = true;
+	            }
+	        }
+	    }
 
-		if (annotatedEndpoint != null)
-			session = clientContainer.connectToServer(annotatedEndpoint, new URI(path));
+        if (annotatedEndpoint != null)
+            session = clientContainer.connectToServer(annotatedEndpoint, new URI(path));
+        else if (annotatedEndpointInstance != null)
+			session = clientContainer.connectToServer(annotatedEndpointInstance, new URI(path));
 		else if (endpointInstance != null)
 			session = clientContainer.connectToServer(endpointInstance, clientEndpointConfig, new URI(path));
 		else
@@ -408,7 +426,7 @@ public class WebSocketTestCase extends WebTestCase {
 	// ----------------------------------------------------------------------
 	/**
 	 * Sets the validation strategy for this test case instance.
-	 * 
+	 *
 	 * @param validator - the fully qualified class name of the response validator
 	 *                  to use.
 	 */
@@ -433,27 +451,40 @@ public class WebSocketTestCase extends WebTestCase {
 	}
 
 	/**
-	 * set ClientEndpoint class. This endpoint class can be overridden by client
-	 * endpoint instance set by {@link #setClientEndpointInstance}
+	 * Set the ClientEndpoint class. This endpoint class can be overridden by
+	 * the client endpoint instance/class set by
+	 * {@link #setClientEndpointInstance},
+	 * {@link #setAnnotatedClientEndpoint(Class)} or
+	 * {@link #setAnnotatedClientEndpointInstance(AnnotatedClientEndpoint)}.
 	 */
 	protected void setClientEndpoint(Class<? extends ClientEndpoint<?>> endpoint) {
 		this.endpoint = endpoint;
 	}
 
 	/**
-	 * The ClientEndpoint instance. It holds precedence over ClientEndpoint class
-	 * set by {@link #setClientEndpoint}
+	 * The ClientEndpoint instance. It tasks precedence over the ClientEndpoint
+	 * class set by {@link #setClientEndpoint}.
 	 */
 	protected void setClientEndpointInstance(ClientEndpoint<?> endpointInstance) {
 		this.endpointInstance = endpointInstance;
 	}
 
+    /**
+     * The annotated client endpoint alternative to ClientEndpoint instance. It
+     * takes precedence over the ClientEndpoint class set by
+     * {@link #setClientEndpoint}.
+     */
+    protected void setAnnotatedClientEndpoint(Class<? extends AnnotatedClientEndpoint<?>> annotatedEndpoint) {
+        this.annotatedEndpoint = annotatedEndpoint;
+    }
+
 	/**
-	 * The annotated client endpoint alternative to ClientEndpoint instance. It has
-	 * precedence over ClientEndpoint class set by {@link #setClientEndpoint}
+	 * The annotated client endpoint instance alternative to ClientEndpoint
+	 * instance. It takes precedence over the ClientEndpoint class set by
+	 * {@link #setClientEndpoint}.
 	 */
-	protected void setAnnotatedClientEndpoint(AnnotatedClientEndpoint<?> annotatedEndpoint) {
-		this.annotatedEndpoint = annotatedEndpoint;
+	protected void setAnnotatedClientEndpointInstance(AnnotatedClientEndpoint<?> annotatedEndpointInstance) {
+		this.annotatedEndpointInstance = annotatedEndpointInstance;
 	}
 
 	protected void setCountDownLatchCount(int countDownLatchCount) {

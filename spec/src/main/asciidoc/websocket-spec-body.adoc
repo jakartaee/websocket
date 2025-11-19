@@ -830,9 +830,9 @@ customizing the opening handshake.
 
 This class level annotation signifies that the Java class it decorates
 is to be deployed as a WebSocket client endpoint that will connect to a
-WebSocket endpoint residing on a WebSocket server. The class must have a
-public no-args constructor, and additionally may conform to one of the
-types listed in <<jakartaee>>.
+WebSocket endpoint residing on a WebSocket server.
+The class may conform to one of the types listed in <<jakartaee>>.
+If passed to the *WebSocketContainer.connectToServer(Class<?>, URI)* method, the class must have a public no-args constructor.
 
 [[encoders-1]]
 ==== encoders
@@ -1534,7 +1534,10 @@ Clarify that `ClientEndPoint.Configurator.afterResponse(HandshakeResponse)` is t
 unsuccessful WebSocket handshakes.
 
 * https://github.com/jakartaee/websocket/issues/517[Issue 517]
-Clarify that `RemoteEndpoint.Async.setSendTimeout(long)` applies per websocket message
+Clarify that `RemoteEndpoint.Async.setSendTimeout(long)` applies per WebSocket message
+
+* https://github.com/jakartaee/websocket/issues/578[Issue 578]
+Relax the requirement for classes annotated with `@ClientEndpoint` to always require a no-args constructor. 
 
 === Changes Between 2.2 and 2.1
 

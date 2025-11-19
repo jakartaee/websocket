@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015, 2023 Oracle and/or its affiliates and others.
+ * Copyright (c) 2015, 2025 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -64,33 +64,33 @@ public class WSCClientIT extends NegativeDeploymentClient {
 
 	/*
 	 * @testName: duplicateOnCloseTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:SPEC:WSC-5.2.1-3;WebSocket:SPEC:WSC-4.5-4;
 	 * WebSocket:SPEC:WSC-5.2.1-4;
-	 * 
+	 *
 	 * @test_Strategy: In both cases, a deployment error raised during the
 	 * deployment process must halt the deployment of the application, any well
 	 * formed endpoints deployed prior to the error being raised must be removed
 	 * from service and no more websocket endpoints from that application may be
 	 * deployed by the container, even if they are valid.
-	 * 
+	 *
 	 * Any Java class using this annotation on a method that does not follow these
 	 * rules, or that uses this annotation on more than one method may not be
 	 * deployed by the implementation and the error reported to the deployer.
 	 * [WSC-4.5-4]
-	 * 
+	 *
 	 * If the deployment error occurs under the programmatic control of the
 	 * developer, for example, when using the WebSocketContainer API to deploy a
 	 * client endpoint, deployment errors must be reported by the container to the
 	 * developer by using an instance of the DeploymentException. [WSC-5.2.1-4]
-	 * 
+	 *
 	 * To verify the test fails when the deployment was successful, comment out one
 	 * of @OnClose in AnnotatedOnCloseClientEndpoint
 	 */
 	@Test
 	public void duplicateOnCloseTest() throws Exception {
 		AnnotatedOnCloseClientEndpoint endpoint = new AnnotatedOnCloseClientEndpoint();
-		setAnnotatedClientEndpoint(endpoint);
+		setAnnotatedClientEndpointInstance(endpoint);
 		setProperty(Property.CONTENT, "anything");
 		setProperty(Property.REQUEST, buildRequest("echo"));
 		setProperty(Property.STATUS_CODE, "-1");

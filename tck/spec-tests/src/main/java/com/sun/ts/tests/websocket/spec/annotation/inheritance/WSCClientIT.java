@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014, 2023 Oracle and/or its affiliates and others.
+ * Copyright (c) 2014, 2025 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -78,46 +78,46 @@ public class WSCClientIT extends WebSocketCommonClient {
 
 	/*
 	 * @testName: annotationOnMethodIsInheritedTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:SPEC:WSC-4.8.1;
-	 * 
+	 *
 	 * @test_Strategy: The subclass just inherits @OnMessage
 	 */
 	@Test
 	public void annotationOnMethodIsInheritedTest() throws Exception {
-		setAnnotatedClientEndpoint(new AnnotatedSubclassEndpointWithoutAnnotations());
+		setAnnotatedClientEndpointInstance(new AnnotatedSubclassEndpointWithoutAnnotations());
 		invoke("echo", MESSAGE, MESSAGE);
 		logMsg("Annotations have been inherited as expected");
 	}
 
 	/*
 	 * @testName: annotationOnMethodIsOverridenTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:SPEC:WSC-4.8.1;
-	 * 
+	 *
 	 * @test_Strategy: The subclass overrides @OnMessage
 	 */
 	@Test
 	public void annotationOnMethodIsOverridenTest() throws Exception {
-		setAnnotatedClientEndpoint(new AnnotatedClientEndpointSubclassWithOverrideAndAnnotations());
+		setAnnotatedClientEndpointInstance(new AnnotatedClientEndpointSubclassWithOverrideAndAnnotations());
 		invoke("echo", MESSAGE, MESSAGE);
 		logMsg("Annotations have been overridden as expected");
 	}
 
 	/*
 	 * @testName: annotationOnMessageIsTwiceTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:SPEC:WSC-4.8.1;
-	 * 
+	 *
 	 * @test_Strategy: The subclass defines its own @OnMessage
-	 * 
+	 *
 	 * Implementations should not deploy Java classes that mistakenly mix Java
 	 * inheritance with websocket annotations in these ways.
 	 */
 	@Test
 	public void annotationOnMessageIsTwiceTest() throws Exception {
 		try {
-			setAnnotatedClientEndpoint(new AnnotatedClientEndpointWithMultipleOnMessageAnnotations());
+			setAnnotatedClientEndpointInstance(new AnnotatedClientEndpointWithMultipleOnMessageAnnotations());
 			logExceptionOnInvocation(false);
 			invoke("echo", MESSAGE, MESSAGE);
 			new Exception("No exception has been thrown when multiple @OnMessage annotations defined");
@@ -130,18 +130,18 @@ public class WSCClientIT extends WebSocketCommonClient {
 
 	/*
 	 * @testName: annotationOnOpenIsTwiceTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:SPEC:WSC-4.8.1;
-	 * 
+	 *
 	 * @test_Strategy: The subclass defines its own @OnOpen
-	 * 
+	 *
 	 * Implementations should not deploy Java classes that mistakenly mix Java
 	 * inheritance with websocket annotations in these ways.
 	 */
 	@Test
 	public void annotationOnOpenIsTwiceTest() throws Exception {
 		try {
-			setAnnotatedClientEndpoint(new AnnotatedClientEndpointWithMultipleOnOpenAnnotations());
+			setAnnotatedClientEndpointInstance(new AnnotatedClientEndpointWithMultipleOnOpenAnnotations());
 			logExceptionOnInvocation(false);
 			invoke("echo", MESSAGE, MESSAGE);
 			new Exception("No exception has been thrown when multiple @OnOpen annotations defined");
@@ -154,18 +154,18 @@ public class WSCClientIT extends WebSocketCommonClient {
 
 	/*
 	 * @testName: annotationOnCloseIsTwiceTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:SPEC:WSC-4.8.1;
-	 * 
+	 *
 	 * @test_Strategy: The subclass defines its own @OnClose
-	 * 
+	 *
 	 * Implementations should not deploy Java classes that mistakenly mix Java
 	 * inheritance with websocket annotations in these ways.
 	 */
 	@Test
 	public void annotationOnCloseIsTwiceTest() throws Exception {
 		try {
-			setAnnotatedClientEndpoint(new AnnotatedClientEndpointWithMultipleOnCloseAnnotations());
+			setAnnotatedClientEndpointInstance(new AnnotatedClientEndpointWithMultipleOnCloseAnnotations());
 			logExceptionOnInvocation(false);
 			invoke("echo", MESSAGE, MESSAGE);
 			new Exception("No exception has been thrown when multiple @OnClose annotations defined");
@@ -178,18 +178,18 @@ public class WSCClientIT extends WebSocketCommonClient {
 
 	/*
 	 * @testName: annotationOnErrorIsTwiceTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:SPEC:WSC-4.8.1;
-	 * 
+	 *
 	 * @test_Strategy: The subclass defines its own @OnError
-	 * 
+	 *
 	 * Implementations should not deploy Java classes that mistakenly mix Java
 	 * inheritance with websocket annotations in these ways.
 	 */
 	@Test
 	public void annotationOnErrorIsTwiceTest() throws Exception {
 		try {
-			setAnnotatedClientEndpoint(new AnnotatedClientEndpointWithMultipleOnErrorAnnotations());
+			setAnnotatedClientEndpointInstance(new AnnotatedClientEndpointWithMultipleOnErrorAnnotations());
 			logExceptionOnInvocation(false);
 			invoke("echo", MESSAGE, MESSAGE);
 			new Exception("No exception has been thrown when multiple @OnError annotations defined");

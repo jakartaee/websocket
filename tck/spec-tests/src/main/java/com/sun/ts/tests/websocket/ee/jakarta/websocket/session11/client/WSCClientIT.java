@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014, 2023 Oracle and/or its affiliates and others.
+ * Copyright (c) 2014, 2025 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -77,9 +77,9 @@ public class WSCClientIT extends WebSocketCommonClient {
 	/* Run test */
 	/*
 	 * @testName: linkedListHashSetTextHandlerTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:JAVADOC:212;
-	 * 
+	 *
 	 * @test_Strategy: Register to handle to incoming messages in this conversation.
 	 */
 	@Test
@@ -91,9 +91,9 @@ public class WSCClientIT extends WebSocketCommonClient {
 
 	/*
 	 * @testName: textStringBeanHandlerTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:JAVADOC:212;
-	 * 
+	 *
 	 * @test_Strategy: Register to handle to incoming messages in this conversation.
 	 */
 	@Test
@@ -105,9 +105,9 @@ public class WSCClientIT extends WebSocketCommonClient {
 
 	/*
 	 * @testName: textStreamStringBeanHandlerTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:JAVADOC:212;
-	 * 
+	 *
 	 * @test_Strategy: Register to handle to incoming messages in this conversation.
 	 */
 	@Test
@@ -119,9 +119,9 @@ public class WSCClientIT extends WebSocketCommonClient {
 
 	/*
 	 * @testName: linkedListTextHandlerTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:JAVADOC:212;
-	 * 
+	 *
 	 * @test_Strategy: Register to handle to incoming messages in this conversation.
 	 */
 	@Test
@@ -133,9 +133,9 @@ public class WSCClientIT extends WebSocketCommonClient {
 
 	/*
 	 * @testName: stringTextHandlerTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:JAVADOC:212;
-	 * 
+	 *
 	 * @test_Strategy: Register to handle to incoming messages in this conversation.
 	 */
 	@Test
@@ -147,9 +147,9 @@ public class WSCClientIT extends WebSocketCommonClient {
 
 	/*
 	 * @testName: readerMessageHandlerTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:JAVADOC:38;
-	 * 
+	 *
 	 * @test_Strategy: test the binary decoder throws decoderException and it is
 	 * caught in @OnError
 	 */
@@ -166,9 +166,9 @@ public class WSCClientIT extends WebSocketCommonClient {
 
 	/*
 	 * @testName: pongMessageHandlerTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:JAVADOC:212;
-	 * 
+	 *
 	 * @test_Strategy: Register to handle to incoming messages in this conversation.
 	 */
 	@Test
@@ -184,9 +184,9 @@ public class WSCClientIT extends WebSocketCommonClient {
 
 	/*
 	 * @testName: byteBufferMessageHandlerTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:JAVADOC:212;
-	 * 
+	 *
 	 * @test_Strategy: Register to handle to incoming messages in this conversation.
 	 */
 	@Test
@@ -198,9 +198,9 @@ public class WSCClientIT extends WebSocketCommonClient {
 
 	/*
 	 * @testName: byteArrayMessageHandlerTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:JAVADOC:212;
-	 * 
+	 *
 	 * @test_Strategy: Register to handle to incoming messages in this conversation.
 	 */
 	@Test
@@ -212,9 +212,9 @@ public class WSCClientIT extends WebSocketCommonClient {
 
 	/*
 	 * @testName: inputStreamMessageHandlerTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:JAVADOC:212;
-	 * 
+	 *
 	 * @test_Strategy: Register to handle to incoming messages in this conversation.
 	 */
 	@Test
@@ -226,9 +226,9 @@ public class WSCClientIT extends WebSocketCommonClient {
 
 	/*
 	 * @testName: binaryStringBeanMessageHandlerTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:JAVADOC:212;
-	 * 
+	 *
 	 * @test_Strategy: Register to handle to incoming messages in this conversation.
 	 */
 	@Test
@@ -240,9 +240,9 @@ public class WSCClientIT extends WebSocketCommonClient {
 
 	/*
 	 * @testName: binaryStreamStringBeanMessageHandlerTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:JAVADOC:212;
-	 * 
+	 *
 	 * @test_Strategy: Register to handle to incoming messages in this conversation.
 	 */
 	@Test
@@ -257,9 +257,9 @@ public class WSCClientIT extends WebSocketCommonClient {
 	// -----------------------------------------------------------------------
 	/*
 	 * @testName: stringPartialHandlerTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:JAVADOC:213;
-	 * 
+	 *
 	 * @test_Strategy: Register to handle to incoming messages in this conversation.
 	 */
 	@Test
@@ -272,9 +272,9 @@ public class WSCClientIT extends WebSocketCommonClient {
 
 	/*
 	 * @testName: byteBufferPartialMessageHandlerTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:JAVADOC:213;
-	 * 
+	 *
 	 * @test_Strategy: Register to handle to incoming messages in this conversation.
 	 */
 	@Test
@@ -288,9 +288,9 @@ public class WSCClientIT extends WebSocketCommonClient {
 
 	/*
 	 * @testName: byteArrayPartialMessageHandlerTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:JAVADOC:213;
-	 * 
+	 *
 	 * @test_Strategy: Register to handle to incoming messages in this conversation.
 	 */
 	@Test
@@ -308,14 +308,14 @@ public class WSCClientIT extends WebSocketCommonClient {
 
 	/*
 	 * @testName: annotatedTextReaderClientTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:JAVADOC:212;
-	 * 
+	 *
 	 * @test_Strategy: Register to handle to incoming messages in this conversation.
 	 */
 	@Test
 	public void annotatedTextReaderClientTest() throws Exception {
-		setAnnotatedClientEndpoint(new AnnotatedTextClient());
+		setAnnotatedClientEndpointInstance(new AnnotatedTextClient());
 		invoke("echo", ECHO, ReaderMessageHandler.HANDLER_SAYS, AlternativeReaderDecoder.DECODER_SAYS,
 				WSCEchoServerEndpoint.SAYS, ECHO);
 		logMsg("addMessageHandler(Reader.class, Whole<Reader>) works as expected.");
@@ -323,14 +323,14 @@ public class WSCClientIT extends WebSocketCommonClient {
 
 	/*
 	 * @testName: annotatedBinaryInputStreamClientTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:JAVADOC:212;
-	 * 
+	 *
 	 * @test_Strategy: Register to handle to incoming messages in this conversation.
 	 */
 	@Test
 	public void annotatedBinaryInputStreamClientTest() throws Exception {
-		setAnnotatedClientEndpoint(new AnnotatedBinaryClient());
+		setAnnotatedClientEndpointInstance(new AnnotatedBinaryClient());
 		invoke("binecho", ByteBuffer.wrap(ECHO.getBytes()), InputStreamMessageHandler.HANDLER_SAYS,
 				AlternativeInputStreamDecoder.DECODER_SAYS, WSCBinaryEchoServerEndpoint.SAYS, ECHO);
 		logMsg("addMessageHandler(InputStream.class, Whole<InputStream>) works as expected.");
@@ -342,16 +342,16 @@ public class WSCClientIT extends WebSocketCommonClient {
 
 	/*
 	 * @testName: twiceAddMessageHandlerReaderThrowsExceptionTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:JAVADOC:212;
-	 * 
+	 *
 	 * @test_Strategy: Adding more than one of any one type will result in a runtime
 	 * exception.
 	 */
 	@Test
 	public void twiceAddMessageHandlerReaderThrowsExceptionTest() throws Exception {
 		AnnotatedThrowingClient client = new AnnotatedThrowingClient(TypeEnum.READER);
-		setAnnotatedClientEndpoint(client);
+		setAnnotatedClientEndpointInstance(client);
 		invoke("echo", ECHO, ReaderMessageHandler.HANDLER_SAYS, WSCEchoServerEndpoint.SAYS, ECHO);
 		assertNotNull(client.getThrown(), "there is no exception thrown when adding MessageHandler twice");
 		logMsg("addMessageHandler(Reader.class, Whole<Reader>) throws RuntimeException as expected when called twice:",
@@ -360,16 +360,16 @@ public class WSCClientIT extends WebSocketCommonClient {
 
 	/*
 	 * @testName: twiceAddMessageHandlerInputStreamThrowsExceptionTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:JAVADOC:212;
-	 * 
+	 *
 	 * @test_Strategy: Adding more than one of any one type will result in a runtime
 	 * exception.
 	 */
 	@Test
 	public void twiceAddMessageHandlerInputStreamThrowsExceptionTest() throws Exception {
 		AnnotatedThrowingClient client = new AnnotatedThrowingClient(TypeEnum.INPUTSTREAM);
-		setAnnotatedClientEndpoint(client);
+		setAnnotatedClientEndpointInstance(client);
 		invoke("binecho", ByteBuffer.wrap(ECHO.getBytes()), InputStreamMessageHandler.HANDLER_SAYS,
 				WSCBinaryEchoServerEndpoint.SAYS, ECHO);
 		assertNotNull(client.getThrown(), "there is no exception thrown when adding MessageHandler twice");
@@ -379,16 +379,16 @@ public class WSCClientIT extends WebSocketCommonClient {
 
 	/*
 	 * @testName: twiceAddMessageHandlerPongMessageThrowsExceptionTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:JAVADOC:212;
-	 * 
+	 *
 	 * @test_Strategy: Adding more than one of any one type will result in a runtime
 	 * exception.
 	 */
 	@Test
 	public void twiceAddMessageHandlerPongMessageThrowsExceptionTest() throws Exception {
 		AnnotatedThrowingClient client = new AnnotatedThrowingClient(TypeEnum.PONG);
-		setAnnotatedClientEndpoint(client);
+		setAnnotatedClientEndpointInstance(client);
 		invoke("echo", new StringPingMessage(ECHO), PongMessageHandler.HANDLER_SAYS, ECHO);
 		assertNotNull(client.getThrown(), "there is no exception thrown when adding MessageHandler twice");
 		logMsg("addMessageHandler(PongMessage.class, Whole<PongMessage>) throws RuntimeException as expected when called twice:",
@@ -397,16 +397,16 @@ public class WSCClientIT extends WebSocketCommonClient {
 
 	/*
 	 * @testName: twiceAddMessageHandlerPartialStringThrowsExceptionTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:JAVADOC:213;
-	 * 
+	 *
 	 * @test_Strategy: Adding more than one of any one type will result in a runtime
 	 * exception.
 	 */
 	@Test
 	public void twiceAddMessageHandlerPartialStringThrowsExceptionTest() throws Exception {
 		AnnotatedThrowingClient client = new AnnotatedThrowingClient(TypeEnum.STRING_PARTIAL);
-		setAnnotatedClientEndpoint(client);
+		setAnnotatedClientEndpointInstance(client);
 		setEntity(ECHO, ECHO_PARTIAL);
 		setProperty(Property.SEARCH_STRING, StringPartialMessageHandler.HANDLER_SAYS);
 		setProperty(Property.SEARCH_STRING, WSCEchoServerEndpoint.SAYS);

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, 2023 Oracle and/or its affiliates and others.
+ * Copyright (c) 2013, 2025 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -87,28 +87,28 @@ public class WSClientIT extends WebSocketCommonClient {
 
 	/*
 	 * @testName: echoStringTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:JAVADOC:80;
-	 * 
+	 *
 	 * @test_Strategy: Echo String
 	 */
 	@Test
 	public void echoStringTest() throws Exception {
-		setAnnotatedClientEndpoint(new WSStringClientEndpoint());
+		setAnnotatedClientEndpointInstance(new WSStringClientEndpoint());
 		setProperty(Property.CONTENT, ECHO);
 		invoke(OPS.TEXT, ECHO);
 	}
 
 	/*
 	 * @testName: echoIntTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:SPEC:WSC-4.7-2; WebSocket:JAVADOC:80;
-	 * 
+	 *
 	 * @test_Strategy: echo int
 	 */
 	@Test
 	public void echoIntTest() throws Exception {
-		setAnnotatedClientEndpoint(new WSPrimitiveIntClientEndpoint());
+		setAnnotatedClientEndpointInstance(new WSPrimitiveIntClientEndpoint());
 		int entity = Integer.MIN_VALUE;
 		setEntity(entity);
 		invoke(OPS.TEXT, String.valueOf(entity));
@@ -116,14 +116,14 @@ public class WSClientIT extends WebSocketCommonClient {
 
 	/*
 	 * @testName: echoByteTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:SPEC:WSC-4.7-2; WebSocket:JAVADOC:80;
-	 * 
+	 *
 	 * @test_Strategy: echo byte
 	 */
 	@Test
 	public void echoByteTest() throws Exception {
-		setAnnotatedClientEndpoint(new WSPrimitiveByteClientEndpoint());
+		setAnnotatedClientEndpointInstance(new WSPrimitiveByteClientEndpoint());
 		byte entity = 123;
 		setEntity(entity);
 		invoke(OPS.TEXT, String.valueOf(entity));
@@ -131,14 +131,14 @@ public class WSClientIT extends WebSocketCommonClient {
 
 	/*
 	 * @testName: echoCharTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:SPEC:WSC-4.7-2; WebSocket:JAVADOC:80;
-	 * 
+	 *
 	 * @test_Strategy: echo char
 	 */
 	@Test
 	public void echoCharTest() throws Exception {
-		setAnnotatedClientEndpoint(new WSPrimitiveCharClientEndpoint());
+		setAnnotatedClientEndpointInstance(new WSPrimitiveCharClientEndpoint());
 		char entity = 'E';
 		setEntity(entity);
 		invoke(OPS.TEXT, String.valueOf(entity));
@@ -146,14 +146,14 @@ public class WSClientIT extends WebSocketCommonClient {
 
 	/*
 	 * @testName: echoBooleanTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:SPEC:WSC-4.7-2; WebSocket:JAVADOC:80;
-	 * 
+	 *
 	 * @test_Strategy: echo boolean
 	 */
 	@Test
 	public void echoBooleanTest() throws Exception {
-		setAnnotatedClientEndpoint(new WSPrimitiveBooleanClientEndpoint());
+		setAnnotatedClientEndpointInstance(new WSPrimitiveBooleanClientEndpoint());
 		boolean entity = true;
 		setEntity(entity);
 		invoke(OPS.TEXT, String.valueOf(entity));
@@ -161,14 +161,14 @@ public class WSClientIT extends WebSocketCommonClient {
 
 	/*
 	 * @testName: echoShortTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:SPEC:WSC-4.7-2; WebSocket:JAVADOC:80;
-	 * 
+	 *
 	 * @test_Strategy: echo short
 	 */
 	@Test
 	public void echoShortTest() throws Exception {
-		setAnnotatedClientEndpoint(new WSPrimitiveShortClientEndpoint());
+		setAnnotatedClientEndpointInstance(new WSPrimitiveShortClientEndpoint());
 		short entity = -32100;
 		setEntity(entity);
 		invoke(OPS.TEXT, String.valueOf(entity));
@@ -176,14 +176,14 @@ public class WSClientIT extends WebSocketCommonClient {
 
 	/*
 	 * @testName: echoDoubleTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:SPEC:WSC-4.7-2; WebSocket:JAVADOC:80;
-	 * 
+	 *
 	 * @test_Strategy: echo double
 	 */
 	@Test
 	public void echoDoubleTest() throws Exception {
-		setAnnotatedClientEndpoint(new WSPrimitiveDoubleClientEndpoint());
+		setAnnotatedClientEndpointInstance(new WSPrimitiveDoubleClientEndpoint());
 		double entity = -12345678.88;
 		setEntity(entity);
 		invoke(OPS.TEXT, String.valueOf(entity));
@@ -191,14 +191,14 @@ public class WSClientIT extends WebSocketCommonClient {
 
 	/*
 	 * @testName: echoFloatTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:SPEC:WSC-4.7-2; WebSocket:JAVADOC:80;
-	 * 
+	 *
 	 * @test_Strategy: echo float
 	 */
 	@Test
 	public void echoFloatTest() throws Exception {
-		setAnnotatedClientEndpoint(new WSPrimitiveFloatClientEndpoint());
+		setAnnotatedClientEndpointInstance(new WSPrimitiveFloatClientEndpoint());
 		float entity = -12345678.88f;
 		setEntity(entity);
 		invoke(OPS.TEXT, String.valueOf(entity));
@@ -206,14 +206,14 @@ public class WSClientIT extends WebSocketCommonClient {
 
 	/*
 	 * @testName: echoLongTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:SPEC:WSC-4.7-2; WebSocket:JAVADOC:80;
-	 * 
+	 *
 	 * @test_Strategy: echo long
 	 */
 	@Test
 	public void echoLongTest() throws Exception {
-		setAnnotatedClientEndpoint(new WSPrimitiveLongClientEndpoint());
+		setAnnotatedClientEndpointInstance(new WSPrimitiveLongClientEndpoint());
 		long entity = Long.MIN_VALUE;
 		setEntity(entity);
 		invoke(OPS.TEXT, String.valueOf(entity));
@@ -221,14 +221,14 @@ public class WSClientIT extends WebSocketCommonClient {
 
 	/*
 	 * @testName: echoFullIntTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:SPEC:WSC-4.7-3; WebSocket:JAVADOC:80;
-	 * 
+	 *
 	 * @test_Strategy: echo int
 	 */
 	@Test
 	public void echoFullIntTest() throws Exception {
-		setAnnotatedClientEndpoint(new WSFullLongClientEndpoint());
+		setAnnotatedClientEndpointInstance(new WSFullLongClientEndpoint());
 		Integer entity = Integer.MIN_VALUE;
 		setEntity(entity);
 		invoke(OPS.TEXT, entity.toString());
@@ -236,14 +236,14 @@ public class WSClientIT extends WebSocketCommonClient {
 
 	/*
 	 * @testName: echoFullByteTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:SPEC:WSC-4.7-3; WebSocket:JAVADOC:80;
-	 * 
+	 *
 	 * @test_Strategy: echo byte
 	 */
 	@Test
 	public void echoFullByteTest() throws Exception {
-		setAnnotatedClientEndpoint(new WSFullByteClientEndpoint());
+		setAnnotatedClientEndpointInstance(new WSFullByteClientEndpoint());
 		Byte entity = Byte.MIN_VALUE;
 		setEntity(entity);
 		invoke(OPS.TEXT, entity.toString());
@@ -251,14 +251,14 @@ public class WSClientIT extends WebSocketCommonClient {
 
 	/*
 	 * @testName: echoFullCharTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:SPEC:WSC-4.7-3; WebSocket:JAVADOC:80;
-	 * 
+	 *
 	 * @test_Strategy: echo char
 	 */
 	@Test
 	public void echoFullCharTest() throws Exception {
-		setAnnotatedClientEndpoint(new WSFullCharClientEndpoint());
+		setAnnotatedClientEndpointInstance(new WSFullCharClientEndpoint());
 		Character entity = 'E';
 		setEntity(entity);
 		invoke(OPS.TEXT, entity.toString());
@@ -266,14 +266,14 @@ public class WSClientIT extends WebSocketCommonClient {
 
 	/*
 	 * @testName: echoFullBooleanTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:SPEC:WSC-4.7-3; WebSocket:JAVADOC:80;
-	 * 
+	 *
 	 * @test_Strategy: echo boolean
 	 */
 	@Test
 	public void echoFullBooleanTest() throws Exception {
-		setAnnotatedClientEndpoint(new WSFullBooleanClientEndpoint());
+		setAnnotatedClientEndpointInstance(new WSFullBooleanClientEndpoint());
 		Boolean entity = true;
 		setEntity(entity);
 		invoke(OPS.TEXT, entity.toString());
@@ -281,14 +281,14 @@ public class WSClientIT extends WebSocketCommonClient {
 
 	/*
 	 * @testName: echoFullShortTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:SPEC:WSC-4.7-3; WebSocket:JAVADOC:80;
-	 * 
+	 *
 	 * @test_Strategy: echo short
 	 */
 	@Test
 	public void echoFullShortTest() throws Exception {
-		setAnnotatedClientEndpoint(new WSFullShortClientEndpoint());
+		setAnnotatedClientEndpointInstance(new WSFullShortClientEndpoint());
 		Short entity = Short.MAX_VALUE;
 		setEntity(entity);
 		invoke(OPS.TEXT, entity.toString());
@@ -296,14 +296,14 @@ public class WSClientIT extends WebSocketCommonClient {
 
 	/*
 	 * @testName: echoFullDoubleTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:SPEC:WSC-4.7-3; WebSocket:JAVADOC:80;
-	 * 
+	 *
 	 * @test_Strategy: echo double
 	 */
 	@Test
 	public void echoFullDoubleTest() throws Exception {
-		setAnnotatedClientEndpoint(new WSFullDoubleClientEndpoint());
+		setAnnotatedClientEndpointInstance(new WSFullDoubleClientEndpoint());
 		Double entity = Double.MIN_VALUE;
 		setEntity(entity);
 		invoke(OPS.TEXT, entity.toString());
@@ -311,14 +311,14 @@ public class WSClientIT extends WebSocketCommonClient {
 
 	/*
 	 * @testName: echoFullFloatTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:SPEC:WSC-4.7-3; WebSocket:JAVADOC:80;
-	 * 
+	 *
 	 * @test_Strategy: echo float
 	 */
 	@Test
 	public void echoFullFloatTest() throws Exception {
-		setAnnotatedClientEndpoint(new WSFullFloatClientEndpoint());
+		setAnnotatedClientEndpointInstance(new WSFullFloatClientEndpoint());
 		Float entity = Float.MAX_VALUE;
 		setEntity(entity);
 		invoke(OPS.TEXT, entity.toString());
@@ -326,14 +326,14 @@ public class WSClientIT extends WebSocketCommonClient {
 
 	/*
 	 * @testName: echoFullLongTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:SPEC:WSC-4.7-3; WebSocket:JAVADOC:80;
-	 * 
+	 *
 	 * @test_Strategy: echo long
 	 */
 	@Test
 	public void echoFullLongTest() throws Exception {
-		setAnnotatedClientEndpoint(new WSFullLongClientEndpoint());
+		setAnnotatedClientEndpointInstance(new WSFullLongClientEndpoint());
 		Long entity = Long.MAX_VALUE;
 		setEntity(entity);
 		invoke(OPS.TEXT, entity.toString());
@@ -341,42 +341,42 @@ public class WSClientIT extends WebSocketCommonClient {
 
 	/*
 	 * @testName: echoReaderTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:SPEC:WSC-4.7-3; WebSocket:JAVADOC:80;
-	 * 
+	 *
 	 * @test_Strategy: OnMessage(Reader)
 	 */
 	@Test
 	public void echoReaderTest() throws Exception {
-		setAnnotatedClientEndpoint(new WSReaderClientEndpoint());
+		setAnnotatedClientEndpointInstance(new WSReaderClientEndpoint());
 		setProperty(Property.CONTENT, ECHO);
 		invoke(OPS.TEXT, ECHO);
 	}
 
 	/*
 	 * @testName: echoTextDecoderTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:SPEC:WSC-4.7-3; WebSocket:JAVADOC:80;
-	 * 
+	 *
 	 * @test_Strategy: OnMessage using TextDecoder
 	 */
 	@Test
 	public void echoTextDecoderTest() throws Exception {
-		setAnnotatedClientEndpoint(new WSTextDecoderClientEndpoint());
+		setAnnotatedClientEndpointInstance(new WSTextDecoderClientEndpoint());
 		setProperty(Property.CONTENT, ECHO);
 		invoke(OPS.TEXT, ECHO);
 	}
 
 	/*
 	 * @testName: echoTextStreamDecoderTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:SPEC:WSC-4.7-3; WebSocket:JAVADOC:80;
-	 * 
+	 *
 	 * @test_Strategy: OnMessage using TextStreamDecoder
 	 */
 	@Test
 	public void echoTextStreamDecoderTest() throws Exception {
-		setAnnotatedClientEndpoint(new WSTextStreamDecoderClientEndpoint());
+		setAnnotatedClientEndpointInstance(new WSTextStreamDecoderClientEndpoint());
 		setProperty(Property.CONTENT, ECHO);
 		invoke(OPS.TEXT, ECHO);
 	}
@@ -384,28 +384,28 @@ public class WSClientIT extends WebSocketCommonClient {
 	// -------------------------TEXT AND SESSION ------------------------------
 	/*
 	 * @testName: echoStringAndSessionTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:JAVADOC:80;
-	 * 
+	 *
 	 * @test_Strategy: Echo String
 	 */
 	@Test
 	public void echoStringAndSessionTest() throws Exception {
-		setAnnotatedClientEndpoint(new WSStringAndSessionClientEndpoint());
+		setAnnotatedClientEndpointInstance(new WSStringAndSessionClientEndpoint());
 		setProperty(Property.CONTENT, ECHO);
 		invoke(OPS.TEXT, ECHO);
 	}
 
 	/*
 	 * @testName: echoIntAndSessionTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:SPEC:WSC-4.7-2; WebSocket:JAVADOC:80;
-	 * 
+	 *
 	 * @test_Strategy: echo int
 	 */
 	@Test
 	public void echoIntAndSessionTest() throws Exception {
-		setAnnotatedClientEndpoint(new WSPrimitiveIntAndSessionClientEndpoint());
+		setAnnotatedClientEndpointInstance(new WSPrimitiveIntAndSessionClientEndpoint());
 		int entity = Integer.MIN_VALUE;
 		setEntity(entity);
 		invoke(OPS.TEXT, String.valueOf(entity));
@@ -413,14 +413,14 @@ public class WSClientIT extends WebSocketCommonClient {
 
 	/*
 	 * @testName: echoByteAndSessionTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:SPEC:WSC-4.7-2; WebSocket:JAVADOC:80;
-	 * 
+	 *
 	 * @test_Strategy: echo byte
 	 */
 	@Test
 	public void echoByteAndSessionTest() throws Exception {
-		setAnnotatedClientEndpoint(new WSPrimitiveByteAndSessionClientEndpoint());
+		setAnnotatedClientEndpointInstance(new WSPrimitiveByteAndSessionClientEndpoint());
 		byte entity = 123;
 		setEntity(entity);
 		invoke(OPS.TEXT, String.valueOf(entity));
@@ -428,14 +428,14 @@ public class WSClientIT extends WebSocketCommonClient {
 
 	/*
 	 * @testName: echoCharAndSessionTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:SPEC:WSC-4.7-2; WebSocket:JAVADOC:80;
-	 * 
+	 *
 	 * @test_Strategy: echo char
 	 */
 	@Test
 	public void echoCharAndSessionTest() throws Exception {
-		setAnnotatedClientEndpoint(new WSPrimitiveCharAndSessionClientEndpoint());
+		setAnnotatedClientEndpointInstance(new WSPrimitiveCharAndSessionClientEndpoint());
 		char entity = 'E';
 		setEntity(entity);
 		invoke(OPS.TEXT, String.valueOf(entity) + "char");
@@ -443,14 +443,14 @@ public class WSClientIT extends WebSocketCommonClient {
 
 	/*
 	 * @testName: echoBooleanAndSessionTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:SPEC:WSC-4.7-2; WebSocket:JAVADOC:80;
-	 * 
+	 *
 	 * @test_Strategy: echo boolean
 	 */
 	@Test
 	public void echoBooleanAndSessionTest() throws Exception {
-		setAnnotatedClientEndpoint(new WSPrimitiveBooleanAndSessionClientEndpoint());
+		setAnnotatedClientEndpointInstance(new WSPrimitiveBooleanAndSessionClientEndpoint());
 		boolean entity = true;
 		setEntity(entity);
 		invoke(OPS.TEXT, String.valueOf(entity));
@@ -458,14 +458,14 @@ public class WSClientIT extends WebSocketCommonClient {
 
 	/*
 	 * @testName: echoShortAndSessionTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:SPEC:WSC-4.7-2; WebSocket:JAVADOC:80;
-	 * 
+	 *
 	 * @test_Strategy: echo short
 	 */
 	@Test
 	public void echoShortAndSessionTest() throws Exception {
-		setAnnotatedClientEndpoint(new WSPrimitiveShortAndSessionClientEndpoint());
+		setAnnotatedClientEndpointInstance(new WSPrimitiveShortAndSessionClientEndpoint());
 		short entity = -32100;
 		setEntity(entity);
 		invoke(OPS.TEXT, String.valueOf(entity));
@@ -473,14 +473,14 @@ public class WSClientIT extends WebSocketCommonClient {
 
 	/*
 	 * @testName: echoDoubleAndSessionTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:SPEC:WSC-4.7-2; WebSocket:JAVADOC:80;
-	 * 
+	 *
 	 * @test_Strategy: echo double
 	 */
 	@Test
 	public void echoDoubleAndSessionTest() throws Exception {
-		setAnnotatedClientEndpoint(new WSPrimitiveDoubleAndSessionClientEndpoint());
+		setAnnotatedClientEndpointInstance(new WSPrimitiveDoubleAndSessionClientEndpoint());
 		double entity = -12345678.88;
 		setEntity(entity);
 		invoke(OPS.TEXT, String.valueOf(entity));
@@ -488,14 +488,14 @@ public class WSClientIT extends WebSocketCommonClient {
 
 	/*
 	 * @testName: echoFloatAndSessionTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:SPEC:WSC-4.7-2; WebSocket:JAVADOC:80;
-	 * 
+	 *
 	 * @test_Strategy: echo float
 	 */
 	@Test
 	public void echoFloatAndSessionTest() throws Exception {
-		setAnnotatedClientEndpoint(new WSPrimitiveFloatAndSessionClientEndpoint());
+		setAnnotatedClientEndpointInstance(new WSPrimitiveFloatAndSessionClientEndpoint());
 		float entity = -12345678.88f;
 		setEntity(entity);
 		invoke(OPS.TEXT, String.valueOf(entity));
@@ -503,14 +503,14 @@ public class WSClientIT extends WebSocketCommonClient {
 
 	/*
 	 * @testName: echoLongAndSessionTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:SPEC:WSC-4.7-2; WebSocket:JAVADOC:80;
-	 * 
+	 *
 	 * @test_Strategy: echo long
 	 */
 	@Test
 	public void echoLongAndSessionTest() throws Exception {
-		setAnnotatedClientEndpoint(new WSPrimitiveLongAndSessionClientEndpoint());
+		setAnnotatedClientEndpointInstance(new WSPrimitiveLongAndSessionClientEndpoint());
 		long entity = Long.MIN_VALUE;
 		setEntity(entity);
 		invoke(OPS.TEXT, String.valueOf(entity));
@@ -518,14 +518,14 @@ public class WSClientIT extends WebSocketCommonClient {
 
 	/*
 	 * @testName: echoFullIntAndSessionTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:SPEC:WSC-4.7-3; WebSocket:JAVADOC:80;
-	 * 
+	 *
 	 * @test_Strategy: echo int
 	 */
 	@Test
 	public void echoFullIntAndSessionTest() throws Exception {
-		setAnnotatedClientEndpoint(new WSFullLongAndSessionClientEndpoint());
+		setAnnotatedClientEndpointInstance(new WSFullLongAndSessionClientEndpoint());
 		Integer entity = Integer.MIN_VALUE;
 		setEntity(entity);
 		invoke(OPS.TEXT, entity.toString());
@@ -533,14 +533,14 @@ public class WSClientIT extends WebSocketCommonClient {
 
 	/*
 	 * @testName: echoFullByteAndSessionTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:SPEC:WSC-4.7-3; WebSocket:JAVADOC:80;
-	 * 
+	 *
 	 * @test_Strategy: echo byte
 	 */
 	@Test
 	public void echoFullByteAndSessionTest() throws Exception {
-		setAnnotatedClientEndpoint(new WSFullByteAndSessionClientEndpoint());
+		setAnnotatedClientEndpointInstance(new WSFullByteAndSessionClientEndpoint());
 		Byte entity = Byte.MIN_VALUE;
 		setEntity(entity);
 		invoke(OPS.TEXT, entity.toString());
@@ -548,14 +548,14 @@ public class WSClientIT extends WebSocketCommonClient {
 
 	/*
 	 * @testName: echoFullCharAndSessionTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:SPEC:WSC-4.7-3; WebSocket:JAVADOC:80;
-	 * 
+	 *
 	 * @test_Strategy: echo char
 	 */
 	@Test
 	public void echoFullCharAndSessionTest() throws Exception {
-		setAnnotatedClientEndpoint(new WSFullCharAndSessionClientEndpoint());
+		setAnnotatedClientEndpointInstance(new WSFullCharAndSessionClientEndpoint());
 		Character entity = 'E';
 		setEntity(entity);
 		invoke(OPS.TEXT, entity.toString());
@@ -563,14 +563,14 @@ public class WSClientIT extends WebSocketCommonClient {
 
 	/*
 	 * @testName: echoFullBooleanAndSessionTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:SPEC:WSC-4.7-3; WebSocket:JAVADOC:80;
-	 * 
+	 *
 	 * @test_Strategy: echo boolean
 	 */
 	@Test
 	public void echoFullBooleanAndSessionTest() throws Exception {
-		setAnnotatedClientEndpoint(new WSFullBooleanAndSessionClientEndpoint());
+		setAnnotatedClientEndpointInstance(new WSFullBooleanAndSessionClientEndpoint());
 		Boolean entity = true;
 		setEntity(entity);
 		invoke(OPS.TEXT, entity.toString());
@@ -578,14 +578,14 @@ public class WSClientIT extends WebSocketCommonClient {
 
 	/*
 	 * @testName: echoFullShortAndSessionTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:SPEC:WSC-4.7-3; WebSocket:JAVADOC:80;
-	 * 
+	 *
 	 * @test_Strategy: echo short
 	 */
 	@Test
 	public void echoFullShortAndSessionTest() throws Exception {
-		setAnnotatedClientEndpoint(new WSFullShortAndSessionClientEndpoint());
+		setAnnotatedClientEndpointInstance(new WSFullShortAndSessionClientEndpoint());
 		Short entity = Short.MAX_VALUE;
 		setEntity(entity);
 		invoke(OPS.TEXT, entity.toString());
@@ -593,14 +593,14 @@ public class WSClientIT extends WebSocketCommonClient {
 
 	/*
 	 * @testName: echoFullDoubleAndSessionTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:SPEC:WSC-4.7-3; WebSocket:JAVADOC:80;
-	 * 
+	 *
 	 * @test_Strategy: echo double
 	 */
 	@Test
 	public void echoFullDoubleAndSessionTest() throws Exception {
-		setAnnotatedClientEndpoint(new WSFullDoubleAndSessionClientEndpoint());
+		setAnnotatedClientEndpointInstance(new WSFullDoubleAndSessionClientEndpoint());
 		Double entity = Double.MIN_VALUE;
 		setEntity(entity);
 		invoke(OPS.TEXT, entity.toString());
@@ -608,14 +608,14 @@ public class WSClientIT extends WebSocketCommonClient {
 
 	/*
 	 * @testName: echoFullFloatAndSessionTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:SPEC:WSC-4.7-3; WebSocket:JAVADOC:80;
-	 * 
+	 *
 	 * @test_Strategy: echo float
 	 */
 	@Test
 	public void echoFullFloatAndSessionTest() throws Exception {
-		setAnnotatedClientEndpoint(new WSFullFloatAndSessionClientEndpoint());
+		setAnnotatedClientEndpointInstance(new WSFullFloatAndSessionClientEndpoint());
 		Float entity = Float.MAX_VALUE;
 		setEntity(entity);
 		invoke(OPS.TEXT, entity.toString());
@@ -623,14 +623,14 @@ public class WSClientIT extends WebSocketCommonClient {
 
 	/*
 	 * @testName: echoFullLongAndSessionTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:SPEC:WSC-4.7-3; WebSocket:JAVADOC:80;
-	 * 
+	 *
 	 * @test_Strategy: echo long
 	 */
 	@Test
 	public void echoFullLongAndSessionTest() throws Exception {
-		setAnnotatedClientEndpoint(new WSFullLongAndSessionClientEndpoint());
+		setAnnotatedClientEndpointInstance(new WSFullLongAndSessionClientEndpoint());
 		Long entity = Long.MAX_VALUE;
 		setEntity(entity);
 		invoke(OPS.TEXT, entity.toString());
@@ -638,42 +638,42 @@ public class WSClientIT extends WebSocketCommonClient {
 
 	/*
 	 * @testName: echoReaderAndSessionTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:SPEC:WSC-4.7-3; WebSocket:JAVADOC:80;
-	 * 
+	 *
 	 * @test_Strategy: OnMessage(Reader)
 	 */
 	@Test
 	public void echoReaderAndSessionTest() throws Exception {
-		setAnnotatedClientEndpoint(new WSReaderAndSessionClientEndpoint());
+		setAnnotatedClientEndpointInstance(new WSReaderAndSessionClientEndpoint());
 		setProperty(Property.CONTENT, ECHO);
 		invoke(OPS.TEXT, ECHO);
 	}
 
 	/*
 	 * @testName: echoTextDecoderAndSessionTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:SPEC:WSC-4.7-3; WebSocket:JAVADOC:80;
-	 * 
+	 *
 	 * @test_Strategy: OnMessage using TextDecoder
 	 */
 	@Test
 	public void echoTextDecoderAndSessionTest() throws Exception {
-		setAnnotatedClientEndpoint(new WSTextDecoderAndSessionClientEndpoint());
+		setAnnotatedClientEndpointInstance(new WSTextDecoderAndSessionClientEndpoint());
 		setProperty(Property.CONTENT, ECHO);
 		invoke(OPS.TEXT, ECHO);
 	}
 
 	/*
 	 * @testName: echoTextStreamDecoderAndSessionTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:SPEC:WSC-4.7-3; WebSocket:JAVADOC:80;
-	 * 
+	 *
 	 * @test_Strategy: OnMessage using TextStreamDecoder
 	 */
 	@Test
 	public void echoTextStreamDecoderAndSessionTest() throws Exception {
-		setAnnotatedClientEndpoint(new WSTextStreamDecoderAndSessionClientEndpoint());
+		setAnnotatedClientEndpointInstance(new WSTextStreamDecoderAndSessionClientEndpoint());
 		setProperty(Property.CONTENT, ECHO);
 		invoke(OPS.TEXT, ECHO);
 	}
@@ -682,15 +682,15 @@ public class WSClientIT extends WebSocketCommonClient {
 
 	/*
 	 * @testName: partialStringTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:SPEC:WSC-4.7-2; WebSocket:SPEC:WSC-4.7-3;
 	 * WebSocket:JAVADOC:80;
-	 * 
+	 *
 	 * @test_Strategy: send partial message
 	 */
 	@Test
 	public void partialStringTest() throws Exception {
-		setAnnotatedClientEndpoint(new WSStringPartialClientEndpoint());
+		setAnnotatedClientEndpointInstance(new WSStringPartialClientEndpoint());
 		String partial2 = "partialStringTest";
 		String response = ECHO + "_(false)" + partial2 + "(true)";
 		setEntity(ECHO + "_" + partial2);
@@ -699,15 +699,15 @@ public class WSClientIT extends WebSocketCommonClient {
 
 	/*
 	 * @testName: partialStringAndSessionTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:SPEC:WSC-4.7-2; WebSocket:SPEC:WSC-4.7-3;
 	 * WebSocket:JAVADOC:80;
-	 * 
+	 *
 	 * @test_Strategy: send string and string receive the combined string
 	 */
 	@Test
 	public void partialStringAndSessionTest() throws Exception {
-		setAnnotatedClientEndpoint(new WSStringPartialAndSessionClientEndpoint());
+		setAnnotatedClientEndpointInstance(new WSStringPartialAndSessionClientEndpoint());
 		String partial2 = "partialStringAndSessionTest";
 		String response = ECHO + "_(false)" + partial2 + "(true)";
 		setEntity(ECHO + "_" + partial2);
@@ -718,70 +718,70 @@ public class WSClientIT extends WebSocketCommonClient {
 
 	/*
 	 * @testName: echoByteBufferTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:JAVADOC:80;
-	 * 
+	 *
 	 * @test_Strategy: Echo ByteBuffer
 	 */
 	@Test
 	public void echoByteBufferTest() throws Exception {
-		setAnnotatedClientEndpoint(new WSByteBufferClientEndpoint());
+		setAnnotatedClientEndpointInstance(new WSByteBufferClientEndpoint());
 		setEntity(ByteBuffer.wrap(ECHO.getBytes()));
 		invoke(OPS.BINARY, ECHO);
 	}
 
 	/*
 	 * @testName: byteBufferToBytesTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:JAVADOC:80;
-	 * 
+	 *
 	 * @test_Strategy: Send ByteBuffer receive bytes
 	 */
 	@Test
 	public void byteBufferToBytesTest() throws Exception {
-		setAnnotatedClientEndpoint(new WSByteArrayClientEndpoint());
+		setAnnotatedClientEndpointInstance(new WSByteArrayClientEndpoint());
 		setEntity(ByteBuffer.wrap(ECHO.getBytes()));
 		invoke(OPS.BINARY, ECHO);
 	}
 
 	/*
 	 * @testName: byteBufferToInputStreamTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:JAVADOC:80;
-	 * 
+	 *
 	 * @test_Strategy: Send ByteBuffer receive InputStream
 	 */
 	@Test
 	public void byteBufferToInputStreamTest() throws Exception {
-		setAnnotatedClientEndpoint(new WSInputStreamClientEndpoint());
+		setAnnotatedClientEndpointInstance(new WSInputStreamClientEndpoint());
 		setEntity(ByteBuffer.wrap(ECHO.getBytes()));
 		invoke(OPS.BINARY, ECHO);
 	}
 
 	/*
 	 * @testName: byteBufferToBinaryDecoderTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:JAVADOC:80;
-	 * 
+	 *
 	 * @test_Strategy: Send ByteBuffer receive Object
 	 */
 	@Test
 	public void byteBufferToBinaryDecoderTest() throws Exception {
-		setAnnotatedClientEndpoint(new WSBinaryDecoderClientEndpoint());
+		setAnnotatedClientEndpointInstance(new WSBinaryDecoderClientEndpoint());
 		setEntity(ByteBuffer.wrap(ECHO.getBytes()));
 		invoke(OPS.BINARY, ECHO);
 	}
 
 	/*
 	 * @testName: byteBufferToBinaryStreamDecoderTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:JAVADOC:80;
-	 * 
+	 *
 	 * @test_Strategy: Send ByteBuffer receive Object
 	 */
 	@Test
 	public void byteBufferToBinaryStreamDecoderTest() throws Exception {
-		setAnnotatedClientEndpoint(new WSBinaryStreamDecoderClientEndpoint());
+		setAnnotatedClientEndpointInstance(new WSBinaryStreamDecoderClientEndpoint());
 		setEntity(ByteBuffer.wrap(ECHO.getBytes()));
 		invoke(OPS.BINARY, ECHO);
 	}
@@ -789,28 +789,28 @@ public class WSClientIT extends WebSocketCommonClient {
 	// ----------------- CONTROL -----------------------------------
 	/*
 	 * @testName: pongToPongTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:JAVADOC:80;
-	 * 
+	 *
 	 * @test_Strategy: pong message
 	 */
 	@Test
 	public void pongToPongTest() throws Exception {
-		setAnnotatedClientEndpoint(new WSPongMessageClientEndpoint());
+		setAnnotatedClientEndpointInstance(new WSPongMessageClientEndpoint());
 		setEntity(ECHO);
 		invoke(OPS.PONG, ECHO);
 	}
 
 	/*
 	 * @testName: pongToPongAndSessionTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:JAVADOC:80;
-	 * 
+	 *
 	 * @test_Strategy: pong message
 	 */
 	@Test
 	public void pongToPongAndSessionTest() throws Exception {
-		setAnnotatedClientEndpoint(new WSPongMessageAndSessionClientEndpoint());
+		setAnnotatedClientEndpointInstance(new WSPongMessageAndSessionClientEndpoint());
 		setEntity(ECHO);
 		invoke(OPS.PONG, ECHO);
 	}
@@ -818,70 +818,70 @@ public class WSClientIT extends WebSocketCommonClient {
 	// ----------------- BINARY AND SESSION -----------------------------------
 	/*
 	 * @testName: echoByteBufferAndSessionTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:JAVADOC:80;
-	 * 
+	 *
 	 * @test_Strategy: Echo ByteBuffer
 	 */
 	@Test
 	public void echoByteBufferAndSessionTest() throws Exception {
-		setAnnotatedClientEndpoint(new WSByteBufferAndSessionClientEndpoint());
+		setAnnotatedClientEndpointInstance(new WSByteBufferAndSessionClientEndpoint());
 		setEntity(ByteBuffer.wrap(ECHO.getBytes()));
 		invoke(OPS.BINARY, ECHO);
 	}
 
 	/*
 	 * @testName: byteBufferToBytesAndSessionTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:JAVADOC:80;
-	 * 
+	 *
 	 * @test_Strategy: Send ByteBuffer receive bytes
 	 */
 	@Test
 	public void byteBufferToBytesAndSessionTest() throws Exception {
-		setAnnotatedClientEndpoint(new WSByteArrayAndSessionClientEndpoint());
+		setAnnotatedClientEndpointInstance(new WSByteArrayAndSessionClientEndpoint());
 		setEntity(ByteBuffer.wrap(ECHO.getBytes()));
 		invoke(OPS.BINARY, ECHO);
 	}
 
 	/*
 	 * @testName: byteBufferToInputStreamAndSessionTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:JAVADOC:80;
-	 * 
+	 *
 	 * @test_Strategy: Send ByteBuffer receive InputStream
 	 */
 	@Test
 	public void byteBufferToInputStreamAndSessionTest() throws Exception {
-		setAnnotatedClientEndpoint(new WSInputStreamAndSessionClientEndpoint());
+		setAnnotatedClientEndpointInstance(new WSInputStreamAndSessionClientEndpoint());
 		setEntity(ByteBuffer.wrap(ECHO.getBytes()));
 		invoke(OPS.BINARY, ECHO);
 	}
 
 	/*
 	 * @testName: byteBufferToBinaryDecoderAndSessionTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:JAVADOC:80;
-	 * 
+	 *
 	 * @test_Strategy: Send ByteBuffer receive Object
 	 */
 	@Test
 	public void byteBufferToBinaryDecoderAndSessionTest() throws Exception {
-		setAnnotatedClientEndpoint(new WSBinaryDecoderAndSessionClientEndpoint());
+		setAnnotatedClientEndpointInstance(new WSBinaryDecoderAndSessionClientEndpoint());
 		setEntity(ByteBuffer.wrap(ECHO.getBytes()));
 		invoke(OPS.BINARY, ECHO);
 	}
 
 	/*
 	 * @testName: byteBufferToBinaryStreamDecoderAndSessionTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:JAVADOC:80;
-	 * 
+	 *
 	 * @test_Strategy: Send ByteBuffer receive Object
 	 */
 	@Test
 	public void byteBufferToBinaryStreamDecoderAndSessionTest() throws Exception {
-		setAnnotatedClientEndpoint(new WSBinaryStreamDecoderAndSessionClientEndpoint());
+		setAnnotatedClientEndpointInstance(new WSBinaryStreamDecoderAndSessionClientEndpoint());
 		setEntity(ByteBuffer.wrap(ECHO.getBytes()));
 		invoke(OPS.BINARY, ECHO);
 	}
@@ -889,14 +889,14 @@ public class WSClientIT extends WebSocketCommonClient {
 	// ----------------- PARTIAL BINARY -----------------------------------
 	/*
 	 * @testName: partialByteArrayTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:JAVADOC:80;
-	 * 
+	 *
 	 * @test_Strategy: send bytearray and bytearray receive the combined message
 	 */
 	@Test
 	public void partialByteArrayTest() throws Exception {
-		setAnnotatedClientEndpoint(new WSByteArrayPartialClientEndpoint());
+		setAnnotatedClientEndpointInstance(new WSByteArrayPartialClientEndpoint());
 		String partial2 = "partialByteArrayTest";
 		String response = ECHO + "_(false)" + partial2 + "(true)";
 		setEntity(ByteBuffer.wrap((ECHO + "_" + partial2).getBytes()));
@@ -905,14 +905,14 @@ public class WSClientIT extends WebSocketCommonClient {
 
 	/*
 	 * @testName: partialByteArrayAndSessionTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:JAVADOC:80;
-	 * 
+	 *
 	 * @test_Strategy: send bytearray and bytearray receive the combined message
 	 */
 	@Test
 	public void partialByteArrayAndSessionTest() throws Exception {
-		setAnnotatedClientEndpoint(new WSByteArrayPartialAndSessionClientEndpoint());
+		setAnnotatedClientEndpointInstance(new WSByteArrayPartialAndSessionClientEndpoint());
 		String partial2 = "partialByteArrayAndSessionTest";
 		String response = ECHO + "_(false)" + partial2 + "(true)";
 		setEntity(ByteBuffer.wrap((ECHO + "_" + partial2).getBytes()));
@@ -921,14 +921,14 @@ public class WSClientIT extends WebSocketCommonClient {
 
 	/*
 	 * @testName: partialByteBufferTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:JAVADOC:80;
-	 * 
+	 *
 	 * @test_Strategy: send ByteBuffer and ByteBuffer receive the combined message
 	 */
 	@Test
 	public void partialByteBufferTest() throws Exception {
-		setAnnotatedClientEndpoint(new WSByteBufferPartialClientEndpoint());
+		setAnnotatedClientEndpointInstance(new WSByteBufferPartialClientEndpoint());
 		String partial2 = "partialByteBufferTest";
 		String response = ECHO + "_(false)" + partial2 + "(true)";
 		setEntity(ByteBuffer.wrap((ECHO + "_" + partial2).getBytes()));
@@ -937,14 +937,14 @@ public class WSClientIT extends WebSocketCommonClient {
 
 	/*
 	 * @testName: partialByteBufferAndSessionTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:JAVADOC:80;
-	 * 
+	 *
 	 * @test_Strategy: send ByteBuffer and ByteBuffer receive the combined message
 	 */
 	@Test
 	public void partialByteBufferAndSessionTest() throws Exception {
-		setAnnotatedClientEndpoint(new WSByteBufferPartialAndSessionClientEndpoint());
+		setAnnotatedClientEndpointInstance(new WSByteBufferPartialAndSessionClientEndpoint());
 		String partial2 = "partialByteBufferAndSessionTest";
 		String response = ECHO + "_(false)" + partial2 + "(true)";
 		setEntity(ByteBuffer.wrap((ECHO + "_" + partial2).getBytes()));
@@ -954,14 +954,14 @@ public class WSClientIT extends WebSocketCommonClient {
 	// --------------------------------- MAX LEN
 	/*
 	 * @testName: maxLengthOKTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:JAVADOC:80;
-	 * 
+	 *
 	 * @test_Strategy: the message is shorter than maxMessageLength
 	 */
 	@Test
 	public void maxLengthOKTest() throws Exception {
-		setAnnotatedClientEndpoint(new WSMaxLengthClientEndpoint());
+		setAnnotatedClientEndpointInstance(new WSMaxLengthClientEndpoint());
 		String entity = "12345";
 		setEntity(entity);
 		invoke(OPS.TEXT, entity);
@@ -969,9 +969,9 @@ public class WSClientIT extends WebSocketCommonClient {
 
 	/*
 	 * @testName: maxLengthFailsTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:JAVADOC:80; WebSocket:SPEC:WSC-4.7.1-1;
-	 * 
+	 *
 	 * @test_Strategy: the message is longer than maxMessageLength
 	 */
 	@Test
@@ -987,7 +987,7 @@ public class WSClientIT extends WebSocketCommonClient {
 			}
 		};
 		setClientCallback(callback);
-		setAnnotatedClientEndpoint(new WSMaxLengthClientEndpoint());
+		setAnnotatedClientEndpointInstance(new WSMaxLengthClientEndpoint());
 		setProperty(Property.REQUEST, buildRequest(OPS.TEXT));
 		invoke(false);
 		assertEqualsInt(1009, ai.get(), "Unexpected close reason found", ai.get());
@@ -996,14 +996,14 @@ public class WSClientIT extends WebSocketCommonClient {
 
 	/*
 	 * @testName: defaultMaxLengthTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:JAVADOC:80;
-	 * 
+	 *
 	 * @test_Strategy: Default -1;
 	 */
 	@Test
 	public void defaultMaxLengthTest() throws Exception {
-		setAnnotatedClientEndpoint(new WSDefaultMaxLengthClientEndpoint());
+		setAnnotatedClientEndpointInstance(new WSDefaultMaxLengthClientEndpoint());
 		setEntity("123456789");
 		invoke(OPS.TEXT, "-1");
 	}

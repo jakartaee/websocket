@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, 2023 Oracle and/or its affiliates and others.
+ * Copyright (c) 2013, 2025 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -71,10 +71,10 @@ public class WSClientIT extends WebSocketCommonClient {
 
 	/*
 	 * @testName: dataTypesTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:SPEC:WSC-4.7-2; WebSocket:SPEC:WSC-4.7-3;
 	 * WebSocket:JAVADOC:80;
-	 * 
+	 *
 	 * @test_Strategy: test primitive and boxed datatypes
 	 */
 	@Test
@@ -96,9 +96,9 @@ public class WSClientIT extends WebSocketCommonClient {
 
 	/*
 	 * @testName: textEncoderTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:JAVADOC:80;
-	 * 
+	 *
 	 * @test_Strategy: test text encoder
 	 */
 	@Test
@@ -108,9 +108,9 @@ public class WSClientIT extends WebSocketCommonClient {
 
 	/*
 	 * @testName: textStreamEncoderTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:JAVADOC:80;
-	 * 
+	 *
 	 * @test_Strategy: test text stream encoder
 	 */
 	@Test
@@ -122,9 +122,9 @@ public class WSClientIT extends WebSocketCommonClient {
 
 	/*
 	 * @testName: binaryEncoderTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:JAVADOC:80;
-	 * 
+	 *
 	 * @test_Strategy: test binary encoder
 	 */
 	@Test
@@ -135,9 +135,9 @@ public class WSClientIT extends WebSocketCommonClient {
 
 	/*
 	 * @testName: binaryStreamEncoderTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:JAVADOC:80;
-	 * 
+	 *
 	 * @test_Strategy: test binary stream encoder
 	 */
 	@Test
@@ -148,9 +148,9 @@ public class WSClientIT extends WebSocketCommonClient {
 
 	/*
 	 * @testName: byteArrayTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:JAVADOC:80;
-	 * 
+	 *
 	 * @test_Strategy: test byte array
 	 */
 	@Test
@@ -161,9 +161,9 @@ public class WSClientIT extends WebSocketCommonClient {
 
 	/*
 	 * @testName: byteBufferTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:JAVADOC:80;
-	 * 
+	 *
 	 * @test_Strategy: test byte array
 	 */
 	@Test
@@ -176,7 +176,7 @@ public class WSClientIT extends WebSocketCommonClient {
 	private void invokeSequence(String search, AnnotatedClientEndpoint<?>... endpoints) throws Exception {
 		for (AnnotatedClientEndpoint<?> endpoint : endpoints) {
 			setCountDownLatchCount(3);
-			setAnnotatedClientEndpoint(endpoint);
+			setAnnotatedClientEndpointInstance(endpoint);
 			addClientCallback(new EndpointCallback() {
 				@Override
 				public void onClose(Session session, CloseReason closeReason) {

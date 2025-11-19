@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, 2023 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2013, 2025 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -86,9 +86,9 @@ public class WSClientIT extends WebSocketCommonClient {
 	/* Run test */
 	/*
 	 * @testName: binaryDecoderThrowAndCatchOnServerTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:JAVADOC:38;
-	 * 
+	 *
 	 * @test_Strategy: test the binary decoder throws decoderException and it is
 	 * caught in @OnError
 	 */
@@ -100,25 +100,25 @@ public class WSClientIT extends WebSocketCommonClient {
 
 	/*
 	 * @testName: binaryDecoderThrowAndCatchOnClientTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:JAVADOC:38;
-	 * 
+	 *
 	 * @test_Strategy: test the binary decoder throws decoderException and it is
 	 * caught in @OnError
 	 */
 	@Test
 	public void binaryDecoderThrowAndCatchOnClientTest() throws Exception {
 		WSCClientEndpointWithBinaryDecoder endpoint = new WSCClientEndpointWithBinaryDecoder();
-		setAnnotatedClientEndpoint(endpoint);
+		setAnnotatedClientEndpointInstance(endpoint);
 		invokeOnClient("simplebin", ECHO);
 		logMsg("The DecoderException has been propagated to @OnError");
 	}
 
 	/*
 	 * @testName: binaryStreamDecoderThrowAndCatchOnServerTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:JAVADOC:41;
-	 * 
+	 *
 	 * @test_Strategy: test the binary stream decoder throws decoderException and it
 	 * is caught in @OnError
 	 */
@@ -130,25 +130,25 @@ public class WSClientIT extends WebSocketCommonClient {
 
 	/*
 	 * @testName: binaryStreamDecoderThrowAndCatchOnClientTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:JAVADOC:41;
-	 * 
+	 *
 	 * @test_Strategy: test the binary stream decoder throws decoderException and it
 	 * is caught in @OnError
 	 */
 	@Test
 	public void binaryStreamDecoderThrowAndCatchOnClientTest() throws Exception {
 		WSCClientEndpointWithBinaryStreamDecoder endpoint = new WSCClientEndpointWithBinaryStreamDecoder();
-		setAnnotatedClientEndpoint(endpoint);
+		setAnnotatedClientEndpointInstance(endpoint);
 		invokeOnClient("simplebin", ECHO);
 		logMsg("The DecoderException has been propagated to @OnError");
 	}
 
 	/*
 	 * @testName: textDecoderThrowAndCatchOnServerTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:JAVADOC:44;
-	 * 
+	 *
 	 * @test_Strategy: test the text decoder throws decoderException and it is
 	 * caught in @OnError
 	 */
@@ -160,25 +160,25 @@ public class WSClientIT extends WebSocketCommonClient {
 
 	/*
 	 * @testName: textDecoderThrowAndCatchOnClientTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:JAVADOC:44;
-	 * 
+	 *
 	 * @test_Strategy: test the text decoder throws decoderException and it is
 	 * caught in @OnError
 	 */
 	@Test
 	public void textDecoderThrowAndCatchOnClientTest() throws Exception {
 		WSCClientEndpointWithTextDecoder endpoint = new WSCClientEndpointWithTextDecoder();
-		setAnnotatedClientEndpoint(endpoint);
+		setAnnotatedClientEndpointInstance(endpoint);
 		invokeOnClient("simpleecho", ECHO);
 		logMsg("The DecoderException has been propagated to @OnError");
 	}
 
 	/*
 	 * @testName: textStreamDecoderThrowAndCatchOnServerTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:JAVADOC:47;
-	 * 
+	 *
 	 * @test_Strategy: test the text stream decoder throws decoderException and it
 	 * is caught in @OnError
 	 */
@@ -190,16 +190,16 @@ public class WSClientIT extends WebSocketCommonClient {
 
 	/*
 	 * @testName: textStreamDecoderThrowAndCatchOnClientTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:JAVADOC:47;
-	 * 
+	 *
 	 * @test_Strategy: test the text stream decoder throws decoderException and it
 	 * is caught in @OnError
 	 */
 	@Test
 	public void textStreamDecoderThrowAndCatchOnClientTest() throws Exception {
 		WSCClientEndpointWithTextStreamDecoder endpoint = new WSCClientEndpointWithTextStreamDecoder();
-		setAnnotatedClientEndpoint(endpoint);
+		setAnnotatedClientEndpointInstance(endpoint);
 		invokeOnClient("simpleecho", ECHO);
 		logMsg("The DecoderException has been propagated to @OnError");
 	}
@@ -208,9 +208,9 @@ public class WSClientIT extends WebSocketCommonClient {
 
 	/*
 	 * @testName: binaryEncoderThrowAndCatchOnServerTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:JAVADOC:57;
-	 * 
+	 *
 	 * @test_Strategy: test the binary encoder throws EncoderException and it is
 	 * caught in @OnError
 	 */
@@ -222,25 +222,25 @@ public class WSClientIT extends WebSocketCommonClient {
 
 	/*
 	 * @testName: binaryEncoderThrowAndCatchOnClientTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:JAVADOC:57;
-	 * 
+	 *
 	 * @test_Strategy: test the binary encoder throws EncoderException and it is
 	 * caught in @OnError
 	 */
 	@Test
 	public void binaryEncoderThrowAndCatchOnClientTest() throws Exception {
 		WSCClientEndpointWithBinaryEncoder endpoint = new WSCClientEndpointWithBinaryEncoder();
-		setAnnotatedClientEndpoint(endpoint);
+		setAnnotatedClientEndpointInstance(endpoint);
 		invokeOnClient("simpleecho", new StringBean(ECHO));
 		logMsg("The EncoderException has been propagated to @OnError");
 	}
 
 	/*
 	 * @testName: binaryStreamEncoderThrowAndCatchOnServerTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:JAVADOC:59;
-	 * 
+	 *
 	 * @test_Strategy: test the binary stream encoder throws EncoderException and it
 	 * is caught in @OnError
 	 */
@@ -252,25 +252,25 @@ public class WSClientIT extends WebSocketCommonClient {
 
 	/*
 	 * @testName: binaryStreamEncoderThrowAndCatchOnClientTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:JAVADOC:59;
-	 * 
+	 *
 	 * @test_Strategy: test the binary stream encoder throws EncoderException and it
 	 * is caught in @OnError
 	 */
 	@Test
 	public void binaryStreamEncoderThrowAndCatchOnClientTest() throws Exception {
 		WSCClientEndpointWithBinaryStreamEncoder endpoint = new WSCClientEndpointWithBinaryStreamEncoder();
-		setAnnotatedClientEndpoint(endpoint);
+		setAnnotatedClientEndpointInstance(endpoint);
 		invokeOnClient("simpleecho", new StringBean(ECHO));
 		logMsg("The EncoderException has been propagated to @OnError");
 	}
 
 	/*
 	 * @testName: textEncoderThrowAndCatchOnServerTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:JAVADOC:62;
-	 * 
+	 *
 	 * @test_Strategy: test the text encoder throws EncoderException and it is
 	 * caught in @OnError
 	 */
@@ -282,25 +282,25 @@ public class WSClientIT extends WebSocketCommonClient {
 
 	/*
 	 * @testName: textEncoderThrowAndCatchOnClientTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:JAVADOC:62;
-	 * 
+	 *
 	 * @test_Strategy: test the text encoder throws EncoderException and it is
 	 * caught in @OnError
 	 */
 	@Test
 	public void textEncoderThrowAndCatchOnClientTest() throws Exception {
 		WSCClientEndpointWithTextEncoder endpoint = new WSCClientEndpointWithTextEncoder();
-		setAnnotatedClientEndpoint(endpoint);
+		setAnnotatedClientEndpointInstance(endpoint);
 		invokeOnClient("simpleecho", new StringBean(ECHO));
 		logMsg("The EncoderException has been propagated to @OnError");
 	}
 
 	/*
 	 * @testName: textStreamEncoderThrowAndCatchOnServerTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:JAVADOC:64;
-	 * 
+	 *
 	 * @test_Strategy: test the text stream encoder throws EncoderException and it
 	 * is caught in @OnError
 	 */
@@ -312,16 +312,16 @@ public class WSClientIT extends WebSocketCommonClient {
 
 	/*
 	 * @testName: textStreamEncoderThrowAndCatchOnClientTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:JAVADOC:64;
-	 * 
+	 *
 	 * @test_Strategy: test the text stream encoder throws EncoderException and it
 	 * is caught in @OnError
 	 */
 	@Test
 	public void textStreamEncoderThrowAndCatchOnClientTest() throws Exception {
 		WSCClientEndpointWithTextStreamEncoder endpoint = new WSCClientEndpointWithTextStreamEncoder();
-		setAnnotatedClientEndpoint(endpoint);
+		setAnnotatedClientEndpointInstance(endpoint);
 		invokeOnClient("simpleecho", new StringBean(ECHO));
 		logMsg("The EncoderException has been propagated to @OnError");
 	}
@@ -331,9 +331,9 @@ public class WSClientIT extends WebSocketCommonClient {
 
 	/*
 	 * @testName: returningBinaryEncoderThrowAndCatchOnServerTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:JAVADOC:57;
-	 * 
+	 *
 	 * @test_Strategy: test the binary encoder throws EncoderException and it is
 	 * caught in @OnError
 	 */
@@ -345,25 +345,25 @@ public class WSClientIT extends WebSocketCommonClient {
 
 	/*
 	 * @testName: returningBinaryEncoderThrowAndCatchOnClientTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:JAVADOC:57;
-	 * 
+	 *
 	 * @test_Strategy: test the binary encoder throws EncoderException and it is
 	 * caught in @OnError
 	 */
 	@Test
 	public void returningBinaryEncoderThrowAndCatchOnClientTest() throws Exception {
 		WSCReturningClientEndpointWithBinaryEncoder endpoint = new WSCReturningClientEndpointWithBinaryEncoder();
-		setAnnotatedClientEndpoint(endpoint);
+		setAnnotatedClientEndpointInstance(endpoint);
 		invokeOnClient("simpleecho", ECHO);
 		logMsg("The EncoderException has been propagated to @OnError");
 	}
 
 	/*
 	 * @testName: returningBinaryStreamEncoderThrowAndCatchOnServerTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:JAVADOC:59;
-	 * 
+	 *
 	 * @test_Strategy: test the binary stream encoder throws EncoderException and it
 	 * is caught in @OnError
 	 */
@@ -375,25 +375,25 @@ public class WSClientIT extends WebSocketCommonClient {
 
 	/*
 	 * @testName: returningBinaryStreamEncoderThrowAndCatchOnClientTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:JAVADOC:59;
-	 * 
+	 *
 	 * @test_Strategy: test the binary stream encoder throws EncoderException and it
 	 * is caught in @OnError
 	 */
 	@Test
 	public void returningBinaryStreamEncoderThrowAndCatchOnClientTest() throws Exception {
 		WSCReturningClientEndpointWithBinaryStreamEncoder endpoint = new WSCReturningClientEndpointWithBinaryStreamEncoder();
-		setAnnotatedClientEndpoint(endpoint);
+		setAnnotatedClientEndpointInstance(endpoint);
 		invokeOnClient("simpleecho", ECHO);
 		logMsg("The EncoderException has been propagated to @OnError");
 	}
 
 	/*
 	 * @testName: returningTextEncoderThrowAndCatchOnServerTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:JAVADOC:62;
-	 * 
+	 *
 	 * @test_Strategy: test the text encoder throws EncoderException and it is
 	 * caught in @OnError
 	 */
@@ -405,25 +405,25 @@ public class WSClientIT extends WebSocketCommonClient {
 
 	/*
 	 * @testName: returningTextEncoderThrowAndCatchOnClientTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:JAVADOC:62;
-	 * 
+	 *
 	 * @test_Strategy: test the text encoder throws EncoderException and it is
 	 * caught in @OnError
 	 */
 	@Test
 	public void returningTextEncoderThrowAndCatchOnClientTest() throws Exception {
 		WSCReturningClientEndpointWithTextEncoder endpoint = new WSCReturningClientEndpointWithTextEncoder();
-		setAnnotatedClientEndpoint(endpoint);
+		setAnnotatedClientEndpointInstance(endpoint);
 		invokeOnClient("simpleecho", ECHO);
 		logMsg("The EncoderException has been propagated to @OnError");
 	}
 
 	/*
 	 * @testName: returningTextStreamEncoderThrowAndCatchOnServerTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:JAVADOC:64;
-	 * 
+	 *
 	 * @test_Strategy: test the text stream encoder throws EncoderException and it
 	 * is caught in @OnError
 	 */
@@ -435,16 +435,16 @@ public class WSClientIT extends WebSocketCommonClient {
 
 	/*
 	 * @testName: returningTextStreamEncoderThrowAndCatchOnClientTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:JAVADOC:64;
-	 * 
+	 *
 	 * @test_Strategy: test the text stream encoder throws EncoderException and it
 	 * is caught in @OnError
 	 */
 	@Test
 	public void returningTextStreamEncoderThrowAndCatchOnClientTest() throws Exception {
 		WSCReturningClientEndpointWithTextStreamEncoder endpoint = new WSCReturningClientEndpointWithTextStreamEncoder();
-		setAnnotatedClientEndpoint(endpoint);
+		setAnnotatedClientEndpointInstance(endpoint);
 		invokeOnClient("simpleecho", ECHO);
 		logMsg("The EncoderException has been propagated to @OnError");
 	}
@@ -454,9 +454,9 @@ public class WSClientIT extends WebSocketCommonClient {
 
 	/*
 	 * @testName: binaryStreamDecoderThrowIOAndCatchOnServerTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:JAVADOC:42;
-	 * 
+	 *
 	 * @test_Strategy: test the binary stream decoder throws IOException and it is
 	 * caught in @OnError
 	 */
@@ -468,25 +468,25 @@ public class WSClientIT extends WebSocketCommonClient {
 
 	/*
 	 * @testName: binaryStreamDecoderThrowIOAndCatchOnClientTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:JAVADOC:42;
-	 * 
+	 *
 	 * @test_Strategy: test the binary stream decoder throws IOException and it is
 	 * caught in @OnError
 	 */
 	@Test
 	public void binaryStreamDecoderThrowIOAndCatchOnClientTest() throws Exception {
 		WSCClientEndpointWithIOBinaryStreamDecoder endpoint = new WSCClientEndpointWithIOBinaryStreamDecoder();
-		setAnnotatedClientEndpoint(endpoint);
+		setAnnotatedClientEndpointInstance(endpoint);
 		invokeIOOnClient("simplebin", ECHO);
 		logMsg("The IOException has been propagated to @OnError");
 	}
 
 	/*
 	 * @testName: textStreamDecoderThrowIOAndCatchOnServerTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:JAVADOC:48;
-	 * 
+	 *
 	 * @test_Strategy: test the text stream decoder throws IOException and it is
 	 * caught in @OnError
 	 */
@@ -498,25 +498,25 @@ public class WSClientIT extends WebSocketCommonClient {
 
 	/*
 	 * @testName: textStreamDecoderThrowIOAndCatchOnClientTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:JAVADOC:48;
-	 * 
+	 *
 	 * @test_Strategy: test the text stream decoder throws IOException and it is
 	 * caught in @OnError
 	 */
 	@Test
 	public void textStreamDecoderThrowIOAndCatchOnClientTest() throws Exception {
 		WSCClientEndpointWithIOTextStreamDecoder endpoint = new WSCClientEndpointWithIOTextStreamDecoder();
-		setAnnotatedClientEndpoint(endpoint);
+		setAnnotatedClientEndpointInstance(endpoint);
 		invokeIOOnClient("simpleecho", ECHO);
 		logMsg("The IOException has been propagated to @OnError");
 	}
 
 	/*
 	 * @testName: binaryStreamEncoderThrowIOAndCatchOnServerTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:JAVADOC:60;
-	 * 
+	 *
 	 * @test_Strategy: test the binary stream encoder throws IOException and it is
 	 * caught in @OnError
 	 */
@@ -528,25 +528,25 @@ public class WSClientIT extends WebSocketCommonClient {
 
 	/*
 	 * @testName: binaryStreamEncoderThrowIOAndCatchOnClientTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:JAVADOC:60;
-	 * 
+	 *
 	 * @test_Strategy: test the binary stream encoder throws IOException and it is
 	 * caught in @OnError
 	 */
 	@Test
 	public void binaryStreamEncoderThrowIOAndCatchOnClientTest() throws Exception {
 		WSCClientEndpointWithIOBinaryStreamEncoder endpoint = new WSCClientEndpointWithIOBinaryStreamEncoder();
-		setAnnotatedClientEndpoint(endpoint);
+		setAnnotatedClientEndpointInstance(endpoint);
 		invokeIOOnClient("simpleecho", new StringBean(ECHO));
 		logMsg("The IOException has been propagated to @OnError");
 	}
 
 	/*
 	 * @testName: textStreamEncoderThrowIOAndCatchOnServerTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:JAVADOC:65;
-	 * 
+	 *
 	 * @test_Strategy: test the text stream encoder throws IOException and it is
 	 * caught in @OnError
 	 */
@@ -558,25 +558,25 @@ public class WSClientIT extends WebSocketCommonClient {
 
 	/*
 	 * @testName: textStreamEncoderThrowIOAndCatchOnClientTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:JAVADOC:65;
-	 * 
+	 *
 	 * @test_Strategy: test the text stream encoder throws IOException and it is
 	 * caught in @OnError
 	 */
 	@Test
 	public void textStreamEncoderThrowIOAndCatchOnClientTest() throws Exception {
 		WSCClientEndpointWithIOTextStreamEncoder endpoint = new WSCClientEndpointWithIOTextStreamEncoder();
-		setAnnotatedClientEndpoint(endpoint);
+		setAnnotatedClientEndpointInstance(endpoint);
 		invokeIOOnClient("simpleecho", new StringBean(ECHO));
 		logMsg("The IOException has been propagated to @OnError");
 	}
 
 	/*
 	 * @testName: returningBinaryStreamEncoderThrowIOAndCatchOnServerTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:JAVADOC:60;
-	 * 
+	 *
 	 * @test_Strategy: test the binary stream encoder throws IOException and it is
 	 * caught in @OnError
 	 */
@@ -588,25 +588,25 @@ public class WSClientIT extends WebSocketCommonClient {
 
 	/*
 	 * @testName: returningBinaryStreamEncoderThrowIOAndCatchOnClientTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:JAVADOC:60;
-	 * 
+	 *
 	 * @test_Strategy: test the binary stream encoder throws IOException and it is
 	 * caught in @OnError
 	 */
 	@Test
 	public void returningBinaryStreamEncoderThrowIOAndCatchOnClientTest() throws Exception {
 		WSCReturningClientEndpointWithIOBinaryStreamEncoder endpoint = new WSCReturningClientEndpointWithIOBinaryStreamEncoder();
-		setAnnotatedClientEndpoint(endpoint);
+		setAnnotatedClientEndpointInstance(endpoint);
 		invokeIOOnClient("simpleecho", ECHO);
 		logMsg("The IOException has been propagated to @OnError");
 	}
 
 	/*
 	 * @testName: returningTextStreamEncoderThrowIOAndCatchOnServerTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:JAVADOC:65;
-	 * 
+	 *
 	 * @test_Strategy: test the text stream encoder throws IOException and it is
 	 * caught in @OnError
 	 */
@@ -618,16 +618,16 @@ public class WSClientIT extends WebSocketCommonClient {
 
 	/*
 	 * @testName: returningTextStreamEncoderThrowIOAndCatchOnClientTest
-	 * 
+	 *
 	 * @assertion_ids: WebSocket:JAVADOC:65;
-	 * 
+	 *
 	 * @test_Strategy: test the text stream encoder throws IOException and it is
 	 * caught in @OnError
 	 */
 	@Test
 	public void returningTextStreamEncoderThrowIOAndCatchOnClientTest() throws Exception {
 		WSCReturningClientEndpointWithIOTextStreamEncoder endpoint = new WSCReturningClientEndpointWithIOTextStreamEncoder();
-		setAnnotatedClientEndpoint(endpoint);
+		setAnnotatedClientEndpointInstance(endpoint);
 		invokeIOOnClient("simpleecho", ECHO);
 		logMsg("The IOException has been propagated to @OnError");
 	}

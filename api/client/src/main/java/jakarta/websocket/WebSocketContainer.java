@@ -58,12 +58,12 @@ public interface WebSocketContainer {
 
     /**
      * Connect the supplied annotated endpoint instance to its server. The supplied object must be a class decorated
-     * with the class level {@link jakarta.websocket.ClientEndpoint} annotation. This method blocks until the
-     * connection is established, or throws an error if either the connection could not be made or there was a problem
-     * with the supplied endpoint class. If the developer uses this method to deploy the client endpoint, services like
-     * dependency injection that are supported, for example, when the implementation is part of the Java EE platform may
-     * not be available. If the client endpoint uses dependency injection, use
-     * {@link WebSocketContainer#connectToServer(java.lang.Class, java.net.URI)} instead.
+     * with the class level {@link jakarta.websocket.ClientEndpoint} annotation. The class is not required to have a
+     * no-arg constructor. This method blocks until the connection is established, or throws an error if either the
+     * connection could not be made or there was a problem with the supplied endpoint class. If the developer uses this
+     * method to deploy the client endpoint, services like dependency injection that are supported, for example, when
+     * the implementation is part of the Java EE platform may not be available. If the client endpoint uses dependency
+     * injection, use {@link WebSocketContainer#connectToServer(java.lang.Class, java.net.URI)} instead.
      *
      * @param annotatedEndpointInstance the annotated websocket client endpoint instance.
      * @param path                      the complete path to the server endpoint.
@@ -77,9 +77,9 @@ public interface WebSocketContainer {
 
     /**
      * Connect the supplied annotated endpoint to its server. The supplied object must be a class decorated with the
-     * class level {@link jakarta.websocket.ClientEndpoint} annotation. This method blocks until the connection is
-     * established, or throws an error if either the connection could not be made or there was a problem with the
-     * supplied endpoint class.
+     * class level {@link jakarta.websocket.ClientEndpoint} annotation. The class must have a no-arg constructor. This
+     * method blocks until the connection is established, or throws an error if either the connection could not be made
+     * or there was a problem with the supplied endpoint class.
      *
      * @param annotatedEndpointClass the annotated websocket client endpoint.
      * @param path                   the complete path to the server endpoint.
