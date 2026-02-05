@@ -90,6 +90,17 @@ public interface HandshakeRequest {
     Object getHttpSession();
 
     /**
+     * Return a reference to the ServletContext that the web socket handshake that started this conversation was dispatched to,
+     * if the implementation is part of a Java EE web container.
+     *
+     * @return the servlet context or {@code null} if the websocket implementation is not part of a Java EE web
+     *         container.
+     */
+    default Object getServletContext() {
+        return null;
+    }
+
+     /**
      * Return the request parameters associated with the request.
      *
      * @return the unmodifiable map of the request parameters.
