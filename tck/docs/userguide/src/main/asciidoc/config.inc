@@ -75,7 +75,7 @@ slashes as a path separator instead.
   d. Set the `porting.ts.url.class.1` property to your porting
   implementation class that is used for obtaining URLs. +
   The default setting for this property is
-  `com.sun.ts.tests.websocket.lib.implementation.sun.common.SunRIURL`.
+  `ee.jakarta.tck.websocket.lib.implementation.sun.common.SunRIURL`.
 +
 3. Set the below jars to the classpath 
   a. JAR file for the {TechnologyShortName} {TechnologyVersion} API. +
