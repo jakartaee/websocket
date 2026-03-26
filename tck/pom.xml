@@ -36,7 +36,6 @@
     <description>websocket tck tests</description>
 
     <modules>
-        <module>common</module>
         <module>docs</module>
         <module>spec-tests</module>
         <module>tck-dist</module>

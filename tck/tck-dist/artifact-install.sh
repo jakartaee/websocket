@@ -31,16 +31,6 @@ mvn org.apache.maven.plugins:maven-install-plugin:3.1.1:install-file  \
 -Dfile=websocket-tck-$VERSION.pom -DgroupId=jakarta.tck -DartifactId=websocket-tck \
 -Dversion=$VERSION -Dpackaging=pom
 
-# websocket-tck-common pom
-mvn org.apache.maven.plugins:maven-install-plugin:3.1.1:install-file  \
--Dfile=websocket-tck-common-$VERSION.pom -DgroupId=jakarta.tck -DartifactId=websocket-tck-common \
--Dversion=$VERSION -Dpackaging=pom
-
-# websocket-tck-common jar
-mvn org.apache.maven.plugins:maven-install-plugin:3.1.1:install-file  \
--Dfile=websocket-tck-common-$VERSION.jar -DgroupId=jakarta.tck -DartifactId=websocket-tck-common \
--Dversion=$VERSION -Dpackaging=jar
-
 # websocket-tck-spec-tests jar
 mvn org.apache.maven.plugins:maven-install-plugin:3.1.1:install-file  \
 -Dfile=websocket-tck-spec-tests-$VERSION.jar -DgroupId=jakarta.tck -DartifactId=websocket-tck-spec-tests \

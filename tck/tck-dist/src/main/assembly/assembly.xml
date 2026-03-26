@@ -74,7 +74,6 @@
         <dependencySet>
             <includes>
                 <include>jakarta.tck:websocket-tck</include>
-                <include>jakarta.tck:websocket-tck-common</include>
                 <include>jakarta.tck:websocket-tck-spec-tests</include>
             </includes>
             <useTransitiveDependencies>false</useTransitiveDependencies>
