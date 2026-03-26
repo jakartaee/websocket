@@ -37,7 +37,7 @@
         </dependency>
         <dependency>
             <groupId>jakarta.tck</groupId>
-            <artifactId>websocket-tck-common</artifactId>
+            <artifactId>websocket-tck-spec-tests</artifactId>
             <version>${project.version}</version>
             <type>pom</type>
         </dependency>
@@ -45,26 +45,7 @@
             <groupId>jakarta.tck</groupId>
             <artifactId>websocket-tck-spec-tests</artifactId>
             <version>${project.version}</version>
-            <type>pom</type>
-        </dependency>
-        <dependency>
-            <groupId>jakarta.tck</groupId>
-            <artifactId>websocket-tck-common</artifactId>
-            <version>${project.version}</version>
             <type>jar</type>
-        </dependency>
-        <dependency>
-            <groupId>jakarta.tck</groupId>
-            <artifactId>websocket-tck-spec-tests</artifactId>
-            <version>${project.version}</version>
-            <type>jar</type>
-        </dependency>
-        <dependency>
-            <groupId>jakarta.tck</groupId>
-            <artifactId>websocket-tck-common</artifactId>
-            <version>${project.version}</version>
-            <classifier>sources</classifier>
-            <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>jakarta.tck</groupId>
