@@ -544,9 +544,7 @@ matches this is /a/b/
 ** /a/b (with var=b)
 ** /a/apple (with var=apple)
 
-* URIs that do NOT match (because empty string and strings
-with reserved characters "/" are not valid URI-template level 1
-expansions):
+* URIs that do NOT match because segment counts differ (reserved characters "/" are not valid URI-template level 1 expansions):
 ** /a
 ** /a/b/
 ** /a/b/c
