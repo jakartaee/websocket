@@ -32,7 +32,7 @@
         <!-- API version for signature test-->
         <api.version>2.3</api.version>
         <!-- Dependencies -->
-        <sigtest.version>2.6</sigtest.version>
+        <sigtest.version>2.7</sigtest.version>
     </properties>
 
     <dependencies>
