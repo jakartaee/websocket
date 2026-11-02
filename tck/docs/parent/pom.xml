@@ -56,7 +56,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-enforcer-plugin</artifactId>
-                    <version>3.6.3</version>
+                    <version>3.7.0</version>
                     <executions>
                         <execution>
                             <id>enforce-versions</id>
@@ -72,7 +72,7 @@
                                     </requireJavaVersion>
                                     <requireMavenVersion>
                                         <version>[3.6.3,)</version>
-                                        <message>You need Apache Maven 3.6.3 or newer</message>
+                                        <message>You need Apache Maven 3.7.0 or newer</message>
                                     </requireMavenVersion>
                                 </rules>
                             </configuration>
